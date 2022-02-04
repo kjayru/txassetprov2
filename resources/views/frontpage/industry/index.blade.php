@@ -48,7 +48,7 @@
                     @foreach($industries as $ind)
                     <div class="col-md-6  pb-3 pl-2 pr-2">
                         <a href="/industry/{{$category->slug}}/{{$ind->slug}}">
-                        <div class="tarjeta" style="background:url('/storage/{{$ind->banner}}') no-repeat center -75px; background-size:cover;">
+                        <div class="tarjeta" style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.322) 0%, rgba(255, 255, 255, 0.014) 48%, rgb(17, 17, 17) 100%),url('/storage/{{$ind->banner}}'); background-size:cover; background-position:top;">
                             <p class="titulo__industria">
                                 {{$ind->titulo}}
                             </p>

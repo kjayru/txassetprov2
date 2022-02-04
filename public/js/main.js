@@ -24,7 +24,12 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
       easing: 'ease-in-sin',
     });
 
-$('.parallaxie').parallaxie();
+    try {
+        $('.parallaxie').parallaxie(); 
+    } catch (error) {
+       console.log("no inicializado"); 
+    }
+
 }
 
 
