@@ -1,3 +1,29 @@
+var player;
+var player2;
+
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('videoPres', {
+      height: '360',
+      width: '640',
+      videoId: 'tUFOdr-mnHI',
+
+      playerVars:  {'autoplay':0,'origin':'http://txassetpro.com', 'enablejsapi':1,'rel':0,'showinfo':0 },
+
+    });
+
+
+
+    player2 = new YT.Player('videoPres2', {
+        height: '360',
+        width: '640',
+        videoId: 'yrEZ0swSwqc',
+        playerVars:  {'autoplay':0,'origin':'http://txassetpro.com','enablejsapi':1, 'rel':0,'showinfo':0 },
+
+      });
+    }
+
+var btnactive = false;
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     AOS.init({ disable: 'mobile', delay: 0, once: true, });
@@ -201,32 +227,7 @@ $("#fileid").fileinput({
 
 
 
-var player;
-var player2;
 
-
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('videoPres', {
-      height: '360',
-      width: '640',
-      videoId: 'tUFOdr-mnHI',
-
-      playerVars:  {'autoplay':0,'origin':'http://txassetpro.com', 'enablejsapi':1,'rel':0,'showinfo':0 },
-
-    });
-
-
-
-    player2 = new YT.Player('videoPres2', {
-        height: '360',
-        width: '640',
-        videoId: 'yrEZ0swSwqc',
-        playerVars:  {'autoplay':0,'origin':'http://txassetpro.com','enablejsapi':1, 'rel':0,'showinfo':0 },
-
-      });
-    }
-
-var btnactive = false;
 
 
 
