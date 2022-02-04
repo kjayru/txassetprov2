@@ -1529,6 +1529,7 @@ li.lista__item {
     font-size: 1.563rem;
     padding-bottom: 1rem;
     text-transform: uppercase;
+    padding-right: 3rem;
 }
 
 .card__post{
