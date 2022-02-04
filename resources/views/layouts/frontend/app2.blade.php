@@ -103,6 +103,13 @@
     @endguest
 
 </div>
+<ul class=" List__redes">
+    <li>
+      <a href="https://www.facebook.com/tapsecurit/" class="header__face" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/tapsecurity/?hl=es-la" class="header__face" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.youtube.com/channel/UC72n6tJvyxseA49zLw5D2sA" class="header__face" target="_blank"><i class="fab fa-youtube"></i></a>
+    </li>
+  </ul>
 </header>
         <main>
             @yield('content')

@@ -94,6 +94,13 @@
     @endguest
 
 </div>
+<ul class=" List__redes">
+    <li>
+      <a href="https://www.facebook.com/tapsecurit/" class="header__face" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/tapsecurity/?hl=es-la" class="header__face" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.youtube.com/channel/UC72n6tJvyxseA49zLw5D2sA" class="header__face" target="_blank"><i class="fab fa-youtube"></i></a>
+    </li>
+  </ul>
 </header>
         <main>
             @yield('content')
@@ -135,6 +142,12 @@
         </div>
     </div>
 </footer>
+<script>
+    var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+</script>
 <script src="/js/aos.js"></script>
 <script src="/js/main.js?v={{uniqid()}}"></script>
 @include("layouts.frontend.partials.modal")
