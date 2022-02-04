@@ -111,6 +111,9 @@
 
 
         @include("layouts.frontend.footer")
+
+
+        @include("layouts.frontend.partials.modal")
     <!-- JS, Popper.js, and jQuery -->
     @include("layouts.frontend.partials.scriptDefault")
 </body>

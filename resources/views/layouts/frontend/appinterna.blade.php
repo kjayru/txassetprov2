@@ -135,6 +135,8 @@
         </div>
     </div>
 </footer>
+
+@include("layouts.frontend.partials.modal")
 <script>
 
 
