@@ -135,7 +135,7 @@
         </div>
     </div>
 </footer>
-
+<script src="/js/main.js?v={{uniqid()}}"></script>
 @include("layouts.frontend.partials.modal")
 <script>
 
