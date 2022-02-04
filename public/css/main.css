@@ -1532,7 +1532,7 @@ li.lista__item {
     padding-right: 3rem;
 }
 
-.List__redes{
+.lista__redes{
     list-style: none;
     position: absolute;
     right: 1rem;

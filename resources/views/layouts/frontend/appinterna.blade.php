@@ -94,7 +94,7 @@
     @endguest
 
 </div>
-<ul class=" List__redes">
+<ul class=" lista__redes">
     <li>
       <a href="https://www.facebook.com/tapsecurit/" class="header__face" target="_blank"><i class="fab fa-facebook-f"></i></a>
       <a href="https://www.instagram.com/tapsecurity/?hl=es-la" class="header__face" target="_blank"><i class="fab fa-instagram"></i></a>
