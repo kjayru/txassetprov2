@@ -1469,6 +1469,8 @@ li.lista__item {
     color:white;
     bottom:0;
     width:100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .industry__banner .titulo__industria {
