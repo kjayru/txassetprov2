@@ -53,6 +53,7 @@
                     <th></th>
                     <th>Title</th>
                     <th>Excert</th>
+                    <th>Categoría</th>
                     <th>Date</th>
                     <th></th>
                 </tr>
@@ -62,7 +63,8 @@
                     <tr>
                         <th>{{$key+1}}</th>
                         <td>{{ $industry->titulo }}</td>
-                        <td>{{ $industry->contenido }}</td>
+                        <td>{!! \Str::limit($industry->contenido,100,'...')!!}</td>
+                        <td>{{ $industry->category->name }}</td>
                         <td>{{ $industry->created_at->format("Y-m-d") }}</td>
                         <td width="8%">
                             <a href="/admin/industries/{{$industry->id}}/edit" class="btn btn-sm btn-warning legitRipple">
