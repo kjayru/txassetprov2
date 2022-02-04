@@ -65,6 +65,7 @@
 
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,greek,latin-ext,vietnamese' rel='stylesheet' type='text/css'>
 
+<link rel="stylesheet" href="/backend/plugins/fontawesome-free/css/all.min.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.css">
@@ -97,6 +98,15 @@
          @include("layouts.frontend.subnav")
     @endguest
 </div>
+
+<ul class=" List__redes">
+  <li>
+    <a href="https://www.facebook.com/tapsecurit/" class="header__face" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/tapsecurity/?hl=es-la" class="header__face" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/channel/UC72n6tJvyxseA49zLw5D2sA" class="header__face" target="_blank"><i class="fab fa-youtube"></i></a>
+  </li>
+</ul>
+
 </header>
         <main>
             @yield('content')

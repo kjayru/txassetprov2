@@ -1532,6 +1532,17 @@ li.lista__item {
     padding-right: 3rem;
 }
 
+.List__redes{
+    list-style: none;
+    position: absolute;
+    right: 1rem;
+    top: 17px;
+}
+a.header__face {
+    display: inline;
+    color: white;
+    padding-left: 0.5rem;
+}
 .card__post{
     -webkit-box-shadow: 0px 15px 40px rgb(0 0 0 / 10%);
     box-shadow: 0px 15px 40px rgb(0 0 0 / 10%);
