@@ -46,7 +46,7 @@
             <div class="col-md-8 order-sm-2 order-1">
                 <div class="row">
                     @foreach($industries as $ind)
-                    <div class="col-md-6">
+                    <div class="col-md-6  pb-3 pl-2 pr-2">
                         <a href="/industry/{{$category->slug}}/{{$ind->slug}}">
                         <div class="tarjeta" style="background:url('/storage/{{$ind->banner}}') no-repeat center -75px; background-size:cover;">
                             <p class="titulo__industria">
