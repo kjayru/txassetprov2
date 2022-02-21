@@ -164,8 +164,13 @@ Route::get('/employment', [Home::class,'employment'])->name('front.employment');
 Route::post('/thanks',[Home::class,'employementThank'])->name('front.thanks');
 Route::post('/thanks2',[Home::class,'formThank'])->name('front.thanks2');
 Route::get('/generatepdf',[Home::class,'generatepdf']);
+Route::get('/training-academy', [Home::class,'academy'])->name('front.academy');
+Route::get('/training-academy/{detail}', [Home::class,'academyDetail'])->name('front.academydetail');
+
 Route::get('/training-calendar', [Home::class,'training'])->name('front.calendar');
 Route::get('/training-calendar/{detail}', [Home::class,'trainingDetail'])->name('front.detail');
+
+
 Route::get('/contact', [Home::class,'contact'])->name('front.contact');
 Route::post('/contact-gracias', [Home::class,'contactGracias'])->name('front.contactgracias');
 Route::get('/checkout/{slug}', [CheckoutController::class,'index'])->name('checkout.checkout');

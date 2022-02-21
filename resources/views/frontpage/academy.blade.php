@@ -3,7 +3,7 @@
 
 @section('content')
     <section id="training">
-        <div id="trainingInicio" class="separador2 parallaxie" style='background: url("/images/BannerTrainingMov.jpg")'>
+        <div id="trainingInicio" class="separador2 parallaxie" style='background: url("/images/Recruitment_Video.gif")'>
             <div class="container">
 
 
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <p><span>TRAINING</span><BR>CALENDAR</p>
+                        <p><span>TRAINING</span><BR>ACADEMY</p>
                     </div>
                 </div>
 
@@ -24,24 +24,52 @@
 
 
 
-   
+    <section id="section2">
+        <div id="academy" class="separador">
+            <div class="container">
+                <div class="row">
+                    <div id="trigger" class="spacer s0"></div>
+                    <div class="col-md-12" id="sectitle1">
+                        <h2 class="titulo">BRIEF DESCRIPTION</h2>
 
-
-
-    <section id="calendario">
-        <div class="container">
-            <div class="row justify-content-center pt-5">
-                <div class="col-md-3 text-center">
-                    <img src="/images/Emblema-gris.png" class="img-fluid">
+                        <p class="tap2" data-aos="fade-down">​​The TAP Security Academy is approved and licensed
+                            by the Texas Department of Public Safety Regulatory Services Division Private Security Program
+                            (PSP). Our instructors have over 20 years of military, law enforcement and security experience.
+                            In TAP Security Academy our goal is to provide security professionals with the knowledge and
+                            tools they need to succeed in the security Industry. </p>
+                    </div>
                 </div>
-            </div>
+                <div class="row columnas">
+                    <div class="col-md-12">
+                        <div id="video2start" class="spacer s0"></div>
 
-            <div class="row calendar">
+                        <div id="video1" class="parallaxie"
+                            style='background: url("/images/imagen-video-presentacion-02.jpg")'>
 
-                <div id="calendar"></div>
+                            <div class="player">
+                                <a href="#" class="btnplay videoplayTraining" data-toggle="modal" data-target="#trainingModal"><img
+                                        src="/images/play-circle-icono.png" class="img-fluid"></a>
+                            </div>
+                        </div>
+
+                        <div id="video1end" class="spacer s0"></div>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                        <a href="#" class="btn btn-danger btn-medium shadowred btn-course">Online course</a>
+                        <a href="/training-calendar" class="btn btn-danger btn-medium shadowred btn-course2">Training calendar</a>
+                    </div>
+
+                </div>
+
+
             </div>
         </div>
+
     </section>
+
+
+
 
 
 

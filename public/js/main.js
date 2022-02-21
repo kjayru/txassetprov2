@@ -1,5 +1,6 @@
 var player;
 var player2;
+var playerTraining;
 
 
   function onYouTubeIframeAPIReady() {
@@ -21,7 +22,19 @@ var player2;
         playerVars:  {'autoplay':0,'origin':'http://txassetpro.com','enablejsapi':1, 'rel':0,'showinfo':0 },
 
       });
+
+      playerTraining = new YT.Player('videoTraining', {
+        height: '360',
+        width: '640',
+        videoId: 'yrEZ0swSwqc',
+        playerVars:  {'autoplay':0,'origin':'http://txassetpro.com', 'enablejsapi':1,'rel':0,'showinfo':0 },
+
+    });
+
+    
     }
+
+  
 
 var btnactive = false;
 
@@ -150,6 +163,17 @@ $(function() {
             e.preventDefault();
             player2.stopVideo();
         });
+
+        $(".videoplayTraining").click(function(e){
+            e.preventDefault();
+            console.log(playerTraining);
+            playerTraining.playVideo();
+        });
+    
+        $(".stopvideo3").on('click',function(e){
+            e.preventDefault();
+            playerTraining.stopVideo();
+         });
 
 
         $(".navbar-toggler2").on('click',function(e){

@@ -30,8 +30,8 @@
             <a class="nav-link outinlink" href="/employment">Employment</a>
           </li>
 
-          <li class="nav-item {{{ (Request::is('training-calendar') ? 'activo' : '') }}}">
-            <a class="nav-link outinlink" href="/training-calendar">Training academy</a>
+          <li class="nav-item {{{ (Request::is('training-academy') ? 'activo' : '') }}}">
+            <a class="nav-link outinlink" href="/training-academy">Training academy</a>
           </li>
 
           <!--<li class="nav-item">

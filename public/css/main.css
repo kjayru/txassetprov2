@@ -248,6 +248,12 @@ div#about {
     color: white;
 
 }
+div#academy {
+    background: #555973;
+    color: white;
+
+}
+
 .separador{
     padding-top: 90px;
     padding-bottom: 180px;
@@ -1339,7 +1345,7 @@ a.btnplay:hover{
     margin: 0;
     background: transparent;
 }
-iframe#videoPres ,iframe#videoPres2{
+iframe#videoPres ,iframe#videoPres2,iframe#videoTraining{
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -1471,6 +1477,7 @@ li.lista__item {
     width:100%;
     padding-left: 2rem;
     padding-right: 2rem;
+    font-weight: bold;
 }
 
 .industry__banner .titulo__industria {
@@ -1492,12 +1499,12 @@ li.lista__item {
    
 }
 .card__industry{
-    border:1px solid #707070;
+    border:0 solid #707070;
     border-radius:25px;
     padding: 2rem;
-    box-shadow: 9px 6px 50px -15px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 9px 6px 50px -15px rgba(0,0,0,0.75);
-    -moz-box-shadow: 9px 6px 50px -15px rgba(0,0,0,0.75);
+    box-shadow: 0 10px 40px 0 rgba(0,0,0,0.16);
+    -webkit-box-shadow: 0 10px 40px 0 rgba(0,0,0,0.16);
+    -moz-box-shadow: 0 10px 40px 0 rgba(0,0,0,0.16);
 }
 #industries__content .btn{
     margin-top:2rem;
@@ -1530,6 +1537,7 @@ li.lista__item {
     padding-bottom: 1rem;
     text-transform: uppercase;
     padding-right: 3rem;
+    padding-left: 0;
 }
 
 .lista__redes{

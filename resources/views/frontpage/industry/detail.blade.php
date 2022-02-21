@@ -9,7 +9,7 @@
             <div class="row">
                 
                 <div class="col-md-6 order-sm-1 order-2">
-                    <img src="/storage/{{@$industry->banner}}" class="img-fluid">
+                    <img src="/storage/{{@$industry->card}}" class="img-fluid">
                 </div>
 
                 <div class="col-md-6 order-sm-2 order-1">
@@ -59,7 +59,7 @@
                         <a href="{{ url()->previous() }}" class="btn btn__back">Back</a>
                     </div>
                     <div class="col-md-4 col-12 text-right">
-                        <a href="/" data-section="contact" class="btn btn-quote  btq-foot inclass shadowred">Get quote</a>
+                        <a href="/contact" data-section="contact" class="btn btn-quote  btq-foot inclass shadowred">Get quote</a>
                     </div>
                 </div>
             </div>

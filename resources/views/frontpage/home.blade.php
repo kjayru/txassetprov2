@@ -4,7 +4,7 @@
 
         <!--<div class="drop" data-4600="left:5%;bottom[quadratic]:100%;" data-5000="bottom:-80%;"></div>
 
-            <div class="drop" data-0="right:5%;bottom[quadratic]:100%;" data-800="bottom:-80%;"></div>-->
+                            <div class="drop" data-0="right:5%;bottom[quadratic]:100%;" data-800="bottom:-80%;"></div>-->
 
     </div>
     <div id="general">
@@ -42,10 +42,9 @@
                             <h2 class="titulo">ABOUT</h2>
                             <P class="tap1" data-aos="fade-up">TAP Security was founded with the vision to
                                 challenge the security service industry by proactively placing the client’s needs first.</P>
-                            <p class="tap2" data-aos="fade-down">​​We are a veteran owned and operated business,
+                            <p class="tap2" data-aos="fade-down">​​​​We are a veteran owned and operated business,
                                 dedicated to achieving excellence for our clients and their customers. Our clients depend on
-                                us
-                                to perform to challenging standards. Anything less is not an option. We pride ourselves in
+                                us to meet to challenging standards. Anything less is not an option. We pride ourselves in
                                 our reliability, promptness, professionalism, and staying active while on site. We excel at
                                 what we do and what we do sets us apart from our competitors. </p>
                         </div>
@@ -61,15 +60,14 @@
                         </div>
                         <div class="col-md-4  border-left" id="sec1r2" data-aos="fade-down">
                             <h3>Professional</h3>
-                            <p>We pride ourselves on our keen attention to detail, reflecting it in our appearance. We aim
-                                for a strong professional presence at your facility to deter criminal activity. </p>
+                            <p>We pride ourselves in our attention to detail and it’s reflected first in our appearance. We
+                                aim to have a strong professional presence in your facility to deter criminal activity. </p>
                             <div class="bxylayer"></div>
                         </div>
                         <div class="col-md-4 border-left" id="sec1r3" data-aos="fade-left">
                             <h3>Passionate</h3>
-                            <p>Our team is passionate about your protection. Accomplishing our client’s requests and needs
-                                drives the foundation of our business growth. The priority of our business relationship
-                                ensures the safety of your location. </p>
+                            <p>Our team is passionate about your site. You aren′t just a number, you are the foundation of
+                                our business growth. Your site is safe with us </p>
                             <div class="bxylayer"></div>
                         </div>
                     </div>
@@ -89,7 +87,7 @@
                         <div id="efecto1" class="spacer s0"></div>
                         <div class="col-md-8">
                             <div class="marco" data-aos="zoom-in">
-                                <p>I believe the success of a business is rooted in the satisfaction in one’s clients.</p>
+                                <p>I believe the success of a business is rooted in the satisfaction of one’s clients.</p>
                                 <span><bdi>Oscar Gonzalez,</bdi> Founder & President</span>
                             </div>
                             <div id="efecto2" class="spacer s0"></div>
@@ -113,7 +111,7 @@
                                     business and branched off in July 2017
                                     to found Texas Asset Protection (dba TAP Security). His vision is to set a new standard
                                     for what clients expect from security
-                                    officer and patrol services.</p>
+                                    officers and patrol services.</p>
                             </div>
                         </div>
                     </div>
@@ -155,16 +153,17 @@
                         <div class="col-md-4 backblue order-sm-1 order-1" id="pd1" data-aos="fade-right">
                             <h3>We strive to combat common objections such as:</h3>
                             <ul class="p-0 ml-1">
-                                <li> Inability to track security officer’s or patrol movement to ensure they are fulfilling
-                                    the contractual agreement</li>
-                                <li> Unable to contact security officers when needed </li>
-                                <li> Unprofessional appearance, language, and improper behavior on property</li>
-                                <li> Not enforcing the rules and regulations requested by the client</li>
 
-                                <li> Nonspecific or no standard daily reports</li>
-
-
+                                <li> No way to track security officer′s movement or patrol movement to ensure they are
+                                    fulfilling the contractual agreement</li>
+                                <li> Unable to find/reach the security officers when needed</li>
+                                <li> Unprofessional behavior, language and use of mobile devices</li>
+                                <li> Untidy and unprofessional image</li>
+                                <li> Not enforcing the rules/regulations requested by the client</li>
+                                <li> Nonspecific or standard daily reports</li>
+                                <li> Not following the chain of command</li>
                                 <li> Patrol units driving by the site rather than engaging in a full onsite patrol</li>
+
 
                             </ul>
 
@@ -285,144 +284,148 @@
             </div>
         </section>
 
-       
-  
 
-     <!--nueva seccion-->
-     <section id="industry" class="separador2">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <h2 class="titulo title__extra">INDUSTRIES WE SERVER</h2>
-                </div>
-            </div>
-            <div class="row justify-content-center">
 
-                @desktop
-                @foreach ($categories as $cat)
-                    <div class="col-md-4 pl-3 pr-0 pb-3">
-                        <a href="/industry/{{$cat->slug}}"><div class="tarjeta"
-                            style="background:url(/storage/{{ $cat->card }}) no-repeat center center; background-size:cover;">
-                            <p class="titulo">{{ $cat->name }}</p>
-                        </div></a>
-                    </div>
-                @endforeach
-                @enddesktop
-                @mobile
 
-                @foreach ($categories as $cat)
-                <div class="col-12 pb-3">
-                    <a href="/industry/{{$cat->slug}}"><div class="tarjeta"
-                        style="background:url(/storage/{{ $cat->card }}) no-repeat center center; background-size:cover;">
-                        <p class="titulo">{{ $cat->name }}</p>
-                    </div></a>
-                </div>
-            @endforeach
-
-                @endmobile
-            </div>
-        </div>
-    </section>
-
-    <!--<section id="section6">
-        <div id="clientele" class="separador2">
+        <!--nueva seccion-->
+        <section id="industry" class="separador2">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <h2 class="titulo">CLIENTELE</h2>
+                        <h2 class="titulo title__extra">INDUSTRIES WE SERVE</h2>
                     </div>
                 </div>
-                <div id="taplogos2" class="spacer s0"></div>
                 <div class="row justify-content-center">
-                    <div class="col-md-12 text-center" data-aos="fade-up">
-                        <ul class="marcas ilogo2">
-                            <li>Apartment Complex</li>
-                            <li>Auto Dealerships</li>
-                            <li>Financial Institutions</li>
-                            <li>Bus Stations</li>
-                            <li>Construction Sites</li>
-                            <li>Gated Communities</li>
-                            <li>Health Care Facilities</li>
-                            <li>Hotels and Motels</li>
-                            <li>Outlets and Malls</li>
-                            <li>Private Property Security</li>
-                            <li>Religious Centers</li>
-                            <li>Restaurants</li>
 
-                            <li>Retail Stores</li>
-                            <li>Shopping Centers</li>
-                            <li>Warehouse & Manufacturing</li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>-->
-
-    <section id="section8">
-        <div id="trusted" class="separador2">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <h2 class="titulo">TRUSTED BY</h2>
-                    </div>
-                </div>
-                <div id="taplogos3" class="spacer s0"></div>
-                <div class="row justify-content-center">
-                    <div class="col-md-12 p-0 ilogo3">
-                        <ul class="marcaslogo">
-                            <li class="t1" data-aos="zoom-in"><img
-                                    src="/images/Cliente-Spectrum-Logo-500-Blanco.png" class="img-fluid" alt="">
-                            </li>
-                            <li class="t2" data-aos="zoom-in"><img src="/images/Cliente-apple.png"
-                                    class="img-fluid" alt=""></li>
-                            <li class="t3" data-aos="zoom-in"><img src="/images/Cliente-albany.png"
-                                    class="img-fluid" alt=""></li>
-                            <li class="t4" data-aos="zoom-in"><img src="/images/Cliente-menger hotel.png"
-                                    class="img-fluid" alt=""></li>
-                            <li class="t5" data-aos="zoom-in"><img
-                                    src="/images/Cliente-MexicanCultureBlanco.png" class="img-fluid" alt=""></li>
-                            <li class="t6" data-aos="zoom-in"><img
-                                    src="/images/Cliente-Consulado-SRE-Blanco.png" class="img-fluid" alt=""></li>
-                            <li class="t7" data-aos="zoom-in"><img src="/images/Cliente-maruchan.png"
-                                    class="img-fluid" alt=""></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="section9">
-        <div id="training" class="separador2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-12" data-aos="slide-left">
-                        <div class="titulo2">Training<br> with us</div>
-                        <div class="botones d-none d-sm-block">
-                            <a href="/training-calendar" class="btn btn-danger btn-medium shadowred">Schedule</a>
+                    @desktop
+                    @foreach ($categories as $cat)
+                        <div class="col-md-4 pl-3 pr-0 pb-3">
+                            <a href="/industry/{{ $cat->slug }}">
+                                <div class="tarjeta"
+                                    style="background:url(/storage/{{ $cat->card }}) no-repeat center center; background-size:cover;">
+                                    <p class="titulo">{{ $cat->name }}</p>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-md-9 col-12">
-                        <div class="video2">
+                    @endforeach
+                    @enddesktop
+                    @mobile
 
-                            <div class="player">
-                                <a href="#" class="btnplay videoplay2" data-toggle="modal"
-                                    data-target="#exampleModal2"><img src="/images/play-circle-icono.png"
-                                        class="img-fluid"></a>
+                    @foreach ($categories as $cat)
+                        <div class="col-12 pb-3">
+                            <a href="/industry/{{ $cat->slug }}">
+                                <div class="tarjeta"
+                                    style="background:url(/storage/{{ $cat->card }}) no-repeat center center; background-size:cover;">
+                                    <p class="titulo">{{ $cat->name }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+
+                    @endmobile
+                </div>
+            </div>
+        </section>
+
+        <!--<section id="section6">
+                        <div id="clientele" class="separador2">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <h2 class="titulo">CLIENTELE</h2>
+                                    </div>
+                                </div>
+                                <div id="taplogos2" class="spacer s0"></div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12 text-center" data-aos="fade-up">
+                                        <ul class="marcas ilogo2">
+                                            <li>Apartment Complex</li>
+                                            <li>Auto Dealerships</li>
+                                            <li>Financial Institutions</li>
+                                            <li>Bus Stations</li>
+                                            <li>Construction Sites</li>
+                                            <li>Gated Communities</li>
+                                            <li>Health Care Facilities</li>
+                                            <li>Hotels and Motels</li>
+                                            <li>Outlets and Malls</li>
+                                            <li>Private Property Security</li>
+                                            <li>Religious Centers</li>
+                                            <li>Restaurants</li>
+
+                                            <li>Retail Stores</li>
+                                            <li>Shopping Centers</li>
+                                            <li>Warehouse & Manufacturing</li>
+
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </section>-->
 
-
-                        <div class="botones  d-block d-sm-none">
-                            <a href="/training-calendar" class="btn btn-danger btn-medium shadowred">Schedule</a>
+        <section id="section8">
+            <div id="trusted" class="separador2">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <h2 class="titulo">TRUSTED BY</h2>
+                        </div>
+                    </div>
+                    <div id="taplogos3" class="spacer s0"></div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 p-0 ilogo3">
+                            <ul class="marcaslogo">
+                                <li class="t1" data-aos="zoom-in"><img
+                                        src="/images/Cliente-Spectrum-Logo-500-Blanco.png" class="img-fluid" alt="">
+                                </li>
+                                <li class="t2" data-aos="zoom-in"><img src="/images/Cliente-apple.png"
+                                        class="img-fluid" alt=""></li>
+                                <li class="t3" data-aos="zoom-in"><img src="/images/Cliente-albany.png"
+                                        class="img-fluid" alt=""></li>
+                                <li class="t4" data-aos="zoom-in"><img src="/images/Cliente-menger hotel.png"
+                                        class="img-fluid" alt=""></li>
+                                <li class="t5" data-aos="zoom-in"><img
+                                        src="/images/Cliente-MexicanCultureBlanco.png" class="img-fluid" alt=""></li>
+                                <li class="t6" data-aos="zoom-in"><img
+                                        src="/images/Cliente-Consulado-SRE-Blanco.png" class="img-fluid" alt=""></li>
+                                <li class="t7" data-aos="zoom-in"><img src="/images/Cliente-maruchan.png"
+                                        class="img-fluid" alt=""></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="section9">
+            <div id="training" class="separador2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-12" data-aos="slide-left">
+                            <div class="titulo2">Training<br> with us</div>
+                            <div class="botones d-none d-sm-block">
+                                <a href="/training-calendar" class="btn btn-danger btn-medium shadowred">Schedule</a>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-12">
+                            <div class="video2">
+
+                                <div class="player">
+                                    <a href="#" class="btnplay videoplay2" data-toggle="modal"
+                                        data-target="#exampleModal2"><img src="/images/play-circle-icono.png"
+                                            class="img-fluid"></a>
+                                </div>
+                            </div>
+
+
+                            <div class="botones  d-block d-sm-none">
+                                <a href="/training-calendar" class="btn btn-danger btn-medium shadowred">Schedule</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
 

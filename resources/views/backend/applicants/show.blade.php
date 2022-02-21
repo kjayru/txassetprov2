@@ -154,7 +154,7 @@
                                     {{ $edu->hightschool }}
                                 </p>
                                 <hr>
-                                <strong><i class="fas fa-book mr-1"></i>DID YOU GRADUATE COLLAGE?</strong>
+                                <strong><i class="fas fa-book mr-1"></i>DID YOU GRADUATE COLLEGE?</strong>
                                 <p class="text-muted">
                                     {{ $edu->graduatecollage }}
                                 </p>

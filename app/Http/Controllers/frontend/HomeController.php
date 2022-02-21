@@ -42,7 +42,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('id','desc')->get();
+        $categories = Category::orderBy('orden','asc')->get();
         return view('frontpage.home',['categories'=>$categories]);
     }
 
@@ -304,7 +304,7 @@ class HomeController extends Controller
                                     $htmlcode.= 'HIGH SCHOOL NAME: '.$request->hightschool.'<BR>';
                                     $htmlcode.= 'FROM: '.$request->highfrom.'<BR>';
                                     $htmlcode.= 'TO: '.$request->hightto.'<BR>';
-                                    $htmlcode.= 'DID YOU GRADUATE COLLAGE?: '.$request->graduatecollage.'<BR>';
+                                    $htmlcode.= 'DID YOU GRADUATE COLLEGE?: '.$request->graduatecollage.'<BR>';
                                     $htmlcode.= 'COLLAGE NAME: '.$request->collaganame.'<BR>';
                                     $htmlcode.= 'FROM: '.$request->collagefrom.'<BR>';
                                     $htmlcode.= 'TO: '.$request->collageto.'<BR>';
@@ -398,6 +398,21 @@ class HomeController extends Controller
         return view('frontpage.gracias');
     }
 
+    public function academy()
+    {
+        $events = Event::all();
+        return view('frontpage.academy',['events'=>$events]);
+    }
+
+    public function academyDetail($slug)
+    {
+
+        $event = Event::where('slug',$slug)->first();
+
+        return view('frontpage.detailacademy',['event'=>$event]);
+    }
+
+
     public function training()
     {
         $events = Event::all();
@@ -411,6 +426,8 @@ class HomeController extends Controller
 
         return view('frontpage.detail',['event'=>$event]);
     }
+
+
 
 
     public function contact()

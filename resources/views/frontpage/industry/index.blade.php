@@ -10,7 +10,7 @@
                 <div class="col-md-6">
                     <div class="row justify-content-between">
                         <div class="col-md-4 col-6">
-                            <h2 class="titulo ">Industries we server</h2>
+                            <h2 class="titulo ">Industries we serve</h2>
                         </div>
                     </div>
                     
