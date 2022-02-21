@@ -34,7 +34,7 @@
             <a class="nav-link outinlink" href="/training-academy">Training academy</a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item {{{ (Request::is('blog') ? 'activo' : '') }}}">
             <a class="nav-link outinlink" href="/blog" >Blog</a>
           </li>
 
