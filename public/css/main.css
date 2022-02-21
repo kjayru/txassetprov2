@@ -2258,6 +2258,14 @@ a.header__face {
         font-family: 'Bebas Neue', cursive;
         line-height: 3.7rem;
     }
+    .industries__content .card__titulo {
+        font-size: 1rem;
+        padding-bottom: 1rem;
+        text-transform: uppercase;
+        padding-right: 3rem;
+        padding-left: 0;
+        font-weight: bold;
+    }
 }
 
 @media(max-width:322px){
