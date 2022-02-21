@@ -3,7 +3,7 @@
 
 @section('content')
     <section id="training">
-        <div id="trainingInicio" class="separador2 parallaxie" style='background: url("/images/Recruitment_Video.gif")'>
+        <div id="trainingInicio" class="separador2 parallaxie" style='background: url("/images/Banner-Calendar-Cambios01.png")'>
             <div class="container">
 
 

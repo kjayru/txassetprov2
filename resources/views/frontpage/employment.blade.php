@@ -4,7 +4,7 @@
 @section('content')
 
 <section id="employment">
-    <div id="emp-inicio" class="separador2 parallaxie"  style='background: url("/images/Banner-Employment-Cambios01.png")' >
+    <div id="emp-inicio" class="separador2 parallaxie"  style='background: url("/images/Recruitment_Video.gif")'>
         <div class="container">
 
 
@@ -38,6 +38,7 @@
                 <p>Feel free to come by the office at 11503 Jones Maltsberger Rd, Ste. 1101 or email Alicia Morales your resume at  admin@txassetpro.com</p>
 
                 <a href="#frm-contenido" class="btn btn-danger btn-medium shadowred">APPLY NOW</a>
+                <a href="/form8850" class="btn btn-danger btn-medium shadowred ml-5">FORM 8850</a>
             </div>
         </div>
        </div>

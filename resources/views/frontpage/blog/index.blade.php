@@ -4,7 +4,7 @@
 @section('content')
 
 <section id="training">
-    <div id="emp-contact" class="separador2 parallaxie"  style='background: url("/images/Banner-Quote2-Cambios01.png")'>
+    <div id="emp-contact" class="separador2 parallaxie" style="background: url(/images/Banner-Calendar-Cambios01.png) center 0 no-repeat; background-size:cover;">
         <div class="container">
 
 
