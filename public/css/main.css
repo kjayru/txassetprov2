@@ -2258,7 +2258,7 @@ a.header__face {
         font-family: 'Bebas Neue', cursive;
         line-height: 3.7rem;
     }
-    .industries__content .card__titulo {
+    #industries__content .card__titulo {
         font-size: 1rem;
         padding-bottom: 1rem;
         text-transform: uppercase;
