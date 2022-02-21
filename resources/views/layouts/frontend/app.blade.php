@@ -98,7 +98,7 @@
          @include("layouts.frontend.subnav")
     @endguest
 </div>
-
+@desktop
 <ul class=" lista__redes">
   <li>
     <a href="https://www.facebook.com/tapsecurit/" class="header__face" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -106,7 +106,7 @@
     <a href="https://www.youtube.com/channel/UC72n6tJvyxseA49zLw5D2sA" class="header__face" target="_blank"><i class="fab fa-youtube"></i></a>
   </li>
 </ul>
-
+@enddesktop
 </header>
         <main>
             @yield('content')

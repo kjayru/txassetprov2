@@ -48,8 +48,19 @@
             <a class="nav-link outclass" href="https://www.guardtek.net/#!/authentication/signin" target="_blank">Client login</a>
           </li>
 
+         
       </ul>
-     
+     @mobile
+     <ul class=" lista__redes flex-container space-between">
+      <li>
+        <a href="https://www.facebook.com/tapsecurit/" class="header__face" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      </li><li>
+        <a href="https://www.instagram.com/tapsecurity/?hl=es-la" class="header__face" target="_blank"><i class="fab fa-instagram"></i></a>
+      </li><li>
+        <a href="https://www.youtube.com/channel/UC72n6tJvyxseA49zLw5D2sA" class="header__face" target="_blank"><i class="fab fa-youtube"></i></a>
+      </li>
+    </ul>
+     @endmobile
 
     </div>
 </nav>

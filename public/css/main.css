@@ -2221,6 +2221,43 @@ a.header__face {
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
+
+    .lista__redes {
+        list-style: none;
+        position: relative;
+        right: 0;
+        top: 0;
+        width: 100%;
+        padding-top: 1rem;
+    }
+    ul.lista__redes li a {
+        display: inline-block;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        padding-bottom: 1rem;
+    }
+    #industry .tarjeta {
+        height: 320px;
+        max-height: 320px;
+        position: relative;
+    }
+    #industry .tarjeta .titulo {
+        text-align: center;
+        position: absolute;
+        font-family: "Open Sans",sans-serif;
+        font-size: 1.4rem;
+        color: white;
+        font-weight: bold;
+        width: 100%;
+        bottom: 0;
+        display: block;
+    }
+    #industries .categoria {
+        font-size: 4rem !important;
+        color: white;
+        font-family: 'Bebas Neue', cursive;
+        line-height: 3.7rem;
+    }
 }
 
 @media(max-width:322px){
@@ -2255,3 +2292,52 @@ a.header__face {
     width: 14px;
     border-radius: 2px;
 }
+
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+  }
+  
+  .flex-start { 
+    justify-content: flex-start; 
+  }
+  
+  .flex-end { 
+    justify-content: flex-end; 
+  }  
+  
+  
+  .center { 
+    justify-content: center; 
+  }  
+ 
+  
+  .space-between { 
+    justify-content: space-between; 
+  }  
+  
+  
+  .space-around { 
+    justify-content: space-around; 
+  }
+  
+  
+  .space-evenly { 
+    justify-content: space-evenly; 
+  }
+ 
+  
+  .flex-item {
+    padding: 5px;
+    width: 60px;
+    height: 50px;
+    margin: 5px;
+    line-height: 50px;
+  }
+  
+  
+  
+  

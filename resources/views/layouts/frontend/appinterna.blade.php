@@ -96,6 +96,7 @@
     @endguest
 
 </div>
+@desktop
 <ul class=" lista__redes">
     <li>
       <a href="https://www.facebook.com/tapsecurit/" class="header__face" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -103,6 +104,7 @@
       <a href="https://www.youtube.com/channel/UC72n6tJvyxseA49zLw5D2sA" class="header__face" target="_blank"><i class="fab fa-youtube"></i></a>
     </li>
   </ul>
+@enddesktop
 </header>
         <main>
             @yield('content')
@@ -139,6 +141,7 @@
                     <li><a href="#" class="footer-link">Blog</a></li>
                     <li><a href="/contact" class="footer-link">Contact</a></li>
                     <li><a href="/" data-section="contact" class="btn btn-quote btq-foot inclass shadowred">GET A QUOTE</a></li>
+                    
             </ul>
             </div>
         </div>
