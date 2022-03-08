@@ -772,7 +772,7 @@ class HomeController extends Controller
     public function industryCard($slug){
         $categories = Category::orderBy('id','asc')->get();
         $category = Category::where('slug',$slug)->first();
-        $industries = Industry::where('category_id',$category->id)->orderby('orden','desc')->get();
+        $industries = Industry::where('category_id',$category->id)->orderby('orden','asc')->get();
         return view('frontpage.industry.index',['categories'=>$categories,'category'=>$category,'industries'=>$industries]);
     }
 
