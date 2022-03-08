@@ -37,8 +37,8 @@
           <!--<li class="nav-item">
             <a class="nav-link outinlink" href="https://medium.com/@TAPSecurity" target="_blank">Blog</a>
           </li>-->
-          <li class="nav-item {{{ (Request::is('blog') ? 'activo' : '') }}}">
-            <a class="nav-link outinlink" href="/blog*" >Blog</a>
+          <li class="nav-item {{{ (Request::is('blog*') ? 'activo' : '') }}}">
+            <a class="nav-link outinlink" href="/blog" >Blog</a>
           </li>
 
 
