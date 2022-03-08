@@ -50,10 +50,16 @@
                         @foreach($posts as $post)
                             <div class="col-md-4 col-12">
                                 <div class="card card__post">
-                                    <a href="/blog/{{$post->slug}}" style="background:url('storage/{{$post->card}}') no-repeat center -75px; background-size:cover;">
-                                        <div class="card__imagen" > </div>
+                                    <a href="/blog/{{$post['slug']}}" class="post__link" >
+                                        <div class="card__imagen" style="background:url('storage/{{$post['card']}}') no-repeat center center; background-size:cover;"> </div>
                                         <div class="card__titulo">
-                                            {{$post->titulo}}
+                                            {{strtoupper($post['titulo'])}}
+                                        </div>
+                                        <div class="card__resumen">
+                                            {{@$post['resumen']}}
+                                        </div>
+                                        <div class="card__date">
+                                            {{@$post['fecha']}}
                                         </div>
                                     </a>
                                 </div>

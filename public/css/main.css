@@ -1559,13 +1559,47 @@ a.header__face {
 }
 .card__imagen {
     height: 200px;
-    max-width: 200px;
+    width: 100%;
 }
 .card__titulo {
+    position: relative;
     display: block;
-    padding: 1rem 1rem 2rem 1rem;
+    padding: 1rem 1rem 0.5rem 1rem;
     color: #031059;
-    font-family:"Open Sans",sans-serif;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.4rem;
+}
+.card__titulo:after{
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid red;
+    display: block;
+    position: absolute;
+    right: 3px;
+    top: 26px;
+    transform: rotate(90deg);
+}
+.card__resumen {
+    color: black;
+    padding: 0 1rem;
+    font-size: 0.9rem;
+}
+.card__date {
+    text-align: right;
+    color: #707070;
+    font-size: 0.7rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+}
+.post__link{
+    text-decoration: none;
+}
+.post__link:hover{
+    text-decoration: none;
 }
 
 #blogdetail .btn__back {
@@ -1583,6 +1617,11 @@ a.header__face {
 
 .sinborder{
     border:none !important;
+}
+.date__post{
+    color:#707070;
+    padding-bottom: 1rem;
+    display: block;
 }
 @media(max-width:768px){
     a.navbar-brand {

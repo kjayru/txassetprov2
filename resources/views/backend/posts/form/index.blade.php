@@ -68,6 +68,10 @@
     </div>
 @endif
 
+    <div class="form-group">
+        <label for="resumen">Resumen</label>
+        <input type="text" name="resumen" class="form-control" value="{{@$post->resumen}}">
+    </div>
 
 
     <div class="form-group @if($errors->first('description')) has-error @endif">

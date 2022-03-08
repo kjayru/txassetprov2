@@ -31,6 +31,7 @@ use App\Mail\Employment as Empleo;
 use App\Mail\Order;
 use App\Mail\Form8850;
 use App\Mail\Contact as Contacto;
+use Illuminate\Support\Str;
 
 
 class HomeController extends Controller
@@ -790,12 +791,44 @@ class HomeController extends Controller
     public function blog(){
         $posts = Post::orderBy('id','desc')->get();
 
-        return view('frontpage.blog.index',['posts'=>$posts]);
+        $articulos =[];
+
+        foreach($posts as $col){
+            $articulos[] = [
+                'id' => $col->id,
+                'titulo' => $col->titulo,
+                'slug' => $col->slug,
+                'card' => $col->card,
+                'resumen' => Str::limit($col->resumen,100,'...'),
+                'fecha' =>  strftime("%h %d, %Y", date (strtotime($col->created_at))),
+            ];
+        }
+        $grupo = collect($articulos);
+
+
+        return view('frontpage.blog.index',['posts'=>$grupo]);
     }
 
     public function blogDetail($slug){
         $post = Post::where('slug',$slug)->first();
 
-        return view('frontpage.blog.detail',['post'=>$post]);
+        $posts = Post::where('id','<>',$post->id)->orderBy('id','desc')->take(4)->get();
+       
+        $articulos =[];
+
+        foreach($posts as $col){
+            $articulos[] = [
+                'id' => $col->id,
+                'titulo' => $col->titulo,
+                'slug' => $col->slug,
+                'card' => $col->card,
+                'resumen' => Str::limit($col->resumen,100,'...'),
+                'fecha' =>  strftime("%h %d, %Y", date (strtotime($col->created_at))),
+            ];
+        }
+        $grupo = collect($articulos);
+
+      
+        return view('frontpage.blog.detail',['post'=>$post,'articulos'=> $grupo]);
     }
 }

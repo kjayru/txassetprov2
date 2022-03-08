@@ -58,6 +58,7 @@ class PostController extends Controller
             $post->banner = $banner;
         }
 
+        $post->resumen = $request->resumen;
         $post->contenido = $request->description;
         $post->save();
 
@@ -102,6 +103,7 @@ class PostController extends Controller
             $banner = $request->file('banner')->store('banner');
             $post->banner = $banner;
         }
+        $post->resumen = $request->resumen;
         $post->contenido = $request->description;
         $post->save();
 
