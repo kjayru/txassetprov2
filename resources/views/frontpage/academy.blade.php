@@ -31,7 +31,7 @@
                 <div class="row">
                     <div id="trigger" class="spacer s0"></div>
                     <div class="col-md-12" id="sectitle1">
-                        <h2 class="titulo" </h2>
+                        <h2 class="titulo"> </h2>
 
                             <p class="tap2" data-aos="fade-down">​​
 
