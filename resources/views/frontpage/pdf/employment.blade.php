@@ -170,7 +170,7 @@
                                     {{ $edu->collageto}}
                             </p>
                             <hr>
-                            <strong><i class="fas fa-book mr-1"></i>COLLAGE NAME</strong>
+                            <strong><i class="fas fa-book mr-1"></i>COLLEGE NAME</strong>
                                 <p class="text-muted">
                                     {{ $edu->collaganame}}
                             </p>
