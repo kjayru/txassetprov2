@@ -766,14 +766,13 @@ class HomeController extends Controller
 
     public function industry(){
         $categories = Category::orderBy('id','desc')->get();
-
         return view('frontpage.industry.index',['categories'=>$categories]);
     }
 
     public function industryCard($slug){
         $categories = Category::orderBy('id','asc')->get();
         $category = Category::where('slug',$slug)->first();
-        $industries = Industry::where('category_id',$category->id)->get();
+        $industries = Industry::where('category_id',$category->id)->orderby('orden','desc')->get();
         return view('frontpage.industry.index',['categories'=>$categories,'category'=>$category,'industries'=>$industries]);
     }
 

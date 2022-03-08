@@ -59,7 +59,7 @@ class IndustryController extends Controller
             $industry->card = $card;
         }
 
-
+        $industry->orden = $request->orden;
 
         $industry->contenido = $request->description;
 
@@ -113,6 +113,7 @@ class IndustryController extends Controller
         }
         $industry->category_id = $request->categoria;
 
+        $industry->orden = $request->orden;
         $industry->contenido = $request->description;
 
 

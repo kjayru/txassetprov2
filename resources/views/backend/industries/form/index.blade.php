@@ -55,6 +55,11 @@
     </select>
 </div>
 
+<div class="form-group">
+    <label for="">Orden</label>
+    <input type="number" name="orden" class="form-control" value="{{@$industry->orden}}" >
+</div>
+
     <div class="form-group @if($errors->first('description')) has-error @endif">
       <label for="description" class="control-label">Description</label>
         <textarea class="form-control" name="description" id="description"> {{ @$industry->contenido }}</textarea>
