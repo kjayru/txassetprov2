@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mt-5">
                    @foreach($articulos as $art)
 
                     <div class="col-md-4 col-12">
