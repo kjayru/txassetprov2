@@ -35,7 +35,7 @@
           </li>
 
           <li class="nav-item {{{ (Request::is('blog') ? 'activo' : '') }}}">
-            <a class="nav-link outinlink" href="/blog" >Blog</a>
+            <a class="nav-link outinlink" href="/blog*" >Blog</a>
           </li>
 
 

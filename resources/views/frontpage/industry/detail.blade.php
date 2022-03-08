@@ -9,7 +9,7 @@
             <div class="row">
                 
                 <div class="col-md-6 order-sm-1 order-2">
-                    <img src="/storage/{{@$industry->card}}" class="img-fluid">
+                    <img src="/storage/{{@$industry->banner}}" class="img-fluid">
                 </div>
 
                 <div class="col-md-6 order-sm-2 order-1">

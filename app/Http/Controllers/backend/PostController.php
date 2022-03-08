@@ -48,6 +48,11 @@ class PostController extends Controller
         $post->slug = Str::slug($request->titulo, '-');
 
 
+        if($request->hasFile('card')) {
+            $card = $request->file('card')->store('card');
+            $post->card = $card;
+        }
+
         if($request->hasFile('banner')) {
             $banner = $request->file('banner')->store('banner');
             $post->banner = $banner;
@@ -89,6 +94,10 @@ class PostController extends Controller
 
         $post->titulo = $request->titulo;
         $post->slug = Str::slug($request->titulo, '-');
+        if($request->hasFile('card')) {
+            $card = $request->file('card')->store('card');
+            $post->card = $card;
+        }
         if($request->hasFile('banner')) {
             $banner = $request->file('banner')->store('banner');
             $post->banner = $banner;
@@ -107,7 +116,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         Post::find($request->id)->delete();
         return redirect()->route('posts.index')

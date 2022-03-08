@@ -4,7 +4,7 @@
 @section('content')
 
 <section id="training">
-    <div id="emp-contact" class="separador2 parallaxie" style="background: url(/images/Banner-Calendar-Cambios01.png) center 0 no-repeat; background-size:cover;">
+    <div id="emp-contact" class="separador2 parallaxie" style="background: url(/images/Banner-Quote2-Cambios01.png) center 0 no-repeat; background-size:cover;">
         <div class="container">
 
 
@@ -24,8 +24,8 @@
 <section id="contacto" class="separador2">
     <div class="container">
 
-        <div class="card">
-            <div class="card-body paddincard sombra">
+        <div class="card sinborder">
+            <div class="card-body paddincard ">
 
 
 
@@ -46,19 +46,20 @@
 
 
                 <div class="row justify-content-center">
-                    <div class="col-md-4 col-12">
+                   
                         @foreach($posts as $post)
-                        <div class="card card__post">
-                            <a href="/blog/{{$post->slug}}" style="background:url('storage/{{$post->banner}}') no-repeat center -75px; background-size:cover;">
-                                <div class="card__imagen" >
-                              
+                            <div class="col-md-4 col-12">
+                                <div class="card card__post">
+                                    <a href="/blog/{{$post->slug}}" style="background:url('storage/{{$post->card}}') no-repeat center -75px; background-size:cover;">
+                                        <div class="card__imagen" > </div>
+                                        <div class="card__titulo">
+                                            {{$post->titulo}}
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="card__titulo">
-                                {{$post->titulo}}
-                            </div></a>
-                        </div>
                         @endforeach
-                    </div>
+                    
                 </div>
 
 

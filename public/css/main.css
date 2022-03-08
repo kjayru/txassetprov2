@@ -1577,7 +1577,13 @@ a.header__face {
     text-transform: uppercase;
     font-family:"Open Sans",sans-serif;
 }
+#blog-detail{
+    height: 400px;
+}
 
+.sinborder{
+    border:none !important;
+}
 @media(max-width:768px){
     a.navbar-brand {
         width: 40px;

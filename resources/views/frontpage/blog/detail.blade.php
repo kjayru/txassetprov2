@@ -3,18 +3,10 @@
 
 @section('content')
 
-<section id="training">
-    <div id="emp-contact" class="separador2 parallaxie"  style='background: url("/images/Banner-Quote2-Cambios01.png")'>
+<section id="blog-detail">
+    <div id="emp-contact" class="separador2" style="background: url(/storage/{{$post->banner}}) center 0 no-repeat; background-size:cover;">
         <div class="container">
-
-
             <div class="row banner">
-                <div class="col-md-3 d-none d-sm-block ">
-                    <div class="logo">
-                        <img src="/images/Logo-TAP.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-                
             </div>
         </div>
     </div>
@@ -24,8 +16,8 @@
 <section id="blogdetail" class="separador2">
     <div class="container">
 
-        <div class="card">
-            <div class="card-body paddincard sombra">
+        <div class="card sinborder">
+            <div class="card-body paddincard ">
 
 
 
