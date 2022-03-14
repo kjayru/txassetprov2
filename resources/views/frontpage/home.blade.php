@@ -375,23 +375,41 @@
                     <div class="row justify-content-center">
                         <div class="col-md-12 p-0 ilogo3">
                             <ul class="marcaslogo">
-                                <li class="t1" data-aos="zoom-in"><img
-                                        src="/images/Cliente-Spectrum-Logo-500-Blanco.png" class="img-fluid" alt="">
+                                <li class="t1" data-aos="zoom-in"><img src="/images/Cliente-Spectrum-Logo-500-Blanco.png" class="img-fluid" alt="">
                                 </li>
-                                <li class="t2" data-aos="zoom-in"><img src="/images/Cliente-apple.png"
-                                        class="img-fluid" alt=""></li>
-                                <li class="t3" data-aos="zoom-in"><img src="/images/Cliente-albany.png"
-                                        class="img-fluid" alt=""></li>
-                                <li class="t4" data-aos="zoom-in"><img src="/images/Cliente-menger hotel.png"
-                                        class="img-fluid" alt=""></li>
-                                <li class="t5" data-aos="zoom-in"><img
-                                        src="/images/Cliente-MexicanCultureBlanco.png" class="img-fluid" alt=""></li>
-                                <li class="t6" data-aos="zoom-in"><img
-                                        src="/images/Cliente-Consulado-SRE-Blanco.png" class="img-fluid" alt=""></li>
-                                <li class="t7" data-aos="zoom-in"><img src="/images/Cliente-maruchan.png"
-                                        class="img-fluid" alt=""></li>
+                                <li class="t2" data-aos="zoom-in"><img src="/images/Cliente-apple.png"class="img-fluid" alt=""></li>
+                                <li class="t3" data-aos="zoom-in"><img src="/images/Cliente-albany.png" class="img-fluid" alt=""></li>
+                                <li class="t4" data-aos="zoom-in"><img src="/images/Cliente-menger hotel.png" class="img-fluid" alt=""></li>
+                                <li class="t5" data-aos="zoom-in"><img src="/images/Cliente-MexicanCultureBlanco.png" class="img-fluid" alt=""></li>
+                                <li class="t6" data-aos="zoom-in"><img src="/images/Cliente-Consulado-SRE-Blanco.png" class="img-fluid" alt=""></li>
+                                <li class="t7" data-aos="zoom-in"><img src="/images/Cliente-maruchan.png" class="img-fluid" alt=""></li>
                             </ul>
+                           
                         </div>
+                       <!-- <div class="row justify-content-center">
+                            <div class="col-md-3">
+                                <img src="/images/Cliente-Spectrum-Logo-500-Blanco.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-3">
+                                <img src="/images/Cliente-apple.png"class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-3">
+                                <img src="/images/Cliente-albany.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-3">
+                                <img src="/images/Cliente-menger hotel.png" class="img-fluid" alt="">
+                            </div>
+
+                            <div class="col-md-3">
+                                <img src="/images/Cliente-MexicanCultureBlanco.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-3">
+                                <img src="/images/Cliente-Consulado-SRE-Blanco.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-3">
+                                <img src="/images/Cliente-maruchan.png" class="img-fluid" alt="">
+                            </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -426,6 +444,24 @@
                 </div>
             </div>
         </section>
+
+
+        <section id="sectionblog">
+            <div id="trusted" class="separador2">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <h2 class="titulo">BLOG</h2>
+                        </div>
+                    </div>
+                    <div id="taplogos3" class="spacer s0"></div>
+                    <div class="row justify-content-center">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
     </div>
 
 

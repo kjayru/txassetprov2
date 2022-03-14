@@ -747,15 +747,9 @@ class HomeController extends Controller
                     'disclaimer' => $disclaimer
                     ]);*/
 
-             $formdata = Form::find($id);
-
-
+        $formdata = Form::find($id);
 
         $condicion =  unserialize($formdata->condicional);
-
-
-
-
 
 
         return view('frontpage.pdf.form8850',  [
