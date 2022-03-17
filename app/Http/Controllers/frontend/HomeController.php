@@ -44,7 +44,23 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::orderBy('orden','asc')->get();
-        return view('frontpage.home',['categories'=>$categories]);
+        $posts = Post::orderBy('id','desc')->limit(4)->get();
+
+        $articulos =[];
+
+        foreach($posts as $col){
+            $articulos[] = [
+                'id' => $col->id,
+                'titulo' => $col->titulo,
+                'slug' => $col->slug,
+                'card' => $col->card,
+                'resumen' => Str::limit($col->resumen,100,'...'),
+                'fecha' =>  strftime("%h %d, %Y", date (strtotime($col->created_at))),
+            ];
+        }
+        $grupo = collect($articulos);
+
+        return view('frontpage.home',['categories'=>$categories,'posts'=>$grupo]);
     }
 
 

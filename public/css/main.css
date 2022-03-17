@@ -1556,6 +1556,8 @@ a.header__face {
     box-shadow: 0px 15px 40px rgb(0 0 0 / 10%);
     border-radius: 5px;
     overflow: hidden;
+    margin-bottom: 2rem;
+    height: 23rem;
 }
 .card__imagen {
     height: 200px;
@@ -1623,6 +1625,24 @@ a.header__face {
     padding-bottom: 1rem;
     display: block;
 }
+
+.logoimagen{
+    max-width: 200px;
+    width: 200px !important;
+}
+.logoimagen img{
+    width: 100%;
+}
+.homelogo{
+    height: 80px;
+}
+#sectionblog .card {
+        margin-top: 30px;
+        padding-bottom: 0;
+        margin-bottom: 40px;
+}
+
+
 @media(max-width:768px){
     a.navbar-brand {
         width: 40px;
@@ -1715,6 +1735,10 @@ a.header__face {
     .logos figure img {
         width: 67px;
         max-width: inherit;
+    }
+    .logoimagen{
+        max-width: 200px;
+        width: 200px;
     }
     #section5 p {
         font-size: 17px;

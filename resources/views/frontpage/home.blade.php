@@ -373,19 +373,41 @@
                     </div>
                     <div id="taplogos3" class="spacer s0"></div>
                     <div class="row justify-content-center">
-                        <div class="col-md-12 p-0 ilogo3">
+                        <div class="col-md-3 homelogo">
+                            <img src="/images/Cliente-Spectrum-Logo-500-Blanco.png" class="img-fluid">
+                        </div>
+                        <div class="col-md-3 homelogo">
+                            <img src="/images/Logos-clientes-apple.jpeg"  class="img-fluid">
+                        </div>
+                        <div class="col-md-3 homelogo">
+                            <img src="/images/Logos-clientes-albany.jpeg"  class="img-fluid">
+                        </div>
+                        <div class="col-md-3 homelogo">
+                            <img src="/images/Logos-clientes-historic.jpeg"  class="img-fluid">
+                        </div>
+                        <div class="col-md-3 homelogo">
+                            <img src="/images/Logos-clientes-mexican-cultural.jpeg"  class="img-fluid">
+                        </div>
+                        <div class="col-md-3 homelogo">
+                            <img src="/images/Logos-clientes-sre.jpeg"  class="img-fluid">
+                        </div>
+                        <div class="col-md-3 homelogo">
+                            <img src="/images/Cliente-maruchan.png"  class="img-fluid">
+                        </div>
+                    <!--<div class="col-md-12 p-0 ilogo3">
                             <ul class="marcaslogo">
-                                <li class="t1" data-aos="zoom-in"><img src="/images/Cliente-Spectrum-Logo-500-Blanco.png" class="img-fluid" alt="">
+                                <li class="logoimagen" data-aos="zoom-in"><img src="/images/Cliente-Spectrum-Logo-500-Blanco.png" >
                                 </li>
-                                <li class="t2" data-aos="zoom-in"><img src="/images/Cliente-apple.png"class="img-fluid" alt=""></li>
-                                <li class="t3" data-aos="zoom-in"><img src="/images/Cliente-albany.png" class="img-fluid" alt=""></li>
-                                <li class="t4" data-aos="zoom-in"><img src="/images/Cliente-menger hotel.png" class="img-fluid" alt=""></li>
-                                <li class="t5" data-aos="zoom-in"><img src="/images/Cliente-MexicanCultureBlanco.png" class="img-fluid" alt=""></li>
-                                <li class="t6" data-aos="zoom-in"><img src="/images/Cliente-Consulado-SRE-Blanco.png" class="img-fluid" alt=""></li>
-                                <li class="t7" data-aos="zoom-in"><img src="/images/Cliente-maruchan.png" class="img-fluid" alt=""></li>
+                                <li class="logoimagen" data-aos="zoom-in"><img src="/images/Logos-clientes-apple.jpeg"  ></li>
+                                <li class="logoimagen" data-aos="zoom-in"><img src="/images/Logos-clientes-albany.jpeg"  ></li>
+                                <li class="logoimagen" data-aos="zoom-in"><img src="/images/Logos-clientes-historic.jpeg"  ></li>
+                                <li class="logoimagen" data-aos="zoom-in"><img src="/images/Logos-clientes-mexican-cultural.jpeg" ></li>
+                                <li class="logoimagen" data-aos="zoom-in"><img src="/images/Logos-clientes-sre.jpeg" ></li>
+                                <li class="logoimagen" data-aos="zoom-in"><img src="/images/Cliente-maruchan.png"  ></li>
                             </ul>
                            
-                        </div>
+                        </div>-->
+
                        <!-- <div class="row justify-content-center">
                             <div class="col-md-3">
                                 <img src="/images/Cliente-Spectrum-Logo-500-Blanco.png" class="img-fluid" alt="">
@@ -456,6 +478,19 @@
                     </div>
                     <div id="taplogos3" class="spacer s0"></div>
                     <div class="row justify-content-center">
+                        @foreach($posts as $post)
+                        <div class="col-md-3">
+                            <div class="card card__post">
+                                <a href="/blog/{{$post['slug']}}" class="post__link" >
+                                    <div class="card__imagen" style="background:url('storage/{{$post['card']}}') no-repeat center center; background-size:cover;"> </div>
+                                    <div class="card__titulo">
+                                        {{strtoupper($post['titulo'])}}
+                                    </div>
+                                    
+                                </a>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
