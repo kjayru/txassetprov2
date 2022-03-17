@@ -62,7 +62,7 @@
                         <tr>
                             <th>{{$key+1}}</th>
                             <td>{{ $post->titulo }}</td>
-                            <td>{{ $post->contenido }}</td>
+                            <td>{{ $post->resumen }}</td>
                             <td>{{ $post->created_at->format("Y-m-d") }}</td>
                             <td width="8%">
                                 <a href="/admin/posts/{{$post->id}}/edit" class="btn btn-sm btn-warning legitRipple">
