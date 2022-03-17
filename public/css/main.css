@@ -312,10 +312,6 @@ h2.titulo:before {
 
 }
 
-
-
-
-
 h2.titulo:after {
     position: absolute;
     content: "";
@@ -323,6 +319,41 @@ h2.titulo:after {
     width: 100px;
     top: 32px;
     height: 1px;
+    left: 50%;
+    margin-left: -50px;
+}
+
+h2.tituloblog {
+    text-align: center;
+    position: relative;
+    font-size: 5rem;
+    padding-top: 13px;
+    margin-bottom: 88px;
+    margin-top: 50px;
+    font-family: 'Bebas Neue', cursive;
+    color:white;
+}
+
+h2.tituloblog:before {
+    content: "";
+    background: url(/images/Emblema-blanco.png) no-repeat 0px 0px;
+    background-size: cover;
+    height: 46px;
+    width: 118px;
+    position: absolute;
+    top: -30px;
+    transform: translate(-50%, -50%);
+    left: 50%;
+
+}
+
+h2.tituloblog:after {
+    position: absolute;
+    content: "";
+    background: white;
+    width: 100px;
+    top: 32px;
+    height:0;
     left: 50%;
     margin-left: -50px;
 }
@@ -1642,7 +1673,14 @@ a.header__face {
         margin-bottom: 40px;
         height: auto;
 }
-
+section#training {
+    background: #555973;
+    padding-top: 4rem;
+    padding-bottom: 0rem;
+}
+#training .titulo{
+    color:#ffffff;
+}
 
 @media(max-width:768px){
     a.navbar-brand {

@@ -3,7 +3,7 @@
 
 @section('content')
 
-<section id="training">
+<!--<section id="training">
     <div id="emp-contact" class="separador2 parallaxie" style="background: url(/images/Banner-Quote2-Cambios01.png) center 0 no-repeat; background-size:cover;">
         <div class="container">
 
@@ -19,31 +19,23 @@
         </div>
     </div>
 
-</section>
+</section>-->
+<section id="training">
+    <div class="container">
 
+        <div class="row justify-content-center">
+            <div class="col-md-12 titlesection text-center">
+                <h2 class="tituloblog">BLOG</h2>
+            </div>
+        </div>
+
+    </div>
+</section>
 <section id="contacto" class="separador2">
     <div class="container">
 
         <div class="card sinborder">
             <div class="card-body paddincard ">
-
-
-
-                <div class="row justify-content-center">
-                    <div class="col-md-3 text-center">
-                        <img src="/images/Emblema-blanco.png" class="img-fluid">
-                    </div>
-                </div>
-
-
-
-                    <div class="row justify-content-center">
-                        <div class="col-md-12 titlesection text-center">
-                            <h2 class="tituloblack">BLOG</h2>
-                            
-                        </div>
-                    </div>
-
 
                 <div class="row justify-content-center">
                    
