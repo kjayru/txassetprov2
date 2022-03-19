@@ -469,7 +469,7 @@
 
 
         <section id="sectionblog">
-            <div id="trusted" class="separador2">
+            <div id="bloghome" class="separador2">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-12">

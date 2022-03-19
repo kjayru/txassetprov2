@@ -187,3 +187,9 @@ Route::get('/industry/{cat}/{slug}',[Home::class,'industryDetail']);
 
 Route::get('/blog',[Home::class,'blog']);
 Route::get('/blog/{slug}',[Home::class,'blogDetail']);
+
+Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
+->name('ckfinder_connector');
+
+Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
+->name('ckfinder_browser');

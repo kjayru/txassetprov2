@@ -1672,6 +1672,7 @@ a.header__face {
         padding-bottom: 0 !important;
         margin-bottom: 40px;
         height: auto;
+        border:0;
 }
 section#training {
     background: #555973;
@@ -1680,6 +1681,13 @@ section#training {
 }
 #training .titulo{
     color:#ffffff;
+}
+
+#bloghome{
+    background-color:#555973;
+}
+#bloghome .titulo{
+    color:white;
 }
 
 @media(max-width:768px){

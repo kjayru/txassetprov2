@@ -822,7 +822,7 @@ class HomeController extends Controller
     public function blogDetail($slug){
         $post = Post::where('slug',$slug)->first();
 
-        $posts = Post::where('id','<>',$post->id)->orderBy('id','desc')->take(4)->get();
+        $posts = Post::where('id','<>',$post->id)->orderBy('id','desc')->take(3)->get();
        
         $articulos =[];
 

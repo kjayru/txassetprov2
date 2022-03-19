@@ -74,11 +74,17 @@
 <script src="/backend/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="/backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
+<script type="text/javascript" src="/js/ckfinder/ckfinder.js"></script>
+<script>CKFinder.config( { connectorPath: "/ckfinder/connector" } );</script>
+<script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
+
+
 <script src="/backend/js/main.js?v={{ uniqid() }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/backend/dist/js/pages/dashboard.js?v=2"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/backend/dist/js/demo.js?v=1"></script>
+
 
 <script>
     $(function () {

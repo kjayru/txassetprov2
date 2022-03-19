@@ -1,4 +1,23 @@
 
+
+/**EDITOR  */
+
+try {
+    var newCKEdit = CKEDITOR.replace("description", {
+        height: "600px",
+    });
+    CKEDITOR.config.allowedContent = true;
+  
+    CKFinder.config({ connectorPath: "/ckfinder/connector" });
+    CKFinder.setupCKEditor(newCKEdit, "/");
+
+} catch (e) {
+    console.log(e);
+    console.log("no iniciado sdsds");
+}
+
+
+
 $(function() {
 
     console.log("cargadde libreria");

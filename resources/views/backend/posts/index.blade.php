@@ -52,7 +52,7 @@
                     <tr>
                         <th></th>
                         <th>Title</th>
-                        <th>Excert</th>
+                        <th>Resume</th>
                         <th>Date</th>
                         <th></th>
                     </tr>

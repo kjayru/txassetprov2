@@ -17,7 +17,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="/admin/trainings">Posts</a></li>
+              <li class="breadcrumb-item"><a href="/admin/posts">Posts</a></li>
               <li class="breadcrumb-item active">Edit post</li>
             </ol>
           </div>
@@ -78,11 +78,11 @@
 
 
 <script>
-$(function() {
+/*$(function() {
         CKEDITOR.replace( description, {   height: 300 });
         CKEDITOR.config.allowedContent = true;
         CKEDITOR.config.contentsCss = '/css/app.css';
-})
+})*/
 </script>
 
 @endsection

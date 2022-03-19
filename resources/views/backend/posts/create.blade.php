@@ -13,7 +13,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="/admin/trainings">Posts</a></li>
+              <li class="breadcrumb-item"><a href="/admin/posts">Posts</a></li>
               <li class="breadcrumb-item active">Create post</li>
             </ol>
           </div>
@@ -92,9 +92,9 @@ $(function () {
     height: 700
 } );*/
 
-        CKEDITOR.replace( description, {   height: 300 });
+      /*  CKEDITOR.replace( description, {   height: 300 });
         CKEDITOR.config.allowedContent = true;
-        CKEDITOR.config.contentsCss = '/css/app.css';
+        CKEDITOR.config.contentsCss = '/css/app.css';*/
 
 
 
