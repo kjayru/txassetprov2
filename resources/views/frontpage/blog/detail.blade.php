@@ -4,7 +4,7 @@
 @section('content')
 
 <section id="blog-detail">
-    <div id="emp-contact" class="separador2" style="background: url(/storage/{{$post->banner}}) center 0 no-repeat; background-size:cover;">
+    <div id="emp-contact_mov" class="separador2" style="background: url(/storage/{{$post->banner}}) center 0 no-repeat; background-size:cover;">
         <div class="container">
             <div class="row banner">
             </div>
