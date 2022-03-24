@@ -2382,6 +2382,13 @@ section#training {
         padding-left: 0;
         font-weight: bold;
     }
+
+    .card__texto img{
+        width:100% !important;
+    }
+    .card__texto iframe{
+        width:100% !important;
+    }
 }
 
 @media(max-width:322px){
