@@ -2385,6 +2385,7 @@ section#training {
 
     .card__texto img{
         width:100% !important;
+        height: auto !important;
     }
     .card__texto iframe{
         width:100% !important;
