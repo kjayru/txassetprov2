@@ -373,25 +373,25 @@
                     </div>
                     <div id="taplogos3" class="spacer s0"></div>
                     <div class="row justify-content-center">
-                        <div class="col-md-3 homelogo">
+                        <div class="col-md-3 homelogo text-center">
                             <img src="/images/Cliente-Spectrum-Logo-500-Blanco.png" class="img-fluid">
                         </div>
-                        <div class="col-md-3 homelogo">
+                        <div class="col-md-3 homelogo text-center">
                             <img src="/images/Logos-clientes-apple.jpeg"  class="img-fluid">
                         </div>
-                        <div class="col-md-3 homelogo">
+                        <div class="col-md-3 homelogo text-center">
                             <img src="/images/Logos-clientes-albany.jpeg"  class="img-fluid">
                         </div>
-                        <div class="col-md-3 homelogo">
+                        <div class="col-md-3 homelogo text-center">
                             <img src="/images/Logos-clientes-historic.jpeg"  class="img-fluid">
                         </div>
-                        <div class="col-md-3 homelogo">
+                        <div class="col-md-3 homelogo text-center">
                             <img src="/images/Logos-clientes-mexican-cultural.jpeg"  class="img-fluid">
                         </div>
-                        <div class="col-md-3 homelogo">
+                        <div class="col-md-3 homelogo text-center">
                             <img src="/images/Logos-clientes-sre.jpeg"  class="img-fluid">
                         </div>
-                        <div class="col-md-3 homelogo">
+                        <div class="col-md-3 homelogo text-center">
                             <img src="/images/Cliente-maruchan.png"  class="img-fluid">
                         </div>
                     <!--<div class="col-md-12 p-0 ilogo3">
