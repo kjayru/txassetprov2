@@ -47,7 +47,7 @@
                         <div id="video2start" class="spacer s0"></div>
 
                         <div id="video1" class="parallaxie"
-                            style='background: url("/images/imagen-video-presentacion-02.jpg")'>
+                            style='background: url("/images/imagen-video-training.jpg")'>
 
                             <div class="player">
                                 <a href="#" class="btnplay videoplayTraining" data-toggle="modal"
