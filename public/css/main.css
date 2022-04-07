@@ -1690,6 +1690,8 @@ section#training {
     color:white;
 }
 
+
+
 @media(max-width:768px){
     a.navbar-brand {
         width: 40px;
@@ -2414,6 +2416,12 @@ section#training {
     }
     #contact .titulo2{
         padding-top:50px;
+    }
+}
+
+@media(min-width:769px){
+    .btn-course2{
+        margin-left: 2rem;
     }
 }
 
