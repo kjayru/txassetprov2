@@ -9,7 +9,7 @@ var playerTraining;
       width: '640',
       videoId: 'tUFOdr-mnHI',
 
-      playerVars:  {'autoplay':0,'origin':'http://txassetpro.com', 'enablejsapi':1,'rel':0,'showinfo':0 },
+      playerVars:  {'autoplay':0,'origin':'https://www.txassetpro.com', 'enablejsapi':1,'rel':0,'showinfo':0 },
 
     });
 
@@ -19,7 +19,7 @@ var playerTraining;
         height: '360',
         width: '640',
         videoId: 'yrEZ0swSwqc',
-        playerVars:  {'autoplay':0,'origin':'http://txassetpro.com','enablejsapi':1, 'rel':0,'showinfo':0 },
+        playerVars:  {'autoplay':0,'origin':'https://www.txassetpro.com','enablejsapi':1, 'rel':0,'showinfo':0 },
 
       });
 
@@ -27,7 +27,7 @@ var playerTraining;
         height: '360',
         width: '640',
         videoId: 'yrEZ0swSwqc',
-        playerVars:  {'autoplay':0,'origin':'http://txassetpro.com', 'enablejsapi':1,'rel':0,'showinfo':0 },
+        playerVars:  {'autoplay':0,'origin':'https://www.txassetpro.com', 'enablejsapi':1,'rel':0,'showinfo':0 },
 
     });
 
