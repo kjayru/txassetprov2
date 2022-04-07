@@ -2,6 +2,8 @@ var player;
 var player2;
 var playerTraining;
 
+try {
+    
 
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('videoPres', {
@@ -34,7 +36,9 @@ var playerTraining;
     
     }
 
-  
+} catch (error) {
+    console.log("no inicializado");
+}
 
 var btnactive = false;
 
