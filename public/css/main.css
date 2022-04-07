@@ -2258,7 +2258,7 @@ section#training {
         background-size:cover !important;
         height:180px;
     }
-    .btn-course2{
+    .btn__separacion{
         margin-top:1.5rem;
     }
     a.btnplay {
@@ -2420,7 +2420,7 @@ section#training {
 }
 
 @media(min-width:769px){
-    .btn-course2{
+    .btn__separacion{
         margin-left: 2rem;
     }
 }
