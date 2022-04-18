@@ -85,7 +85,7 @@
                     events: [
                         @foreach ($events as $evt)
                             {
-                            url: '/training-calendar/{{ $evt->slug }}',
+                            url: '/training-calendar/{{$evt->id}}/{{ $evt->slug }}',
                             title: '',
                         
                             start: '{{ $evt->start_date }}',
@@ -126,7 +126,7 @@
                     events: [
                         @foreach ($events as $evt)
                             {
-                            url: '/training-calendar/{{ $evt->slug }}',
+                            url: '/training-calendar/{{$evt->id}}/{{ $evt->slug }}',
                             title: '{{ $evt->title }}',
                         
                             start: '{{ $evt->start_date }}',

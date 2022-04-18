@@ -168,7 +168,7 @@ Route::get('/training-academy', [Home::class,'academy'])->name('front.academy');
 Route::get('/training-academy/{detail}', [Home::class,'academyDetail'])->name('front.academydetail');
 
 Route::get('/training-calendar', [Home::class,'training'])->name('front.calendar');
-Route::get('/training-calendar/{detail}', [Home::class,'trainingDetail'])->name('front.detail');
+Route::get('/training-calendar/{id}/{slug}', [Home::class,'trainingDetail'])->name('front.detail');
 
 
 Route::get('/contact', [Home::class,'contact'])->name('front.contact');

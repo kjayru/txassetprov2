@@ -22,9 +22,9 @@
                     <li><a href="/#service"   class="footer-link">Services</a></li>
                     <li><a href="/employment" class="footer-link">Employment</a></li>
                     <li><a href="/training-calendar" class="footer-link">Training calendar</a></li>
-                    <li><a href="#" class="footer-link">Blog</a></li>
+                    <li><a href="/blog" class="footer-link">Blog</a></li>
                     <li><a href="/contact" class="footer-link">Contact</a></li>
-                    <li><a href="/" data-section="contact" class="btn btn-quote  btq-foot inclass shadowred">GET A QUOTE</a></li>
+                    <li><a href="/contact" data-section="contact" class="btn btn-quote  btq-foot inclass shadowred">GET A QUOTE</a></li>
             </ul>
             </div>
         </div>

@@ -436,10 +436,10 @@ class HomeController extends Controller
         return view('frontpage.training',['events'=>$events]);
     }
 
-    public function trainingDetail($slug)
+    public function trainingDetail($id,$slug)
     {
 
-        $event = Event::where('slug',$slug)->first();
+        $event = Event::where('slug',$slug)->where('id',$id)->first();
 
         return view('frontpage.detail',['event'=>$event]);
     }
