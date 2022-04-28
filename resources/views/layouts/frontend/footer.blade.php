@@ -29,4 +29,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.addEventListener('load', function(){
+          if(window.location.pathname.includes('/contact-gracias')){
+            gtag('event', 'conversion', {'send_to': 'AW-679147291/Kgj3CILEhrMDEJvu68MC'});
+          }
+          if(window.location.pathname.includes('/success')){
+            gtag('event', 'conversion', {'send_to': 'AW-679147291/Kgj3CILEhrMDEJvu68MC'});
+          }
+        });
+      </script>
 </footer>

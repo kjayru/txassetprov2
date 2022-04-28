@@ -79,15 +79,17 @@
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180121021-1"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Ads: 679147291 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-679147291"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-180121021-1');
+  gtag('config', 'AW-679147291');
 </script>
-
-
 
 </head>
 <body>

@@ -71,12 +71,14 @@
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180121021-1"></script>
+<!-- Global site tag (gtag.js) - Google Ads: 679147291 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-679147291"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-180121021-1');
+  gtag('config', 'AW-679147291');
 </script>
 
 
@@ -146,6 +148,18 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.addEventListener('load', function(){
+          if(window.location.pathname.includes('/contact-gracias')){
+            gtag('event', 'conversion', {'send_to': 'AW-679147291/Kgj3CILEhrMDEJvu68MC'});
+          }
+          if(window.location.pathname.includes('/success')){
+            gtag('event', 'conversion', {'send_to': 'AW-679147291/Kgj3CILEhrMDEJvu68MC'});
+          }
+        });
+      </script>
+      
 </footer>
 <script>
     var tag = document.createElement('script');
