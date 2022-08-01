@@ -14,40 +14,40 @@ class Event extends Model
         $dia = $f[2];
 
         if($mes==1){
-           $mesnombre =  "Enero";
+           $mesnombre =  "January";
         }
         if($mes==2){
-            $mesnombre = "Febrero";
+            $mesnombre = "February";
         }
         if($mes==3){
-            $mesnombre = "Marzo";
+            $mesnombre = "March";
         }
         if($mes==4){
-            $mesnombre = "Abril";
+            $mesnombre = "April";
         }
         if($mes==5){
-            $mesnombre = "Mayo";
+            $mesnombre = "May";
         }
         if($mes==6){
-            $mesnombre = "Junio";
+            $mesnombre = "June";
         }
         if($mes==7){
-            $mesnombre = "Julio";
+            $mesnombre = "July";
         }
         if($mes==8){
-            $mesnombre = "Agosto";
+            $mesnombre = "August";
         }
         if($mes==9){
-            $mesnombre = "Setiembre";
+            $mesnombre = "September";
         }
         if($mes==10){
-            $mesnombre = "Octubre";
+            $mesnombre = "Octuber";
         }
         if($mes==11){
-            $mesnombre = "Noviembre";
+            $mesnombre = "November";
         }
         if($mes==12){
-            $mesnombre = "Diciembre";
+            $mesnombre = "December";
         }
       
         $fechas= ['mes'=>$mes,"year"=>$year,"mesNombre"=>$mesnombre,'dia'=>$dia];
