@@ -1,5 +1,7 @@
 @extends('layouts.frontend.appinterna')
-
+@php
+    use App\Models\Event;
+@endphp
 
 @section('content')
     <section id="training">
@@ -37,8 +39,26 @@
             </div>
 
             <div class="row calendar">
-
+            @desktop
                 <div id="calendar"></div>
+            @enddesktop
+            @mobile
+            <div class="col-12">
+            <ul class="list-group">
+            @foreach ($events->sortByDesc('start_date') as $evt)
+             
+                <li class="list-group-item">
+                   
+                    <p>{{ Event::meses($evt->start_date)['dia'] }} {{ Event::meses($evt->start_date)['mesNombre'] }}, {{ Event::meses($evt->start_date)['year'] }}</p>
+                    
+                    <a href="/training-calendar/{{$evt->id}}/{{ $evt->slug }}" class="solotitulo">{{$evt->title}}</a>
+                    
+                </li>
+                   
+            @endforeach
+            </ul>
+            </div>
+            @endmobile
             </div>
         </div>
     </section>

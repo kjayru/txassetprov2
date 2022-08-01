@@ -19,6 +19,7 @@ use App\Http\Controllers\backend\ChapterController;
 use App\Http\Controllers\backend\ChapterContentController;
 use App\Http\Controllers\backend\ChapterEvaluationController;
 use App\Http\Controllers\backend\ExamController;
+use App\Http\Controllers\frontend\CourseController as Course;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -187,6 +188,8 @@ Route::get('/industry/{cat}/{slug}',[Home::class,'industryDetail']);
 
 Route::get('/blog',[Home::class,'blog']);
 Route::get('/blog/{slug}',[Home::class,'blogDetail']);
+
+Route::get('/courses',[Course::class,'index']);
 
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
 ->name('ckfinder_connector');

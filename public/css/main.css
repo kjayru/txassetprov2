@@ -374,7 +374,15 @@ h2.titulosimbolo:before {
 }
 
 
-
+.solotitulo{
+    text-align: center;
+    position: relative;
+    font-size: 25px;
+    padding-top: 13px;
+    margin-top: 50px;
+    font-family: 'Bebas Neue', cursive;
+    color: #031059;
+}
 
 h2.tituloblack {
     text-align: center;

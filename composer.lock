@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93f3fa6d2f6d679e178397fb0c1c683c",
+    "content-hash": "6df6e1a9284b96a979a90970cd35980b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1290,28 +1290,28 @@
         },
         {
             "name": "hisorange/browser-detect",
-            "version": "4.4.1",
+            "version": "4.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hisorange/browser-detect.git",
-                "reference": "c36da007d43f310e49506ac47b7fd1fd4cd77611"
+                "reference": "701b1f15be45118f126266166f6beea351296452"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hisorange/browser-detect/zipball/c36da007d43f310e49506ac47b7fd1fd4cd77611",
-                "reference": "c36da007d43f310e49506ac47b7fd1fd4cd77611",
+                "url": "https://api.github.com/repos/hisorange/browser-detect/zipball/701b1f15be45118f126266166f6beea351296452",
+                "reference": "701b1f15be45118f126266166f6beea351296452",
                 "shasum": ""
             },
             "require": {
                 "jaybizzle/crawler-detect": "~1.2",
                 "league/pipeline": "^1.0",
-                "matomo/device-detector": "^4.0",
+                "matomo/device-detector": "^4.0 || ^5.0 || ^6.0",
                 "mobiledetect/mobiledetectlib": "~2.8",
                 "php": "^7.2 || ^8.0",
                 "ua-parser/uap-php": "~3.9"
             },
             "require-dev": {
-                "orchestra/testbench": "~4.0 || ~5.0 || ~6.0",
+                "orchestra/testbench": "~4.0 || ~5.0 || ~6.0 || ~7.0",
                 "php-coveralls/php-coveralls": "~1.0 || ~2.0",
                 "phpstan/phpstan": "^0.12.11",
                 "phpunit/phpunit": "~5.0 || ~6.0 || ~7.0 || ~8.0 || ~9.0",
@@ -1346,21 +1346,22 @@
             "description": "Browser & Mobile detection package for Laravel.",
             "homepage": "https://github.com/hisorange/browser-detect",
             "keywords": [
-                "analyize",
+                "analyse",
                 "browser",
                 "detect",
                 "hisorange",
                 "laravel",
                 "mobile",
+                "php",
                 "tablet",
                 "user agent",
                 "user-agent"
             ],
             "support": {
                 "issues": "https://github.com/hisorange/browser-detect/issues",
-                "source": "https://github.com/hisorange/browser-detect/tree/4.4.1"
+                "source": "https://github.com/hisorange/browser-detect/tree/4.5.2"
             },
-            "time": "2021-11-02T16:36:05+00:00"
+            "time": "2022-07-12T10:31:47+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
@@ -9428,5 +9429,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
