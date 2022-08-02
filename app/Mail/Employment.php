@@ -2,13 +2,13 @@
 
 namespace App\Mail;
 
-use App\Information;
-use App\Education;
-use App\Reference;
-use App\Employment as Employ;
-use App\Military;
-use App\Archivo;
-use App\Disclaimer;
+use App\Models\Information;
+use App\Models\Education;
+use App\Models\Reference;
+use App\Models\Employment as Employ;
+use App\Models\Military;
+use App\Models\Archivo;
+use App\Models\Disclaimer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
