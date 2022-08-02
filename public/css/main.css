@@ -2262,7 +2262,8 @@ section#training {
         border-radius: 12px;
     }
     #video1{
-        background: url(/images/Imagen-video-training.jpg) no-repeat center center !important;
+       
+        background: url(/images/imagen-video-presentacion-02.jpg) no-repeat center center !important;
         background-size:cover !important;
         height:180px;
     }
