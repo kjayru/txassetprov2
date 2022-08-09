@@ -21,7 +21,8 @@ use App\Models\Employment as Employ;
 use App\Models\Category;
 use App\Models\Industry;
 use App\Models\Post;
-use PDF;
+//use PDF;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -703,7 +704,7 @@ class HomeController extends Controller
 
         $id =  $form->id;
         $data = ["html"=>$htmlcode,"form_id"=>$id];
-
+  
 
 
         Mail::to(env('MAIL_CONTACT'))->send(new Form8850($data));

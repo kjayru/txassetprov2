@@ -83,17 +83,17 @@ class Employment extends Mailable
 
 
         $pdf = PDF::loadView('frontpage.pdf.employment', [
-            'apli'=>$applicant,
-            'week'=>$semana,
-            'edu'=>$education,
-            'references' => $references,
-            'employments'=> $employments,
-            'military' => $military,
-            'disclaimer' => $disclaimer
+            'apli'=>@$applicant,
+            'week'=>@$semana,
+            'edu'=>@$education,
+            'references' => @$references,
+            'employments'=> @$employments,
+            'military' => @$military,
+            'disclaimer' => @$disclaimer
              ]);
-        $output =  $pdf->output('employment.pdf');
+        //$output =  $pdf->output('employment.pdf');
 
-
+        //PDF::loadView('my-actual-view',compact('data'))->output()
 
          $maildata = $this->from($address, $name)
                     ->replyTo($address, $name)
