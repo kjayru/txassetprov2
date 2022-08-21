@@ -46,7 +46,7 @@
                     <div class="col-md-12">
                         <div id="video2start" class="spacer s0"></div>
 
-                        <div id="video1" class="parallaxie"
+                        <div id="video1" class="parallaxie academy__video"
                             style='background: url("/images/Imagen-video-training.jpg")'>
 
                             <div class="player">

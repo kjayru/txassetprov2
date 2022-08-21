@@ -121,8 +121,7 @@
                         <div class="col-md-12">
                             <div id="video1start" class="spacer s0"></div>
 
-                            <div id="video1" class="parallaxie"
-                                style='background: url("/images/imagen-video-presentacion-02.jpg")'>
+                            <div id="video1" class="parallaxie video__bussiness">
 
                                 <div class="player">
                                     <a href="#" class="btnplay videoplay1" data-toggle="modal"

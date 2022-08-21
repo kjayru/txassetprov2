@@ -1698,6 +1698,17 @@ section#training {
     color:white;
 }
 
+#business .video__bussiness{
+       
+    background: url('/images/imagen-video-presentacion-02.jpg') no-repeat center center;
+    background-size:cover !important;
+    height:100vh;
+}
+#academy .academy__video{
+    background: url('/images/Imagen-video-training.jpg') no-repeat center center;
+    background-size:cover !important;
+    height:100vh;
+}
 
 
 @media(max-width:768px){
@@ -2238,6 +2249,12 @@ section#training {
         width: 100%;
         height: 142px;
     }
+
+    #academy .academy__video{
+        background: url('/images/Imagen-video-training.jpg') no-repeat center center;
+        background-size:cover !important;
+        height:180px;
+    }
     .iconcalendario{
         padding: 0;
         margin-left: 8px;
@@ -2261,9 +2278,18 @@ section#training {
         border: 0;
         border-radius: 12px;
     }
-    #video1{
+    
+
+    /*#video1{
        
-        background: url(/images/imagen-video-presentacion-02.jpg) no-repeat center center !important;
+        background: url(/images/Imagen-video-training.jpg) no-repeat center center;
+        background-size:cover !important;
+        height:180px;
+    }*/
+
+    #business .video__bussiness{
+       
+        background: url('/images/imagen-video-presentacion-02.jpg') no-repeat center center;
         background-size:cover !important;
         height:180px;
     }

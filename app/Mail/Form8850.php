@@ -49,7 +49,7 @@ class Form8850 extends Mailable
             'data'=>$formdata,
             'condicion' => $condicion
              ]);
-        $output =  $pdf->output('form8850.pdf');
+        //$output =  $pdf->output('form8850.pdf');
 
 
 

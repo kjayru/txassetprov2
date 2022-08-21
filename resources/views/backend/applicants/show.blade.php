@@ -125,8 +125,94 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">REFERENCES </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+
+                                @foreach ($references as $k => $ref)
+                                    <strong><i class="fas fa-book mr-1"></i> FULL NAME</strong>
+
+                                    <p class="text-muted">
+                                        {{ $ref->fullname }}
+                                    </p>
+
+                                    <hr>
+
+                                    <strong><i class="fas fa-book mr-1"></i> RELATIONSHIP</strong>
+                                    <p class="text-muted">
+                                        {{ $ref->relationship }}
+                                    </p>
+                                    <hr>
+                                    <strong><i class="fas fa-book mr-1"></i> COMPANY</strong>
+                                    <p class="text-muted">
+                                        {{ $ref->companyref }}
+                                    </p>
+                                    <hr>
+                                    <strong><i class="fas fa-book mr-1"></i> PHONE</strong>
+                                    <p class="text-muted">
+                                        {{ $ref->phoneref }}
+                                    </p>
+                                    <hr>
+                                    <strong><i class="fas fa-book mr-1"></i> ADDRESS</strong>
+                                    <p class="text-muted">
+                                        {{ $ref->addressreference }}
+                                    </p>
 
 
+                                    <hr>
+                                    <hr>
+                                @endforeach
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">MILITARY SERVICE </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <strong><i class="fas fa-book mr-1"></i> BRANCH</strong>
+                                <p class="text-muted">
+                                    {{ $military->branch }}
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-book mr-1"></i> TO</strong>
+                                <p class="text-muted">
+                                    {{ $military->branch }}
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-book mr-1"></i>FROM</strong>
+                                <p class="text-muted">
+                                    {{ $military->from }}
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-book mr-1"></i>RANK AT DISCHARGE</strong>
+                                <p class="text-muted">
+                                    {{ $military->rank }}
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-book mr-1"></i>TYPE OF DISCHARGE</strong>
+                                <p class="text-muted">
+                                    {{ $military->type }}
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-book mr-1"></i>IF OTHER THAN HONORABLE, EXPLAIN</strong>
+                                <p class="text-muted">
+                                    {{ $military->explain }}
+                                </p>
+                                <hr>
+
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+
+                    <div class="col-6 ">
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">EDUCATION </h3>
@@ -206,54 +292,6 @@
                                 <!-- /.card-body -->
                             </div>
                         </div>
-
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">REFERENCES </h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-
-                                @foreach ($references as $k => $ref)
-                                    <strong><i class="fas fa-book mr-1"></i> FULL NAME</strong>
-
-                                    <p class="text-muted">
-                                        {{ $ref->fullname }}
-                                    </p>
-
-                                    <hr>
-
-                                    <strong><i class="fas fa-book mr-1"></i> RELATIONSHIP</strong>
-                                    <p class="text-muted">
-                                        {{ $ref->relationship }}
-                                    </p>
-                                    <hr>
-                                    <strong><i class="fas fa-book mr-1"></i> COMPANY</strong>
-                                    <p class="text-muted">
-                                        {{ $ref->companyref }}
-                                    </p>
-                                    <hr>
-                                    <strong><i class="fas fa-book mr-1"></i> PHONE</strong>
-                                    <p class="text-muted">
-                                        {{ $ref->phoneref }}
-                                    </p>
-                                    <hr>
-                                    <strong><i class="fas fa-book mr-1"></i> ADDRESS</strong>
-                                    <p class="text-muted">
-                                        {{ $ref->addressreference }}
-                                    </p>
-
-
-                                    <hr>
-                                    <hr>
-                                @endforeach
-
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                    </div>
-
-                    <div class="col-6 ">
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">PREVIOUS EMPLOYMENT </h3>
@@ -337,49 +375,6 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
-
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">MILITARY SERVICE </h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <strong><i class="fas fa-book mr-1"></i> BRANCH</strong>
-                                <p class="text-muted">
-                                    {{ $military->branch }}
-                                </p>
-                                <hr>
-                                <strong><i class="fas fa-book mr-1"></i> TO</strong>
-                                <p class="text-muted">
-                                    {{ $military->branch }}
-                                </p>
-                                <hr>
-                                <strong><i class="fas fa-book mr-1"></i>FROM</strong>
-                                <p class="text-muted">
-                                    {{ $military->from }}
-                                </p>
-                                <hr>
-                                <strong><i class="fas fa-book mr-1"></i>RANK AT DISCHARGE</strong>
-                                <p class="text-muted">
-                                    {{ $military->rank }}
-                                </p>
-                                <hr>
-                                <strong><i class="fas fa-book mr-1"></i>TYPE OF DISCHARGE</strong>
-                                <p class="text-muted">
-                                    {{ $military->type }}
-                                </p>
-                                <hr>
-                                <strong><i class="fas fa-book mr-1"></i>IF OTHER THAN HONORABLE, EXPLAIN</strong>
-                                <p class="text-muted">
-                                    {{ $military->explain }}
-                                </p>
-                                <hr>
-
-
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title"> DISCLAIMER AND SIGNATURE
@@ -414,9 +409,6 @@
             </div>
     </div>
     </section>
-
-
-
 
     <!-- /.content -->
     </div>
