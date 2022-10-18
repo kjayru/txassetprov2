@@ -21,6 +21,11 @@ use App\Models\Employment as Employ;
 use App\Models\Category;
 use App\Models\Industry;
 use App\Models\Post;
+use App\Models\Course;
+use App\Models\Cart;
+use App\Models\Profile;
+use Session;
+use Carbon\Carbon;
 //use PDF;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Bus\Queueable;
@@ -33,6 +38,7 @@ use App\Mail\Order;
 use App\Mail\Form8850;
 use App\Mail\Contact as Contacto;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 
 class HomeController extends Controller
@@ -841,5 +847,63 @@ class HomeController extends Controller
 
       
         return view('frontpage.blog.detail',['post'=>$post,'articulos'=> $grupo]);
+    }
+
+    /**carrito */
+
+    public function checksesion(){
+       $estado = Auth::check();
+
+       return response()->json(['estado'=>$estado]);
+    }
+
+    public function checksign(){
+        $user_id = Auth::id();
+        $perfil = Profile::where('user_id',$user_id)->first();
+        $mensaje = false;
+        if(isset($perfil->signature)){
+            $mensaje = true;
+        }
+
+        return response()->json(['estado'=>$mensaje]);
+
+    }
+    public function carrito(){
+
+       
+
+        $carrito=null;
+        if (Session::get('cart')) {
+            $carrito = Session::get('cart');
+         
+        }
+
+        return view('frontpage.cart.index',['cart'=>$carrito]);
+    }
+
+    public function process(Request $request){
+        
+        $curso = Course::find($request->id);
+
+        $oldcart = Session::has('cart') ? Session::get('cart') : null;
+        
+        $cart = new Cart($oldcart);
+        $cart->add($curso,$curso->precio,1,$curso->id);
+        $request->session()->put('cart', $cart);
+        return response()->json(['rpta'=>'ok']);
+    }
+
+    public function removecart($id)
+    {
+        $oldcart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldcart);
+        $cart->removeItem($id);
+
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+        return response()->json(['rpta' => 'ok']);
     }
 }

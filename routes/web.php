@@ -20,6 +20,9 @@ use App\Http\Controllers\backend\ChapterContentController;
 use App\Http\Controllers\backend\ChapterEvaluationController;
 use App\Http\Controllers\backend\ExamController;
 use App\Http\Controllers\frontend\CourseController as Course;
+use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\LearnController;
+use App\Http\Controllers\frontend\UsuarioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -190,7 +193,35 @@ Route::get('/blog',[Home::class,'blog']);
 Route::get('/blog/{slug}',[Home::class,'blogDetail']);
 
 Route::get('/courses',[Course::class,'index']);
+Route::get('/courses/all',[Course::class,'todos']);
+Route::get('/course/{slug}',[Course::class,'curso']);
 
+Route::get('/testmaq',[CartController::class,'test']);
+
+Route::group(['prefix' => 'cart'],function(){
+    Route::get('/',[Home::class,'carrito']);
+    Route::post('/process',[Home::class,'process']);
+    Route::get('/remove/{id}',[Home::class,'removecart']);
+    Route::get('/checksesion',[Home::class,'checksesion']);
+    Route::get('/checksign',[Home::class,'checksign']);
+    Route::get('/sign',[CartController::class,'sign']);
+    Route::post('/process-signed',[CartController::class,'process']);
+    Route::post('/sign-register',[CartController::class,'signRegister'])->name('sign.register');
+
+    Route::post('/pay',[CartController::class,'process'])->name('cart.pay');
+
+    Route::get('/success/{session_id}', [CartController::class,'success']);
+    Route::get('/cancel', [CartController::class,'cancel']);
+});
+
+Route::group(['prefix'=>'learn'],function(){
+    Route::get('/{id}',[LearnController::class,'index']);
+});
+
+Route::group(['prefix'=>'user'],function(){
+    Route::get('/',[UsuarioController::class,'index']);
+    Route::get('/my-courses',[UsuarioController::class,'misCursos']);
+});
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
 ->name('ckfinder_connector');
 

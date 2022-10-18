@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="col-md-12 text-center">
-                        <a href="#" class="btn btn-danger btn-medium shadowred btn-course">Online course</a>
+                        <a href="/courses" class="btn btn-danger btn-medium shadowred btn-course">Online course</a>
                         <a href="/training-calendar" class="btn btn-danger btn-medium shadowred btn-course2 btn__separacion">Training
                             calendar</a>
                     </div>

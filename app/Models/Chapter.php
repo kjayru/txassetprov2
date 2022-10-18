@@ -17,4 +17,12 @@ class Chapter extends Model
     public function chapterevaluations(){
         return $this->hasMany(Chapterevaluation::class);
     }
+
+    /*public function attributes(){
+        return $this->belongsToMany(Attribute::class);
+    }*/
+
+    public function attributechapters(){
+        return $this->hasMany(Attributechapter::class);
+    }
 }
