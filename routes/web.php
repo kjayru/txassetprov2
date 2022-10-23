@@ -133,27 +133,27 @@ Route::group(['prefix' => 'admin'],function(){
     Route::post('chapters/store',[ChapterController::class,'store'])->name('chapters.store');
     Route::get('chapters',[ChapterController::class,'index'])->name('chapters.index');
     Route::get('chapters/create/{id}',[ChapterController::class,'create'])->name('chapters.create');
-    Route::put('chapters/{role}',[ChapterController::class,'update'])->name('chapters.update');
-    Route::get('chapters/{role}',[ChapterController::class,'show'])->name('chapters.show');
-    Route::delete('chapters/{role}',[ChapterController::class,'destroy'])->name('chapters.destroy');
-    Route::get('chapters/{role}/edit',[ChapterController::class,'edit'])->name('chapters.edit');
+    Route::put('chapters/{chapter}',[ChapterController::class,'update'])->name('chapters.update');
+    Route::get('chapters/{chapter}',[ChapterController::class,'show'])->name('chapters.show');
+    Route::delete('chapters/{chapter}',[ChapterController::class,'destroy'])->name('chapters.destroy');
+    Route::get('chapters/{chapter}/edit',[ChapterController::class,'edit'])->name('chapters.edit');
     
 
     Route::post('chaptercontent/store',[ChapterContentController::class,'store'])->name('chaptercontent.store');
     Route::get('chaptercontent',[ChapterContentController::class,'index'])->name('chaptercontent.index');
     Route::get('chaptercontent/create/{id}',[ChapterContentController::class,'create'])->name('chaptercontent.create');
-    Route::put('chaptercontent/{role}',[ChapterContentController::class,'update'])->name('chaptercontent.update');
-    Route::get('chaptercontent/{role}',[ChapterContentController::class,'show'])->name('chaptercontent.show');
-    Route::delete('chaptercontent/{role}',[ChapterContentController::class,'destroy'])->name('chaptercontent.destroy');
-    Route::get('chaptercontent/{role}/edit',[ChapterContentController::class,'edit'])->name('chaptercontent.edit');
+    Route::put('chaptercontent/{content}',[ChapterContentController::class,'update'])->name('chaptercontent.update');
+    Route::get('chaptercontent/{content}',[ChapterContentController::class,'show'])->name('chaptercontent.show');
+    Route::delete('chaptercontent/{content}',[ChapterContentController::class,'destroy'])->name('chaptercontent.destroy');
+    Route::get('chaptercontent/{content}/edit',[ChapterContentController::class,'edit'])->name('chaptercontent.edit');
     
     Route::post('chapterequiz/store',[ChapterEvaluationController::class,'store'])->name('chapterequiz.store');
     Route::get('chapterequiz',[ChapterEvaluationController::class,'index'])->name('chapterequiz.index');
     Route::get('chapterequiz/create/{id}',[ChapterEvaluationController::class,'create'])->name('chapterequiz.create');
-    Route::put('chapterequiz/{role}',[ChapterEvaluationController::class,'update'])->name('chapterequiz.update'); 
-    Route::get('chapterequiz/{role}',[ChapterEvaluationController::class,'show'])->name('chapterequiz.show'); 
-    Route::delete('chapterequiz/{role}',[ChapterEvaluationController::class,'destroy'])->name('chapterequiz.destroy');
-    Route::get('chapterequiz/{role}/edit',[ChapterEvaluationController::class,'edit'])->name('chapterequiz.edit');
+    Route::put('chapterequiz/{quiz}',[ChapterEvaluationController::class,'update'])->name('chapterequiz.update'); 
+    Route::get('chapterequiz/{quiz}',[ChapterEvaluationController::class,'show'])->name('chapterequiz.show'); 
+    Route::delete('chapterequiz/{quiz}',[ChapterEvaluationController::class,'destroy'])->name('chapterequiz.destroy');
+    Route::get('chapterequiz/{quiz}/edit',[ChapterEvaluationController::class,'edit'])->name('chapterequiz.edit');
     
 
     //examenes

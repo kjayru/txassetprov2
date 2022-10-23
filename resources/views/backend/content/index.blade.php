@@ -14,7 +14,7 @@
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
 
               <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
-              <li class="breadcrumb-item active"><a href="/admin/chapters/{{$contents[0]->chapter->course->id}}">Chapters</a></li>
+              <li class="breadcrumb-item active"><a href="/admin/chapters/{{@$chapter_id}}">Chapters</a></li>
               <li class="breadcrumb-item active">Contents</li>
             </ol>
           </div>
@@ -45,7 +45,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="{{ route('chaptercontent.create',['id'=>$id]) }}" class="btn btn-block btn-outline-primary btn-flat mb-5">Create Content</a>
+                        <a href="{{ route('chaptercontent.create',['id'=>$chapter_id]) }}" class="btn btn-block btn-outline-primary btn-flat mb-5">Create Content</a>
                     </div>
                 </div>
 
@@ -66,10 +66,10 @@
                     @foreach($contents as $key=>$content)
                     <tr>
                         <th>{{$key+1}}</th>
-                        <td>{{@$content->title}}</td>
+                        <td>{{@$content->titulo}}</td>
                         <td>{{@$content->contenido}}</td>
 
-                        <td>{{ @$content->created_at->format("Y-m-d")}}</td>
+                        <td>{{ @$content->created_at}}</td>
                         <td>
                             {{ @$content->video }}
                         </td>

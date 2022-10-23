@@ -20,7 +20,7 @@
                                                   <a href="#" class="detalle__video__header__link">Content</a>
                                         </div>
                                         <div class="detalle__video__player">
-                                                  <img src="{{$curso->banner}}" class="img-fluid">
+                                                  <img src="/storage/{{$curso->banner}}" class="img-fluid">
                                         </div>
 
                                      </div>

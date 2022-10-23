@@ -16,7 +16,7 @@ class ChapterContentController extends Controller
     {
         $contents = Chaptercontent::where('chapter_id',$id)->get();
 
-        return view("backend.content.index",['contents'=>$contents,'id'=>$id]);
+        return view("backend.content.index",['contents'=>$contents,'chapter_id'=>$id]);
     }
 
 
@@ -24,7 +24,7 @@ class ChapterContentController extends Controller
     {
         $contents = Chaptercontent::where('chapter_id',$id)->get();
 
-        return view("backend.content.index",['contents'=>$contents,'id'=>$id]);
+        return view("backend.content.index",['contents'=>$contents,'chapter_id'=>$id]);
     }
     /**
      * Show the form for creating a new resource.
@@ -47,12 +47,17 @@ class ChapterContentController extends Controller
 
         //dd($request);
         $content = new Chaptercontent();
-        $content->title = $request->title;
+        $content->titulo = $request->title;
         $content->slug = Str::slug($request->title, '-');
 
         if($request->hasFile('video')) {
             $video = $request->file('video')->store('video');
             $content->video = $video;
+        }
+
+        if($request->hasFile('audio')) {
+            $audio = $request->file('audio')->store('audio');
+            $content->audio = $audio;
         }
 
         $content->contenido = $request->description;
@@ -91,12 +96,17 @@ class ChapterContentController extends Controller
 
         $content = Chaptercontent::find($id);
 
-        $content->title = $request->title;
+        $content->titulo = $request->title;
         $content->slug = Str::slug($request->title, '-');
 
         if($request->hasFile('video')) {
             $video = $request->file('video')->store('video');
             $content->video = $video;
+        }
+
+        if($request->hasFile('audio')) {
+            $audio = $request->file('audio')->store('audio');
+            $content->audio = $audio;
         }
 
         $content->contenido = $request->description;

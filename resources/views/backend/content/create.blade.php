@@ -8,14 +8,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Create Chapter</h1>
+            <h1>Create Content</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
               <li class="breadcrumb-item"><a href="/admin/chapter/{{$id}}">Chapters</a></li>
-              <li class="breadcrumb-item active">Create chapter</li>
+              <li class="breadcrumb-item active">Create content</li>
             </ol>
           </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="card card-primary">
 
 
-
+ 
             @if(session('info'))
                 <div class="container">
                     <div class="row">
@@ -56,7 +56,7 @@
 
               </div>
               <div class="card-footer">
-                      <a href="{{ route('chaptercontent.show',['id'=>$id]) }}" class="btn btn-danger">Cancel</a>
+                      <a href="{{ route('chaptercontent.show',['content'=>$id]) }}" class="btn btn-danger">Cancel</a>
                   <button type="submit" class="btn btn-info pull-right">Save</button>
               </div>
             </form>

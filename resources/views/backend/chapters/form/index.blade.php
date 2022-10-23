@@ -6,13 +6,18 @@
     </div>
 
 
-    <div class="form-group @if($errors->first('description')) has-error @endif">
+    <!--<div class="form-group @if($errors->first('description')) has-error @endif">
         <label for="description" class="control-label">Description</label>
         <textarea class="form-control" name="description" id="description"> {{ @$chapter->contenido }}</textarea>
         <span class="help-block">{{ $errors->first('description') }}</span>
+    </div>-->
+
+    <div class="form-group">
+        <label for="">QUIZ</label>
+        <select name="quiz_id" id="quiz_id" class="custom-select">
+            <option value="">Seleccione</option>
+        </select>
     </div>
-
-
 
 
 

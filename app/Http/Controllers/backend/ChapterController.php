@@ -49,9 +49,9 @@ class ChapterController extends Controller
         $chapter = new Chapter();
         $chapter->title = $request->title;
         $chapter->slug = Str::slug($request->title, '-');
-
-        $chapter->contenido = $request->description;
+       // $chapter->contenido = $request->description;
         $chapter->course_id = $request->parent_id;
+        $chapter->quiz_id = $request->quiz_id;
         $chapter->save();
 
         return redirect('/admin/chapters/'.$request->parent_id)
@@ -84,12 +84,11 @@ class ChapterController extends Controller
     public function update(Request $request, $id)
     {
         $chapter = Chapter::find($id);
-
         $chapter->title = $request->title;
         $chapter->slug = Str::slug($request->title, '-');
-
-        $chapter->contenido = $request->description;
+        //$chapter->contenido = $request->description;
         $chapter->course_id = $request->parent_id;
+        $chapter->quiz_id = $request->quiz_id;
         $chapter->save();
 
         return redirect('/admin/chapters/'.$request->parent_id)

@@ -69,7 +69,7 @@
                         <td>{{@$chapter->contenido}}</td>
 
                         <td>{{ @$chapter->created_at->format("Y-m-d")}}</td>
-                        <td><a href="/admin/chaptercontent/{{@$chapter->id}}" class="btn btn-sm btn-warning">Content</a> | <a href="/admin/chapterequiz/{{@$chapter->id}}" class="btn btn-sm btn-warning">Quiz</a></td>
+                        <td><a href="/admin/chaptercontent/{{@$chapter->id}}" class="btn btn-sm btn-warning">Content</a> <!--| <a href="/admin/chapterequiz/{{@$chapter->id}}" class="btn btn-sm btn-warning">Quiz</a>--></td>
                         <td width="8%">
                             <a href="/admin/chapters/{{@$chapter->id}}/edit" class="btn btn-sm btn-warning legitRipple">
                                 <i class="fas fa-pencil-alt"></i></a>

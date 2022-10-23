@@ -48,12 +48,20 @@ class CourseController extends Controller
         $course = new Course();
         $course->titulo = $request->title;
         $course->slug = Str::slug($request->title, '-');
-
-
         $course->precio = $request->price;
-
         $course->resumen = $request->excerpt;
         $course->contenido = $request->description;
+        $course->disponible = $request->available;
+        $course->capitulos = $request->chapters;
+        $course->audio = $request->audio;
+        $course->nivel = $request->nivel;
+        $course->language = $request->language;
+        $course->tiempovalido = $request->access;
+
+        if($request->hasFile('banner')) {
+            $banner = $request->file('banner')->store('banner');
+            $course->banner = $banner;
+        }
 
         $course->save();
 
@@ -89,13 +97,21 @@ class CourseController extends Controller
         $course =  Course::find($id);
         $course->titulo = $request->title;
         $course->slug = Str::slug($request->title, '-');
-
-
         $course->precio = $request->price;
-
         $course->resumen = $request->excerpt;
         $course->contenido = $request->description;
+        $course->disponible = $request->available;
+        $course->capitulos = $request->chapters;
+        $course->audio = $request->audio;
+        $course->nivel = $request->nivel;
+        $course->language = $request->language;
+        $course->tiempovalido = $request->access;
 
+        if($request->hasFile('banner')) {
+            $banner = $request->file('banner')->store('banner');
+            $course->banner = $banner;
+        }
+        
         $course->save();
 
 
