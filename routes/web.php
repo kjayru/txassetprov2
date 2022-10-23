@@ -195,8 +195,8 @@ Route::get('/blog/{slug}',[Home::class,'blogDetail']);
 Route::get('/courses',[Course::class,'index']);
 Route::get('/courses/all',[Course::class,'todos']);
 Route::get('/course/{slug}',[Course::class,'curso']);
-
 Route::get('/testmaq',[CartController::class,'test']);
+Route::post('/loginpop', [Home::class,'loginPop']);
 
 Route::group(['prefix' => 'cart'],function(){
     Route::get('/',[Home::class,'carrito']);
@@ -216,6 +216,8 @@ Route::group(['prefix' => 'cart'],function(){
 
 Route::group(['prefix'=>'learn'],function(){
     Route::get('/{id}',[LearnController::class,'index']);
+    Route::get('/{id}/{chapter}',[LearnController::class,'chapter']);
+    Route::get('/{id}/{chapter}/{content}',[LearnController::class,'content']);
 });
 
 Route::group(['prefix'=>'user'],function(){

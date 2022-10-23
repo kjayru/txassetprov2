@@ -16,4 +16,36 @@ class UserCourse extends Model
     public function course(){
         return $this->belongsTo(Course::class);
     }
+
+    public function userCourseChapters(){
+        return $this->hasMany(UserCourseChapter::class);
+    }
+
+
+    public static function capitulo($user_course_id,$chapter_id){
+     $courseChapter = UserCourseChapter::where('chapter_id',$chapter_id)->where('user_course_id',$user_course_id)->first();
+       if(isset($courseChapter)){
+        return true;
+       }else{
+        return false;
+       }
+        
+    }
+
+    public static function contenido($user_course_id,$chapter_id,$content_id){
+       
+        $courseChapter = UserCourseChapter::where('chapter_id',$chapter_id)->where('user_course_id',$user_course_id)->first();
+       if(isset($courseChapter)){
+            $content = UserCourseChapterContent::where('user_course_chapter_id',$courseChapter->id)->where('content_id',$content_id)->first();
+       
+            if(isset($content)){
+                return true;
+            }else{
+                return false;
+            }
+       }else{
+        return false;
+       }
+
+    }
 }

@@ -906,4 +906,25 @@ class HomeController extends Controller
         }
         return response()->json(['rpta' => 'ok']);
     }
+
+    public function loginPop(Request $request){
+       
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return response()->json(['rtpa'=>'ok']);
+            //return redirect()->intended();
+        }
+ 
+        /*return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');*/
+        return response()->json(['rpta'=>'error','mensaje'=>'Correo electrónico o contraseña incorrecta. Por favor, vuelve a intentarlo nuevamente.']);
+    }
+    
 }

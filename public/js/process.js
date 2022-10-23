@@ -86,14 +86,18 @@ $(".cart__body__foot__link").click(function(e){
               
 
             }else{
-              window.location.href="/cart/sign";
+              $("#loginModal").modal("show");
+              //alert("login1");
+              //window.location.href="/cart/sign";
             }
           }
         });
         
 
        }else{
-        window.location.href="/login";
+       
+        //window.location.href="/login";
+        $("#loginModal").modal("show");
        }
     }
   });
@@ -103,4 +107,50 @@ $(".cart__body__foot__link").click(function(e){
 
   
 
-})
+});
+
+
+$(".btn__loginsumit").on('click',function(){
+
+  const token = $('meta[name="csrf-token"]').attr('content');
+  let email = $("#email__login").val();
+  let password = $("#password__login").val();
+
+  let sendata = {'_token':token,'_method':'POST','email':email,'password':password};
+  
+  $.ajax({
+    url:'/loginpop',
+    type:'POST',
+    dataType:'json',
+    data:sendata,
+    success:function(response){
+      console.log(response.rpta);
+      if(response.rpta=="error"){
+        $(".login__alerta").show();
+      }else{
+       window.location.reload();
+      }
+    }
+
+  }).fail(function(response){
+      console.log(response.responseJSON);
+
+      if(response.responseJSON.errors.email){
+        $(".error__email").html("Ingrese su email");
+      }
+
+      if(response.responseJSON.errors.password){
+        $(".error__password").html("Ingrese su clave");
+      }
+  });
+  
+});
+
+$("#email__login").focus(function() {
+  $(".error__email").html("");
+  $(".login__alerta").hide();
+});
+$("#password__login").focus(function() {
+  $(".error__password").html("");
+  $(".login__alerta").hide();
+});
