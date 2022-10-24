@@ -12562,3 +12562,8 @@ footer .little {
   color: #e01f26;
   font-size: 0.7rem;
 }
+
+.video-js {
+  width: 100%;
+  height: 600px;
+}

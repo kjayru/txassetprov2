@@ -21,10 +21,20 @@ class LearnController extends Controller
    }
    
     public function index($id){
-        $curso = Course::find($id);
+        $capVisitados=null;
+        $contVisitados=null;
+        $user_id = Auth::id();
+        $user = User::find($user_id);
+
+        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$id)->first();
+       
+        $curso = Course::find($userCourse->course_id)->first();
         $chapters = $curso->chapters;
         
-        return view('frontpage.learn.index',['curso'=>$curso,'chapters'=>$chapters,'curso_id'=>$id]);
+        
+        $contenido = ChapterContent::where('chapter_id',$chapters[0]->id)->where('slug',$chapters[0]->chaptercontents[0]->slug)->first();
+        
+        return view('frontpage.learn.index',['capitulo'=>$chapters[0],'contenido'=>$contenido,'curso'=>$curso,'chapters'=>$chapters,'curso_id'=>$id,'chapter'=>$chapters[0]->id,'slug'=>$chapters[0]->chaptercontents[0]->slug]);
     }
 
     public function chapter($id,$chapter){
@@ -34,14 +44,13 @@ class LearnController extends Controller
         $user = User::find($user_id);
 
         $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$id)->first();
-        $curso = Course::find($userCourse->id)->first();
+        $curso = Course::find($userCourse->course_id)->first();
         $chapters = $curso->chapters;
      
         $capitulo = Chapter::where('slug',$chapter)->first();
+        $contenido = ChapterContent::where('chapter_id',$capitulo->id)->where('slug',$capitulo->chaptercontents[0]->slug)->first();
 
-       
-
-        return view('frontpage.learn.index',['curso'=>$curso,'chapters'=>$chapters,'curso_id'=>$id,'chapter'=>$chapter]);
+        return view('frontpage.learn.index',['capitulo'=>$capitulo,'contenido'=>$contenido,'curso'=>$curso,'chapters'=>$chapters,'curso_id'=>$id,'chapter'=>$chapter]);
     }
 
     public function content($id,$chapter,$content){
@@ -52,7 +61,8 @@ class LearnController extends Controller
         $user = User::find($user_id);
 
         $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$id)->first();
-        $curso = Course::find($userCourse->id)->first();
+        
+        $curso = Course::find($userCourse->course_id)->first();
         $chapters = $curso->chapters;
       
         $capitulo = Chapter::where('slug',$chapter)->first();

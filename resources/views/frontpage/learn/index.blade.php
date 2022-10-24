@@ -37,7 +37,28 @@
 								  </div>
 								  <div class="encurso__video__player">
 									
-										<iframe width="100%" height="415" src="{{$contenido->video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										
+
+										<video
+											id="my-player"
+											class="video-js"
+											controls
+											preload="auto"
+											
+											poster="MY_VIDEO_POSTER.jpg"
+											data-setup="{}"
+										>
+											<source src="/storage/{{@$contenido->video}}" type="video/mp4" />
+											
+											<p class="vjs-no-js">
+											To view this video please enable JavaScript, and consider upgrading to a
+											web browser that
+											<a href="https://videojs.com/html5-video-support/" target="_blank"
+												>supports HTML5 video</a
+											>
+											</p>
+										</video>
+
 									</div>
 						</div>
 
@@ -83,8 +104,8 @@
 											You have {{$curso->tiempovalido}} days left to finish the course
 								  </div>
 								  <ul class="encurso__temas__lista">
-									@foreach($chapters as $chapter)
-											<li class="encurso__temas__lista__item {{UserCourse::capitulo($curso->id,$chapter->id)?"active":""}}"><span>1</span>
+									@foreach($chapters as $col => $chapter)
+											<li class="encurso__temas__lista__item {{UserCourse::capitulo($curso->id,$chapter->id)?"active":""}}"><span>{{$col+1}}</span>
 												<a href="/learn/{{$curso_id}}/{{$chapter->slug}}">{{$chapter->title}}</a>
 												
 													  <ul class="encurso__temas__lista__item__sublista {{{ (Request::is('learn/'.$curso_id.'/'.$chapter->slug.'*') ? 'active' : '') }}}">
