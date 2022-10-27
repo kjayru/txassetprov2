@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\User;
 use App\Models\Chapter;
-use App\Models\ChapterContent;
+use App\Models\Chaptercontent;
 use App\Models\UserCourse;
 use App\Models\UserCourseChapter;
 use App\Models\UserCourseChapterContent;
@@ -35,7 +35,7 @@ class LearnController extends Controller
         $chapters = $curso->chapters;
         
         if(isset($chapters)){
-        $contenido = ChapterContent::where('chapter_id',$chapters[0]->id)->where('slug',$chapters[0]->chaptercontents[0]->slug)->first();
+        $contenido = Chaptercontent::where('chapter_id',$chapters[0]->id)->where('slug',$chapters[0]->chaptercontents[0]->slug)->first();
         }
         return view('frontpage.learn.index',['capitulo'=>$chapters[0],'contenido'=>$contenido,'curso'=>$curso,'chapters'=>$chapters,'curso_id'=>$id,'chapter'=>$chapters[0]->id,'slug'=>$chapters[0]->chaptercontents[0]->slug]);
     }
@@ -53,7 +53,7 @@ class LearnController extends Controller
         $chapters = $curso->chapters;
         if(isset($chapters)){
         $capitulo = Chapter::where('slug',$chapter)->first();
-        $contenido = ChapterContent::where('chapter_id',$capitulo->id)->where('slug',$capitulo->chaptercontents[0]->slug)->first();
+        $contenido = Chaptercontent::where('chapter_id',$capitulo->id)->where('slug',$capitulo->chaptercontents[0]->slug)->first();
         }
         return view('frontpage.learn.index',['capitulo'=>$capitulo,'contenido'=>$contenido,'curso'=>$curso,'chapters'=>$chapters,'curso_id'=>$id,'chapter'=>$chapter]);
     }
@@ -74,7 +74,7 @@ class LearnController extends Controller
         if(isset($chapters)){
         $capitulo = Chapter::where('slug',$chapter)->first();
 
-        $contenido = ChapterContent::where('chapter_id',$capitulo->id)->where('slug',$content)->first();
+        $contenido = Chaptercontent::where('chapter_id',$capitulo->id)->where('slug',$content)->first();
        
         }
         
