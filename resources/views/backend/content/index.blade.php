@@ -57,7 +57,6 @@
                     <th>Title</th>
                     <th>Excerpt</th>
                     <th>Date</th>
-
                     <th>Video</th>
                     <th></th>
                 </tr>
@@ -68,11 +67,8 @@
                         <th>{{$key+1}}</th>
                         <td>{{@$content->titulo}}</td>
                         <td>{{@$content->contenido}}</td>
-
                         <td>{{ @$content->created_at}}</td>
-                        <td>
-                            {{ @$content->video }}
-                        </td>
+                        <td>{{ @$content->video }} </td>
                         <td width="8%">
                             <a href="/admin/chaptercontent/{{@$content->id}}/edit" class="btn btn-sm btn-warning legitRipple">
                                 <i class="fas fa-pencil-alt"></i></a>
