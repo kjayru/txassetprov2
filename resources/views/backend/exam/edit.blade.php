@@ -9,12 +9,13 @@
           <div class="col-sm-6">
             <h1>Edit Question</h1>
           </div>
+       
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
-              <li class="breadcrumb-item "><a href="/admin/chapters/{{$question->chapter->id}}">Chapters</a></li>
-              <li class="breadcrumb-item "><a href="/admin/chapterequiz/{{$question->chapter->id}}">Evaluations</a></li>
+              <li class="breadcrumb-item"><a href="/admin/exams">Exams</a></li>
+              <li class="breadcrumb-item ">Exam</li>
+ 
               <li class="breadcrumb-item active">Question</li>
             </ol>
           </div>
@@ -31,24 +32,23 @@
     <div class="col-md-12">
         <!-- general form elements -->
         <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Edit chapter</h3>
-          </div>
+         
 
+         
 
-          <form role="form" action="{{ route('chapterequiz.update',$question->id) }}" method="POST" enctype="multipart/form-data">
+          <form role="form" action="{{ route('exam.update',$quiz->id) }}" method="POST" enctype="multipart/form-data">
             <div class="card-body">
 
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
 
-                <input type="hidden" name="parent_id" value="{{$question->chapter->id}}">
-                @include('backend.evaluation.form.index')
+                
+                @include('backend.exam.form.index')
 
               </div>
 
               <div class="card-footer">
-                <a href="{{ route('chapterequiz.index') }}" class="btn btn-danger">Cancelar</a>
+                <a href="{{ route('exam.index') }}" class="btn btn-danger">Cancelar</a>
                 <button type="submit" class="btn btn-info pull-right">Guardar</button>
               </div>
           </form>

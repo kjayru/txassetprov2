@@ -23,6 +23,10 @@ class Course extends Model
         return $this->hasMany(UserCourse::class);
     }
 
+    public function quiz(){
+        return $this->hasOne(Quiz::class);
+    }
+
     public static function info($id){
         $course=Course::find($id);
         
@@ -34,9 +38,12 @@ class Course extends Model
             'capitulos' => $course[0]->capitulos,
             'audio' => $course[0]->audio,
             'nivel' => $course[0]->nivel,
+            'slug' => $course[0]->slug,
             'tiempovalido'=>$course[0]->tiempovalido,
         ];
 
         return $datos;
     }
+
+
 }

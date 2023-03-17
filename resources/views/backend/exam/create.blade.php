@@ -13,9 +13,9 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
-              <li class="breadcrumb-item"><a href="/admin/chapter/{{$id}}">Chapters</a></li>
-              <li class="breadcrumb-item active">Create question</li>
+              <li class="breadcrumb-item"><a href="/admin/exams">Exam</a></li>
+            
+              <li class="breadcrumb-item active">Create exam</li>
             </ol>
           </div>
         </div>
@@ -46,17 +46,17 @@
                 </div>
             @endif
 
-            <form class="form-horizontal" action="{{ route('chapterequiz.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{ route('exam.store') }}" method="POST" enctype="multipart/form-data">
 
               <div class="card-body">
                   @csrf
 
-                <input type="hidden" name="parent_id" value="{{$id}}">
-                  @include('backend.evaluation.form.index')
+                
+                  @include('backend.exam.form.index')
 
               </div>
               <div class="card-footer">
-                      <a href="{{ route('chapterequiz.show',['id'=>$id]) }}" class="btn btn-danger">Cancel</a>
+                      <a href="{{ route('exam.index') }}" class="btn btn-danger">Cancel</a>
                   <button type="submit" class="btn btn-info pull-right">Save</button>
               </div>
             </form>

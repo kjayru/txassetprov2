@@ -1,6 +1,8 @@
 @extends('layouts.backend.app')
 @section('content')
-
+@php 
+    use App\Models\ChapterQuiz;
+@endphp
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -55,37 +57,26 @@
                 <tr>
                     <th></th>
                     <th>Question</th>
-
+                    <th>Answer</th>
                     <th>Date</th>
-
-
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($evaluations as $key=>$eval)
+                    @foreach($chapters as $key=>$eval)
                     <tr>
                         <th width="5%">{{$key+1}}</th>
                         <td>{{@$eval->question}}</td>
-
-
+                        <td>{{ChapterQuiz::getAnswer($eval->id)}}</td>
                         <td width="8%">{{ @$eval->created_at->format("Y-m-d")}}</td>
-
-
                         <td width="8%">
                             <a href="/admin/chapterequiz/{{@$eval->id}}/edit" class="btn btn-sm btn-warning legitRipple">
                                 <i class="fas fa-pencil-alt"></i></a>
-
                             <a href="#" data-id="{{ @$eval->id }}"  data-toggle="modal" data-target="#delobjeto" class="btn btn-sm btn-danger btn-object-delete"><i class="far fa-trash-alt"></i></a>
-
-
                         </td>
                     </tr>
                     @endforeach
-
-
                 </tbody>
-
               </table>
 
 

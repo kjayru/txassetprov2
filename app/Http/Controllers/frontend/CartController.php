@@ -16,6 +16,7 @@ use Stripe\PaymentIntent;
 use App\Models\Order;
 use App\Models\UserCourse;
 use App\Models\CourseOrder;
+use App\Models\UserSign;
 
 use App\Models\Stripe as SP;
 
@@ -33,7 +34,7 @@ class CartController extends Controller
    
 
     public function sign(){
-        
+       
         if(Auth::check()==false){
             return redirect('/login');
         }
@@ -45,14 +46,16 @@ class CartController extends Controller
         $user_id = Auth::id();
         $user = User::find($user_id);
 
-        $perfil = Profile::where('user_id',$user_id)->first();
-        if(!isset($perfil->signature)){
-            $perfil->signature = $request->dataURL;
-            $perfil->email = $request->email;
-            $perfil->legalname = $request->legalname;
-            $perfil->save();
+        $perfil = UserSign::where('user_id',$user_id)->first();
+        if(!isset($perfil)){
+            $firma =new UserSign();
+            $firma->firma = $request->dataURL;
+            $firma->email = $request->email;
+            $firma->legalname = $request->legalname;
+            $firma->user_id = $user_id;
+            $firma->save();
         }
-
+ 
        
         
         $carrito=null;
@@ -152,7 +155,6 @@ class CartController extends Controller
         $user = User::where('id',$user_id)->first();
 
         $ev = SP::where('txn_id',$seskey)->first();
-
         $carrito = Session::get('cart');
 
 
@@ -204,17 +206,15 @@ class CartController extends Controller
                     $order->order_id = $order_id;
                     $order->save();
 
-
                     $cursoid=null;
                     foreach($carrito->items as $item){
-
                         $curso = new UserCourse();
                         $curso->user_id = $user_id;
                         $curso->course_id = $item['curso']->id;
                         $curso->fecha_inicio = date("Y-m-d");
                         $curso->dias_activo = $item['curso']->tiempovalido;
                         $curso->save();
-
+                        
                         $cursoid[] = ["id"=>$item['curso']->id];
                     }
                 }
@@ -232,6 +232,8 @@ class CartController extends Controller
 
 
          // Mail::to(env("MAIL_CONTACT"))->send(new Notificacion());
+       $course = Course::find($cursoid);
+       
 
          return view('frontpage.cart.success',['ids'=>$cursoid]);
      }
@@ -245,7 +247,7 @@ class CartController extends Controller
      public function process(Request $request){
        
         $user_id = Auth::id();
-
+       
          //carrito
         
          $carrito=null;
@@ -276,6 +278,7 @@ class CartController extends Controller
             )
             );
 
+            
        if(empty($request->checkoutSession)){
            try{
                $session = \Stripe\Checkout\Session::create([

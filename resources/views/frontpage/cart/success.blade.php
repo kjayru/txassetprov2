@@ -46,7 +46,7 @@
 								</div>
 								
 								<div class="gracias__box__info__enlace">
-									<a href="/learn/{{$col['id']}}" class="btn btn__start">Start course</a>
+									<a href="/learn/{{Course::info($col)['slug']}}" class="btn btn__start">Start course</a>
 								</div>
 							</div>
 						</div>

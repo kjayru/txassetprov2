@@ -24,6 +24,7 @@ use App\Models\Post;
 use App\Models\Course;
 use App\Models\Cart;
 use App\Models\Profile;
+use App\Models\UserSign;
 use Session;
 use Carbon\Carbon;
 //use PDF;
@@ -844,8 +845,6 @@ class HomeController extends Controller
             ];
         }
         $grupo = collect($articulos);
-
-      
         return view('frontpage.blog.detail',['post'=>$post,'articulos'=> $grupo]);
     }
 
@@ -853,7 +852,7 @@ class HomeController extends Controller
 
     public function checksesion(){
        $estado = Auth::check();
-
+     
        return response()->json(['estado'=>$estado]);
     }
 
@@ -861,13 +860,14 @@ class HomeController extends Controller
         $user_id = Auth::id();
         $perfil = Profile::where('user_id',$user_id)->first();
         $mensaje = false;
-        if(isset($perfil->signature)){
+       
+        if(isset($perfil)){
             $mensaje = true;
         }
-
+       
         return response()->json(['estado'=>$mensaje]);
-
     }
+
     public function carrito(){
 
        

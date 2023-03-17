@@ -7,4 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Quiz extends Model
 {
     protected $table = "quizes";
+
+    public function course(){
+        return $this->belongsTo(Course::class);
+    }
+
+    public function quizQuestions(){
+        return $this->hasMany(QuizQuestion::class);
+    }
 }

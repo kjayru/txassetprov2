@@ -67,19 +67,24 @@ function download(dataURL, filename) {
           
           }
 
-              const sendata = ({'_token':token,'_method':'POST',legalname:legalname,email:email,dataURL:dataURL});
+              const sendata = {'_token':token,'_method':'POST',legalname:legalname,email:email,dataURL:dataURL};
+              console.log(sendata);
+            
 
-              fetch('/cart/sign-register',{
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json',
-          },
-          body:JSON.stringify(sendata),
-
-              })
+          fetch('/cart/sign-register',{
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json',
+            },
+            body: JSON.stringify(sendata),
+          })
           .then((response) => response.json())
-         
-          .then(function(session) {
+        //  .then((sendata)=>{
+        //   console.log("success",sendata);
+        //  })
+          .then((session)=> {
+            console.log(session);
+            debugger;
             return stripe.redirectToCheckout({ sessionId: session.id });
           })
           .then(function(result) {

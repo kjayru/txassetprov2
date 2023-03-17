@@ -12,4 +12,5 @@ const mix = require('laravel-mix');
  */
 
 
- mix.sass('resources/sass/app.scss', 'public/css/cursos');
+ mix.sass('resources/sass/app.scss', 'public/css/cursos')
+ .browserSync('https://txassetpro.test');

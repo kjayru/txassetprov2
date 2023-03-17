@@ -56,7 +56,7 @@
 
               </div>
               <div class="card-footer">
-                      <a href="{{ route('chapterequiz.show',['id'=>$id]) }}" class="btn btn-danger">Cancel</a>
+                      <a href="{{ route('chapterequiz.index',['id'=>$id]) }}" class="btn btn-danger">Cancel</a>
                   <button type="submit" class="btn btn-info pull-right">Save</button>
               </div>
             </form>

@@ -1,5 +1,9 @@
 @extends('layouts.frontend.cursos.app')
 @section('content')
+@php
+	use App\Models\UserCourse;
+	use App\Models\UserCourseChapter;
+@endphp
 <div class="banner color__banner">
 	<div class="container-fluid">
 		<div class="row justify-content-between">
@@ -53,12 +57,16 @@
 									{{$curso->course->subtitulo}}
 								</div>
 								<div class="todocursos__card__body__item__timeline">
-									<div class="line"></div>
-									<span class="status">3 complemete chapter</span>
+									
+									<div class="line">
+										<div class="linea_avance" style="width:{{UserCourseChapter::completeChapter($user->id,$curso->course->id)}}%"></div>
+									</div>
+									<span class="status">{{UserCourse::completeChapter($curso->course->id,$user->id)}} complemete chapter</span>
 								</div>
 								<div class="todocursos__card__body__item__estado">
-									<a href="/learn/{{$curso->course->id}}" class="item__link">Go to course</a>
-									<div class="item__mensaje__time">You have {{$curso->course->tiempovalido}} days left to finish the course</div>
+									<a href="/learn/{{$curso->course->slug}}" class="item__link">Go to course</a>
+
+									<div class="item__mensaje__time">You have {{UserCourse::leftdays($curso->course->id,$user->id)}} days left to finish the course</div>
 								</div>
 
 							</div>

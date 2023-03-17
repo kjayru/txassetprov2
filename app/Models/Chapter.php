@@ -25,4 +25,8 @@ class Chapter extends Model
     public function attributechapters(){
         return $this->hasMany(Attributechapter::class);
     }
+
+    public function chapterquiz(){
+        return $this->hasOne(ChapterQuiz::class);
+    }
 }

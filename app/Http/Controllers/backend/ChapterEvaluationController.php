@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use App\Models\Chapterevaluation;
 use App\Models\Evaluationoption;
 use App\Models\Chapter;
+use App\Models\ChapterQuiz;
+use App\Models\ChapterQuizOption;
 
 class ChapterEvaluationController extends Controller
 {
@@ -16,20 +18,19 @@ class ChapterEvaluationController extends Controller
    }
     public function index($id)
     {
-        $chapter = Chapter::find($id);
-        $evaluations = Chapterevaluation::where('chapter_id',$id)->get();
-
-        return view("backend.evaluation.index",['evaluations'=>$evaluations,'id'=>$id,'chapter'=>$chapter]);
+       $chapter = Chapter::find($id);
+        $chapters = ChapterQuiz::where('chapter_id',$id)->get();
+        
+        return view("backend.evaluation.index",['id'=>$id,'chapters'=>$chapters,'chapter'=>$chapter]);
     }
 
 
     public function show($id)
     {
-
         $chapter = Chapter::find($id);
-        $evaluations = Chapterevaluation::where('chapter_id',$id)->get();
-
-        return view("backend.evaluation.index",['evaluations'=>$evaluations,'id'=>$id,'chapter'=>$chapter]);
+        $chapters = ChapterQuiz::where('chapter_id',$id)->get();
+        
+        return view("backend.evaluation.index",['id'=>$id,'chapters'=>$chapters,'chapter'=>$chapter]);
     }
     /**
      * Show the form for creating a new resource.
@@ -38,6 +39,7 @@ class ChapterEvaluationController extends Controller
      */
     public function create($id)
     {
+       
         return view('backend.evaluation.create',['id'=>$id]);
     }
 
@@ -49,28 +51,26 @@ class ChapterEvaluationController extends Controller
      */
     public function store(Request $request)
     {
+        
 
-
-        $quest = new Chapterevaluation();
-        $quest->question = $request->question;
+        $quest = new ChapterQuiz();
         $quest->chapter_id = $request->parent_id;
+        $quest->question = $request->question;
         $quest->save();
-
 
         foreach($request->option as $k => $op){
 
-            $opcion = New Evaluationoption();
+            $opcion = New ChapterQuizOption();
             $opcion->option=$op;
-
-            $opcion->answer= $request->result[$k];
-            $opcion->chapterevaluation_id = $quest->id;
+            $opcion->estado= $request->result[$k];
+            $opcion->chapter_quiz_id = $quest->id;
             $opcion->save();
         }
 
 
 
-        return redirect()->route('chapterequiz.show',['id'=>$request->parent_id])
-        ->with('info','Industry satisfactoriamente');
+        return redirect()->route('chapterequiz.show',['quiz'=>$request->parent_id])
+        ->with('info','Question create');
     }
 
 
@@ -84,8 +84,8 @@ class ChapterEvaluationController extends Controller
     public function edit($id)
     {
 
-        $question = Chapterevaluation::find($id);
-
+        $question = ChapterQuiz::find($id);
+        
        // dd($question->chapter);
         return view('backend.evaluation.edit',['question'=>$question,'id'=>$id]);
     }

@@ -13,8 +13,12 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
-              <li class="breadcrumb-item "><a href="/admin/chapters/{{$question->chapter->id}}">Chapters</a></li>
-              <li class="breadcrumb-item "><a href="/admin/chapterequiz/{{$question->chapter->id}}">Evaluations</a></li>
+
+             
+             
+
+              <li class="breadcrumb-item "><a href="/admin/chapters/{{$question->chapter_id}}">Chapters</a></li>
+              <li class="breadcrumb-item "><a href="/admin/chapterequiz/{{$question->chapter_id}}">Evaluations</a></li>
               <li class="breadcrumb-item active">Question</li>
             </ol>
           </div>

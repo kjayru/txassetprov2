@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\UserCourse;
 use App\Models\User;
+use App\Models\UserCourseChapter;
+use App\Models\UserCourseChapterContent;
+use App\Models\ChapterQuiz;
+use App\Models\ChapterQuizOption;
+use App\Models\UserChapterQuizOption;
+use App\Models\UserChapterQuiz;
+
 use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
@@ -16,8 +23,17 @@ class UsuarioController extends Controller
    }
 
     public function index(){
-        return view('frontpage.usuario.index');
+        $user_id = Auth::id();
+        $user = User::find($user_id);
+       
+        
+       
+
+
+        return view('frontpage.usuario.index',['user'=>$user]);
     }
+
+
      public function misCursos(){
 
 
@@ -26,6 +42,57 @@ class UsuarioController extends Controller
 
         $cursos = UserCourse::where('user_id',$user_id)->get();
        
-        return view('frontpage.usuario.miscursos',['cursos'=>$cursos]);
+        return view('frontpage.usuario.miscursos',['cursos'=>$cursos,'user'=>$user]);
      }
+
+     public function setChapter(Request $request){
+      
+    //   "usercourseid" => "18"
+    //   "usercoursechapterid" => "2"
+    //   "usercoursechaptercontentid" => "2"
+
+        $uchapter=UserCourseChapter::where('user_course_id',$request->usercourseid)->where('chapter_id',$request->usercoursechapterid)->count();
+        if($uchapter==0){
+            $ucc = new UserCourseChapter();
+            $ucc->user_course_id =  $request->usercourseid;
+            $ucc->chapter_id =    $request->usercoursechapterid;
+            $ucc->save();
+
+
+                $uccc = new UserCourseChapterContent();
+                $uccc->user_course_chapter_id= $ucc->id;
+                $uccc->content_id =$request->usercoursechaptercontentid;
+                $uccc->save();
+
+            
+
+        }else{
+            $uchap=UserCourseChapter::where('user_course_id',$request->usercourseid)->where('chapter_id',$request->usercoursechapterid)->first();
+
+            $ucontent=UserCourseChapterContent::where('user_course_chapter_id',$uchap->id)->where('content_id',$request->usercoursechaptercontentid)->count();
+
+            if($ucontent==0){
+
+                $uccc = new UserCourseChapterContent();
+                $uccc->user_course_chapter_id= $uchap->id;
+                $uccc->content_id =$request->usercoursechaptercontentid;
+                $uccc->save();
+
+            }
+        }
+
+        return response()->json(['rpta'=>'ok']);
+     }
+
+     
+     public function setChapterContent(Request $request){
+        $uccc = new UserCourseChapterContent();
+        $uccc->user_course_chapter_id= $request->user_course_chapter_id;
+        $uccc->$content_id =$request->content_id;
+        $uccc->save();
+        return response()->json(['rpta'=>'ok']);
+     }
+
+    
 }
+
