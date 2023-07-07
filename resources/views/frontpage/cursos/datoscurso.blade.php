@@ -37,11 +37,7 @@
 								Question about the chapter
 							@endif
 						</div>
-						@if($content!=null)
-						<input type="hidden" name="user_course_id" value="{{$user_course_id}}">
-						<input type="hidden" name="user_course_chapter_id" value="{{$content->chapter->id}}">
-						<input type="hidden" name="user_course_chapter_content_id" value="{{$content->id}}">
-						@endif
+						
 					@if($content!=null)
 						<div class="encurso__video">
 								  <div class="encurso__video__titulo">
@@ -199,27 +195,21 @@
 										@if(isset($contenidos))										
 											@foreach($contenidos as $k => $cont)
 													<li class="encurso__temas__lista__item {{UserCourse::capitulo($user_course_id,$cont['capitulo_id'])?"active":""}}"><span>{{$k+1}}</span>
-														<a href="#">{{@$cont['capitulo_titulo']}}</a>
+														{{@$cont['capitulo_titulo']}}
 														
 															<ul class="encurso__temas__lista__item__sublista active">
 																@foreach($cont['contenidos'] as $c)
 																	<li class="encurso__temas__lista__item__sublista__item {{UserCourse::contenido($user_course_id,$cont['capitulo_id'],$c['id'])?"finalizado":""}}">
-																		<a href="/learn/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/{{$c['slug']}}"> {{@$c['titulo']}}</a> 
+																		{{@$c['titulo']}}
 																	</li>
 																@endforeach	
-																@if($cont['quiz']==true)
-																	<li>
-																		<a href="/learn/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/quiz/{{$cont['quiz_content']->chapter_id}}">Quiz chapter</a>
-																	</li>
-																@endif
+																
 															</ul>
 													</li>
 											@endforeach
 										@endif	
 
-										@if(isset($examen))										
-										<li class="encurso__temas__lista__item"><a href="/learn/exam/{{$curso->slug}}/{{$examen->id}}">Final Exam</a></li>
-										@endif
+										
 								  </ul>
 						</div>
 			  </div>

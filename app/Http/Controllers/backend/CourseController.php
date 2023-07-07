@@ -79,7 +79,7 @@ class CourseController extends Controller
     public function edit($id)
     {
 
-        $course = Course::orderBy('id','desc')->first();
+        $course = Course::where('id',$id)->first();
 
         return view('backend.courses.edit',['course'=>$course]);
     }
@@ -127,6 +127,7 @@ class CourseController extends Controller
      */
     public function destroy(Request $request)
     {
+       
         Course::find($request->id)->delete();
 
         return redirect()->route('courses.index')

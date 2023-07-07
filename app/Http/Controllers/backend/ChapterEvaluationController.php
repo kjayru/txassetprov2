@@ -21,6 +21,7 @@ class ChapterEvaluationController extends Controller
        $chapter = Chapter::find($id);
         $chapters = ChapterQuiz::where('chapter_id',$id)->get();
         
+       
         return view("backend.evaluation.index",['id'=>$id,'chapters'=>$chapters,'chapter'=>$chapter]);
     }
 
@@ -51,7 +52,7 @@ class ChapterEvaluationController extends Controller
      */
     public function store(Request $request)
     {
-        
+      
 
         $quest = new ChapterQuiz();
         $quest->chapter_id = $request->parent_id;
@@ -59,17 +60,17 @@ class ChapterEvaluationController extends Controller
         $quest->save();
 
         foreach($request->option as $k => $op){
-
+           
             $opcion = New ChapterQuizOption();
-            $opcion->option=$op;
-            $opcion->estado= $request->result[$k];
+            $opcion->option = $op;
+            $opcion->estado = $request->result[$k];
             $opcion->chapter_quiz_id = $quest->id;
             $opcion->save();
         }
 
 
-
-        return redirect()->route('chapterequiz.show',['quiz'=>$request->parent_id])
+       
+        return redirect()->route('chapterequiz.index',['quiz'=>$request->parent_id])
         ->with('info','Question create');
     }
 
@@ -86,7 +87,7 @@ class ChapterEvaluationController extends Controller
 
         $question = ChapterQuiz::find($id);
         
-       // dd($question->chapter);
+       
         return view('backend.evaluation.edit',['question'=>$question,'id'=>$id]);
     }
 
@@ -100,26 +101,26 @@ class ChapterEvaluationController extends Controller
     public function update(Request $request, $id)
     {
 
-        $quest = Chapterevaluation::find($id);
+      
+        $quest = ChapterQuiz::find($id);
 
         $quest->question = $request->question;
         $quest->chapter_id = $request->parent_id;
         $quest->save();
 
 
-        Evaluationoption::where('chapterevaluation_id',$id)->delete();
+        ChapterQuizOption::where('chapter_quiz_id',$id)->delete();
 
         foreach($request->option as $k => $op){
 
-            $opcion = New Evaluationoption();
-            $opcion->option=$op;
-
-            $opcion->answer= $request->result[$k];
-            $opcion->chapterevaluation_id = $quest->id;
+            $opcion = New ChapterQuizOption();
+            $opcion->option = $op;
+            $opcion->estado = $request->result[$k];
+            $opcion->chapter_quiz_id = $id;
             $opcion->save();
         }
 
-        return redirect()->route('chapterequiz.show',['id'=>$request->parent_id])
+        return redirect()->route('chapterequiz.index',['exam'=>$request->parent_id])
         ->with('info','Question updated');
 
     }
@@ -132,9 +133,12 @@ class ChapterEvaluationController extends Controller
      */
     public function destroy(Request $request)
     {
-        $data = Chapterevaluation::find($request->id);
+        $data = ChapterQuiz::find($request->id);
+        
+        ChapterQuiz::where('id',$request->id)->delete();
 
-        Chapterevaluation::find($request->id)->delete();
+        ChapterQuizOption::where('chapter_quiz_id',$request->id)->delete();
+
         return redirect('/admin/chapterequiz/'.$data->chapter->id)
         ->with('info','Question deleted');
     }

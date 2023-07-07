@@ -42,7 +42,7 @@ class CourseController extends Controller
                 'titulo'=>$cap->title,
                 'contenidos'=>$cap->chaptercontents,
                 'chapter_slug'=>$cap->slug
-              ];
+              ]; 
 
             }
 
@@ -52,7 +52,7 @@ class CourseController extends Controller
     public function cursoChapter($chapter,$content){
         $curso = Course::find($request->id);
 
-        return view('frontpage.learn.index');
+        return view('frontpage.cursos.datoscurso');
     }
     public function cursoChapterContent($slug,$chapter,$content){
        
@@ -90,6 +90,6 @@ class CourseController extends Controller
        }
         
        
-        return view('frontpage.learn.index',['content'=>$content,'contenidos'=>$menulat,'curso'=>$curso]);
+        return view('frontpage.cursos.datoscurso',['content'=>$content,'contenidos'=>$menulat,'curso'=>$curso]);
     }
 }

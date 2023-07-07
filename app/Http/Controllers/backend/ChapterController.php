@@ -12,11 +12,12 @@ class ChapterController extends Controller
     public function __construct(){
         $this->middleware('auth');
    }
-    public function index($id)
+    public function index($course)
     {
-        $chapters = Chapter::where('course_id',$id)->get();
-
-        return view("backend.chapters.index",['chapters'=>$chapters]);
+       
+        $chapters = Chapter::where('course_id',$course)->get();
+       
+        return view("backend.chapters.index",['chapters'=>$chapters,'course_id'=>$course]);
     }
 
 
@@ -31,9 +32,9 @@ class ChapterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($course)
     {
-        return view('backend.chapters.create',['id'=>$id]);
+        return view('backend.chapters.create',['course_id'=>$course]);
     }
 
     /**
@@ -45,7 +46,7 @@ class ChapterController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request);
+      
         $chapter = new Chapter();
         $chapter->title = $request->title;
         $chapter->slug = Str::slug($request->title, '-');

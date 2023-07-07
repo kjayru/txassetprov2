@@ -49,6 +49,7 @@ $(".cart__body__foot__link").click(function(e){
     dataType:'json',
     success:function(response){
      
+      debugger;
        if(response.estado==true){
       
         //verificar firma
@@ -59,43 +60,66 @@ $(".cart__body__foot__link").click(function(e){
           dataType:'json',
           success:function(response){
             
+            debugger;
+
             if(response.estado==true){
               
               
 
-              fetch('/cart/process-signed',{
-                method:'POST',
-                headers:{
-                  'Content-Type':'application/json',
-                },
+              // fetch('/cart/process-signed',{
+              //   method:'POST',
+              //   headers:{
+              //     'Content-Type':'application/json',
+              //   },
 
-                    body:JSON.stringify(sendata),
+              //       body:JSON.stringify(sendata),
       
-                    })
-                .then((response) => {
-                  debugger;
-                  response.json();
-                })
+              //       })
+              //   .then((response) => {
+              //     console.log(response);
+              //     debugger
+              //   })
                
-                .then(function(session) {
-                  debugger;
-                  return stripe.redirectToCheckout({ sessionId: session.id });
-                })
-                .then(function(result) {
+              //   .then(function(session) {
+              //     debugger;
+              //     return stripe.redirectToCheckout({ sessionId: session.id });
+              //   })
+              //   .then(function(result) {
       
-                  if (result.error) {
-                    console("errro "+result.error.message);
+              //     if (result.error) {
+              //       console("errro "+result.error.message);
+              //     }
+              //   })
+              //   .catch(function(error) {
+              //     console.error('Error:', error);
+              //   });
+
+              $.ajax({
+                url:'/cart/process-signed',
+                type:'POST',
+                dataType:'json',
+                data:sendata,
+                success:function(response){
+                  if(response.firmado==false){
+                    window.location.href="/cart/sign";
+                    
+                  }else{
+                   
+                    console.log(response);
+
+                    return stripe.redirectToCheckout({ sessionId: response.id });
+
                   }
-                })
-                .catch(function(error) {
-                  console.error('Error:', error);
-                });
+                }
+              })
               
 
             }else{
               
               //$("#loginModal").modal("show");
               //alert("login1");
+              //verificación de firma 
+
               window.location.href="/cart/sign";
             }
           }
@@ -208,8 +232,12 @@ var player = videojs('my-player', options, function onPlayerReady() {
   console.log("no inicializado");
 }
 
-$(".detalle__video__header__link").on('click',function(e){
+$(".detalle__header__mycourse").on('click',function(e){
   e.preventDefault();
+
+  $('.detalle__header__mycourse').removeClass("active");
+    $(this).addClass("active");
+  
   let valor = $(this).data("content");
   let id=$(this).data('id');
   const token = $('meta[name="csrf-token"]').attr('content');
@@ -238,24 +266,24 @@ $(".detalle__video__header__link").on('click',function(e){
         success:function(response){
           $.each(response.contents, function (i, e) { 
 
-              htm+=` <div class="detalle__contenido__capitulo interlineado">
+              htm+=`<div class="detalle__contenido__capitulo interlineado">
               <div class="row">
                      <div class="col-md-12">
-                        <div class="detalle__contenido__capitulo__titulo">
-                                  ${e.titulo}
-                        </div>                                                           
+                        <div class="detalle__contenido__capitulo__titulo"> ${e.titulo} </div>                                                           
                      </div>
               </div>
           
               
               <div class="row justify-content-between">`;
                       $.each(e.contenidos,function(p,q){
+
                         htm+=`<div class="col-md-12">
                                   <span>${q.order}. </span>
                                   <a href="/course/${e.course_slug}/${e.chapter_slug}/${q.slug}">${q.titulo}</a>
                               </div>`;
+
                       });
-              `</div>`;
+              htm+=`</div> </div>`;
           });
 
           $(".detalle__secciones").html(htm);
@@ -264,6 +292,70 @@ $(".detalle__video__header__link").on('click',function(e){
     break;
   }
 });
+
+
+$(".detalle__header__home__course").on('click',function(e){
+  e.preventDefault();
+  let valor = $(this).data("content");
+  let id=$(this).data('id');
+
+    $('.detalle__header__home__course').removeClass("active");
+    $(this).addClass("active");
+
+  const token = $('meta[name="csrf-token"]').attr('content');
+  switch (valor) {
+    case "general":
+      $(".detalle__contenido").show();
+      $(".detalle__informacion").show();
+      $(".detalle__secciones").hide();
+    break;
+  
+    case "secciones":
+      $(".detalle__contenido").hide();
+      $(".detalle__informacion").hide();
+      $(".detalle__secciones").show();
+
+      let sendata = {'_method':'POST','_token':token,id:id};
+      let htm='';
+      $.ajax({
+        url:'/async/course-content',
+        type:'POST',
+        dataType:'json',
+        data:sendata,
+        beforeSend:function(){
+          console.log("preparando");
+        },
+        success:function(response){
+          $.each(response.contents, function (i, e) { 
+
+              htm+=`<div class="detalle__contenido__capitulo interlineado">
+             
+              <div class="row">
+                     <div class="col-md-12">
+                        <div class="detalle__contenido__capitulo__titulo"> ${e.titulo} </div>                                                           
+                     </div>
+              </div>
+          
+              
+              <div class="row justify-content-between">`;
+
+                      $.each(e.contenidos,function(p,q){
+                        htm+=`<div class="col-md-12">
+                                  <span>${q.order}. </span>
+                                  ${q.titulo}
+                              </div>`;
+                      });
+
+              htm+=`</div> </div>`;
+          });
+
+          $(".detalle__secciones").html(htm);
+        }
+      });
+    break;
+  }
+});
+
 
 
 $(".btn__quiz").on('click',function(e){
@@ -333,7 +425,7 @@ $(".btn__examen").on('click',function(e){
 
   $(".quiz__timelapse").show();
   $(".quiz__preguntas").show();
-$(".quiz__inicio").hide();
+  $(".quiz__inicio").hide();
 
   const SPAN_HOURS = document.getElementById('hora');
   const SPAN_MINUTES = document.getElementById('minuto');

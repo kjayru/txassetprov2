@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group @if($errors->first('option_b')) has-error @endif">
-        <label for="option" class="control-label">Option A</label>
+        <label for="option" class="control-label">Option B</label>
         <input type="text"  name="option_b" class="form-control" value="{{@$question->quizQuestionOptions[1]->option}}" id="question" placeholder="Option B" required>
         <span class="help-block">{{ $errors->first('option_b') }}</span>
         <input type="hidden" name="quiz_question_option_b" value="{{@$question->quizQuestionOptions[1]->id}}">

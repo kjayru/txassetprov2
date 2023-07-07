@@ -94,7 +94,10 @@ class ExamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Quiz::find($request->id)->delete();
+
+        return redirect()->route('exam.index')
+        ->with('info','Exam deleted');
     }
 
 
@@ -153,7 +156,9 @@ class ExamController extends Controller
 
     public function optionEdit($opt,$id){
 
-        $question = QuizQuestion::where('quiz_id',$opt)->first();
+        //dd($opt." ".$id);
+        $question = QuizQuestion::where('id',$id)->first();
+
         return view('backend.exam.options.edit',['quiz_id'=>$opt,'question'=>$question]);
     }
 
@@ -194,4 +199,12 @@ class ExamController extends Controller
          ->with('info','option update');
     }
 
+
+    public function optionDestroy(Request $request,$opt){
+       
+        QuizQuestion::find($request->id)->delete();
+
+        return redirect()->route('option.index',['opt'=>$opt])
+        ->with('info','Option deleted');
+    }
 }

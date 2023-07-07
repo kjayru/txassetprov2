@@ -16,7 +16,7 @@
         <select name="course_id" id="course" class="custom-select">
             <option value="">Selected</option>
             @foreach($cursos as $curso)
-            <option value="{{$curso->id}}"  {{$curso->id==$quiz->course->id?"selected":""}} >{{$curso->titulo}}</option>
+            <option value="{{$curso->id}}"  {{$curso->id==@$quiz->course->id?"selected":""}} >{{$curso->titulo}}</option>
             @endforeach
         </select>
     </div>

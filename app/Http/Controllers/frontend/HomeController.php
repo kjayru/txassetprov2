@@ -858,11 +858,15 @@ class HomeController extends Controller
 
     public function checksign(){
         $user_id = Auth::id();
-        $perfil = Profile::where('user_id',$user_id)->first();
+       // $perfil = Profile::where('user_id',$user_id)->first();
         $mensaje = false;
+
+        $check = UserSign::where('user_id',$user_id)->count();
        
-        if(isset($perfil)){
+        if($check > 0){
             $mensaje = true;
+        }else{
+            $mensaje = false; 
         }
        
         return response()->json(['estado'=>$mensaje]);

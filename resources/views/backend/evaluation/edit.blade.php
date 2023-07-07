@@ -52,7 +52,7 @@
               </div>
 
               <div class="card-footer">
-                <a href="{{ route('chapterequiz.index') }}" class="btn btn-danger">Cancelar</a>
+                <a href="{{ route('chapterequiz.index',['exam'=>$question->chapter->id]) }}" class="btn btn-danger">Cancelar</a>
                 <button type="submit" class="btn btn-info pull-right">Guardar</button>
               </div>
           </form>

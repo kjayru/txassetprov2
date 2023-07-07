@@ -46,17 +46,19 @@ class CartController extends Controller
         $user_id = Auth::id();
         $user = User::find($user_id);
 
-        $perfil = UserSign::where('user_id',$user_id)->first();
-        if(!isset($perfil)){
+        $perfil = UserSign::where('user_id',$user_id)->count();
+        if($perfil == 0){
             $firma =new UserSign();
             $firma->firma = $request->dataURL;
             $firma->email = $request->email;
             $firma->legalname = $request->legalname;
             $firma->user_id = $user_id;
             $firma->save();
+        }else{
+            return false;
         }
  
-       
+      
         
         $carrito=null;
         
@@ -247,7 +249,14 @@ class CartController extends Controller
      public function process(Request $request){
        
         $user_id = Auth::id();
-       
+     
+       $verificacion= UserSign::where('user_id',$user_id)->count();
+
+      
+        if($verificacion== 0){
+            return response()->json(['firmado'=>false]);
+        }
+
          //carrito
         
          $carrito=null;

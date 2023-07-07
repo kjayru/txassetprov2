@@ -44,7 +44,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="{{ route('chapters.create',['id'=>$id]) }}" class="btn btn-block btn-outline-primary btn-flat mb-5">Create Chapter</a>
+                        <a href="{{ route('chapters.create',['id'=>$course_id]) }}" class="btn btn-block btn-outline-primary btn-flat mb-5">Create Chapter</a>
                     </div>
                 </div>
 
@@ -115,7 +115,7 @@
                         @csrf
 
                         <div class="modal-header">
-                            <h4 class="modal-title">Confirmar Eliminación</h4>
+                            <h4 class="modal-title">Confirm Deletion</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -125,12 +125,12 @@
                             <input type="hidden" name="_method" value="delete" >
 
                             <input type="hidden" name="id" id="id">
-                            <p>¿Esta seguro de eliminar este item?</p>
+                            <p>Are you sure to delete this item?</p>
 
                         </div>
                         <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-outline-light">Eliminar</button>
+                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-outline-light">Eliminate</button>
                         </div>
                     </form>
 

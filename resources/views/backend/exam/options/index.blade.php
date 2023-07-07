@@ -117,4 +117,37 @@
   </div>
 
 
+  <div class="modal fade" id="delobjeto">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger">
+
+            <form class="delete-objeto" action="/admin/exams/options/{{$quiz_id}}/delete" method="POST">
+                @csrf
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirm Deletion</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+
+                    <input type="hidden" name="_method" value="delete" >
+
+                    <input type="hidden" name="id" id="id">
+                    <p>Are you sure to delete this item?</p>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-outline-light">Eliminate</button>
+                </div>
+            </form>
+
+        </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+
+</div>
 @endsection

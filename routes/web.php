@@ -131,7 +131,7 @@ Route::group(['prefix' => 'admin'],function(){
     
 
     Route::post('chapters/store',[ChapterController::class,'store'])->name('chapters.store');
-    Route::get('chapters',[ChapterController::class,'index'])->name('chapters.index');
+    Route::get('chapters/{course}',[ChapterController::class,'index'])->name('chapters.index');
     Route::get('chapters/create/{id}',[ChapterController::class,'create'])->name('chapters.create');
     Route::put('chapters/{chapter}',[ChapterController::class,'update'])->name('chapters.update');
     Route::get('chapters/{chapter}',[ChapterController::class,'show'])->name('chapters.show');
@@ -148,7 +148,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('chaptercontent/{content}/edit',[ChapterContentController::class,'edit'])->name('chaptercontent.edit');
     
     Route::post('chapterequiz/store',[ChapterEvaluationController::class,'store'])->name('chapterequiz.store');
-    Route::get('chapterequiz',[ChapterEvaluationController::class,'index'])->name('chapterequiz.index');
+    Route::get('chapterequiz/{exam}',[ChapterEvaluationController::class,'index'])->name('chapterequiz.index');
     Route::get('chapterequiz/create/{id}',[ChapterEvaluationController::class,'create'])->name('chapterequiz.create');
     Route::put('chapterequiz/{quiz}',[ChapterEvaluationController::class,'update'])->name('chapterequiz.update'); 
     Route::get('chapterequiz/{quiz}',[ChapterEvaluationController::class,'show'])->name('chapterequiz.show'); 
@@ -170,6 +170,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::post('exams/options/{opt}/store',[ExamController::class,'optionStore'])->name('option.store');
     Route::get('exams/options/{opt}/{quest}/edit',[ExamController::class,'optionEdit'])->name('option.edit');
     Route::put('exams/options/{opt}/{quest}',[ExamController::class,'optionUpdate'])->name('option.update');
+    Route::delete('exams/options/{opt}/delete',[ExamController::class,'optionDestroy'])->name('option.destroy');
 });
 
 Route::get('/', [Home::class,'index'])->name('front.home');
@@ -219,6 +220,7 @@ Route::group(['prefix' => 'cart'],function(){
     Route::get('/remove/{id}',[Home::class,'removecart']);
     Route::get('/checksesion',[Home::class,'checksesion']);
     Route::get('/checksign',[Home::class,'checksign']);
+
     Route::get('/sign',[CartController::class,'sign']);
     Route::post('/process-signed',[CartController::class,'process']);
     Route::post('/sign-register',[CartController::class,'signRegister'])->name('sign.register');

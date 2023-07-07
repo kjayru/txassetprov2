@@ -17,10 +17,13 @@ class ChapterQuiz extends Model
 
     public static function getAnswer($id){
        
-        $answer = ChapterQuizOption::where('chapter_quiz_id',$id)->where('estado',1)->first();
+       $result = null;
 
-       
-        return $answer->option;
+       if(ChapterQuizOption::where('chapter_quiz_id',$id)->count()>0){
+         $answer = ChapterQuizOption::where('chapter_quiz_id',$id)->where('estado',1)->first();
+         $result = $answer->option;
+       }
+        return $result;
 
     }
 

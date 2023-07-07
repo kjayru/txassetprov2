@@ -14,7 +14,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
-              <li class="breadcrumb-item"><a href="/admin/chapter/{{$id}}">Chapters</a></li>
+              <li class="breadcrumb-item"><a href="/admin/chapter/{{$course_id}}">Chapters</a></li>
               <li class="breadcrumb-item active">Create chapter</li>
             </ol>
           </div>
@@ -51,12 +51,12 @@
               <div class="card-body">
                   @csrf
 
-                <input type="hidden" name="parent_id" value="{{$id}}">
+                <input type="hidden" name="parent_id" value="{{$course_id}}">
                   @include('backend.chapters.form.index')
 
               </div>
               <div class="card-footer">
-                      <a href="{{ route('chapters.store') }}" class="btn btn-danger">Cancel</a>
+                      <a href="{{ route('chapters.index',['course'=>$course_id]) }}" class="btn btn-danger">Cancel</a>
                   <button type="submit" class="btn btn-info pull-right">Save</button>
               </div>
             </form>

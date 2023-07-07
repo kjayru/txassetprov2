@@ -11,7 +11,7 @@
     <div class="card-body card-question">
 
        
- @if($question->chapterQuizOptions)
+ @if(isset($question->chapterQuizOptions))
 
 
     @if(count($question->chapterQuizOptions)>0)

@@ -45,7 +45,15 @@ class ChapterContentController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request);
+        
+
+         $validated = $request->validate([
+            'title' => 'required',
+            'video' => 'required',
+            
+
+        ]);
+
         $content = new Chaptercontent();
         $content->titulo = $request->title;
         $content->slug = Str::slug($request->title, '-');

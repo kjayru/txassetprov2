@@ -17,7 +17,7 @@
                                      <div class="detalle__video">
                                         <div class="detalle__video__header">
                                                   <a href="#" class="detalle__video__header__link active" data-content="general">Information</a>
-                                                  <a href="#" class="detalle__video__header__link" data-content="secciones" data-id="{{@$curso->id}}">Content</a>
+                                                  <a href="#" class="detalle__video__header__link " data-content="secciones" data-id="{{@$curso->id}}">Content</a>
                                         </div>
                                         <div class="detalle__video__player">
                                                   <img src="/storage/{{@$curso->banner}}" class="img-fluid">
