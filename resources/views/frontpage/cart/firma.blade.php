@@ -23,9 +23,12 @@
 						</div>
 						<div class="col-md-12">
 							<div class="firma__body__contenido ">
-								<p class="row">I.  *Fullname  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam volutpat vulputate magna, ac placerat nisi vehicula sagittis. Nullam vitae fermentum nisl. Sed posuere eu justo ac sodales. Suspendisse at neque in tellus viverra iaculis. Vivamus tincidunt neque lorem, quis lacinia tellus venenatis quis. Cras dapibus est enim, a maximus mauris condimentum ac. Vivamus imperdiet erat id arcu faucibus, a varius urna ultricies. In in tellus eget est sodales consectetur. Aenean in scelerisque diam. Vestibulum convallis dictum aliquam. </p>
+
+								<p>I.  <input type="text" name="fullname" id="fullname" placeholder="Full name" class="mb-2 form-control">  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam volutpat vulputate magna, ac placerat nisi vehicula sagittis. Nullam vitae fermentum nisl. Sed posuere eu justo ac sodales. Suspendisse at neque in tellus viverra iaculis. Vivamus tincidunt neque lorem, quis lacinia tellus venenatis quis. Cras dapibus est enim, a maximus mauris condimentum ac. Vivamus imperdiet erat id arcu faucibus, a varius urna ultricies. In in tellus eget est sodales consectetur. Aenean in scelerisque diam. Vestibulum convallis dictum aliquam. <input type="text" name="initial" id="initial" placeholder="Inital here" class="form-control"></p>
 								<p>Morbi eu arcu non dolor commodo commodo. Donec ullamcorper, magna hendrerit pellentesque aliquam, arcu turpis bibendum lorem, eget venenatis erat eros sed magna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin vulputate purus risus, id lacinia dolor euismod eget. Ut scelerisque arcu nec quam tempus ultricies. Praesent accumsan, mauris sed fermentum tempor, ante risus ultrices urna, ac semper dui tortor nec lorem. Praesent a urna sed tortor semper cursus.</p>
 								<p>Praesent dictum elit sit amet eros porta, non ullamcorper elit placerat. Proin tristique odio ac nibh condimentum ullamcorper. Morbi lobortis bibendum tellus, dignissim interdum quam sollicitudin vel. Maecenas in sodales sem. Sed porta laoreet dictum. Aliquam placerat nulla non commodo tempor. Etiam porttitor vel diam non finibus. Praesent at ultrices orci. Sed molestie egestas viverra. Nam tempus diam vitae eros elementum, in mollis urna fringilla. Vestibulum vitae est non diam scelerisque efficitur id vitae lectus. Sed nunc justo, fermentum a malesuada sed, dignissim a neque. In fringilla turpis vitae tristique maximus. Pellentesque ullamcorper consequat tellus, ut fringilla dui bibendum a.</p>
+
+
 							</div>
 						</div>
 					</div>

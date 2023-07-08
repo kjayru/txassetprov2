@@ -351,6 +351,23 @@ footer {
                     margin-bottom:2rem;
                 }
           }
+        .banner{
+            height: 100vh;
+            padding-left: 5rem;
+             p {
+                font-family: 'Bebas Neue', cursive;
+                color: white;
+                font-size: 89px;
+                line-height: 80px;
+                padding-top: 62px;
+                font-weight: bold;
+
+                span{
+                    color: #E01F26;
+                }
+
+            }
+        }
 }
 .btn__cursos{
     border-radius: 25px;

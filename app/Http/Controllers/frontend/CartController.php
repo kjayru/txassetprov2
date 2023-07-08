@@ -53,6 +53,9 @@ class CartController extends Controller
             $firma->email = $request->email;
             $firma->legalname = $request->legalname;
             $firma->user_id = $user_id;
+
+            $firma->fullname = $request->fullname;
+            $firma->initial = $request->initial;
             $firma->save();
         }else{
             return false;

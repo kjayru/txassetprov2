@@ -57,17 +57,39 @@ function download(dataURL, filename) {
        
         btnClick.addEventListener('click',function(event){
           event.preventDefault();
+
           var legalname = document.querySelector("[name='legalname']").value;
           var email = document.querySelector('[name="email"]').value;
+          var fullname = document.querySelector('[name="fullname"]').value;
+          var initial = document.querySelector('[name="initial"]').value;
+
+          if(fullname==""){
+            alert("Complete fullname");
+            return false;
+          }
+          if(initial==""){
+            alert("Complete Inital");
+            return false;
+          }
+          if(legalname==""){
+            alert("Complete legal name");
+            return false;
+          }
+          if(email==""){
+            alert("Complete email");
+            return false;
+          }
+        
           
           if (signaturePad.isEmpty()) {
           alert("Please provide a signature first.");
+          return false;
           } else {
           var dataURL = signaturePad.toDataURL('image/svg+xml');
           
           }
 
-              const sendata = {'_token':token,'_method':'POST',legalname:legalname,email:email,dataURL:dataURL};
+              const sendata = {'_token':token,'_method':'POST',legalname:legalname,email:email,dataURL:dataURL,fullname:fullname,initial:initial};
               console.log(sendata);
             
 

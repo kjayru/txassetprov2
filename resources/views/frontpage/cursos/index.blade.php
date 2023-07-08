@@ -4,9 +4,25 @@
 
           <div id="banner">
             <div class="container-fluid">
-              <div class="row">
+             
                
+                <div class="row">
+
+                  <div class="banner d-flex align-items-center">
+                  <div class="col-md-2">
+                      <div class="logo">
+                          <img src="/images/Logo-TAP.png" alt="" class="img-fluid">
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <p><span>ONLINE</span><br>CERTIFICATION</p>
+                  </div>
+                </div>
+
               </div>
+
+
+             
             </div>
           </div>
           <div class="cursos__titulo">
