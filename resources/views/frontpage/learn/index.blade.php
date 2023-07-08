@@ -201,6 +201,7 @@
 													<li class="encurso__temas__lista__item {{UserCourse::capitulo($user_course_id,$cont['capitulo_id'])?"active":""}}"><span>{{$k+1}}</span>
 														<a href="#">{{@$cont['capitulo_titulo']}}</a>
 														
+														@if(isset($cont['contenidos']))
 															<ul class="encurso__temas__lista__item__sublista active">
 																@foreach($cont['contenidos'] as $c)
 																	<li class="encurso__temas__lista__item__sublista__item {{UserCourse::contenido($user_course_id,$cont['capitulo_id'],$c['id'])?"finalizado":""}}">
@@ -213,6 +214,7 @@
 																	</li>
 																@endif
 															</ul>
+														@endif
 													</li>
 											@endforeach
 										@endif	

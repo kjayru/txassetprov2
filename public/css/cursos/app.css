@@ -12034,9 +12034,10 @@ footer .little {
   color: #9d9d9d;
   text-decoration: none;
   position: relative;
-  font-size: 2rem;
+  font-size: 1.5rem;
   top: -57px;
   right: -10px;
+  font-weight: lighter;
 }
 .cart__body__grilla__item {
   padding-top: 1.5rem;
@@ -12078,6 +12079,9 @@ footer .little {
   display: inline-block;
   margin-top: 3rem;
 }
+.cart__body__foot__link:hover {
+  color: white;
+}
 .cart__body__cupon {
   position: relative;
   margin-top: 3rem;
@@ -12096,6 +12100,18 @@ footer .little {
   color: #9d9d9d;
   font-family: "Open Sans", sans-serif;
   padding-bottom: 1rem;
+  position: relative;
+  padding-left: 25px;
+}
+.cart__body__cupon__titulo::before {
+  content: "";
+  background: url("/images/cupon.svg") no-repeat center center;
+  background-size: contain;
+  width: 20px;
+  height: 15px;
+  position: absolute;
+  left: 0;
+  top: 4px;
 }
 .cart__body__cupon__form {
   position: relative;
@@ -12111,6 +12127,10 @@ footer .little {
   border-radius: 0;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+.cart__body__cupon__form__boton:hover {
+  background: #298CFF;
+  color: white;
 }
 
 .sinpadding__left {
@@ -12431,6 +12451,7 @@ footer .little {
   font-size: 1.75rem;
   text-align: center;
   font-weight: bold;
+  color: #031059;
 }
 .gracias__subtitulo span {
   padding-top: 0.3rem;
@@ -12479,35 +12500,49 @@ footer .little {
 }
 .gracias__box__info__properties ul .capitulo:before {
   font-size: 1.2rem;
-  content: "\f15c";
-  font-family: "FontAwesome";
+  content: "";
   position: absolute;
-  left: -30px;
+  left: -35px;
   top: 14px;
+  background: url(/images/curso-capitulos.svg) no-repeat 0px 0px;
+  background-size: contain;
+  width: 27px;
+  height: 31px;
 }
 .gracias__box__info__properties ul .audio:before {
   font-size: 1.2rem;
-  content: "\f028";
-  font-family: "FontAwesome";
+  content: "";
   position: absolute;
-  left: -30px;
+  left: -34px;
   top: 14px;
+  background: url(/images/curso-audio.svg) no-repeat 0px 0px;
+  background-size: contain;
+  width: 27px;
+  height: 31px;
 }
 .gracias__box__info__properties ul .level:before {
   font-size: 1.2rem;
-  content: "\f080";
+  content: "";
   font-family: "FontAwesome";
   position: absolute;
-  left: -30px;
+  left: -34px;
   top: 14px;
+  background: url(/images/curso-level.svg) no-repeat 0px 0px;
+  background-size: contain;
+  width: 27px;
+  height: 31px;
 }
 .gracias__box__info__properties ul .access:before {
   font-size: 1.2rem;
-  content: "\f090";
+  content: "";
   font-family: "FontAwesome";
   position: absolute;
-  left: -30px;
+  left: -34px;
   top: 14px;
+  background: url(/images/curso-access.svg) no-repeat 0px 0px;
+  background-size: contain;
+  width: 27px;
+  height: 31px;
 }
 .gracias__box__info__enlace a {
   color: #fff;
@@ -12626,6 +12661,18 @@ footer .little {
 }
 .todocursos__card__body_table .titulo {
   width: 30%;
+}
+.todocursos__card__body .card__footer {
+  text-align: right;
+}
+.todocursos__card__body .card__footer .btn__edit__profile {
+  color: #031059;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+}
+.todocursos__card__body .card__footer .no-border {
+  border: 0;
 }
 .todocursos .nav__usuario {
   padding-top: 5rem;

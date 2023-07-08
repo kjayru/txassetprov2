@@ -25,7 +25,7 @@
 				<div class="gracias__box">
 					<div class="row">
 						<div class="col-md-5">
-							<img src="/images/curso1.png" class="img-fluid">
+							<img src="/storage/{{Course::info($col)['banner']}}" class="img-fluid">
 						</div>
 						<div class="col-md-7">
 							<div class="gracias__box__info">

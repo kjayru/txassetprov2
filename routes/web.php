@@ -247,10 +247,11 @@ Route::group(['prefix'=>'learn'],function(){
 });
 
 Route::group(['prefix'=>'user'],function(){
-    Route::get('/',[UsuarioController::class,'index']);
+    Route::get('/',[UsuarioController::class,'index'])->name('user.index');
     Route::get('/my-courses',[UsuarioController::class,'misCursos']);
     Route::post('/set-chapter',[UsuarioController::class,'setChapter']);
-   
+   Route::get('/edit',[UsuarioController::class,'editUser']);
+   Route::post('/saveprofile',[UsuarioController::class,'saveProfile']);
 });
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
 ->name('ckfinder_connector');

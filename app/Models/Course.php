@@ -40,6 +40,7 @@ class Course extends Model
             'nivel' => $course[0]->nivel,
             'slug' => $course[0]->slug,
             'tiempovalido'=>$course[0]->tiempovalido,
+            'banner'=>$course[0]->banner,
         ];
 
         return $datos;

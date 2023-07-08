@@ -30,6 +30,9 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-8">
+
+        <form action="/user/saveprofile" method="POST">
+            @csrf
 			<div class="todocursos__card">
 				<div class="todocursos__card__header">
 					Account
@@ -38,11 +41,11 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>User</strong>  </td>
-                            <td>{{$user->usuario}}</td>
+                            <td><input type="text" name="user" id="user" class="form-control" value="{{$user->name}}"> </td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Email</strong>  </td>
-                            <td>{{$user->email}}</td>
+                            <td><input type="text" name="email" id="email" class="form-control" value="{{$user->email}}"></td>
                         </tr>
                     </table>
 				</div>
@@ -53,23 +56,25 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>Name</strong>  </td>
-                            <td>{{$user->name}}</td>
+                            <td><input type="text" name="name" id="name" value="{{$user->name}}" class="form-control"></td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Middle</strong>  </td>
-                            <td>{{@$user->middle}}</td>
+                            <td><input type="text" name="middle" id="middle" class="form-control" value="{{@$user->middle}}"></td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Last name</strong>  </td>
-                            <td>{{$user->lastname}}</td>
+                            <td><input type="text" name="lastname" id="lastname" class="form-control" value="{{@$user->lastname}}"></td>
                         </tr>
                     </table>
 
 					<div class="card__footer">
-						<a href="/user/edit" class="btn__edit__profile">Edit profile</a>
+						<button type="submit" class="btn__edit__profile no-border">Save profile</button>
 					</div>
 				</div>
 			</div>
+        </form>
+
 		</div>
 		<div class="col-md-4">
 			<ul class="nav__usuario">

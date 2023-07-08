@@ -124,7 +124,7 @@
                     <div class="row">
                               <div class="col-md-6">
                                         <div class="relacionados__titulo">
-                                                  Course you might be interested in
+                                                  Courses you might be interested in
 
                                         </div>
                               </div>

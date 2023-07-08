@@ -25,10 +25,6 @@ class UsuarioController extends Controller
     public function index(){
         $user_id = Auth::id();
         $user = User::find($user_id);
-       
-        
-       
-
 
         return view('frontpage.usuario.index',['user'=>$user]);
     }
@@ -93,6 +89,32 @@ class UsuarioController extends Controller
         return response()->json(['rpta'=>'ok']);
      }
 
+
+     public function editUser(){
+        $user_id = Auth::id();
+        $user = User::find($user_id);
+
+        return view('frontpage.usuario.edit',['user'=>$user]);
+
+     }
+
+     public function saveProfile(Request $request){
+     
+       
+        $user_id = Auth::id();
+        $user = User::find($user_id);
+
+
+      $user->usuario = $request->user;
+      $user->email = $request->email;
+      $user->name = $request->name;
+      $user->middle = $request->middle;
+      $user->lastname = $request->lastname;
+      $user->save();
+
+      return redirect()->route('user.index')
+      ->with('info','Usuario actualizado'); 
+     }
     
 }
 

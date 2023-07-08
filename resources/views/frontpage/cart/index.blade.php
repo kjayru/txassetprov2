@@ -30,7 +30,7 @@
                                                                      
                                                                       <div class="row">
                                                                           <div class="col-md-3">
-                                                                              <img src="/images/cursoplayer.png" class="img-fluid">
+                                                                              <img src="/storage/{{$item['curso']->banner}}" class="img-fluid">
                                                                           </div>
                                                                           <div class="col-md-7">
                                                                               <div class="cart__body__grilla__titulo">
@@ -45,7 +45,7 @@
                                                             </div>
                                                            
                                                             <div class="col-md-2 text-right">
-                                                                     <div class="cart__body__grilla__precio"> ${{$item['precio']}}<span>USD</span> </div>
+                                                                     <div class="cart__body__grilla__precio"> ${{$item['precio']}} <span>USD</span> </div>
 
                                                                       <a href="#" data-id="{{$item['id']}}" class="cart__body__grilla__delete"><i class="fa fa-times" aria-hidden="true"></i></a>
                                                             </div>
@@ -59,7 +59,7 @@
                                         <div class="cart__body__foot">
                                                   <div class="row justify-content-end">
                                                             <div class="col-md-4 text-right">
-                                                                       <div class="cart__body__foot__total">Total ${{@$cart->total}}USD</div>
+                                                                       <div class="cart__body__foot__total">Total ${{@$cart->total}} USD</div>
 
                                                                       <a href="/cart/sign" class="cart__body__foot__link">Proceed to checkout</a>
                                                             </div>
