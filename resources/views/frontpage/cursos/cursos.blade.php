@@ -3,13 +3,14 @@
 
       <div class="banner color__banner">
           <div class="container-fluid">
-            <div class="row justify-content-between">
+            <div class="row justify-content-between mb-0 pb-0">
               <div class="col-md-4">
                   <div class="breadcrum">
-                      <ul>
-                          <li><a href="/" class="breadcrum__link">Home</a></li>
-                          <li><a href="#" class="breadcrum__link">> Cursos</a></li>
-                      </ul>
+                    <ul>
+                      <li><a href="/" class="breadcrum__link chevron"><img src="/images/Emblema-blanco.png" alt=""></a></li>
+                      <li><a href="/courses/all" class="breadcrum__link "> Cursos</a></li>
+                     
+                  </ul>
                   </div>
               </div>
               <div class="col-md-1 text-right">

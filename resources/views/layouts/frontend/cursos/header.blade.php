@@ -13,6 +13,7 @@
                                   <button class="navbar-toggler-close" type="button"><span>X</span> </button>
                                   <a class="navbar-brand" href="#"><img src="/images/Logo-TAP.png" class="img-fluid"></a>
                               </div>
+
                               <ul class="navbar-nav mr-auto">
                                   <li class="nav-item ">
                                       <a class="nav-link outinlink" href="/">Home </a>
@@ -44,6 +45,7 @@
                                       <a class="nav-link outclass" href="https://www.guardtek.net/#!/authentication/signin" target="_blank">Client login</a>
                                   </li>
                               </ul>
+                              
                           </div>
                       </nav>
                   </div>

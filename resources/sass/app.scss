@@ -665,6 +665,7 @@ footer {
             li{
                 padding-top: 2rem;
                 display:inline;
+                
                 a{
                     color:$blanco;
                     text-decoration: none;
@@ -676,26 +677,36 @@ footer {
                 &:first-child{
                     a{
                         display: inline-block;
-                        text-indent: -9999px;
+                       
                         padding-right: 13px;
+                        height: 17px;
+                      
+                        img {
+                            width: 48px;
+                            display: block;
+                        }
                     }
-                    a:before{
-                        position: relative;
-                        padding-left:180px;
-                        content:"";
-                        background: url(/images/Emblema-blanco.png) no-repeat 0px 0px;
-                        width:80px;
-                        height:20px;
-                        position: absolute;
-                        left: 1.6rem;
-                        background-size: contain;
-                    }
+                  
                 }
                 .active{
                     font-weight: bold;
                 }
             }
            
+        }
+    }
+    .chevron{
+        position: relative;
+        &::after{
+            content: "\f054";
+            font-family: "FontAwesome";
+            font-weight: lighter;
+            color: white;
+            right: -5px;
+            position: absolute;
+            font-size: 11px;
+            top: 5px;
+        
         }
     }
     .cart{
@@ -708,7 +719,9 @@ footer {
             padding-top: 0.5rem;
             padding-right: 1rem;
             padding-bottom: 0.5rem;
+            margin-bottom: 0;
             li{
+                padding-bottom: 0.6rem;
                 a{
                     color:$blanco;
                     text-decoration: none;

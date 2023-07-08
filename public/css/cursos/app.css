@@ -11425,22 +11425,28 @@ footer .little {
 }
 .banner .breadcrum ul li:first-child a {
   display: inline-block;
-  text-indent: -9999px;
   padding-right: 13px;
+  height: 17px;
 }
-.banner .breadcrum ul li:first-child a:before {
-  position: relative;
-  padding-left: 180px;
-  content: "";
-  background: url(/images/Emblema-blanco.png) no-repeat 0px 0px;
-  width: 80px;
-  height: 20px;
-  position: absolute;
-  left: 1.6rem;
-  background-size: contain;
+.banner .breadcrum ul li:first-child a img {
+  width: 48px;
+  display: block;
 }
 .banner .breadcrum ul li .active {
   font-weight: bold;
+}
+.banner .chevron {
+  position: relative;
+}
+.banner .chevron::after {
+  content: "\f054";
+  font-family: "FontAwesome";
+  font-weight: lighter;
+  color: white;
+  right: -5px;
+  position: absolute;
+  font-size: 11px;
+  top: 5px;
 }
 .banner .cart ul {
   background: #e01f26;
@@ -11451,6 +11457,10 @@ footer .little {
   padding-top: 0.5rem;
   padding-right: 1rem;
   padding-bottom: 0.5rem;
+  margin-bottom: 0;
+}
+.banner .cart ul li {
+  padding-bottom: 0.6rem;
 }
 .banner .cart ul li a {
   color: #fff;

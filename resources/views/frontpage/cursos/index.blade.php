@@ -8,7 +8,7 @@
             
             <div class="container-fluid">
              
-              <div class="row justify-content-end menu__carrito">
+              <div class="row justify-content-end menu__carrito mb-0 pb-0">
                 
                
                 <div class="col-md-1 text-right">
