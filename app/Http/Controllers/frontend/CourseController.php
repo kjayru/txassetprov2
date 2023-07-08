@@ -41,8 +41,13 @@ class CourseController extends Controller
                 'course_id'=>$curso->id,
                 'course_slug'=>$curso->slug,
                 'titulo'=>$cap->title,
+                'video'=>$curso->video,
+                'reading'=>$curso->reading,
+                'audio'=>$curso->audio,
                 'contenidos'=>$cap->chaptercontents,
-                'chapter_slug'=>$cap->slug
+                'chapter_slug'=>$cap->slug,
+                'quiz'=>@$curso->quiz_id
+
               ]; 
 
             }

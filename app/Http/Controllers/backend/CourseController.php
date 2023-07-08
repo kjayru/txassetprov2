@@ -56,6 +56,7 @@ class CourseController extends Controller
         $course->audio = $request->audio;
         $course->nivel = $request->nivel;
         $course->language = $request->language;
+        $course->responsable = $request->responsable;
         $course->tiempovalido = $request->access;
 
         if($request->hasFile('banner')) {
@@ -105,6 +106,7 @@ class CourseController extends Controller
         $course->audio = $request->audio;
         $course->nivel = $request->nivel;
         $course->language = $request->language;
+        $course->responsable = $request->responsable;
         $course->tiempovalido = $request->access;
 
         if($request->hasFile('banner')) {

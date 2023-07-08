@@ -11,6 +11,13 @@
         <span class="help-block">{{ $errors->first('subtitle') }}</span>
     </div>
 
+
+    <div class="form-group @if($errors->first('responsable')) has-error @endif">
+        <label for="responsable" class="control-label">Responsible</label>
+        <input type="text"  name="responsable" class="form-control" value="{{ @$course->responsable}}" id="responsable" placeholder="Responsible">
+        <span class="help-block">{{ $errors->first('responsable') }}</span>
+    </div>
+
    
     <div class="form-group @if($errors->first('price')) has-error @endif">
         <label for="price" class="control-label">Price</label>

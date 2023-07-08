@@ -326,28 +326,47 @@ $(".detalle__header__home__course").on('click',function(e){
           console.log("preparando");
         },
         success:function(response){
+
+          htm+=`<div class="detalle__contenido__capitulo ">
+             
+          <div class="row">
+                 <div class="col-md-12">
+                    <div class="detalle__contenido__capitulo__titulo"> Contents </div>                                                           
+                 </div>`;
           $.each(response.contents, function (i, e) { 
 
-              htm+=`<div class="detalle__contenido__capitulo interlineado">
              
-              <div class="row">
-                     <div class="col-md-12">
-                        <div class="detalle__contenido__capitulo__titulo"> ${e.titulo} </div>                                                           
-                     </div>
-              </div>
           
               
-              <div class="row justify-content-between">`;
+            htm+=` <div class="row justify-content-between interlineado">`;
 
-                      $.each(e.contenidos,function(p,q){
-                        htm+=`<div class="col-md-12">
-                                  <span>${q.order}. </span>
-                                  ${q.titulo}
-                              </div>`;
-                      });
+                     
+                        htm+=`<div class="col-md-4">
+                                  <span>${i+1} </span>
+                                  ${e.titulo}
+                              </div>
 
-              htm+=`</div> </div>`;
+                              <div class="col-md-4">
+                              <ul class="capitulos">`;
+                                       if(e.video!=null){
+                                        htm+=`<li class="videocap">Introduccion</li>`;
+                                      }
+                                       if(e.reading!=null){
+                                      htm+=` <li class="capitulo">Chapter reading</li>`;
+                                       }
+                                       if(e.audio!=null){
+                                         htm+=`<li class="audio">Chapter audio</li>`;
+                                      }
+                                       if(e.quiz!=null){ 
+                                       htm+=`<li class="question">Questions about the chapter</li>`;
+                                     }
+                              htm+=` </ul> 
+                     </div>`;
+                    
+
+              htm+=`</div>`;
           });
+          htm+=`</div>`;
 
           $(".detalle__secciones").html(htm);
         }

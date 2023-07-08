@@ -37,7 +37,7 @@
                                      {{$curso->titulo}}
                                      </div>  
                                      <div class="detalle__subtitulo">
-                                        {{$curso->subtitulo}}
+                                        {{@$curso->responsable}} 
                                      </div> 
 
                                      <div class="detalle__video">
@@ -59,39 +59,36 @@
 
                                      <div class="detalle__contenido">
                                       
-                                      @foreach($curso->chapters as $chapter)
-                                        <div class="detalle__contenido__capitulo interlineado">
+                                      
+                                        <div class="detalle__contenido__capitulo ">
                                                   <div class="row">
                                                          <div class="col-md-12">
                                                             <div class="detalle__contenido__capitulo__titulo">
-                                                                      {{$chapter->title}}
+                                                                    Contents
                                                             </div>                                                           
                                                          </div>
                                                   </div>
                                               
-                                                 
-                                                  <div class="row justify-content-between">
+                                                  @foreach($curso->chapters as $k => $chapter)
+                                                  <div class="row justify-content-between interlineado">
                                                             <div class="col-md-4">
-                                                                      <span>1</span>Introduccion
+                                                                      <span>{{$k+1}}</span>  {{$chapter->title}}
                                                             </div>
                                                             <div class="col-md-4">
-                                                          
-                                                                                                                            
-                                                                      <ul class="capitulos">
-
+                                                                     <ul class="capitulos">
                                                                               @if(isset($chapter->video)) <li class="videocap">Introduccion</li>@endif
                                                                               @if($chapter->reading==1) <li class="capitulo">Chapter reading</li>@endif
                                                                               @if($chapter->audio==1)  <li class="audio">Chapter audio</li>@endif
                                                                               @if($chapter->audio==1)  <li class="question">Questions about the chapter</li>@endif
-                                                                      </ul>
-                                                           
+                                                                      </ul> 
                                                             </div>
                                                   </div>
+                                                  @endforeach
                                         </div>
-                                        @endforeach
+                                       
 
                                      </div>
-                                     <div class="detalle__secciones">
+                                     <div class="detalle__secciones detalle__contenido">
 
                                      </div>
 
@@ -108,7 +105,7 @@
                                                   </div>
                                                   <div class="detalle__costo__propiedades">
                                                             <ul>
-                                                                      <li class="date">Available from april 21, 2021 {{@$curso->disponible}}</li>
+                                                                      <li class="date">Available from   {{@$curso->disponible}}</li>
                                                                       <li class="capitulo">{{@$curso->capitulos}} chapters</li>
                                                                       <li class="audio">Audio:{{@$curso->audio}}</li>
                                                                       <li class="level">Level:{{@$curso->nivel}}</li>
