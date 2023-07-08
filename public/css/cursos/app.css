@@ -11763,19 +11763,27 @@ footer .little {
 }
 .capitulos .capitulo:before {
   font-size: 1.2rem;
-  content: "\f15c";
+  content: "";
   font-family: "FontAwesome";
+  background: url("/images/curso-chapter-reading.svg") no-repeat center center;
+  background-size: contain;
   position: absolute;
   left: -30px;
   top: 10px;
+  width: 20px;
+  height: 21px;
 }
 .capitulos .audio:before {
   font-size: 1.2rem;
-  content: "\f028";
+  content: "";
   font-family: "FontAwesome";
+  background: url("/images/curso-chapter_-audio.svg") no-repeat center center;
+  background-size: contain;
   position: absolute;
   left: -30px;
   top: 10px;
+  width: 20px;
+  height: 21px;
 }
 .capitulos .level:before {
   font-size: 1.2rem;
@@ -11795,19 +11803,26 @@ footer .little {
 }
 .capitulos .videocap:before {
   font-size: 1.2rem;
-  content: "\f03d";
-  font-family: "FontAwesome";
+  content: "";
+  background: url("/images/curso-introduction.svg") no-repeat center center;
+  background-size: contain;
   position: absolute;
   left: -30px;
   top: 10px;
+  width: 20px;
+  height: 21px;
 }
 .capitulos .question:before {
   font-size: 1.2rem;
-  content: "\f046";
+  content: "";
   font-family: "FontAwesome";
+  background: url("/images/curso-questions.svg") no-repeat center center;
+  background-size: contain;
   position: absolute;
   left: -30px;
   top: 10px;
+  width: 20px;
+  height: 21px;
 }
 
 .relacionados {
