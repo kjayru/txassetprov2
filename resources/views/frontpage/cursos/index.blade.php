@@ -3,12 +3,29 @@
 <div id="contenido">
 
           <div id="banner">
+
+
+            
             <div class="container-fluid">
              
+              <div class="row justify-content-end menu__carrito">
+                
+               
+                <div class="col-md-1 text-right">
+                    <div class="cart">
+                        <ul>
+                          <li><a href="/user" class="cart__link"><i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
+                          <li><a href="/cart" class="cart__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+              </div>
+
+
                
                 <div class="row">
 
-                  <div class="banner d-flex align-items-center">
+                  <div class="banner__home d-flex align-items-center">
                   <div class="col-md-2">
                       <div class="logo">
                           <img src="/images/Logo-TAP.png" alt="" class="img-fluid">
@@ -53,7 +70,7 @@
               <div class="container">
                 <div class="row justify-content-center">
                  
-                  <div class="col-md-9">
+                  <div class="col-md-9 text-center">
                     <h2>Benefits of online classes</h2>
                   </div>
                

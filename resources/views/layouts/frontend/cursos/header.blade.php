@@ -14,7 +14,7 @@
                                   <a class="navbar-brand" href="#"><img src="/images/Logo-TAP.png" class="img-fluid"></a>
                               </div>
                               <ul class="navbar-nav mr-auto">
-                                  <li class="nav-item activo">
+                                  <li class="nav-item ">
                                       <a class="nav-link outinlink" href="/">Home </a>
                                   </li>
                                   <li class="nav-item">
@@ -29,7 +29,7 @@
                                       <a class="nav-link outinlink" href="/employment">Employment</a>
                                   </li>
 
-                                  <li class="nav-item">
+                                  <li class="nav-item activo">
                                       <a class="nav-link outinlink" href="/training-academy">Training academy</a>
                                   </li>
 

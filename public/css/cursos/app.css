@@ -10919,7 +10919,7 @@ footer .little {
   height: 100vh;
 }
 .cursos__titulo {
-  background-color: #010b40;
+  background-color: #010626;
   color: white;
 }
 .cursos__titulo h2, .cursos__titulo .h2 {
@@ -10955,7 +10955,7 @@ footer .little {
   margin-bottom: 3rem;
 }
 .cursos .video {
-  background-color: #010b40;
+  background-color: #010626;
 }
 .cursos .video__player {
   background: url("/images/Imagen-video-training.jpg") no-repeat center center;
@@ -10985,6 +10985,19 @@ footer .little {
   position: relative;
   display: inline-block;
   margin-top: 6rem;
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+.cursos .beneficios__titulo h2::before, .cursos .beneficios__titulo .h2::before {
+  content: "";
+  background: url("/images/Logo-TAP.png") no-repeat center center;
+  background-size: contain;
+  width: 102px;
+  height: 115px;
+  position: absolute;
+  left: 50%;
+  top: -52px;
+  margin-left: -51px;
 }
 .cursos .beneficios__contenido .card {
   box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.16);
@@ -10992,6 +11005,8 @@ footer .little {
   padding: 1rem;
   text-align: center;
   color: #031059;
+  min-height: 360px;
+  border-radius: 0;
 }
 .cursos .beneficios__contenido .card .flexibility {
   position: relative;
@@ -11002,7 +11017,7 @@ footer .little {
 }
 .cursos .beneficios__contenido .card .flexibility:after {
   content: "";
-  background: url("/images/ben1.png") no-repeat center center;
+  background: url("/images/ben1.svg") no-repeat center center;
   width: 100px;
   height: 100px;
   position: absolute;
@@ -11029,7 +11044,7 @@ footer .little {
 }
 .cursos .beneficios__contenido .card .learning:after {
   content: "";
-  background: url("/images/ben2.png") no-repeat center center;
+  background: url("/images/ben2.svg") no-repeat center center;
   width: 100px;
   height: 100px;
   position: absolute;
@@ -11056,7 +11071,7 @@ footer .little {
 }
 .cursos .beneficios__contenido .card .front:after {
   content: "";
-  background: url("/images/ben3.png") no-repeat center center;
+  background: url("/images/ben3.svg") no-repeat center center;
   width: 100px;
   height: 100px;
   position: absolute;
@@ -11083,7 +11098,7 @@ footer .little {
 }
 .cursos .beneficios__contenido .card .certificate:after {
   content: "";
-  background: url("/images/ben4.png") no-repeat center center;
+  background: url("/images/ben4.svg") no-repeat center center;
   width: 100px;
   height: 100px;
   position: absolute;
@@ -11113,11 +11128,11 @@ footer .little {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-.cursos .banner {
+.cursos .banner__home {
   height: 100vh;
   padding-left: 5rem;
 }
-.cursos .banner p {
+.cursos .banner__home p {
   font-family: "Bebas Neue", cursive;
   color: white;
   font-size: 89px;
@@ -11125,8 +11140,23 @@ footer .little {
   padding-top: 62px;
   font-weight: bold;
 }
-.cursos .banner p span {
+.cursos .banner__home p span {
   color: #E01F26;
+}
+
+.menu__carrito .cart ul {
+  background: #e01f26;
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+  padding-left: 0.8rem;
+  padding-top: 0.5rem;
+  padding-right: 1rem;
+  padding-bottom: 0.5rem;
+}
+.menu__carrito .cart ul a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .btn__cursos {

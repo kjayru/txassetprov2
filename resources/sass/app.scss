@@ -146,7 +146,7 @@ footer {
                     }
           }
           &__titulo{
-                    background-color: $azulbarra;
+                    background-color: #010626;
                     color:white;
                     h2{
                               text-transform: uppercase;
@@ -184,7 +184,7 @@ footer {
                     }
           }
           .video{
-          background-color: $azulbarra;
+          background-color: #010626;
          
           &__player{
                     background:url('/images/Imagen-video-training.jpg') no-repeat center center;
@@ -215,7 +215,20 @@ footer {
                                         font-family: $bebas-neue;
                                         position: relative;
                                         display: inline-block;
-                                        margin-top: 6rem;     
+                                        margin-top: 6rem;   
+                                        padding-top: 4rem;
+                                        padding-bottom: 5rem;
+                                        &::before{
+                                            content:"";
+                                            background: url('/images/Logo-TAP.png') no-repeat center center;
+                                            background-size:contain;
+                                            width: 102px;
+                                            height: 115px;
+                                            position: absolute;
+                                            left: 50%;
+                                            top: -52px;
+                                            margin-left: -51px;
+                                        }  
                               }
                     }
                     &__contenido{ 
@@ -225,6 +238,8 @@ footer {
                                         padding:1rem;
                                         text-align: center;
                                         color:$azultexto;
+                                        min-height: 360px;
+                                        border-radius: 0;
                                         .flexibility{
                                             position: relative;
                                             margin-top:170px;
@@ -233,7 +248,7 @@ footer {
                                             color:$azultexto;
                                             &:after{
                                                 content:"";
-                                                background:url('/images/ben1.png') no-repeat center center;
+                                                background:url('/images/ben1.svg') no-repeat center center;
                                                 width:100px;
                                                 height: 100px;
                                                 position: absolute;
@@ -260,7 +275,7 @@ footer {
                                             color:$azultexto;
                                             &:after{
                                                 content:"";
-                                                background:url('/images/ben2.png') no-repeat center center;
+                                                background:url('/images/ben2.svg') no-repeat center center;
                                                 width:100px;
                                                 height: 100px;
                                                 position: absolute;
@@ -287,7 +302,7 @@ footer {
                                             color:$azultexto;
                                             &:after{
                                                 content:"";
-                                                background:url('/images/ben3.png') no-repeat center center;
+                                                background:url('/images/ben3.svg') no-repeat center center;
                                                 width:100px;
                                                 height: 100px;
                                                 position: absolute;
@@ -314,7 +329,7 @@ footer {
                                             color:$azultexto;
                                             &:after{
                                                 content:"";
-                                                background:url('/images/ben4.png') no-repeat center center;
+                                                background:url('/images/ben4.svg') no-repeat center center;
                                                 width:100px;
                                                 height: 100px;
                                                 position: absolute;
@@ -351,7 +366,7 @@ footer {
                     margin-bottom:2rem;
                 }
           }
-        .banner{
+        .banner__home{
             height: 100vh;
             padding-left: 5rem;
              p {
@@ -368,6 +383,24 @@ footer {
 
             }
         }
+}
+.menu__carrito{
+    .cart{
+        ul{
+            background: #e01f26;
+            list-style: none;
+            display: inline-block;
+            text-align: center;
+            padding-left: 0.8rem;
+            padding-top: 0.5rem;
+            padding-right: 1rem;
+            padding-bottom: 0.5rem;
+            a{
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
 }
 .btn__cursos{
     border-radius: 25px;
