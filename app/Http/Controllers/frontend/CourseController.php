@@ -24,8 +24,10 @@ class CourseController extends Controller
     public function curso($slug){
         $curso = Course::where('slug',$slug)->first();
        
+        $relacionados = Course::where('id','<>',$curso->id)->orderBy('id','desc')->take(3)->get();
         
-        return view('frontpage.cursos.detalle',['curso'=>$curso]);
+       
+        return view('frontpage.cursos.detalle',['curso'=>$curso,'relacionados'=>$relacionados]);
     }
 
     public function cursoContent(Request $request){

@@ -130,7 +130,7 @@
                               </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                                         <div class="grilla__cursos__card">
                                                   <div class="grilla__cursos__card__imagen">
                                                             <img src="/images/curso1.png" class="img-fluid">
@@ -161,24 +161,29 @@
                                                             <a href="#" class="post__link">$150 USD</a>
                                                   </div>
                                         </div>
-                              </div>
+                              </div> --}}
+                              @foreach ($relacionados as $row )
+                                  
+                             
                               <div class="col-md-4">
                                         <div class="grilla__cursos__card">
                                                   <div class="grilla__cursos__card__imagen">
-                                                            <img src="/images/curso1.png" class="img-fluid">
+                                                            <img src="/storage/{{$row->banner}}" class="img-fluid">
                                                   </div>
                                                   <div class="grilla__cursos__card__contenido">
                                                             <div class="post__nombre">
-                                                            OC Pepper Spray/ Conflict Resolution
+                                                           {{$row->titulo}}
                                                             </div>
                                                             <div class="post__texto">
-                                                            Descripción breve del video. Descripción breve del video. Descripción breve del video. Descripción breve del video.
+                                                            {{$row->resumen}}
                                                             </div>
-                                                            <a href="#" class="post__link">$150 USD</a>
+                                                            <a href="/course/{{$row->slug}}" class="post__link">${{$row->precio}} USD</a>
                                                   </div>
                                         </div>
                               
                               </div>
+
+                              @endforeach
                     </div>
           </div>
       </div>
