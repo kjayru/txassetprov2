@@ -11007,6 +11007,7 @@ footer .little {
   color: #031059;
   min-height: 360px;
   border-radius: 0;
+  border: 0;
 }
 .cursos .beneficios__contenido .card .flexibility {
   position: relative;
@@ -11165,6 +11166,10 @@ footer .little {
           backdrop-filter: blur(30px);
   font-size: 1.25rem;
 }
+.btn__cursos:hover {
+  background: #33B1FF;
+  color: white;
+}
 
 .color__rojo {
   color: #fff;
@@ -11286,7 +11291,7 @@ footer .little {
 }
 .satisfaccion__titulo:after {
   content: "";
-  background: url("/images/logo-garantia.png") no-repeat center center;
+  background: url("/images/logo-garantia.svg") no-repeat center center;
   width: 140px;
   height: 135px;
   position: absolute;
@@ -11296,7 +11301,7 @@ footer .little {
 }
 
 .garantia {
-  background: #010b40;
+  background: #031059;
 }
 .garantia .container {
   max-width: 1564px;
@@ -11305,7 +11310,7 @@ footer .little {
   padding: 3rem;
 }
 .garantia__grilla__titulo {
-  background-color: #010b40;
+  background-color: #031059;
   color: white;
 }
 .garantia__grilla__titulo h2, .garantia__grilla__titulo .h2 {
@@ -11369,6 +11374,11 @@ footer .little {
   position: absolute;
   left: 22px;
   top: 3px;
+}
+.garantia__card__contenido .post__link:hover {
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
 }
 .garantia__card:before {
   content: "";
@@ -11502,6 +11512,11 @@ footer .little {
   position: absolute;
   left: 22px;
   top: 3px;
+}
+.grilla__cursos__card__contenido .post__link:hover {
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
 }
 .grilla__cursos__link {
   display: block;

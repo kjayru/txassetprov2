@@ -240,6 +240,7 @@ footer {
                                         color:$azultexto;
                                         min-height: 360px;
                                         border-radius: 0;
+                                        border:0;
                                         .flexibility{
                                             position: relative;
                                             margin-top:170px;
@@ -406,6 +407,11 @@ footer {
     border-radius: 25px;
     backdrop-filter: blur(30px);
     font-size:1.25rem;
+
+    &:hover{
+        background: #33B1FF;
+        color: white;
+    }
 }
 .color__rojo{
     color:$blanco;
@@ -523,7 +529,7 @@ footer {
         padding-left: 8rem;
         &:after{
             content:"";
-            background:url('/images/logo-garantia.png') no-repeat center center;
+            background:url('/images/logo-garantia.svg') no-repeat center center;
             width:140px;
             height: 135px;
             position: absolute;
@@ -537,13 +543,13 @@ footer {
     .container{
         max-width:1564px;
     }
-    background:$azulbarra;
+    background: #031059;
     
     &__grilla{
         
         padding:3rem;
         &__titulo{
-            background-color: $azulbarra;
+            background-color: #031059;
             color:white;
             h2{
                       text-transform: uppercase;
@@ -609,6 +615,14 @@ footer {
                     position: absolute;
                     left: 22px;
                     top: 3px;
+                }
+
+                &:hover{
+                    -webkit-backdrop-filter: blur(30px);
+                    backdrop-filter: blur(30px);
+                    box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
+
+               
                 }
             }
         }
@@ -757,7 +771,16 @@ footer {
                     left: 22px;
                     top: 3px;
                 }
+
+                &:hover{
+                    -webkit-backdrop-filter: blur(30px);
+                    backdrop-filter: blur(30px);
+                    box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
+
+               
+                }
             }
+
         }
        
     }

@@ -187,23 +187,31 @@
                       </div>
             
                       <div class="row">
+
+                        @foreach ($cursos as $row)
+                          
+                       
                                 <div class="col-md-4">
                                           <div class="garantia__card">
                                                     <div class="garantia__card__imagen">
-                                                              <img src="/images/curso1.png" class="img-fluid">
+                                                              <img src="/storage/{{@$row->banner}}" class="img-fluid">
                                                     </div>
                                                     <div class="garantia__card__contenido">
                                                               <div class="post__nombre">
-                                                              OC Pepper Spray/ Conflict Resolution
+                                                             {{$row->titulo}}
                                                               </div>
                                                               <div class="post__texto">
-                                                              Descripción breve del video. Descripción breve del video. Descripción breve del video. Descripción breve del video.
+                                                              {{$row->resumen}}
                                                               </div>
-                                                              <a href="#" class="post__link">$150 USD</a>
+                                                              <a href="/course/{{$row->slug}}" class="post__link">${{$row->precio}} USD</a>
                                                     </div>
                                           </div>
                                 </div>
-                                <div class="col-md-4">
+
+                          @endforeach
+
+
+                                {{-- <div class="col-md-4">
                                           <div class="garantia__card">
                                                     <div class="garantia__card__imagen">
                                                               <img src="/images/curso1.png" class="img-fluid">
@@ -235,7 +243,7 @@
                                                     </div>
                                           </div>
                                 
-                                </div>
+                                </div> --}}
                       </div>
   
                       <div class="row justify-content-center">

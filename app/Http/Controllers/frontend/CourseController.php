@@ -11,11 +11,12 @@ use App\Models\Chaptercontent;
 class CourseController extends Controller
 {
     public function index(){
-        return view('frontpage.cursos.index');
+        $cursos = Course::orderBy('id','desc')->take(3)->get();
+        return view('frontpage.cursos.index',['cursos'=>$cursos]);
     }
 
     public function todos(){
-        $cursos = Course::all();
+        $cursos = Course::orderBy('id','desc')->get();
       
         return view('frontpage.cursos.cursos',['cursos'=>$cursos]);
     }
