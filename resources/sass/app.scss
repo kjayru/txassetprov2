@@ -984,45 +984,60 @@ footer {
                 }
                 .capitulo{
                     &:before{
-                        font-size:1.2rem;
-                        content: "\f15c";
-                        font-family: "FontAwesome";
-                        position: absolute;
-                        left: -30px;
-                        top:14px;
+                    font-size:1.2rem;
+                    content: "";
+                    position: absolute;
+                    left: -35px;
+                    top: 14px;
+                    background: url(/images/curso-capitulos.svg) no-repeat 0px 0px;
+                    background-size: contain;
+                    width: 27px;
+                    height: 31px;
                     }
 
                 }
                 .audio{
                     &:before{
                         font-size:1.2rem;
-                        content: "\f028";
-                        font-family: "FontAwesome";
+                         content: "";
+                        // font-family: "FontAwesome";
                         position: absolute;
-                        left: -30px;
+                        left: -34px;
                         top:14px;
+                        background: url(/images/curso-audio.svg) no-repeat 0px 0px;
+                        background-size: contain;
+                        width: 27px;
+                        height: 31px;
                     }
 
                 }
                 .level{
                     &:before{
                         font-size:1.2rem;
-                        content: "\f080";
+                        content: "";
                         font-family: "FontAwesome";
                         position: absolute;
-                        left: -30px;
+                        left: -34px;
                         top:14px;
+                        background: url(/images/curso-level.svg) no-repeat 0px 0px;
+                        background-size: contain;
+                        width: 27px;
+                        height: 31px;
                     }
 
                 }
                 .access{
                     &:before{
                         font-size:1.2rem;
-                        content: "\f090";
+                        content: "";
                         font-family: "FontAwesome";
                         position: absolute;
-                        left: -30px;
+                        left: -34px;
                         top:14px;
+                        background: url(/images/curso-access.svg) no-repeat 0px 0px;
+                        background-size: contain;
+                        width: 27px;
+                        height: 31px;
                     }
 
                 }
@@ -1832,6 +1847,7 @@ footer {
                                 position: absolute;
                                 left: -30px;
                                 top:14px;
+                                
                             }
         
                         }
