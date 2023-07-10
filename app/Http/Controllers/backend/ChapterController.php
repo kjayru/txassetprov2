@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Chapter;
+use App\Models\Quiz;
 
 class ChapterController extends Controller
 {
@@ -34,7 +35,9 @@ class ChapterController extends Controller
      */
     public function create($course)
     {
-        return view('backend.chapters.create',['course_id'=>$course]);
+
+        $quizes = Quiz::orderBy('id','desc')->get();
+        return view('backend.chapters.create',['course_id'=>$course,'quizes'=>$quizes]);
     }
 
     /**
@@ -53,6 +56,10 @@ class ChapterController extends Controller
        // $chapter->contenido = $request->description;
         $chapter->course_id = $request->parent_id;
         $chapter->quiz_id = $request->quiz_id;
+
+        $chapter->video = $request->video;
+        $chapter->audio = $request->audio;
+        $chapter->reading = $request->reading;
         $chapter->save();
 
         return redirect('/admin/chapters/'.$request->parent_id)
@@ -71,8 +78,9 @@ class ChapterController extends Controller
     {
 
         $chapter = Chapter::find($id);
+        $quizes = Quiz::orderBy('id','desc')->get();
 
-        return view('backend.chapters.edit',['chapter'=>$chapter]);
+        return view('backend.chapters.edit',['chapter'=>$chapter,'quizes'=>$quizes]);
     }
 
     /**
@@ -90,6 +98,9 @@ class ChapterController extends Controller
         //$chapter->contenido = $request->description;
         $chapter->course_id = $request->parent_id;
         $chapter->quiz_id = $request->quiz_id;
+        $chapter->video = $request->video;
+        $chapter->audio = $request->audio;
+        $chapter->reading = $request->reading;
         $chapter->save();
 
         return redirect('/admin/chapters/'.$request->parent_id)

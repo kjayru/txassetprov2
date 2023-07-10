@@ -6,18 +6,29 @@
     </div>
 
 
-    <!--<div class="form-group @if($errors->first('description')) has-error @endif">
-        <label for="description" class="control-label">Description</label>
-        <textarea class="form-control" name="description" id="description"> {{ @$chapter->contenido }}</textarea>
-        <span class="help-block">{{ $errors->first('description') }}</span>
-    </div>-->
-
     <div class="form-group">
         <label for="">QUIZ</label>
         <select name="quiz_id" id="quiz_id" class="custom-select">
             <option value="">Seleccione</option>
+            @foreach ($quizes as $quiz )
+            <option value="{{$quiz->id}}">{{$quiz->title}}</option> 
+            @endforeach
         </select>
     </div>
 
+    <div class="form-check">
+        <input type="checkbox" name="video"  value="1" class="form-check-input" id="video" {{ @$chapter->video==1?"checked":""}}>
+        <label class="form-check-label" for="video">Video</label>
+      </div>
+    
+      <div class="form-check">
+        <input type="checkbox" name="audio" value="1"  class="form-check-input" id="audio"  {{ @$chapter->audio==1?"checked":""}}>
+        <label class="form-check-label" for="audio">Audio</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" name="reading" value="1"  class="form-check-input" id="reading"  {{ @$chapter->reading==1?"checked":""}}>
+        <label class="form-check-label" for="reading">Reading</label>
+      </div>
 
 
