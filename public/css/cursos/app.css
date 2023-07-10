@@ -12628,11 +12628,12 @@ footer .little {
 .todocursos__card__body__item__estado {
   display: flex;
   justify-content: space-between;
+  padding-top: 1.5rem;
 }
 .todocursos__card__body__item__estado .item__link {
   color: #031059;
   font-family: "Open Sans", sans-serif;
-  font-size: 1.125rem;
+  font-size: 28px;
   font-weight: bold;
   text-decoration: none;
   display: inline-block;
@@ -12927,4 +12928,17 @@ footer .little {
   padding-bottom: 2rem;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.course__aprobado {
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  color: #298cff;
+  font-size: 28px;
+}
+.course__desaprobado {
+  color: #e01f26;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 28px;
 }

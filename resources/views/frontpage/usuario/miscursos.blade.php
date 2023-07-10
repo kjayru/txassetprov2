@@ -11,7 +11,7 @@
 				<div class="breadcrum">
 					<ul>
 						<li><a href="/" class="breadcrum__link">Home</a></li>
-						<li><span>></span><a href="#" class="breadcrum__link ">Mis cursos</a></li>
+						<li><span>></span><a href="#" class="breadcrum__link ">My courses</a></li>
 					</ul>
 				</div>
 
@@ -46,7 +46,7 @@
 						<div class="row">
 							<div class="col-md-4">
 								<div class="todocursos__card__body__item__imagen">
-									<img src="{{$curso->course->banner}}" class="img-fluid">
+									<img src="/storage/{{$curso->course->banner}}" class="img-fluid">
 								</div>
 							</div>
 							<div class="col-md-8">
@@ -66,7 +66,23 @@
 								<div class="todocursos__card__body__item__estado">
 									<a href="/learn/{{$curso->course->slug}}" class="item__link">Go to course</a>
 
-									<div class="item__mensaje__time">You have {{UserCourse::leftdays($curso->course->id,$user->id)}} days left to finish the course</div>
+									@switch($curso->aprobado)
+										@case(0)
+										<div class="item__mensaje__time">You have {{UserCourse::leftdays($curso->course->id,$user->id)}} days left to finish the course</div>
+										@break
+										@case(1)
+										<div class="course__aprobado">
+											Approved
+										</div>
+										@break
+										@case(2)
+										<div class="course__desaprobado">
+											Failed
+										</div>
+										@break
+	
+									@endswitch
+									
 								</div>
 
 							</div>

@@ -2011,10 +2011,12 @@ footer {
                 &__estado{
                     display: flex;
                     justify-content: space-between;
+                    padding-top: 1.5rem;
+                    
                     .item__link{
                         color:$azultexto;
                         font-family: $open-sans;
-                        font-size:1.125rem;
+                        font-size:28px;
                         font-weight: bold;
                         text-decoration:none;
                         display: inline-block;
@@ -2313,4 +2315,18 @@ footer {
     padding-bottom:2rem;
     padding-left:1rem;
     padding-right:1rem;
+}
+.course{
+    &__aprobado{
+        font-family: $open-sans;
+        font-weight: bold;
+        color:#298cff;
+        font-size:28px;
+    }
+    &__desaprobado{
+        color:#e01f26;
+        font-family: $open-sans;
+        font-weight: bold;
+        font-size:28px;
+    }
 }
