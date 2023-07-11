@@ -427,14 +427,16 @@ footer {
     text-transform: uppercase;
 }
 .learn{
-    height: 100vh;
-    margin-bottom:6rem;
+    height: calc(100vh - 100px);
+    min-height: 800px;
+    margin-bottom:16rem;
     padding-top:2rem;
     padding-bottom:2rem;
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 19%, rgba(224,31,38,1) 19%, rgba(224,31,38,1) 82%, rgba(252,252,252,1) 82%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(224,31,38,1) 0%, rgba(224,31,38,1) 87%, rgba(252,252,252,1) 87%, rgba(255,255,255,1) 100%);
+   // background:rgba(224,31,38,1);
     &__bloque{
-        background:url('/images/learn-back.png')  no-repeat center 0;
-        background-size:contain;
+         background:url('/images/banner-training-sinfondo.png')  no-repeat right 0;
+         background-size:contain;
         width: 100%;
         height:100vh;
     }
@@ -446,7 +448,7 @@ footer {
         padding-right: 8rem;
         line-height: 6.5rem;
         padding-left: 6rem;
-        margin-top:16rem;
+        margin-top:9rem;
         position: relative;
         &:before{
             content:"";
@@ -2063,6 +2065,63 @@ footer {
                     border:0;
                 }
             }
+
+            &__resultado{
+                .icono{
+                    width: 60px;
+                    margin: 0 auto;
+                    padding-bottom: 30px;
+                }
+                .texto{
+                    text-align: center;
+                    color:#031059;
+                    font-family: $open-sans;
+                    p:first-child{
+                        font-size:28px; 
+                        text-transform:uppercase; 
+                        font-weight: bold;
+                        span{
+                            font-size:20px;
+                            text-transform: unset;
+                            font-weight: bold;
+                            padding-top: 0;
+                            margin-top: 0;
+                            position: relative;
+                            top: -16px;
+                        }
+                    }
+                    p:last-child{
+                        font-size:16px;  
+                    }
+                }
+                .foot{
+                    text-align: center;
+                    border-bottom:1px solid #9d9d9d;
+                    a{
+                        background-color:#e01f26;
+                        color:white;
+                        text-align: center;
+                        text-decoration: none;
+                        padding-top:1.2rem;
+                        padding-left:2rem;
+                        padding-right: 2rem;
+                        padding-bottom:1.2rem;
+                        margin-top:2rem;
+                        display: inline-block;
+                        margin-bottom:4rem;
+                    }
+                    .respuesta{
+                        text-align: left;
+                        color: #031059;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-end;
+                        height: 90px;
+                        font-family: $open-sans;
+                        font-weight: bold;
+                    }
+                }
+            }
         }
     }
     .nav__usuario{
@@ -2329,4 +2388,21 @@ footer {
         font-weight: bold;
         font-size:28px;
     }
+}
+
+@media(min-width: 980px) and (max-width: 1300px){
+    .learn__titulo {
+        font-size: 6.188rem;
+        font-family: "Bebas Neue", cursive;
+        color: #fff;
+        padding-top: 3rem;
+        padding-right: 8rem;
+        line-height: 5.5rem;
+        padding-left: 6rem;
+        margin-top: 9rem;
+        position: relative;
+    }
+}
+@media(max-width:780px){
+
 }

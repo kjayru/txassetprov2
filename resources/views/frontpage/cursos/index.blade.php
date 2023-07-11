@@ -136,12 +136,16 @@
             <div class="learn__bloque">
                       <div class="container-fluid">
                                 <div class="row">
-                                          <div class="col-md-5">
+                                          <div class="col-md-6 col-sm-6 col-lg-6 col-12">
                                                     <div class="learn__titulo">Learn without limits</div>
                                                     <div class="learn__texto">
                                                     Improve your personal development skills with our training
                                                     </div>
                                                     <a href="/courses/all" class="btn__cursos color__azul learn__link">Go to courses</a>
+                                          </div>
+
+                                          <div class="col-md-6 col-sm-6 col-lg-6 col-12">
+                                            {{-- <img src="/images/banner-training-sinfondo.png" class="learn__image img-fluid"> --}}
                                           </div>
                                 </div>
                       </div>
@@ -155,7 +159,13 @@
                                           <div class="work__titulo">How do the courses work?</div>
                                           <div class="work__subtitulo">Simple and easy to access</div>
                                           <div class="work__picture text-center">
-                                                    <img src="/images/pasos.png" class="img-fluid">
+                                                    @desktop
+                                                    <img src="/images/como-funciona.png" class="img-fluid">
+                                                    @enddesktop
+
+                                                    @mobile
+                                                    <img src="/images/como-funciona-mobile.png" class="img-fluid">
+                                                   @endmobile 
                                           </div>
                                 </div>
                       </div>

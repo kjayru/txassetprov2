@@ -43,9 +43,9 @@ class UsuarioController extends Controller
 
      public function setChapter(Request $request){
       
-    //   "usercourseid" => "18"
-    //   "usercoursechapterid" => "2"
-    //   "usercoursechaptercontentid" => "2"
+        //   "usercourseid" => "18"
+        //   "usercoursechapterid" => "2"
+        //   "usercoursechaptercontentid" => "2"
 
         $uchapter=UserCourseChapter::where('user_course_id',$request->usercourseid)->where('chapter_id',$request->usercoursechapterid)->count();
         if($uchapter==0){
@@ -116,5 +116,9 @@ class UsuarioController extends Controller
       ->with('info','Usuario actualizado'); 
      }
     
+
+     public function outcome($resultado){
+        return view('frontpage.usuario.outcome',['resultado'=>$resultado]);
+     }
 }
 

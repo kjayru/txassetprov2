@@ -70,14 +70,16 @@
 
 
                     <div class="todocursos__card__body__resultado">
-                        <div class="icono">
-                            <img src="/images/estrella.png" class="img-responsive">
-                        </div>
                         
-                        @if($estado=="1")  
+                        
+                        @if($resultado=="1")  
+							<div class="icono">
+								<img src="/images/curso-passes.svg" class="img-responsive">
+							</div>
+
                             <div class="texto">
                                 <p>Congratulations!<br>
-                                    you`ve passes the course
+                                   <span> you`ve passes the course</span>
                                 </p>
                                 <p>Your certificate is ready.<br>
                                 We appreciate you using our courses.
@@ -87,20 +89,48 @@
                                 <a href="#" class="btn__link">Download certificate</a>
                             </div>
                         @endif
-                        @if($estado=="2")
+                        @if($resultado=="2")
                         
                             <div class="texto">
-                                <p>Unfortunately you pass are failed due to
-                                    the test result
+                                <p><span>Unfortunately you pass are failed due to
+                                    the test result</span>
                                 </p>
                                 <p>You have 15 days from the result to retake the course.<br>
                                     If  you exced 15 days, you will have to pay for the course again.
                                 </p>
                             </div>
                             <div class="foot row">
-                                <div class="col-md-6">You have 4 days left to take the course again</div>
+                                <div class="col-md-6">
+									<p class="respuesta">
+									You have 4 days left to take the course again
+									</p>
+								</div>
                                 <div class="col-md-6">
                                     <a href="#" class="btn__link">Start the course again</a>
+                                </div>
+                            </div>
+
+                        @endif
+
+
+						@if($resultado=="3")
+                        
+                            <div class="texto">
+                                <p><span>Unfortunately you pass are failed due to
+                                    the test result</span>
+                                </p>
+                                <p>You have 15 days from the result to retake the course.<br>
+                                    If  you exced 15 days, you will have to pay for the course again.
+                                </p>
+                            </div>
+                            <div class="foot row">
+                                <div class="col-md-6">
+									<p class="respuesta">
+									You exceeded the time limit to take the course again
+									</p>
+								</div>
+                                <div class="col-md-6">
+                                    <a href="#" class="btn__link">Buy the course again</a>
                                 </div>
                             </div>
 

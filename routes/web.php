@@ -252,6 +252,7 @@ Route::group(['prefix'=>'user'],function(){
     Route::post('/set-chapter',[UsuarioController::class,'setChapter']);
    Route::get('/edit',[UsuarioController::class,'editUser']);
    Route::post('/saveprofile',[UsuarioController::class,'saveProfile']);
+   route::get('/outcome/{resultado}',[UsuarioController::class,'outcome']);
 });
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
 ->name('ckfinder_connector');

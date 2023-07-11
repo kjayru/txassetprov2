@@ -11187,14 +11187,15 @@ footer .little {
 }
 
 .learn {
-  height: 100vh;
-  margin-bottom: 6rem;
+  height: calc(100vh - 100px);
+  min-height: 800px;
+  margin-bottom: 16rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 19%, rgb(224, 31, 38) 19%, rgb(224, 31, 38) 82%, rgb(252, 252, 252) 82%, rgb(255, 255, 255) 100%);
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 0%, rgb(224, 31, 38) 0%, rgb(224, 31, 38) 87%, rgb(252, 252, 252) 87%, rgb(255, 255, 255) 100%);
 }
 .learn__bloque {
-  background: url("/images/learn-back.png") no-repeat center 0;
+  background: url("/images/banner-training-sinfondo.png") no-repeat right 0;
   background-size: contain;
   width: 100%;
   height: 100vh;
@@ -11207,7 +11208,7 @@ footer .little {
   padding-right: 8rem;
   line-height: 6.5rem;
   padding-left: 6rem;
-  margin-top: 16rem;
+  margin-top: 9rem;
   position: relative;
 }
 .learn__titulo:before {
@@ -12675,6 +12676,60 @@ footer .little {
 .todocursos__card__body .card__footer .no-border {
   border: 0;
 }
+.todocursos__card__body__resultado .icono {
+  width: 60px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+.todocursos__card__body__resultado .texto {
+  text-align: center;
+  color: #031059;
+  font-family: "Open Sans", sans-serif;
+}
+.todocursos__card__body__resultado .texto p:first-child {
+  font-size: 28px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.todocursos__card__body__resultado .texto p:first-child span {
+  font-size: 20px;
+  text-transform: unset;
+  font-weight: bold;
+  padding-top: 0;
+  margin-top: 0;
+  position: relative;
+  top: -16px;
+}
+.todocursos__card__body__resultado .texto p:last-child {
+  font-size: 16px;
+}
+.todocursos__card__body__resultado .foot {
+  text-align: center;
+  border-bottom: 1px solid #9d9d9d;
+}
+.todocursos__card__body__resultado .foot a {
+  background-color: #e01f26;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding-top: 1.2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1.2rem;
+  margin-top: 2rem;
+  display: inline-block;
+  margin-bottom: 4rem;
+}
+.todocursos__card__body__resultado .foot .respuesta {
+  text-align: left;
+  color: #031059;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 90px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+}
 .todocursos .nav__usuario {
   padding-top: 5rem;
   font-size: 1.25rem;
@@ -12941,4 +12996,18 @@ footer .little {
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
   font-size: 28px;
+}
+
+@media (min-width: 980px) and (max-width: 1300px) {
+  .learn__titulo {
+    font-size: 6.188rem;
+    font-family: "Bebas Neue", cursive;
+    color: #fff;
+    padding-top: 3rem;
+    padding-right: 8rem;
+    line-height: 5.5rem;
+    padding-left: 6rem;
+    margin-top: 9rem;
+    position: relative;
+  }
 }
