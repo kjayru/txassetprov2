@@ -42,11 +42,11 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>User</strong>  </td>
-                            <td>{{$user->name}}</td>
+                            <td>{{@$user->name}}</td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Email</strong>  </td>
-                            <td>{{$user->email}}</td>
+                            <td>{{@$user->email}}</td>
                         </tr>
                     </table>
 				</div>
@@ -57,7 +57,7 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>Name</strong>  </td>
-                            <td>{{$user->profile->firstname}}</td>
+                            <td>{{@$user->profile->firstname}}</td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Middle</strong>  </td>
@@ -65,7 +65,7 @@
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Last name</strong>  </td>
-                            <td>{{$user->profile->lastname}}</td>
+                            <td>{{@$user->profile->lastname}}</td>
                         </tr>
                     </table>
 

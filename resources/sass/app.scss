@@ -1409,7 +1409,14 @@ footer {
             display: inline-block;
             margin-top: 3rem;
             &:hover{
+              
                 color:white;
+            }
+            &:after{
+                content:"\f07a";
+                font-family: "FontAwesome";
+                position: absolute;
+                left:-30px;
             }
         }
     }

@@ -101,7 +101,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="ssn">Last 6 of SSN</label>
+                                <label for="ssn">Please enter THE LAST 6 DIGITS of your Social Security Number. (This information is needed in order to issue a certificate when you have completed your course.)*</label>
                                 <input id="ssn" type="text" class="form-control @error('ssn') is-invalid @enderror" name="ssn" value="{{ old('ssn') }}" required autocomplete="Last 6 of SSN" autofocus>
         
                                 @error('ssn')
