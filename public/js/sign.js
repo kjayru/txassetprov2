@@ -146,7 +146,8 @@ function download(dataURL, filename) {
         })
 
 
-        document.getElementById('clear').addEventListener('click', function () {
+        document.getElementById('clear').addEventListener('click', function (e) {
+          e.preventDefault();
           signaturePad.clear();
         });
         
