@@ -408,10 +408,10 @@ footer {
     backdrop-filter: blur(30px);
     font-size:1.25rem;
 
-    &:hover{
-        background: #33B1FF;
-        color: white;
-    }
+    // &:hover{
+    //     background: #33B1FF;
+    //     color: white;
+    // }
 }
 .color__rojo{
     color:$blanco;
@@ -2388,6 +2388,31 @@ footer {
         font-weight: bold;
         font-size:28px;
     }
+}
+.fondo__rojo{
+    color: #fff;
+    background-color: #e01f26;
+    text-transform: uppercase;
+}
+.efecto__boton{
+    &:hover{
+    box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
+    color:white;
+    }
+}
+.texto__error {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    color: red;
+}
+.error__entexto {
+   
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+.error{
+    color: red;
 }
 
 @media(min-width: 980px) and (max-width: 1300px){

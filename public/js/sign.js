@@ -57,32 +57,40 @@ function download(dataURL, filename) {
        
         btnClick.addEventListener('click',function(event){
           event.preventDefault();
-
+          $(".error__entexto").html("");
           var legalname = document.querySelector("[name='legalname']").value;
           var email = document.querySelector('[name="email"]').value;
           var fullname = document.querySelector('[name="fullname"]').value;
           var initial = document.querySelector('[name="initial"]').value;
 
           if(fullname==""){
-            alert("Complete fullname");
+          
+            $(".error__entexto").html("Complete fullname");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return false;
           }
           if(initial==""){
-            alert("Complete Inital");
+           
+            $(".error__entexto").html("Complete Inital");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return false;
           }
           if(legalname==""){
-            alert("Complete legal name");
+           
+            $(".legal-name").html("Complete legal name");
             return false;
           }
           if(email==""){
-            alert("Complete email");
+         
+            $(".legal-email").html("Complete email");
             return false;
           }
         
           
           if (signaturePad.isEmpty()) {
-          alert("Please provide a signature first.");
+         
+          $(".sign-error").html("Please provide a signature");
+          
           return false;
           } else {
           var dataURL = signaturePad.toDataURL('image/svg+xml');
@@ -121,3 +129,18 @@ function download(dataURL, filename) {
           
         });
       
+        $("#fullname").on('focus',function(){
+          $(".error__entexto").html("");
+        })
+
+        $("#initial").on('focus',function(){
+          $(".error__entexto").html("");
+        })
+
+        $("#legalname").on('focus',function(){
+          $(".legal-name").html("");
+        })
+
+        $("#legalemail").on('focus',function(){
+          $(".legal-email").html("");
+        })

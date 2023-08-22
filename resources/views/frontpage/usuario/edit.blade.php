@@ -17,7 +17,11 @@
                     <ul>
                       <li><a href="/user" class="cart__link"><i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
                       <li><a href="/cart" class="cart__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+					  <li><a href="#" class="cart__link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="/images/logout.svg" style="with:20px;"></a></li>
                     </ul>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						@csrf
+					</form>
                 </div>
             </div>	   
 		</div>
@@ -41,11 +45,11 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>User</strong>  </td>
-                            <td><input type="text" name="user" id="user" class="form-control" value="{{$user->name}}"> </td>
+                            <td><input type="text" name="user" id="user" class="form-control" value="{{$user->profile->firstname}}"> </td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Email</strong>  </td>
-                            <td><input type="text" name="email" id="email" class="form-control" value="{{$user->email}}"></td>
+                            <td><input type="text" name="email" id="email" class="form-control" value="{{$user->email}}" readonly></td>
                         </tr>
                     </table>
 				</div>
@@ -56,15 +60,15 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>Name</strong>  </td>
-                            <td><input type="text" name="name" id="name" value="{{$user->name}}" class="form-control"></td>
+                            <td><input type="text" name="name" id="name" value="{{$user->profile->firstname}}" class="form-control"></td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Middle</strong>  </td>
-                            <td><input type="text" name="middle" id="middle" class="form-control" value="{{@$user->middle}}"></td>
+                            <td><input type="text" name="middle" id="middle" class="form-control" value="{{@$user->profile->middlename}}"></td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Last name</strong>  </td>
-                            <td><input type="text" name="lastname" id="lastname" class="form-control" value="{{@$user->lastname}}"></td>
+                            <td><input type="text" name="lastname" id="lastname" class="form-control" value="{{@$user->profile->lastname}}"></td>
                         </tr>
                     </table>
 

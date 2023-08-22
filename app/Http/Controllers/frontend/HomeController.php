@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 use App\Models\Information;
 use App\Models\Education;
 use App\Models\Reference;
@@ -25,6 +27,7 @@ use App\Models\Course;
 use App\Models\Cart;
 use App\Models\Profile;
 use App\Models\UserSign;
+use App\Models\User;
 use Session;
 use Carbon\Carbon;
 //use PDF;
@@ -857,19 +860,19 @@ class HomeController extends Controller
     }
 
     public function checksign(){
+
         $user_id = Auth::id();
        // $perfil = Profile::where('user_id',$user_id)->first();
         $mensaje = false;
-
-        $check = UserSign::where('user_id',$user_id)->count();
        
+        $check = UserSign::where('user_id',$user_id)->count();
         if($check > 0){
             $mensaje = true;
         }else{
             $mensaje = false; 
         }
-       
         return response()->json(['estado'=>$mensaje]);
+
     }
 
     public function carrito(){
@@ -914,6 +917,7 @@ class HomeController extends Controller
     public function loginPop(Request $request){
        
         $credentials = $request->validate([
+          
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
@@ -928,7 +932,36 @@ class HomeController extends Controller
         /*return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');*/
-        return response()->json(['rpta'=>'error','mensaje'=>'Correo electrónico o contraseña incorrecta. Por favor, vuelve a intentarlo nuevamente.']);
+        return response()->json(['rpta'=>'error','mensaje'=>'Wrong email or password. Please try again.']);
     }
+    
+    public function registerUser(Request $request){
+        $credentials = $request->validate([
+            'name'=>['required'],
+            'email' => ['required', 'email'],
+            'password' =>[ 'required',Password::default()],
+            
+        ]);
+
+        
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        Auth::login($user);
+
+        return response()->json(['rpta'=>'ok','mensaje'=>' Account created successfully']);
+    }
+    public function estadoCarrito(){
+        $mensaje = false;
+        if (Session::get('cart')) {
+            $mensaje=true;
+        }
+
+        return response()->json($mensaje);
+    }
+
     
 }

@@ -41,6 +41,9 @@ $(".cart__body__foot__link").click(function(e){
 
   let token = $("meta[name=csrf-token]").attr("content");
   const sendata = ({'_token':token,'_method':'POST'});
+//verificar si el carrito es vacio 
+
+
 
 //verifica inicio de sesion
   $.ajax({
@@ -49,98 +52,113 @@ $(".cart__body__foot__link").click(function(e){
     dataType:'json',
     success:function(response){
      
-      debugger;
-       if(response.estado==true){
       
-        //verificar firma
-
-        $.ajax({
-          url:'/cart/checksign',
-          type:'GET',
-          dataType:'json',
-          success:function(response){
-            
-            debugger;
-
             if(response.estado==true){
-              
-              
-
-              // fetch('/cart/process-signed',{
-              //   method:'POST',
-              //   headers:{
-              //     'Content-Type':'application/json',
-              //   },
-
-              //       body:JSON.stringify(sendata),
       
-              //       })
-              //   .then((response) => {
-              //     console.log(response);
-              //     debugger
-              //   })
-               
-              //   .then(function(session) {
-              //     debugger;
-              //     return stripe.redirectToCheckout({ sessionId: session.id });
-              //   })
-              //   .then(function(result) {
-      
-              //     if (result.error) {
-              //       console("errro "+result.error.message);
-              //     }
-              //   })
-              //   .catch(function(error) {
-              //     console.error('Error:', error);
-              //   });
+       
 
               $.ajax({
-                url:'/cart/process-signed',
-                type:'POST',
+                url:'/cart-estado',
+                type:'GET',
                 dataType:'json',
-                data:sendata,
                 success:function(response){
-                  if(response.firmado==false){
-                    window.location.href="/cart/sign";
-                    
-                  }else{
-                   
-                    console.log(response);
+                  
+                  
+                  if(response==false){
 
-                    return stripe.redirectToCheckout({ sessionId: response.id });
+                    
+                    $(".texto__error").html("You have no courses in your cart")
+                    $("#errorModal").modal('show');
+
+                    return false;
+                 
+
+                  }else{
+
+                     //verificar firma
+                    $.ajax({
+                      url:'/cart/checksign',
+                      type:'GET',
+                      dataType:'json',
+                      success:function(response){
+          
+                     
+          
+                        if(response.estado==true){
+                         
+                               //return stripe.redirectToCheckout({ sessionId: response.id });
+
+                               $.ajax({
+                                url:'/cart/process-signed',
+                                type:'POST',
+                                dataType:'json',
+                                data:sendata,
+                                success:function(response){
+                                 
+                                   
+                                    
+                
+                                    return stripe.redirectToCheckout({ sessionId: response.id });
+                
+                                  
+                                }
+                              })
+
+                            }else{
+                              
+                              window.location.href="/cart/sign";
+
+                              // $.ajax({
+                              //   url:'/cart/process-signed',
+                              //   type:'POST',
+                              //   dataType:'json',
+                              //   data:sendata,
+                              //   success:function(response){
+                              //     if(response.firmado==false){
+                              //       window.location.href="/cart/sign";
+                                    
+                              //     }else{
+                                   
+                              //       console.log(response);
+                
+                              //       return stripe.redirectToCheckout({ sessionId: response.id });
+                
+                              //     }
+                              //   }
+                              // })
+          
+          
+                            }
+                          }
+                        })
+          
 
                   }
                 }
-              })
+              });
+         
+
+              
               
 
             }else{
               
-              //$("#loginModal").modal("show");
+            $("#loginModal").modal("show");
               //alert("login1");
               //verificación de firma 
 
-              window.location.href="/cart/sign";
+             
             }
           }
         });
         
 
-       }else{
-       
-        //window.location.href="/login";
-        $("#loginModal").modal("show");
-       }
-    }
-  });
-
-  //verifica firma redireccina a stripe
-
-
-  
-
 });
 
+$(".btn__start").on('click',function(e){
+  e.preventDefault();
+
+})
 
 $(".btn__loginsumit").on('click',function(){
 
@@ -548,3 +566,71 @@ $(".btn__exam").on('click',function(e){
     }
   })*/
 })
+
+$(".btn__registro").on('click',function(e){
+  e.preventDefault();
+  $("#registerModal").modal('show');
+  $("#loginModal").modal('hide');
+})
+
+$(".btn__register").on('click',function(e){
+  e.preventDefault();
+
+  const token = $('meta[name="csrf-token"]').attr('content');
+  let email = $("#email-register").val();
+  let password = $("#password-register").val();
+  let passwordconfirm = $("#password-confirm").val();
+  let name = $("#name-register").val();
+
+  if(password===passwordconfirm){
+    let sendata = {'_token':token,'_method':'POST','name':name,'email':email,'password':password,'password_confirm':passwordconfirm};
+  
+    $.ajax({
+      url:'/register-user',
+      type:'POST',
+      dataType:'json',
+      data:sendata,
+      success:function(response){
+        console.log(response.rpta);
+        if(response.rpta=="error"){
+          $(".register__alerta").show();
+        }else{
+        window.location.reload();
+        }
+      }
+
+    }).fail(function(response){
+        console.log(response.responseJSON);
+
+        if(response.responseJSON.errors.email){
+          $(".error__email__register").html("Ingrese su email");
+        }
+
+        if(response.responseJSON.errors.password){
+          $(".error__password__register").html("Ingrese su clave");
+        }
+    });
+
+  }else{
+    $(".register__alerta").show();
+  }
+  
+})
+
+$(".btn__start").on('click',function(e){
+  e.preventDefault();
+  let path = $(this).attr('href');
+
+  $.ajax({
+    url:'/user/exist-profile',
+    type:'GET',
+    dataType:'json',
+    success:function(response){
+      if(response===false){
+        window.location.href='/user/user-profile';
+      }else{
+        window.location.href = path;
+      }
+    }
+  })
+});

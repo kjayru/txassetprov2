@@ -3,6 +3,34 @@
 @php
 	 use App\Models\Course;
 @endphp
+
+<div class="banner color__banner">
+	<div class="container-fluid">
+		<div class="row justify-content-between">
+			<div class="col-md-4">
+				<div class="breadcrum">
+					<ul>
+						<li><a href="/" class="breadcrum__link">Home</a></li>
+						<li><span>></span><a href="#" class="breadcrum__link ">My courses</a></li>
+					</ul>
+				</div>
+
+				
+			</div>
+			<div class="col-md-1 text-right">
+				<div class="cart">
+					<ul>
+					  <li><a href="/user" class="cart__link"><i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
+					  <li><a href="/cart" class="cart__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>   
+		</div>
+	</div>
+   
+</div>
+
+
 <div class="gracias">
 	<div class="container">
 		<div class="row">

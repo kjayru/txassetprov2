@@ -7,7 +7,7 @@
                               <div class="cart__bread">
                                         <div class="row justify-content-between">
                                                   <div class="col-md-5"><div class="cart__bread__titulo"> Cart ({{@$cart->cantidad}} course)</div></div>
-                                                  <div class="col-md-3 text-right"><a href="#" class="cart__bread__link">Continue shopping</a></div>
+                                                  <div class="col-md-3 text-right"><a href="/courses/all" class="cart__bread__link">Continue shopping</a></div>
                                         </div>
                               </div>
 
@@ -95,16 +95,14 @@
               <form id="frm_login" method="POST">
               <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLongTitle">Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                
               </div>
               <div class="modal-body">
                 <div class="login__alerta col-md-12" style="display: none;">
                   <div class="row">
                     
                     <div class="login__alerta_texto col s10">
-                      Correo electrónico o contraseña incorrecta. Por favor, vuelve a intentarlo nuevamente.
+                      Wrong email or password. Please try again.
                     </div>
                   </div>
                 </div>
@@ -128,12 +126,124 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn__loginsumit">Submit</button>
+                
+                  <a href="#" class="btn btn-default btn__registro " id="btn">Not account? sign up</a> 
+                  
+                  <button type="button" class="btn fondo__rojo btn__loginsumit ">Login</button>
+                
+                </div>
+               
               </div>
             </form>
             </div>
           </div>
         </div>
+
+
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <form id="frm_login" method="POST">
+              <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLongTitle">Register</h5>
+                
+              </div>
+              <div class="modal-body">
+                <div class="register__alerta col-md-12" style="display: none;">
+                  <div class="row">
+                    
+                    <div class="login__alerta_texto col s10">
+                      The password does not match, please check
+                    </div>
+                  </div>
+                </div>
+
+                @csrf
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12 mb-3">
+                      <div class="form-group">
+                        <label for="name-register">Name</label>
+                        <input class="form-control" type="text"  name="name" id="name-register" placeholder="Name">
+                        <span class="error error__name__register"></span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                      <div class="form-group">
+                        <label for="email-register">E-mail</label>
+                        <input class="form-control" type="email"  name="email" id="email-register" placeholder="E-mail">
+                        <span class="error error__email__register"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+
+                      <div class="form-group ">
+                          <label for="password-register">{{ __('Password') }}</label>
+
+
+                              <input id="password-register" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                              <span class="error error__password__register"></span>
+                              @error('password')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+
+                      </div>
+
+                   </div>
+
+                   <div class="col-md-12">
+
+                      <div class="form-group ">
+                          <label for="password-confirm">{{ __('Confirm Password') }}</label>
+
+
+                              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+
+                      </div>
+
+                   </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn fondo__rojo btn__register">Submit</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+             
+              <div class="modal-body">
+                <div class=" col-md-12" >
+                  <div class="row">
+                    
+                    <div class="texto__error col s10">
+                      
+                    </div>
+                  </div>
+                </div>
+
+              
+            
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn fondo__rojo btn__loginsumit" data-dismiss="modal">Close</button>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+
+
 <script src="//js.stripe.com/v3/"></script>
 <script>
   var stripe = Stripe('{{ env('STRIPE_PUBLIC_KEY')}}');

@@ -211,9 +211,12 @@ Route::get('/course/{slug}/{chapters}',[Course::class,'cursoChapter']);
 Route::get('/course/{slug}/{chapters}/{content}',[Course::class,'cursoChapterContent']);
 Route::get('/testmaq',[CartController::class,'test']);
 Route::post('/loginpop', [Home::class,'loginPop']);
+Route::post('/register-user', [Home::class,'registerUser']);
 //async course
 Route::post('/async/course-content',[Course::class,'cursoContent']);
- 
+Route::get('/cart-estado',[Home::class,'estadoCarrito']);
+
+
 Route::group(['prefix' => 'cart'],function(){
     Route::get('/',[Home::class,'carrito']);
     Route::post('/process',[Home::class,'process']);
@@ -229,6 +232,8 @@ Route::group(['prefix' => 'cart'],function(){
 
     Route::get('/success/{session_id}', [CartController::class,'success']);
     Route::get('/cancel', [CartController::class,'cancel']);
+
+   
 });
 
 Route::group(['prefix'=>'learn'],function(){
@@ -250,9 +255,14 @@ Route::group(['prefix'=>'user'],function(){
     Route::get('/',[UsuarioController::class,'index'])->name('user.index');
     Route::get('/my-courses',[UsuarioController::class,'misCursos']);
     Route::post('/set-chapter',[UsuarioController::class,'setChapter']);
-   Route::get('/edit',[UsuarioController::class,'editUser']);
+   Route::get('/edit',[UsuarioController::class,'editUser'])->name('usuario.profile');
    Route::post('/saveprofile',[UsuarioController::class,'saveProfile']);
    route::get('/outcome/{resultado}',[UsuarioController::class,'outcome']);
+
+   Route::get('/user-profile',[UsuarioController::class,'firstProfile']);
+   Route::post('/user-profile-save',[UsuarioController::class,'userSaveProfile'])->name('profile.store');
+
+   route::get('/exist-profile',[UsuarioController::class,'userProfile']);
 });
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
 ->name('ckfinder_connector');

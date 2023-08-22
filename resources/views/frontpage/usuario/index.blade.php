@@ -17,7 +17,11 @@
                     <ul>
                       <li><a href="/user" class="cart__link"><i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
                       <li><a href="/cart" class="cart__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+					  <li><a href="#" class="cart__link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="/images/logout.svg" style="with:20px;"></a></li>
                     </ul>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						@csrf
+					</form>
                 </div>
             </div>	   
 		</div>
@@ -38,7 +42,7 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>User</strong>  </td>
-                            <td>{{$user->usuario}}</td>
+                            <td>{{$user->name}}</td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Email</strong>  </td>
@@ -53,15 +57,15 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>Name</strong>  </td>
-                            <td>{{$user->name}}</td>
+                            <td>{{$user->profile->firstname}}</td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Middle</strong>  </td>
-                            <td>{{@$user->middle}}</td>
+                            <td>{{@$user->profile->middlename}}</td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Last name</strong>  </td>
-                            <td>{{$user->lastname}}</td>
+                            <td>{{$user->profile->lastname}}</td>
                         </tr>
                     </table>
 
