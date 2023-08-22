@@ -603,7 +603,7 @@ $(".btn__register").on('click',function(e){
         console.log(response.responseJSON);
 
         if(response.responseJSON.errors.email){
-          $(".error__email__register").html(error.email[0]);
+          $(".error__email__register").html(response.responseJSON.errors.email[0]);
         }
 
         if(response.responseJSON.errors.password){
