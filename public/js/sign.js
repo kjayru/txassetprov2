@@ -144,3 +144,9 @@ function download(dataURL, filename) {
         $("#legalemail").on('focus',function(){
           $(".legal-email").html("");
         })
+
+
+        document.getElementById('clear').addEventListener('click', function () {
+          signaturePad.clear();
+        });
+        

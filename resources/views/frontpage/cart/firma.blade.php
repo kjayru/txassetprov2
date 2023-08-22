@@ -58,6 +58,7 @@
 										</div>
 										<div class="signature-pad--footer">
 											<div class="boton__sign"><img src="/images/firma.png" class="img-fluid"><br>Sign here</div>
+											<button id="clear">Clear</button>
 										</div>
 									</div>  
 									<span class="sign-error error"></span>          
