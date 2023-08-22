@@ -1,7 +1,7 @@
 @extends('layouts.frontend.cursos.app')
 @section('content')
 
-<div class="container">
+<div class="container form__profile__user">
     <div class="row">
         <div class="col-md-12">
             <div class="banner__titulo">Register Profile</div>
@@ -23,7 +23,7 @@
                                
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="firstname">First name</label>
+                                <label for="firstname">First name*</label>
                                 <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ @$user->name?$user->name:old('firstname') }}" required autocomplete="First name" autofocus>
         
                                 @error('firstname')
@@ -47,7 +47,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="lastname">Last name</label>
+                                <label for="lastname">Last name*</label>
                                 <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="Last name" autofocus>
         
                                 @error('lastname')
@@ -70,7 +70,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="gender">Gender</label>
+                                <label for="gender">Gender*</label>
                                 <input id="gender" type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="Gender" autofocus>
         
                                 @error('gender')
@@ -86,7 +86,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="birthday">Date of Birth</label>
+                                <label for="birthday">Date of Birth*</label>
                                 <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" required autocomplete="Date of Birth" autofocus>
         
                                 @error('birthday')
@@ -115,7 +115,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="address1">Address line 1</label>
+                                <label for="address1">Address line 1*</label>
                                 <input id="address1" type="text" class="form-control @error('address1') is-invalid @enderror" name="address1" value="{{ old('address1') }}" required autocomplete="Address line 1" autofocus>
         
                                 @error('address1')
@@ -129,8 +129,8 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="address2">Address line 2</label>
-                                <input id="address2" type="text" class="form-control @error('address2') is-invalid @enderror" name="address2" value="{{ old('address2') }}"  autocomplete="Address line 2" autofocus>
+                                <label for="address2">Address line 2*</label>
+                                <input id="address2" type="text" class="form-control @error('address2') is-invalid @enderror" name="address2" value="{{ old('address2') }}"  required autocomplete="Address line 2" autofocus>
         
         
                                 </div>
@@ -140,7 +140,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="city">City</label>
+                                <label for="city">City*</label>
                                 <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="City" autofocus>
         
                                 @error('city')
@@ -155,7 +155,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="state">State</label>
+                                <label for="state">State*</label>
                                 <input id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" required autocomplete="State" autofocus>
         
                                 @error('state')
@@ -170,7 +170,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="zipcode">Zip/Postal code</label>
+                                <label for="zipcode">Zip/Postal code*</label>
                                 <input id="zipcode" type="text" class="form-control @error('zipcode') is-invalid @enderror" name="zipcode" value="{{ old('zipcode') }}" required autocomplete="Zip/Postal code" autofocus>
         
                                 @error('zipcode')
@@ -185,7 +185,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="drivernumber">Driver License Number</label>
+                                <label for="drivernumber">Driver License Number*</label>
                                 <input id="drivernumber" type="text" class="form-control @error('drivernumber') is-invalid @enderror" name="drivernumber" value="{{ old('drivernumber') }}" required autocomplete="Driver License Number" autofocus>
         
                                 @error('drivernumber')
@@ -204,7 +204,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="driverstate">Driver License State</label>
+                                <label for="driverstate">Driver License State*</label>
                                 <input id="driverstate" type="text" class="form-control @error('driverstate') is-invalid @enderror" name="driverstate" value="{{ old('driverstate') }}" required autocomplete="Driver License State" autofocus>
         
                                 @error('driverstate')
@@ -218,7 +218,7 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="phone">Phone Number</label>
+                                <label for="phone">Phone Number*</label>
                                 <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="Phone Number" autofocus>
         
                                 @error('phone')
@@ -246,8 +246,8 @@
         
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                <label for="organization">Employer</label>
-                                <input id="organization" type="text" class="form-control @error('organization') is-invalid @enderror" name="organization" value="{{ old('organization') }}" required autocomplete="Employer" autofocus>
+                                <label for="organization">Organization</label>
+                                <input id="organization" type="text" class="form-control @error('organization') is-invalid @enderror" name="organization" value="{{ old('organization') }}"  autocomplete="Employer" autofocus>
         
                                 @error('organization')
                                     <span class="invalid-feedback" role="alert">
@@ -263,7 +263,7 @@
         
                             <div class="col-md-4">
                                 <div class="form-group ">
-                                <label for="emergencycontact">Emergency Contact′s Name</label>
+                                <label for="emergencycontact">Emergency Contact′s Name*</label>
                                 <input id="emergencycontact" type="text" class="form-control @error('emergencycontact') is-invalid @enderror" name="emergencycontact" value="{{ old('emergencycontact') }}" required autocomplete="Emergency Contact′s Name" autofocus>
         
                                 @error('emergencycontact')
@@ -278,7 +278,7 @@
         
                             <div class="col-md-4">
                                 <div class="form-group ">
-                                <label for="emergencyphone">Phone number</label>
+                                <label for="emergencyphone">Phone number*</label>
                                 <input id="emergencyphone" type="text" class="form-control @error('emergencyphone') is-invalid @enderror" name="emergencyphone" value="{{ old('emergencyphone') }}" required autocomplete="Phone contact" autofocus>
         
                                 @error('emergencyphone')
@@ -292,7 +292,7 @@
         
                             <div class="col-md-4">
                                 <div class="form-group ">
-                                <label for="relationship">Relationship</label>
+                                <label for="relationship">Relationship*</label>
                                 <input id="relationship" type="text" class="form-control @error('relationship') is-invalid @enderror" name="relationship" value="{{ old('relationship') }}" required autocomplete="Relationship" autofocus>
         
                                 @error('relationship')
@@ -368,7 +368,11 @@
                            
         
                         </div>
-        
+                        <div class="form-group row mb-0 mt-5 justify-content-end">
+                            <div class="col-md-3 text-right">
+                                * Required fields
+                            </div>
+                        </div>
         
                         <div class="form-group row mb-0 mt-5 justify-content-center">
                             <div class="col-md-6 text-center">

@@ -2421,7 +2421,11 @@ footer {
 .error{
     color: red;
 }
-
+.form__profile__user{
+    label, input{
+        color:#031059;
+    }
+}
 @media(min-width: 980px) and (max-width: 1300px){
     .learn__titulo {
         font-size: 6.188rem;
