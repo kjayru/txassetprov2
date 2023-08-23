@@ -2429,12 +2429,14 @@ footer {
         color:#031059;
     }
 }
-.btn__start{
-    background-color: #e01f26;
-    color:white;
-    &:hover{
-        box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
+.gracias{
+    .btn__start{
+        background-color: #e01f26;
         color:white;
+        &:hover{
+            box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
+            color:white;
+        }
     }
 }
 @media(min-width: 980px) and (max-width: 1300px){
