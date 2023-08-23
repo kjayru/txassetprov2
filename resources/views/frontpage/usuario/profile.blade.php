@@ -12,7 +12,7 @@
             <div class="card p-5">
                 <div class="card-body ">
 
-                    <form method="POST" action="{{ route('profile.store') }}">
+                    <form method="POST" action="{{ route('profile.store') }}" id="frm-profile">
                         @csrf
         
         

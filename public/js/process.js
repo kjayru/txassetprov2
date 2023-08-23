@@ -634,3 +634,5 @@ $(".btn__start").on('click',function(e){
     }
   })
 });
+
+var validaton =  $("#frm-profile").validate();
