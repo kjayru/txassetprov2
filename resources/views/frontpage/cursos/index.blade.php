@@ -11,30 +11,7 @@
               <div class="row justify-content-end menu__carrito mb-0 pb-0">
                 
                
-                @guest
-
-            <div class="col-md-1 text-right">
-                <div class="cart">
-                    <ul>
-                        <li><a href="/cart" class="cart__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-                        </ul>
-                
-                </div>
-            </div>
-       @else
-            <div class="col-md-1 text-right">
-                <div class="cart">
-                    <ul>
-                        <li><a href="/user" class="cart__link"><i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
-                        <li><a href="/cart" class="cart__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-                        <li><a href="#" class="cart__link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="/images/logout.svg" style="with:20px;"></a></li>
-                        </ul>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                </div>
-            </div>
-       @endguest
+                @include('layouts.backend.partials.menucurso')
               </div>
 
 
