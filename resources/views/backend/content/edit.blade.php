@@ -45,7 +45,7 @@
             <div class="card-body">
 
                 @csrf
-                <input type="hidden" name="_method" value="PUT">
+                @method('PUT')
 
                 <input type="hidden" name="parent_id" value="{{$content->chapter->id}}">
                 @include('backend.content.form.index')

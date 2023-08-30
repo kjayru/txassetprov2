@@ -54,7 +54,7 @@ class ChapterContentController extends Controller
 
          $validated = $request->validate([
             'title' => 'required',
-            'video' => 'required',
+            'video' => 'file|required',
             
 
         ]);
