@@ -97,8 +97,9 @@ class ChapterContentController extends Controller
         $course = Course::where('id',$content->chapter->course->id)->first();
         $chapters = Chapter::where('course_id',$course->id)->orderBy('id','desc')->get();
 
+        $chapter = $content->chapter;
        
-        return view('backend.content.edit',['content'=>$content,'chapters'=>$chapters]);
+        return view('backend.content.edit',['content'=>$content,'chapters'=>$chapters,'chapter'=>$chapter]);
     }
 
     /**
