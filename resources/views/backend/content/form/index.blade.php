@@ -34,7 +34,11 @@
 
 
                 <div class="thumbnail">
-                    {{ @$content->video }}
+                    <video controls="false" style="width:100px;">
+                        <source src="/storage/{{ @$content->video}}" type="video/mp4">
+                       
+                        Your browser does not support the video tag.
+                      </video>
 
                     <a href="javascript:void(0)" class="btn-mod btn btn-xs btn-primary">Modificar</a>
                 </div>
@@ -84,7 +88,8 @@
            
         </select>
     </div> --}}
-    <input type="hidden" name="chapter_id" value="{{@$content->chapter->id}}">
+  
+    <input type="hidden" name="chapter_id" value="{{@$chapter->id}}">
 
 <div class="form-group">
     <label for="order">Order</label>
