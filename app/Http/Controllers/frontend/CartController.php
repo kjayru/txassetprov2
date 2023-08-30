@@ -132,14 +132,6 @@ class CartController extends Controller
                 'sessionId' => $session['id']
             );
 
-            /*$st = new SP;
-            $st->txn_id = $session['id'];
-            $st->user_id = $user_id;
-            $st->event_id = $request->eventId;
-
-            $st->save();*/
-           
-            
            }else{
             $response = array(
                 'status' => 0,

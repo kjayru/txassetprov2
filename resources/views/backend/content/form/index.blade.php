@@ -84,7 +84,7 @@
            
         </select>
     </div> --}}
-    <input type="hidden" name="chapter_id" value="{{$chapter->id}}">
+    <input type="hidden" name="chapter_id" value="{{@$content->chapter->id}}">
 
 <div class="form-group">
     <label for="order">Order</label>

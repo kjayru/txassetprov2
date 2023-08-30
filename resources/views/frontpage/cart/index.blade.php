@@ -34,52 +34,46 @@
                                                             </div>
                                                   </div>
                                         </div>
-                                        <div class="cart__body__grilla">
+                                      <div class="cart__body__grilla">
                                          
-                                          @if($cart!=null)
+                                        @if($cart!=null)
                                               @foreach($cart->items as $item)
                                             
                                                   <div class="row justify-content-between cart__body__grilla__item">
-                                                      
-                                                      <div class="col-md-7 sinpadding__left">
-                                                                     
-                                                                      <div class="row">
-                                                                          <div class="col-md-3">
-                                                                              <img src="/storage/{{$item['curso']->banner}}" class="img-fluid">
-                                                                          </div>
-                                                                          <div class="col-md-7">
-                                                                              <div class="cart__body__grilla__titulo">
-                                                                                {{$item['curso']->titulo}}
-                                                                              </div>
-                                                                              <div class="cart__body__grilla__subtitulo">
-                                                                                {{$item['curso']->subtitulo}}
-                                                                              </div>
-                                                                          </div>
-                                                                      </div>
-                                                                      
-                                                            </div>
+                                                      <div class="col-md-7 sinpadding__left">            
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <img src="/storage/{{$item['curso']->banner}}" class="img-fluid">
+                                                                </div>
+                                                                <div class="col-md-7">
+                                                                    <div class="cart__body__grilla__titulo">
+                                                                      {{$item['curso']->titulo}}
+                                                                    </div>
+                                                                    <div class="cart__body__grilla__subtitulo">
+                                                                      {{$item['curso']->subtitulo}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>            
+                                                      </div>
                                                            
-                                                            <div class="col-md-2 text-right">
-                                                                     <div class="cart__body__grilla__precio"> ${{$item['precio']}} <span>USD</span> </div>
-
-                                                                      <a href="#" data-id="{{$item['id']}}" class="cart__body__grilla__delete"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                            </div>
-                                                            
+                                                      <div class="col-md-2 text-right">
+                                                          <div class="cart__body__grilla__precio"> ${{$item['precio']}} <span>USD</span> </div>
+                                                          <a href="#" data-id="{{$item['id']}}" class="cart__body__grilla__delete"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                      </div>      
                                                   </div>
 
-
-                                                  @endforeach
+                                              @endforeach
                                         @endif
-                                        </div>
-                                        <div class="cart__body__foot">
-                                                  <div class="row justify-content-end">
-                                                            <div class="col-md-4 text-right">
-                                                                       <div class="cart__body__foot__total">Total ${{@$cart->total}} USD</div>
 
-                                                                      <a href="/cart/sign" class="cart__body__foot__link" data-id="{{@$item['id']}}" data-user="{{@$user_id}}">Proceed to checkout</a>
-                                                            </div>
-                                                  </div>
-                                        </div>
+                                      </div>
+                                      <div class="cart__body__foot">
+                                          <div class="row justify-content-end">
+                                              <div class="col-md-4 text-right">
+                                                  <div class="cart__body__foot__total">Total ${{@$cart->total}} USD</div>
+                                                  <a href="/cart/sign" class="cart__body__foot__link" data-id="{{@$item['id']}}" data-user="{{@$user_id}}">Proceed to checkout</a>
+                                              </div>
+                                          </div>
+                                      </div>
                                         <div class="cart__body__cupon">
                                                   <div class="row">
                                                             <div class="col-md-5">
