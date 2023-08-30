@@ -38,6 +38,8 @@ class CartController extends Controller
         if(Auth::check()==false){
             return redirect('/login');
         }
+
+       
         return view('frontpage.cart.firma');
     }
 

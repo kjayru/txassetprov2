@@ -10,7 +10,7 @@
 				<div class="breadcrum">
 					<ul>
 						<li><a href="/" class="breadcrum__link">Home</a></li>
-						<li><span>></span><a href="#" class="breadcrum__link "> Cursos</a></li>
+						<li><span>></span><a href="/user/my-courses" class="breadcrum__link "> Courses</a></li>
 						<li><span>></span><a href="#" class="breadcrum__link active">OC Pepper Spray/Conflict Resolution</a></li>
 					</ul>
 				</div>
@@ -107,7 +107,7 @@
 									@if(isset($contenidos))
 									
 									@foreach($contenidos as $cont)
-									
+									 
 											<li class="encurso__temas__lista__item {{UserCourse::capitulo($curso->id,$cont['capitulo_id'])?"active":""}}"><span>1</span>
 												<a href="#">{{@$cont['capitulo_titulo']}}</a>
 												

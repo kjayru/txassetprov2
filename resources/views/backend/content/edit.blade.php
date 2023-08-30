@@ -51,9 +51,9 @@
                 @include('backend.content.form.index')
 
               </div>
-
+            
               <div class="card-footer">
-                <a href="{{ route('chaptercontent.show',['id'=>$content->chapter->id]) }}" class="btn btn-danger">Cancelar</a>
+                <a href="{{ route('chaptercontent.show',['content'=>$content->chapter->id]) }}" class="btn btn-danger">Cancelar</a>
                 <button type="submit" class="btn btn-info pull-right">Guardar</button>
               </div>
           </form>

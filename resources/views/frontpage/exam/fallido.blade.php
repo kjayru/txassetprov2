@@ -11,13 +11,14 @@
 			<div class="col-md-5">
 				<div class="breadcrum">
 					<ul>
-						<li><a href="/" class="breadcrum__link">Home</a></li>
-						<li><span>></span><a href="#" class="breadcrum__link "> Cursos</a></li>
-						<li><span>></span><a href="#" class="breadcrum__link ">OC Pepper Spray/Conflict Resolution</a></li>
+						<li><a href="/" class="breadcrum__link chevron"><img src="/images/Emblema-blanco.png" alt=""></a></li>
+						<li><span>></span><a href="/user/my-courses" class="breadcrum__link "> Courses</a></li>
+						<li><span>></span><a href="#" class="breadcrum__link ">{{$curso->titulo}}</a></li>
                         <li><span>></span><a href="#" class="breadcrum__link active">Final Exam</a></li>
 					</ul>
 				</div>
-			</div>	   
+			</div>	
+            @include('layouts.backend.partials.menucurso')   
 		</div>
 	</div>
    

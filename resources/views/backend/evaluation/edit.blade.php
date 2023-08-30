@@ -35,9 +35,7 @@
     <div class="col-md-12">
         <!-- general form elements -->
         <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Edit chapter</h3>
-          </div>
+         
 
 
           <form role="form" action="{{ route('chapterequiz.update',$question->id) }}" method="POST" enctype="multipart/form-data">
@@ -52,7 +50,7 @@
               </div>
 
               <div class="card-footer">
-                <a href="{{ route('chapterequiz.index',['exam'=>$question->chapter->id]) }}" class="btn btn-danger">Cancelar</a>
+                <a href="{{ route('chapterequiz.index',['chapter'=>$question->chapter->id]) }}" class="btn btn-danger">Cancelar</a>
                 <button type="submit" class="btn btn-info pull-right">Guardar</button>
               </div>
           </form>

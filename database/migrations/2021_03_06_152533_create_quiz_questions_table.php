@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+use App\Models\Quiz;
 class CreateQuizQuestionsTable extends Migration
 {
     /**
@@ -15,10 +15,11 @@ class CreateQuizQuestionsTable extends Migration
     {
         Schema::create('quiz_questions', function (Blueprint $table) {
             $table->bigIncrements('id');
+          // $table->foreignIdFor(Quiz::class)->constrained('quiz_id_foreign')->index();
+          $table->unsignedBigInteger('quiz_id');
+            $table->foreign('quiz_id','quiz_id_foreign')->references('id')->on('quizes');
             $table->string('question');
-            $table->integer('answer');
-            $table->unsignedBigInteger('quiz_id');
-            $table->foreign('quiz_id')->references('id')->on('quizes');
+           
             $table->timestamps();
         });
     }

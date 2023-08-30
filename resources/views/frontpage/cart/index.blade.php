@@ -1,6 +1,21 @@
 @extends('layouts.frontend.cursos.app')
 @section('content')
 
+<div class="banner color__banner">
+  <div class="container-fluid">
+    <div class="row justify-content-between mb-0 pb-0">
+      <div class="col-md-4">
+          <div class="breadcrum">
+              
+          </div>
+      </div>
+
+     @include('layouts.backend.partials.menucurso')
+    </div>
+  </div>
+ 
+</div>
+
 <div class="container">
           <div class="row">
                     <div class="col-md-12">
@@ -15,7 +30,7 @@
                                         <div class="cart__body__header">
                                                   <div class="row justify-content-end">
                                                             <div class="col-md-3 text-right">
-                                                                      <a href="#" class="cart__body__header__checkout">Checkout</a>
+                                                                      <div class="cart__body__header__checkout">Checkout</div>
                                                             </div>
                                                   </div>
                                         </div>
@@ -61,7 +76,7 @@
                                                             <div class="col-md-4 text-right">
                                                                        <div class="cart__body__foot__total">Total ${{@$cart->total}} USD</div>
 
-                                                                      <a href="/cart/sign" class="cart__body__foot__link">Proceed to checkout</a>
+                                                                      <a href="/cart/sign" class="cart__body__foot__link" data-id="{{@$item['id']}}" data-user="{{@$user_id}}">Proceed to checkout</a>
                                                             </div>
                                                   </div>
                                         </div>
@@ -89,55 +104,7 @@
           </div>
         </div>
 
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <form id="frm_login" method="POST">
-              <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLongTitle">Login</h5>
-                
-              </div>
-              <div class="modal-body">
-                <div class="login__alerta col-md-12" style="display: none;">
-                  <div class="row">
-                    
-                    <div class="login__alerta_texto col s10">
-                      Wrong email or password. Please try again.
-                    </div>
-                  </div>
-                </div>
-
-                @csrf
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-12 mb-3">
-                      <div class="form-group">
-                        <input class="form-control" type="text"  name="email" id="email__login" placeholder="E-mail">
-                        <span class="error error__email"></span>
-                      </div>
-                    </div>
-                    <div class="col-md-12"> 
-                      <div class="form-group">
-                        <input class="form-control" type="password"  name="password" id="password__login" placeholder="Password">
-                        <span class="error error__password"></span>
-                      </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                
-                  <a href="#" class="btn btn-default btn__registro " id="btn">Not account? sign up</a> 
-                  
-                  <button type="button" class="btn fondo__rojo btn__loginsumit ">Login</button>
-                
-                </div>
-               
-              </div>
-            </form>
-            </div>
-          </div>
-        </div>
+      
 
 
         <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitle" aria-hidden="true">
@@ -218,7 +185,9 @@
         </div>
 
 
-        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalTitle" aria-hidden="true">
+
+        
+        <div class="modal fade" id="existeModal" tabindex="-1" role="dialog" aria-labelledby="existeModalTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
              
@@ -227,21 +196,23 @@
                   <div class="row">
                     
                     <div class="texto__error col s10">
-                      
+                      You already have bought the course.<br>
+                      <a href="/user/my-courses" class="btn btn-rojo">My courses</a>
                     </div>
                   </div>
                 </div>
-
+      
               
             
               </div>
               <div class="modal-footer">
-              <button type="button" class="btn fondo__rojo btn__loginsumit" data-dismiss="modal">Close</button>
+              <button type="button" class="btn fondo__rojo btn__loginsumit btn__modal" data-dismiss="modal">Close</button>
               </div>
             
             </div>
           </div>
         </div>
+      
 
 
 <script src="//js.stripe.com/v3/"></script>

@@ -56,26 +56,25 @@
                         <th></th>
                         <th>Title</th>
                         <th>Time exam</th>
-                        <th>Course</th>
+                        
                         <th>Options</th>
                         <th>Date</th>
                         <th></th>
                     </tr>
                 </thead>
                     <tbody>
-                        @foreach($quizes as $key => $quiz)
+                        @foreach($examenes as $key => $exam)
 
                             <tr>
                                 <th>{{$key + 1}}</th>
-                                <td>{{$quiz->title}}</td>
-                                <td>{{$quiz->duration}}</td>
-                                <td>{{$quiz->course->titulo}}</td>
-                                <td><a href="/admin/exams/options/{{$quiz->id}}" class="btn btn-xs btn-success">Options exam</a></td>
-                                <td>{{$quiz->created_at}}</td>
+                                <td>{{$exam->title}}</td>
+                                <td>{{$exam->duration}}</td>
+                                <td><a href="/admin/exams/options/{{$exam->id}}" class="btn btn-xs btn-success">Options exam</a></td>
+                                <td>{{$exam->created_at}}</td>
                                 <td width="8%">
-                                  <a href="/admin/exams/{{@$quiz->id}}/edit" class="btn btn-sm btn-warning legitRipple">
+                                  <a href="/admin/exams/{{@$exam->id}}/edit" class="btn btn-sm btn-warning legitRipple">
                                       <i class="fas fa-pencil-alt"></i></a>
-                                  <a href="#" data-id="{{ @$quiz->id }}"  data-toggle="modal" data-target="#delobjeto" class="btn btn-sm btn-danger btn-object-delete"><i class="far fa-trash-alt"></i></a>
+                                  <a href="#" data-id="{{ @$exam->id }}"  data-toggle="modal" data-target="#delobjeto" class="btn btn-sm btn-danger btn-object-delete"><i class="far fa-trash-alt"></i></a>
                               </td>
                             </tr>
                         @endforeach

@@ -29,4 +29,11 @@ class Chapter extends Model
     public function chapterquiz(){
         return $this->hasOne(ChapterQuiz::class);
     }
+
+    public static function capitulos($id){
+
+        $capitulos = Chaptercontent::where('chapter_id',$id)->count();
+
+        return $capitulos;
+    }
 }

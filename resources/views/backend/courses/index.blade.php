@@ -54,8 +54,10 @@
                     <th>Title</th>
                     <th>Excerpt</th>
                     <th>Price</th>
-                    <th>Date</th>
+                    
+                    <th></th>
                     <th>Chapters</th>
+                    <th>Date</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -66,8 +68,10 @@
                         <td>{{$course->titulo}}</td>
                         <td>{{$course->resumen}}</td>
                         <td>{{ $course->precio}}</td>
-                        <td>{{ $course->created_at->format("Y-m-d")}}</td>
+                       <td><a href="#" class="btn btn-sm btn-success btn__getcourses"  data-id="{{$course->id}}" data-examid="{{@$course->examcourse->exam_id}}" data-toggle="modal" data-target="#examModal">Assign exam</a></td>
                         <td><a href="/admin/chapters/{{$course->id}}" class="btn btn-sm btn-warning">Capitulos</a></td>
+                        
+                        <td>{{ $course->created_at->format("Y-m-d")}}</td>
                         <td width="8%">
                             <a href="/admin/courses/{{$course->id}}/edit" class="btn btn-sm btn-warning legitRipple">
                                 <i class="fas fa-pencil-alt"></i></a>
@@ -132,7 +136,42 @@
               <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
-
         </div>
+
+
+
+        <!-- Modal -->
+<div class="modal fade" id="examModal" tabindex="-1" aria-labelledby="examModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered  modal-lg">
+    <div class="modal-content">
+          <form action="{{route('course.exam')}}" method="POST">
+            @csrf
+            <div class="modal-header">
+              <h5 class="modal-title" id="examModalLabel">EXAM</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div class="form-group">
+                <label for="course-selector">Select exam</label>
+                <select name="exam" id="course-selector" class="custom-select">
+                  <option value="">Select</option>
+
+                </select>
+              </div>
+
+              <input type="hidden" name="course_id" id="course_id">
+            </div>
+
+            <div class="modal-footer">
+              
+              <button type="submit" class="btn btn-primary">Save </button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
 
 @endsection

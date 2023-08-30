@@ -46,5 +46,7 @@ class Course extends Model
         return $datos;
     }
 
-
+    public function examcourse(){
+        return $this->hasOne(ExamCourse::class);
+    }
 }

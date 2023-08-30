@@ -11,12 +11,14 @@
 			<div class="col-md-4">
 				<div class="breadcrum">
 					<ul>
-						<li><a href="/" class="breadcrum__link">Home</a></li>
-						<li><span>></span><a href="#" class="breadcrum__link "> Cursos</a></li>
-						<li><span>></span><a href="#" class="breadcrum__link active">OC Pepper Spray/Conflict Resolution</a></li>
+						<li><a href="/" class="breadcrum__link "><img src="/images/Emblema-blanco.png" alt=""></a></li>
+						<li><span>></span><a href="#" class="breadcrum__link "> Courses</a></li>
+						<li><span>></span><a href="#" class="breadcrum__link active">{{@$curso->titulo}}</a></li>
 					</ul>
 				</div>
-			</div>	   
+			</div>	
+			
+			@include('layouts.backend.partials.menucurso')
 		</div>
 	</div>
    
@@ -108,7 +110,7 @@
 							</div>
 						@endif
 					@else
-					<div class="quiz__preguntas" style="display:{{$completado==false?"block":"none"}}" >
+					<div class="quiz__preguntas" style="display:{{@$completado==false?"block":"none"}}" >
 						<input type="hidden" name="chapter_id" value="{{$chapter_id}}">
 						@foreach ($quizes as $key=> $quiz)
 						
@@ -189,22 +191,23 @@
 
 			  </div>
 
-			  <div class="col-md-3">
+			  <div class="col-md-4">
 						<div class="encurso__temas">
 								  <div class="encurso__temas__titulo">
-											You have {{@$curso->tiempovalido}} days left to finish the course
+									
+											You have {{UserCourse::dayleft($user_course_id)}} days left to finish the course
 								  </div>
 								  <ul class="encurso__temas__lista">
 
 										@if(isset($contenidos))										
 											@foreach($contenidos as $k => $cont)
-													<li class="encurso__temas__lista__item {{UserCourse::capitulo($user_course_id,$cont['capitulo_id'])?"active":""}}"><span>{{$k+1}}</span>
+													<li class="encurso__temas__lista__item {{UserCourse::capitulo($user_course_id,$cont['capitulo_id'])?"active":""}} {{UserCourse::capituloActivo($curso->id,$cont['capitulo_id'])?'active':''}}"><span>{{$k+1}}</span>
 														<a href="#">{{@$cont['capitulo_titulo']}}</a>
 														
 														@if(isset($cont['contenidos']))
-															<ul class="encurso__temas__lista__item__sublista active">
+															<ul class="encurso__temas__lista__item__sublista {{UserCourse::capituloActivo($curso->id,$cont['capitulo_id'])?'active':''}}">
 																@foreach($cont['contenidos'] as $c)
-																	<li class="encurso__temas__lista__item__sublista__item {{UserCourse::contenido($user_course_id,$cont['capitulo_id'],$c['id'])?"finalizado":""}}">
+																	<li class="encurso__temas__lista__item__sublista__item {{UserCourse::contenido($user_course_id,$cont['capitulo_id'],$c['id'])?"finalizado":""}} {{UserCourse::contenidoActivo($curso->id,$cont['capitulo_id'],$c['id'])?'active':''}}">
 																		<a href="/learn/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/{{$c['slug']}}"> {{@$c['titulo']}}</a> 
 																	</li>
 																@endforeach	
@@ -217,8 +220,8 @@
 														@endif
 													</li>
 											@endforeach
-										@endif	
-
+										@endif		
+										
 										@if(isset($examen))										
 										<li class="encurso__temas__lista__item"><a href="/learn/exam/{{$curso->slug}}/{{$examen->id}}">Final Exam</a></li>
 										@endif

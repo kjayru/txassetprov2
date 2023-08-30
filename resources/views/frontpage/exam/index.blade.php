@@ -11,12 +11,13 @@
 			<div class="col-md-4">
 				<div class="breadcrum">
 					<ul>
-						<li><a href="/" class="breadcrum__link">Home</a></li>
-						<li><span>></span><a href="#" class="breadcrum__link "> Cursos</a></li>
-						<li><span>></span><a href="#" class="breadcrum__link active">OC Pepper Spray/Conflict Resolution</a></li>
+						<li><a href="/" class="breadcrum__link chevron"><img src="/images/Emblema-blanco.png" alt=""></a></li>
+						<li><span>></span><a href="/user/my-courses" class="breadcrum__link "> Courses</a></li>
+						<li><span>></span><a href="#" class="breadcrum__link active">{{$curso->titulo}}</a></li>
 					</ul>
 				</div>
-			</div>	   
+			</div>
+			@include('layouts.backend.partials.menucurso')	   
 		</div>
 	</div>
    
@@ -57,18 +58,18 @@
 					
 					<div class="quiz__preguntas"  >
 						
-						@foreach($examen->quizQuestions as $key => $question)
+						@foreach($examen->examquestions as $key => $question)
 
 							<div class="card__question" style="display:{{$key==0?'block':'none'}}">
 								{{$key+1}}.  {{$question->question}}
 								<input type="hidden" name="quiz_id" value="{{$question->id}}">
 								<div class="card__question__opciones">
 								
-									@foreach($question->quizQuestionOptions as $option)
+									@foreach($question->examquestionoptions as $option)
 										<div class="form-check">
 										<input class="form-check-input" type="radio" name="respuesta" value="{{$option->id}}" id="respuesta">
 										<label class="form-check-label" for="respuesta">
-											{{$option->option}}
+											{{$option->opcion}}
 										</label>
 										</div>
 									@endforeach

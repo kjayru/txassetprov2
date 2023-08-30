@@ -6,24 +6,13 @@
 			<div class="col-md-4">
 				<div class="breadcrum">
 					<ul>
-						<li><a href="/" class="breadcrum__link">Home</a></li>
-						<li><span>></span><a href="/USER" class="breadcrum__link ">My profile</a></li>
+						<li><a href="/" class="breadcrum__link chevron"><img src="/images/Emblema-blanco.png" alt=""></a></li>
+						<li><a href="/USER" class="breadcrum__link ">My profile</a></li>
 					</ul>
 				</div>
                 
 			</div>
-            <div class="col-md-1 text-right">
-                <div class="cart">
-                    <ul>
-                      <li><a href="/user" class="cart__link"><i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
-                      <li><a href="/cart" class="cart__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-					  <li><a href="#" class="cart__link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="/images/logout.svg" style="with:20px;"></a></li>
-                    </ul>
-					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-						@csrf
-					</form>
-                </div>
-            </div>	   
+            @include('layouts.backend.partials.menucurso')   
 		</div>
 	</div>
    

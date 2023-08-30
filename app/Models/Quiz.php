@@ -15,4 +15,10 @@ class Quiz extends Model
     public function quizQuestions(){
         return $this->hasMany(QuizQuestion::class);
     }
+
+    public static function preguntas($id){
+         $preguntas = ChapterQuiz::where('chapter_id',$id)->count();
+
+         return $preguntas;
+    }
 }

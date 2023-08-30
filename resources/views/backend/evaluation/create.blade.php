@@ -50,13 +50,13 @@
 
               <div class="card-body">
                   @csrf
-
+               
                 <input type="hidden" name="parent_id" value="{{$id}}">
                   @include('backend.evaluation.form.index')
 
               </div>
               <div class="card-footer">
-                      <a href="{{ route('chapterequiz.index',['id'=>$id]) }}" class="btn btn-danger">Cancel</a>
+                      <a href="{{ route('chapterequiz.index',['chapter'=>$id]) }}" class="btn btn-danger">Cancel</a>
                   <button type="submit" class="btn btn-info pull-right">Save</button>
               </div>
             </form>

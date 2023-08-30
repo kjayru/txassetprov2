@@ -47,7 +47,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="{{ route('chapterequiz.create',['id'=>$id]) }}" class="btn btn-block btn-outline-primary btn-flat mb-5">Create Question</a>
+                        <a href="{{ route('chapterequiz.create',['chapter'=>$id]) }}" class="btn btn-block btn-outline-primary btn-flat mb-5">Create Question</a>
                     </div>
                 </div>
 

@@ -5,64 +5,64 @@
     <span class="help-block">{{ $errors->first('question') }}</span>
 </div>
 
-
 <div class="card">
-<div class="card-header">
 
-    Result Options
+<div class="card-header"><a href="#" class="btn btn-xs btn-primary btn-add-option float-right">Add Option</a></div>
+<div class="card-body card-question">
+  
+@if(isset($question->examquestionoptions))
+
+
+@if(count($question->examquestionoptions)>0)
+    @foreach(@$question->examquestionoptions as $opt)
+        <div class="form-row">
+            <div class="form-group col-md-9">
+                <label for="option1" class="control-label">Option</label>
+                <input type="text" name="option[]" id="option1" class="form-control" value="{{@$opt->opcion}}">
+            </div>
+            <div class="form-group col-md-3">
+                <div class="form-check form__pad">
+                    <div class="option1 icheck @if(@$opt->resultado==1) icheck__active @endif"></div>
+                    <input type="hidden" name="result[]"  class="inputoption" value="{{@$opt->resultado}}">
+                </div>
+            </div>
+        </div>
+    @endforeach
+    @else
+        <div class="form-row">
+            <div class="form-group  col-md-9">
+                <label for="option2" class="control-label">Option</label>
+                <input type="text" name="option[]" id="option2" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <div class="form-check form__pad">
+                    <div class="option2 icheck "></div>
+                    <input type="hidden" name="result[]"  class="inputoption" value="{{@$opt->estado}}">
+                </div>
+            </div>
+        </div>
+    @endif
+
+
+@else
+<div class="form-row">
+    <div class="form-group  col-md-9">
+        <label for="option2" class="control-label">Option</label>
+        <input type="text" name="option[]" id="option2" class="form-control">
+    </div>
+    <div class="form-group col-md-3">
+        <div class="form-check form__pad">
+            <div class="option2 icheck "></div>
+            <input type="hidden" name="result[]"  class="inputoption" value="{{@$opt->answer}}">
+        </div>
+    </div>
 </div>
-<div class="card-body">
-    <div class="form-group @if($errors->first('option_a')) has-error @endif">
-        <label for="option" class="control-label">Option A</label>
-        <input type="text"  name="option_a" class="form-control" value="{{@$question->quizQuestionOptions[0]->option}}" id="question" placeholder="Option A" required>
-        <span class="help-block">{{ $errors->first('option_a') }}</span>
-        <input type="hidden" name="quiz_question_option_a" value="{{@$question->quizQuestionOptions[0]->id}}">
-    </div>
+@endif
 
-    <div class="form-group @if($errors->first('option_b')) has-error @endif">
-        <label for="option" class="control-label">Option B</label>
-        <input type="text"  name="option_b" class="form-control" value="{{@$question->quizQuestionOptions[1]->option}}" id="question" placeholder="Option B" required>
-        <span class="help-block">{{ $errors->first('option_b') }}</span>
-        <input type="hidden" name="quiz_question_option_b" value="{{@$question->quizQuestionOptions[1]->id}}">
-    </div>
 
-    <div class="form-group @if($errors->first('option_c')) has-error @endif">
-        <label for="option" class="control-label">Option C</label>
-        <input type="text"  name="option_c" class="form-control" value="{{@$question->quizQuestionOptions[2]->option}}" id="question" placeholder="Option C" required>
-        <span class="help-block">{{ $errors->first('option_c') }}</span>
-        <input type="hidden" name="quiz_question_option_c" value="{{@$question->quizQuestionOptions[2]->id}}">
-    </div>
-
-    <div class="form-group @if($errors->first('option_d')) has-error @endif">
-        <label for="option" class="control-label">Option D</label>
-        <input type="text"  name="option_d" class="form-control" value="{{@$question->quizQuestionOptions[3]->option}}" id="question" placeholder="Option D" required>
-        <span class="help-block">{{ $errors->first('option_d') }}</span>
-        <input type="hidden" name="quiz_question_option_d" value="{{@$question->quizQuestionOptions[3]->id}}">
-    </div>
 </div>
 </div>
 
-
-
-<div class="form-group">
-    <label for="">Correct Answer</label>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="answer" value="a" {{@$question->answer=="a"?"checked":""}}>
-      <label class="form-check-label">A</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="answer" value="b"  {{@$question->answer=="b"?"checked":""}}>
-      <label class="form-check-label">B</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="answer"value="c"  {{@$question->answer=="c"?"checked":""}}>
-      <label class="form-check-label">C</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio"name="answer"value="d" {{@$question->answer=="d"?"checked":""}}>
-        <label class="form-check-label">D</label>
-      </div>
-  </div>
 
 
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Chaptercontent;
+use App\Models\Chapter;
+use App\Models\Course;
 
 class ChapterContentController extends Controller
 {
@@ -33,7 +35,10 @@ class ChapterContentController extends Controller
      */
     public function create($id)
     {
-        return view('backend.content.create',['id'=>$id]);
+        $chapter = Chapter::find($id);
+       
+       
+        return view('backend.content.create',['id'=>$id,'chapter'=>$chapter]);
     }
 
     /**
@@ -45,7 +50,7 @@ class ChapterContentController extends Controller
     public function store(Request $request)
     {
 
-        
+       
 
          $validated = $request->validate([
             'title' => 'required',
@@ -69,7 +74,8 @@ class ChapterContentController extends Controller
         }
 
         $content->contenido = $request->description;
-        $content->chapter_id = $request->parent_id;
+        $content->chapter_id = $request->chapter_id;
+        $content->order = $request->order;
         $content->save();
 
         return redirect('/admin/chaptercontent/'.$request->parent_id)
@@ -88,8 +94,11 @@ class ChapterContentController extends Controller
     {
 
         $content = Chaptercontent::find($id);
+        $course = Course::where('id',$content->chapter->course->id)->first();
+        $chapters = Chapter::where('course_id',$course->id)->orderBy('id','desc')->get();
 
-        return view('backend.content.edit',['content'=>$content]);
+       
+        return view('backend.content.edit',['content'=>$content,'chapters'=>$chapters]);
     }
 
     /**
@@ -118,7 +127,8 @@ class ChapterContentController extends Controller
         }
 
         $content->contenido = $request->description;
-        $content->chapter_id = $request->parent_id;
+        $content->chapter_id = $request->chapter_id;
+        $content->order = $request->order;
         $content->save();
 
         return redirect('/admin/chaptercontent/'.$request->parent_id)

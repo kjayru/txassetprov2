@@ -4,9 +4,9 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Quiz;
-use App\Models\QuizQuestion;
-use App\Models\QuizQuestionOption;
+use App\Models\Exam;
+use App\Models\ExamQuestion;
+use App\Models\ExamQuestionOption;
 use App\Models\Course;
 
 class ExamController extends Controller
@@ -18,9 +18,9 @@ class ExamController extends Controller
      */
     public function index()
     {
-        $quizes = Quiz::orderBy('id','desc')->get();
+        $examenes = Exam::orderBy('id','desc')->get();
       
-       return view('backend.exam.index',['quizes'=>$quizes]);
+       return view('backend.exam.index',['examenes'=>$examenes]);
     }
 
     /**
@@ -30,9 +30,9 @@ class ExamController extends Controller
      */
     public function create()
     {
-        $cursos = Course::orderBy('id','desc')->get();
        
-        return view('backend.exam.create',['cursos'=>$cursos]);
+       
+        return view('backend.exam.create',);
     }
  
     /**
@@ -43,11 +43,12 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-       $quiz = new Quiz();
-       $quiz->title=$request->name;
-       $quiz->duration = $request->duration;
-       $quiz->course_id = $request->course_id;
-       $quiz->save();
+       
+       $exam = new Exam();
+       $exam->title=$request->name;
+       $exam->duration = $request->duration;
+       $exam->description = $request->description;
+       $exam->save();
 
        return redirect()->route('exam.index')
         ->with('info','Exam create');
@@ -62,9 +63,9 @@ class ExamController extends Controller
      */
     public function edit($id)
     {
-        $quiz = Quiz::where('id',$id)->first();
-        $cursos = Course::orderBy('id','desc')->get();
-        return view('backend.exam.edit',['quiz'=>$quiz,'cursos'=>$cursos]);
+        $exam = Exam::where('id',$id)->first();
+       
+        return view('backend.exam.edit',['exam'=>$exam]);
     }
 
     /**
@@ -76,11 +77,11 @@ class ExamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $quiz = Quiz::find($id);
-        $quiz->title=$request->name;
-        $quiz->duration = $request->duration;
-        $quiz->course_id = $request->course_id;
-        $quiz->save();
+        $exam = Exam::find($id);
+        $exam->title=$request->name;
+        $exam->duration = $request->duration;
+        $exam->description = $request->description;
+        $exam->save();
 
        return redirect()->route('exam.index')
         ->with('info','Exam update');
@@ -94,7 +95,7 @@ class ExamController extends Controller
      */
     public function destroy($id)
     {
-        Quiz::find($request->id)->delete();
+        Exam::find($request->id)->delete();
 
         return redirect()->route('exam.index')
         ->with('info','Exam deleted');
@@ -104,51 +105,62 @@ class ExamController extends Controller
 
     public function options($opt){
       
-        $questions = QuizQuestion::where('quiz_id',$opt)->get();
+        $questions = ExamQuestion::where('exam_id',$opt)->get();
 
-        return view('backend.exam.options.index',['quiz_id'=>$opt,'questions'=>$questions]);
+        return view('backend.exam.options.index',['exam_id'=>$opt,'questions'=>$questions]);
     }
 
     public function optionCreate($opt){
       
 
-        return view('backend.exam.options.create',['quiz_id'=>$opt]);
+        return view('backend.exam.options.create',['exam_id'=>$opt]);
     }
 
     public function optionStore(Request $request){
       
         
-       $pregunta = new QuizQuestion();
+       $pregunta = new ExamQuestion();
        $pregunta->question=$request->question;
-       $pregunta->answer = $request->answer;
-       $pregunta->quiz_id = $request->quiz_id;
+       $pregunta->exam_id = $request->exam_id;
        $pregunta->save();
 
-       $opciona = new QuizQuestionOption();
-       $opciona->option = $request->option_a;
-       $opciona->identificador="a";
-       $opciona->quiz_question_id = $pregunta->id;
-       $opciona->save();
 
-       $opcionb = new QuizQuestionOption();
-       $opcionb->option = $request->option_b;
-       $opcionb->identificador="b";
-       $opcionb->quiz_question_id = $pregunta->id;
-       $opcionb->save();
+       foreach($request->option as $k => $op){
 
-       $opcionc = new QuizQuestionOption();
-       $opcionc->option = $request->option_c;
-       $opcionc->identificador="c";
-       $opcionc->quiz_question_id = $pregunta->id;
-       $opcionc->save();
+            $opcion = New ExamQuestionOption();
+            $opcion->opcion = $op;
+            $opcion->resultado = $request->result[$k];
+            $opcion->exam_question_id = $pregunta->id;
+            $opcion->save();
+        }
 
-       $opciond = new QuizQuestionOption();
-       $opciond->option = $request->option_d;
-       $opciond->identificador="d";
-       $opciond->quiz_question_id = $pregunta->id;
-       $opciond->save();
+    //    $opciona = new ExamQuestionOption();
+    //    $opciona->option = $request->option_a;
+    //    $opciona->identificador="a";
+    //    $opciona->exam_question_id = $pregunta->id;
+    //    $opciona->save();
 
-       return redirect()->route('option.index',['opt' => $request->quiz_id ])
+    //    $opcionb = new ExamQuestionOption();
+    //    $opcionb->option = $request->option_b;
+    //    $opcionb->identificador="b";
+    //    $opcionb->exam_question_id = $pregunta->id;
+    //    $opcionb->save();
+
+    //    $opcionc = new ExamQuestionOption();
+    //    $opcionc->option = $request->option_c;
+    //    $opcionc->identificador="c";
+    //    $opcionc->exam_question_id = $pregunta->id;
+    //    $opcionc->save();
+
+    //    $opciond = new ExamQuestionOption();
+    //    $opciond->option = $request->option_d;
+    //    $opciond->identificador="d";
+    //    $opciond->exam_question_id = $pregunta->id;
+    //    $opciond->save();
+
+
+
+       return redirect()->route('option.index',['opt' => $request->exam_id ])
         ->with('info','option create');
 
 
@@ -157,54 +169,67 @@ class ExamController extends Controller
     public function optionEdit($opt,$id){
 
         //dd($opt." ".$id);
-        $question = QuizQuestion::where('id',$id)->first();
+        $question = ExamQuestion::where('id',$id)->first();
 
-        return view('backend.exam.options.edit',['quiz_id'=>$opt,'question'=>$question]);
+        return view('backend.exam.options.edit',['exam_id'=>$opt,'question'=>$question]);
     }
 
     public function optionUpdate(Request $request,$opt,$id){
        
 
-        $pregunta = QuizQuestion::find($id);
+        $pregunta = ExamQuestion::find($id);
         $pregunta->question=$request->question;
-        $pregunta->answer = $request->answer;
-       
+        $pregunta->exam_id = $request->exam_id;
         $pregunta->save();
- 
-        $opciona =  QuizQuestionOption::find($request->quiz_question_option_a);
-        $opciona->option = $request->option_a;
-        $opciona->identificador="a";
-    
-        $opciona->save();
- 
-        $opcionb =  QuizQuestionOption::find($request->quiz_question_option_b);
-        $opcionb->option = $request->option_b;
-        $opcionb->identificador="b";
-       
-        $opcionb->save();
- 
-        $opcionc =  QuizQuestionOption::find($request->quiz_question_option_c);
-        $opcionc->option = $request->option_c;
-        $opcionc->identificador="c";
+
+
+        ExamQuestionOption::where('exam_question_id',$id)->delete();
+
+        foreach($request->option as $k => $op){
+
+            $opcion = New ExamQuestionOption();
+            $opcion->opcion = $op;
+            $opcion->resultado = $request->result[$k];
+            $opcion->exam_question_id = $pregunta->id;
+            $opcion->save();
+        }
         
-        $opcionc->save();
+        // $opciona =  ExamQuestionOption::find($request->quiz_question_option_a);
+        // $opciona->option = $request->option_a;
+        // $opciona->identificador="a";
+    
+        // $opciona->save();
  
-        $opciond =  QuizQuestionOption::find($request->quiz_question_option_d);
-        $opciond->option = $request->option_d;
-        $opciond->identificador="d";
+        // $opcionb =  ExamQuestionOption::find($request->quiz_question_option_b);
+        // $opcionb->option = $request->option_b;
+        // $opcionb->identificador="b";
        
-        $opciond->save();
+        // $opcionb->save();
  
-        return redirect()->route('option.index',['opt' => $request->quiz_id ])
+        // $opcionc =  ExamQuestionOption::find($request->quiz_question_option_c);
+        // $opcionc->option = $request->option_c;
+        // $opcionc->identificador="c";
+        
+        // $opcionc->save();
+ 
+        // $opciond =  ExamQuestionOption::find($request->quiz_question_option_d);
+        // $opciond->option = $request->option_d;
+        // $opciond->identificador="d";
+       
+        // $opciond->save();
+ 
+        return redirect()->route('option.index',['opt' => $request->exam_id])
          ->with('info','option update');
     }
 
 
     public function optionDestroy(Request $request,$opt){
        
-        QuizQuestion::find($request->id)->delete();
+        ExamQuestion::find($request->id)->delete();
 
         return redirect()->route('option.index',['opt'=>$opt])
         ->with('info','Option deleted');
     }
+
+    
 }

@@ -1,6 +1,9 @@
 @extends('layouts.backend.app')
 @section('content')
-
+@php
+    use App\Models\Chapter;
+    use App\Models\Quiz;
+@endphp
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -53,11 +56,10 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Title</th>
-                    <th>Excerpt</th>
-                    <th>Date</th>
-
+                    <th>Title</th> 
                     <th>Contents</th>
+                    <th>Quiz</th>
+                    <th>Date</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -66,13 +68,23 @@
                     <tr>
                         <th>{{$key+1}}</th>
                         <td>{{@$chapter->title}}</td>
-                        <td>{{@$chapter->contenido}}</td>
-
-                        <td>{{ @$chapter->created_at->format("Y-m-d")}}</td>
-                        <td>
-                          <a href="/admin/chaptercontent/{{@$chapter->id}}" class="btn btn-sm btn-warning">Content</a> 
-                          | <a href="/admin/chapterequiz/{{@$chapter->id}}" class="btn btn-sm btn-warning">Quiz</a>
+                        <td class="text-center">
+                          <a href="/admin/chaptercontent/{{@$chapter->id}}" class="btn btn-app bg-danger">
+                            <span class="badge bg-teal">{{Chapter::capitulos($chapter->id)?Chapter::capitulos($chapter->id):'0'}}</span>
+                            <i class="fas fa-inbox"></i> Contents
+                            </a>
+                          
                         </td>
+
+                        
+                        <td class="text-center">
+                          <a href="/admin/chapterequiz/{{@$chapter->id}}" class="btn btn-app bg-success">
+                            <span class="badge bg-teal">{{Quiz::preguntas($chapter->id)?Quiz::preguntas($chapter->id):'0'}}</span>
+                            <i class="fas fa-inbox"></i> 
+                          </a>
+
+                        </td>
+                        <td>{{ @$chapter->created_at->format("Y-m-d")}}</td>
                         
                         <td width="8%">
                             <a href="/admin/chapters/{{@$chapter->id}}/edit" class="btn btn-sm btn-warning legitRipple">
@@ -80,6 +92,7 @@
 
                             <a href="#" data-id="{{ @$chapter->id }}"  data-toggle="modal" data-target="#delobjeto" class="btn btn-sm btn-danger btn-object-delete"><i class="far fa-trash-alt"></i></a>
 
+                            
 
                         </td>
                     </tr>

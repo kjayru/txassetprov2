@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Quiz;
 use App\Models\QuizQuestion;
 use App\Models\QuizQuestionOption;
-
+use App\Models\Profile;
+use App\Models\Exam;
 
 class LearnController extends Controller
 {
@@ -29,6 +30,8 @@ class LearnController extends Controller
    
     public function index($slug){
         
+      
+
         $capVisitados=null;
         $contVisitados=null;
         $contenido=null;
@@ -37,6 +40,14 @@ class LearnController extends Controller
 
         $user_id = Auth::id();
         $user = User::find($user_id);
+
+        $profile = Profile::where('user_id',$user_id)->count();
+
+        if($profile==0){
+            return redirect()->route('profile.index');
+        }
+
+
         $curso = Course::where('slug',$slug)->first();
        
         $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
@@ -92,9 +103,29 @@ class LearnController extends Controller
 
         $quiz=null;
 
-        if(isset($curso->quiz)){
-        $examen = $curso->quiz;
-        }
+        // if(isset($curso->quiz)){
+        // $examen = $curso->quiz;
+        // }
+
+        $examen=null;
+
+     // dd(UserCourse::dayleft($userCourse->id));
+          //verificamos el estado del curso
+        //-- caducidad
+       if(UserCourse::dayleft($userCourse->id)<0){
+        
+        return redirect()->route('usuario.outcome',['resultado'=>2,'course'=>$userCourse->id]);
+       }
+       //-- failed
+       if($userCourse->aprobado==2){
+        
+        return redirect()->route('usuario.outcome',['resultado'=>2,'course'=>$userCourse->id]);
+       }
+       //--aproved
+       if($userCourse->aprobado==1){
+        
+        return redirect()->route('usuario.outcome',['resultado'=>1,'course'=>$userCourse->id]);
+       }
 
         return view('frontpage.learn.index',['examen'=>$examen,'quiz'=>$quiz,'content'=>$content,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id,'user_course_chapter_id'=>$user_course_chapter_id,'user_course_chapter_content_id'=>$user_course_chapter_content_id]);
     }
@@ -112,10 +143,12 @@ class LearnController extends Controller
         $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$id)->first();
         $curso = Course::find($userCourse->course_id)->first();
         $chapters = $curso->chapters;
+
         if(isset($chapters)){
-        $capitulo = Chapter::where('slug',$chapter)->first();
-        $contenido = Chaptercontent::where('chapter_id',$capitulo->id)->where('slug',$capitulo->chaptercontents[0]->slug)->first();
+            $capitulo = Chapter::where('slug',$chapter)->first();
+            $contenido = Chaptercontent::where('chapter_id',$capitulo->id)->where('slug',$capitulo->chaptercontents[0]->slug)->first();
         }
+
         return view('frontpage.learn.index',['capitulo'=>$capitulo,'contenido'=>$contenido,'curso'=>$curso,'chapters'=>$chapters,'curso_id'=>$id,'chapter'=>$chapter,'user_course_id'=>$userCourse->id]);
     }
 
@@ -158,7 +191,7 @@ class LearnController extends Controller
 
       
         
-
+        $examen = null;
        foreach($capitulos as $cap){
         $menucont=null;
         $quiz=false;
@@ -187,9 +220,10 @@ class LearnController extends Controller
 
        }
     $quiz=null;
-       
-    if(isset($curso->quiz)){
-        $examen = $curso->quiz;
+      
+   
+    if(isset($curso->examcourse)){
+        $examen = $curso->examcourse->exam;
         }
         return view('frontpage.learn.index',['examen'=>$examen,'quiz'=>$quiz,'content'=>$content,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
     
@@ -399,9 +433,9 @@ class LearnController extends Controller
        }
     $quiz=null;
        
-    $exam = Quiz::find($id);
+    $exam = Exam::find($id);
 
-   
+
       
         return view('frontpage.exam.index',['examen'=>$exam,'quiz'=>$quiz,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
     

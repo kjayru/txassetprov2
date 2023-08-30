@@ -129,6 +129,8 @@ Route::group(['prefix' => 'admin'],function(){
     Route::delete('courses/{role}',[CourseController::class,'destroy'])->name('courses.destroy');
     Route::get('courses/{role}/edit',[CourseController::class,'edit'])->name('courses.edit');
     
+    Route::get('get-exam',[CourseController::class,'getExam']);
+    Route::post('set-courses',[CourseController::class,'setCourseExam'])->name('course.exam');
 
     Route::post('chapters/store',[ChapterController::class,'store'])->name('chapters.store');
     Route::get('chapters/{course}',[ChapterController::class,'index'])->name('chapters.index');
@@ -148,10 +150,10 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('chaptercontent/{content}/edit',[ChapterContentController::class,'edit'])->name('chaptercontent.edit');
     
     Route::post('chapterequiz/store',[ChapterEvaluationController::class,'store'])->name('chapterequiz.store');
-    Route::get('chapterequiz/{exam}',[ChapterEvaluationController::class,'index'])->name('chapterequiz.index');
-    Route::get('chapterequiz/create/{id}',[ChapterEvaluationController::class,'create'])->name('chapterequiz.create');
+    Route::get('chapterequiz/{chapter}',[ChapterEvaluationController::class,'index'])->name('chapterequiz.index');
+    Route::get('chapterequiz/create/{chapter}',[ChapterEvaluationController::class,'create'])->name('chapterequiz.create');
     Route::put('chapterequiz/{quiz}',[ChapterEvaluationController::class,'update'])->name('chapterequiz.update'); 
-    Route::get('chapterequiz/{quiz}',[ChapterEvaluationController::class,'show'])->name('chapterequiz.show'); 
+    //Route::get('chapterequiz/{quiz}',[ChapterEvaluationController::class,'show'])->name('chapterequiz.show'); 
     Route::delete('chapterequiz/{quiz}',[ChapterEvaluationController::class,'destroy'])->name('chapterequiz.destroy');
     Route::get('chapterequiz/{quiz}/edit',[ChapterEvaluationController::class,'edit'])->name('chapterequiz.edit');
     
@@ -216,6 +218,8 @@ Route::post('/register-user', [Home::class,'registerUser']);
 Route::post('/async/course-content',[Course::class,'cursoContent']);
 Route::get('/cart-estado',[Home::class,'estadoCarrito']);
 
+Route::post('/verify-mycourse',[Home::class,'verifyMycourse']);
+
 
 Route::group(['prefix' => 'cart'],function(){
     Route::get('/',[Home::class,'carrito']);
@@ -257,12 +261,14 @@ Route::group(['prefix'=>'user'],function(){
     Route::post('/set-chapter',[UsuarioController::class,'setChapter']);
    Route::get('/edit',[UsuarioController::class,'editUser'])->name('usuario.profile');
    Route::post('/saveprofile',[UsuarioController::class,'saveProfile']);
-   route::get('/outcome/{resultado}',[UsuarioController::class,'outcome']);
+   route::get('/outcome/{resultado}/{course}',[UsuarioController::class,'outcome'])->name('usuario.outcome');
 
-   Route::get('/user-profile',[UsuarioController::class,'firstProfile']);
+   Route::get('/user-profile',[UsuarioController::class,'firstProfile'])->name('profile.index');
    Route::post('/user-profile-save',[UsuarioController::class,'userSaveProfile'])->name('profile.store');
 
    route::get('/exist-profile',[UsuarioController::class,'userProfile']);
+
+   Route::post('/course-again',[UsuarioController::class,'courseAgain'])->name('course.again');
 });
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
 ->name('ckfinder_connector');

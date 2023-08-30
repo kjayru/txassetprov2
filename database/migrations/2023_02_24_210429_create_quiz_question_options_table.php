@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Models\QuizQuestion;
 class CreateQuizQuestionOptionsTable extends Migration
 {
     /**
@@ -15,9 +15,12 @@ class CreateQuizQuestionOptionsTable extends Migration
     {
         Schema::create('quiz_question_options', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\QuizQuestion::class)->constrained();
-            $table->string('option');
+
+            $table->string("option");
+            $table->integer('resultado')->nullable()->default(0);
             $table->string('identificador');
+            $table->foreignIdFor(QuizQuestion::class)->constrained()->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

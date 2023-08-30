@@ -6,7 +6,7 @@
     </div>
 
 
-    <div class="form-group">
+    {{-- <div class="form-group">
         <label for="">QUIZ</label>
         <select name="quiz_id" id="quiz_id" class="custom-select">
             <option value="">Seleccione</option>
@@ -14,7 +14,7 @@
             <option value="{{$quiz->id}}">{{$quiz->title}}</option> 
             @endforeach
         </select>
-    </div>
+    </div> --}}
 
     <div class="form-check">
         <input type="checkbox" name="video"  value="1" class="form-check-input" id="video" {{ @$chapter->video==1?"checked":""}}>

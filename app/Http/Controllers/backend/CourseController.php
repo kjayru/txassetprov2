@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Str;
 use App\Models\Course;
+use App\Models\Exam;
+use App\Models\ExamCourse;
 
 class CourseController extends Controller
 {
@@ -14,7 +16,7 @@ class CourseController extends Controller
         $this->middleware('auth');
    }
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.bñb
      *
      * @return \Illuminate\Http\Response
      */
@@ -48,9 +50,21 @@ class CourseController extends Controller
         $course = new Course();
         $course->titulo = $request->title;
         $course->slug = Str::slug($request->title, '-');
-        $course->precio = $request->price;
+
+        if($request->hasFile('banner')) {
+            $banner = $request->file('banner')->store('banner');
+            $course->banner = $banner;
+        }
+        if($request->hasFile('video')) {
+            $video = $request->file('video')->store('video');
+            $course->video = $video;
+        }
+
+       
         $course->resumen = $request->excerpt;
         $course->contenido = $request->description;
+        $course->precio = $request->price;
+        
         $course->disponible = $request->available;
         $course->capitulos = $request->chapters;
         $course->audio = $request->audio;
@@ -59,10 +73,7 @@ class CourseController extends Controller
         $course->responsable = $request->responsable;
         $course->tiempovalido = $request->access;
 
-        if($request->hasFile('banner')) {
-            $banner = $request->file('banner')->store('banner');
-            $course->banner = $banner;
-        }
+       
 
         $course->save();
 
@@ -134,5 +145,22 @@ class CourseController extends Controller
 
         return redirect()->route('courses.index')
         ->with('info','Course deleted');
+    }
+
+    public function getExam(){
+        $exams = Exam::orderBy('id','desc')->get();
+
+        return response()->json($exams);
+    }
+
+    public function setCourseExam(Request $request){
+       
+        $ec = new ExamCourse();
+        $ec->course_id = $request->course_id;
+        $ec->exam_id = $request->exam;
+        $ec->save();
+
+        return redirect()->route('courses.index')
+        ->with('info','Exam Asign');
     }
 }

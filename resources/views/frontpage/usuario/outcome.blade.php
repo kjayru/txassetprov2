@@ -10,8 +10,8 @@
 			<div class="col-md-4">
 				<div class="breadcrum">
 					<ul>
-						<li><a href="/" class="breadcrum__link">Home</a></li>
-						<li><span>></span><a href="#" class="breadcrum__link ">My courses</a></li>
+						<li><a href="/" class="breadcrum__link chevron"><img src="/images/Emblema-blanco.png" alt=""></a></li>
+						<li><a href="#" class="breadcrum__link ">My courses</a></li>
 					</ul>
 				</div>
 
@@ -54,18 +54,37 @@
 								</div>
 							</div>
 							<div class="col-md-8">
+								
 								<div class="todocursos__card__body__item__titulo">
-									OC Pepper
+									{{$user_course->course->titulo}}
 								</div>
 								<div class="todocursos__card__body__item__subtitulo">
-									A course with
+									{{$user_course->course->subtitulo}}
 								</div>
 								<div class="todocursos__card__body__item__timeline">
-									<div class="line"></div>
-									<span class="status">3 complemete chapter</span>
+									<div class="line">
+										<div class="linea_avance" style="width:100%"></div>
+									</div>
+									<span class="status">Course completed</span>
 								</div>
 								<div class="todocursos__card__body__item__estado todocursos__card__body__item__only">
-									<div class="item__mensaje__aprobado aprobado">approved</div>
+									@switch($resultado)
+										@case("1")
+										<div class="item__mensaje__aprobado aprobado">Approved</div>
+											@break
+										@case("2")
+										<div class="item__mensaje__aprobado desaprobado">Failed</div>
+											@break
+											@case("3")
+											<div class="item__mensaje__aprobado desaprobado">Failed</div>
+												@break
+												@case("4")
+												<div class="item__mensaje__aprobado desaprobado">Failed</div>
+													@break
+										
+											
+									@endswitch
+									
 								</div>
 
 							</div>
@@ -96,7 +115,7 @@
                         @if($resultado=="2")
                         
                             <div class="texto">
-                                <p><span>Unfortunately you pass are failed due to
+                                <p><span>Unfortunately you pass are failed due<br> to
                                     the test result</span>
                                 </p>
                                 <p>You have 15 days from the result to retake the course.<br>
@@ -106,11 +125,16 @@
                             <div class="foot row">
                                 <div class="col-md-6">
 									<p class="respuesta">
-									You have 4 days left to take the course again
+									You have {{@$dias}} days left to take the course again
 									</p>
 								</div>
                                 <div class="col-md-6">
                                     <a href="#" class="btn__link">Start the course again</a>
+									<form action="{{route('course.again')}}" action="POST">
+										@csrf
+										<input type="hidden" name="user_id" value="">
+										<input type="hidden" name="course_id" value="">
+									</form>
                                 </div>
                             </div>
 
@@ -134,7 +158,29 @@
 									</p>
 								</div>
                                 <div class="col-md-6">
-                                    <a href="#" class="btn__link">Buy the course again</a>
+                                    <a href="/courses/all" class="btn__link">Buy the course again</a>
+                                </div>
+                            </div>
+
+                        @endif
+
+						@if($resultado=="4")
+                        
+                            <div class="texto">
+                                <p><span>Unfortunately you pass are failed due to
+                                    the test result</span>
+                                </p>
+                                <p>More than 15 days have passed, you must buy the course again and pass the evaluation.
+                                </p>
+                            </div>
+                            <div class="foot row">
+                                <div class="col-md-6">
+									<p class="respuesta">
+									You exceeded the time limit to take the course again
+									</p>
+								</div>
+                                <div class="col-md-6">
+                                    <a href="/courses/all" class="btn__link">Buy the course again</a>
                                 </div>
                             </div>
 

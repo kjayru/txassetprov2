@@ -1403,20 +1403,25 @@ footer {
             padding-top:1rem;
             padding-bottom:1rem;
             padding-right:1rem;
-            padding-left:2rem;
+            padding-left:3rem;
             text-decoration: none;
             font-size: 1.25rem;
             display: inline-block;
             margin-top: 3rem;
+            position: relative;
             &:hover{
               
+                background: #e01f26;
                 color:white;
+                box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
             }
-            &:after{
-                content:"\f07a";
+           
+            &:before{
+                content: "\f07a";
                 font-family: "FontAwesome";
+                left: 15px;
                 position: absolute;
-                left:-30px;
+                top: 17px;
             }
         }
     }
@@ -1713,10 +1718,15 @@ footer {
 
     &__temas{
         margin-top:5rem;
+        padding-left: 2rem;
         &__titulo{
-            font-size:1.125rem;
+            font-size:0.938rem;
             font-weight: bold;
             color:$azultexto;
+            background-color: rgba(224, 31, 38, 0.24);
+            text-transform: uppercase;
+            padding: 6px 4px 6px 4px;
+            text-align: center;
         } 
         &__lista{
             list-style: none;
@@ -1764,6 +1774,12 @@ footer {
                             left: -22px;
                         }
                     }
+                    .active{
+                        a{
+                            color:$rojo !important;
+                        }
+                    }
+                    
                 }
                 .active{
                     height: auto;
@@ -2025,10 +2041,22 @@ footer {
                     .item__link{
                         color:$azultexto;
                         font-family: $open-sans;
-                        font-size:28px;
+                        font-size:18px;
                         font-weight: bold;
                         text-decoration:none;
                         display: inline-block;
+                        position: relative;
+                        &:after{
+                            content:"\f178";
+                            font-family: "FontAwesome";
+                            position: absolute;
+                            right: -24px;
+                            top: 2px;
+                            font-size: 18px;
+                        }
+                        &:hover{
+                           color: #298CFE;
+                        }
                     }
                     .item__mensaje__time{
                         align-items: self-end;
@@ -2067,6 +2095,14 @@ footer {
                     text-decoration: none;
                     font-family: $open-sans;
                     font-weight: bold;
+                    position: relative;
+                    &:after{
+                        content:"\f178";
+                        font-family: "FontAwesome";
+                        position: absolute;
+                        right: -22px;
+                        top: 0px;
+                    }
                 }
                 .no-border{
                     border:0;
@@ -2387,13 +2423,13 @@ footer {
         font-family: $open-sans;
         font-weight: bold;
         color:#298cff;
-        font-size:28px;
+        font-size:18px;
     }
     &__desaprobado{
         color:#e01f26;
         font-family: $open-sans;
         font-weight: bold;
-        font-size:28px;
+        font-size:18px;
     }
 }
 .fondo__rojo{
@@ -2457,6 +2493,54 @@ footer {
         span{
             display:block;
         }
+    }
+    b {
+        position: absolute;
+        display: block;
+        background: #010b40;
+        padding: 2px;
+        font-size: 10px;
+        border-radius: 50%;
+        width: 20px;
+        top: -6px;
+        left: 11px;
+    }
+}
+.btn-rojo{
+    background: #e01f26;
+    color: #fff;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    display: inline-block;
+    margin-top: 2rem;
+    border-radius: 0;
+    padding-left: 1rem;
+    &:hover{
+        background: #e01f26;
+       
+        color:white;
+        box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
+       
+    }
+}
+#existeModal{
+    .texto__error{
+        font-weight: bold;
+    }
+}
+.btn__modal {
+    color: #fff;
+    background-color: #e01f26;
+    text-transform: uppercase;
+    border-radius: 0;
+    &:hover{
+        background: #e01f26;
+        color:white;
+        box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
     }
 }
 @media(min-width: 980px) and (max-width: 1300px){

@@ -53,10 +53,11 @@ class ChapterEvaluationController extends Controller
     public function store(Request $request)
     {
       
-
+       
         $quest = new ChapterQuiz();
         $quest->chapter_id = $request->parent_id;
         $quest->question = $request->question;
+       
         $quest->save();
 
         foreach($request->option as $k => $op){
@@ -70,7 +71,7 @@ class ChapterEvaluationController extends Controller
 
 
        
-        return redirect()->route('chapterequiz.index',['quiz'=>$request->parent_id])
+        return redirect()->route('chapterequiz.index',['chapter'=>$request->parent_id])
         ->with('info','Question create');
     }
 
@@ -120,7 +121,7 @@ class ChapterEvaluationController extends Controller
             $opcion->save();
         }
 
-        return redirect()->route('chapterequiz.index',['exam'=>$request->parent_id])
+        return redirect()->route('chapterequiz.index',['chapter'=>$request->parent_id])
         ->with('info','Question updated');
 
     }

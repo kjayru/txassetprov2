@@ -10,36 +10,13 @@
            <div class="breadcrum">
                <ul>
                    <li><a href="/" class="breadcrum__link chevron"><img src="/images/Emblema-blanco.png" alt=""></a></li>
-                   <li><a href="/courses/all" class="breadcrum__link chevron"> Cursos</a></li>
+                   <li><a href="/courses/all" class="breadcrum__link chevron"> Courses</a></li>
                    <li><a href="#" class="breadcrum__link "> {{$curso->titulo}}</a></li>
                </ul>
            </div>
        </div>
 
-       @guest
-
-            <div class="col-md-1 text-right">
-                <div class="cart">
-                    <ul>
-                        <li><a href="/cart" class="cart__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-                        </ul>
-                
-                </div>
-            </div>
-       @else
-            <div class="col-md-1 text-right">
-                <div class="cart">
-                    <ul>
-                        <li><a href="/user" class="cart__link"><i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
-                        <li><a href="/cart" class="cart__link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-                        <li><a href="#" class="cart__link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="/images/logout.svg" style="with:20px;"></a></li>
-                        </ul>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                </div>
-            </div>
-       @endguest
+      @include('layouts.backend.partials.menucurso')
      </div>
    </div>
   
@@ -63,10 +40,39 @@
                                                   <a href="#" class="detalle__video__header__link detalle__header__home__course" data-content="secciones" data-id="{{$curso->id}}">Content</a>
                                         </div>
                                         <div class="detalle__video__player">
-                                                  <img src="/storage/{{$curso->banner}}" class="img-fluid">
+                                          <div class="encurso__video">
+                                       
+                                             <div class="encurso__video__player">
+                                              
+                                                 
+                   
+                                                 <video
+                                                    id="my-player"
+                                                    class="video-js"
+                                                    controls
+                                                    preload="auto"
+                                                    
+                                                    poster="MY_VIDEO_POSTER.jpg"
+                                                    data-setup="{}"
+                                                 >
+                                                    <source src="/storage/{{@$curso->video}}" type="video/mp4" />
+                                                    
+                                                    <p class="vjs-no-js">
+                                                    To view this video please enable JavaScript, and consider upgrading to a
+                                                    web browser that
+                                                    <a href="https://videojs.com/html5-video-support/" target="_blank"
+                                                       >supports HTML5 video</a
+                                                    >
+                                                    </p>
+                                                 </video>
+                   
+                                              </div>
+                                          </div>
                                         </div>
 
                                      </div>
+
+                                 
 
                                      <div class="detalle__informacion interlineado">
                                         <strong>Course Information</strong>

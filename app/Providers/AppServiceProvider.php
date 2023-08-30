@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Session;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +23,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.backend.partials.menucurso', function($view) {
+
+            $cantidad = 0;
+            if(Session::get('cart')){
+                $carrito = Session::get('cart');
+                $cantidad =  $carrito->cantidad ;
+            }
+        
+            $view->with(['contador'=>$cantidad]);
+
+        });
     }
 }

@@ -46,15 +46,16 @@
                 </div>
             @endif
 
-            <form class="form-horizontal" action="{{ route('option.update',['opt'=>$quiz_id,'quest'=>$question->id]) }}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{ route('option.update',['opt'=>$exam_id,'quest'=>$question->id]) }}" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
                     @csrf
-                        <input type="hidden" name="quiz_id" value="{{@$quiz_id}}">
-                        <input type="hidden" name="_method" value="PUT">
+                    @method('PUT')
+                        <input type="hidden" name="exam_id" value="{{@$exam_id}}">
+                       
                         @include('backend.exam.options.form.index')
                 </div>
                 <div class="card-footer">
-                        <a href="{{ route('option.index',['opt'=>$quiz_id]) }}" class="btn btn-danger">Cancel</a>
+                        <a href="{{ route('option.index',['opt'=>$exam_id]) }}" class="btn btn-danger">Cancel</a>
                     <button type="submit" class="btn btn-info pull-right">Save</button>
                 </div>
             </form>

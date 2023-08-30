@@ -1,6 +1,8 @@
 @extends('layouts.backend.app')
 @section('content')
-
+@php
+    use Illuminate\Support\Str;
+@endphp
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -56,8 +58,10 @@
                     <th></th>
                     <th>Title</th>
                     <th>Excerpt</th>
-                    <th>Date</th>
+                   
                     <th>Video</th>
+                    <th>Audio</th>
+                    <th>Date</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -66,9 +70,11 @@
                     <tr>
                         <th>{{$key+1}}</th>
                         <td>{{@$content->titulo}}</td>
-                        <td>{{@$content->contenido}}</td>
-                        <td>{{ @$content->created_at}}</td>
+                        <td>{!!Str::limit($content->contenido,60)!!}</td>
+                       
                         <td>{{ @$content->video }} </td>
+                        <td>{{ @$content->audio }} </td>
+                        <td>{{ @$content->created_at}}</td>
                         <td width="8%">
                             <a href="/admin/chaptercontent/{{@$content->id}}/edit" class="btn btn-sm btn-warning legitRipple">
                                 <i class="fas fa-pencil-alt"></i></a>
@@ -77,6 +83,8 @@
 
 
                         </td>
+
+                       
                     </tr>
                     @endforeach
 

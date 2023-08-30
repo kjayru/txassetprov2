@@ -80,3 +80,27 @@ $(function() {
 
     });
   })
+
+
+$(".btn__getcourses").on('click',function(e){
+   
+    let id= $(this).data('id');
+    let exam_id = $(this).data('examid');
+
+    e.preventDefault();
+    $.ajax({
+      url:'/admin/get-exam',
+      type:'GET',
+      dataType:'json',
+      success:function(response){
+        htm='';
+        htm+=`<option value=""> Selected</option>`;
+        $.each(response,function(i,e){
+            htm+=`<option value="${e.id}" ${exam_id==e.id?'selected':''}> ${e.title}</option>`;
+        })
+        
+        $("#course-selector").html(htm);
+        $("#course_id").val(id);
+      }
+    });
+});

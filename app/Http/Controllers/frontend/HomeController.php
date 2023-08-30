@@ -28,6 +28,7 @@ use App\Models\Cart;
 use App\Models\Profile;
 use App\Models\UserSign;
 use App\Models\User;
+use App\Models\UserCourse;
 use Session;
 use Carbon\Carbon;
 //use PDF;
@@ -877,15 +878,17 @@ class HomeController extends Controller
 
     public function carrito(){
 
-       
-
         $carrito=null;
         if (Session::get('cart')) {
             $carrito = Session::get('cart');
-         
+           
+        }
+        $user_id = null;
+        if(Auth::id()){
+            $user_id = Auth::id();
         }
 
-        return view('frontpage.cart.index',['cart'=>$carrito]);
+        return view('frontpage.cart.index',['cart'=>$carrito,'user_id'=>$user_id]);
     }
 
     public function process(Request $request){
@@ -895,7 +898,10 @@ class HomeController extends Controller
         $oldcart = Session::has('cart') ? Session::get('cart') : null;
         
         $cart = new Cart($oldcart);
+
+
         $cart->add($curso,$curso->precio,1,$curso->id);
+
         $request->session()->put('cart', $cart);
         return response()->json(['rpta'=>'ok']);
     }
@@ -961,6 +967,19 @@ class HomeController extends Controller
         }
 
         return response()->json($mensaje);
+    }
+
+    public function verifyMycourse(Request $request){
+       
+        $exist = UserCourse::where('user_id',$request->user_id)->where('course_id',$request->course_id)->count();
+
+        $verifica=false;
+        if($exist>0){
+            $verifica =  true;
+        }
+        
+
+        return response()->json($verifica);
     }
 
     

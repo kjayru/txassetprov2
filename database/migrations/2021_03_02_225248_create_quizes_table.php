@@ -19,10 +19,6 @@ class CreateQuizesTable extends Migration
             $table->string("title");
             $table->integer("duration");
 
-            $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')->references('id')->on('courses');
-
-
             $table->timestamps();
         });
     }

@@ -44,6 +44,30 @@
     </div>
 @endif
 
+@if(!isset($course->video))
+
+
+    <div class="form-group @if($errors->first('video')) has-error @endif">
+        <label for="video" class="col-sm-2 control-label">Video</label>
+            <input type=file name="video"  id="video" class="form-control">
+            <span class="help-block">{{ $errors->first('video') }}</span>
+    </div>
+@else
+
+    <div class="form-group">
+        <label for="video" class="col-sm-2 control-label">Video</label>
+            <div class="thumbnail">
+                <img src="/storage/{{ @$course->video }}"  class="img-thumbnail img-responsive" width="100">
+
+                <a href="javascript:void(0)" class="btn-mod btn btn-xs btn-primary">Modify</a>
+            </div>
+            <input type=file name="video"  id="video" class=" form-control" style="display: none">
+            <span class="help-block">{{ $errors->first('video') }}</span>
+    </div>
+
+@endif
+
+
     <div class="form-group">
         <label for="available">Available</label>
         <input type="date" name="available" id="available" value="{{@$course->disponible}}" placeholder="Available" class="form-control">

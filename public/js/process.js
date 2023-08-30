@@ -38,122 +38,83 @@ $(".cart__body__grilla__delete").on('click',function(e){
 
 $(".cart__body__foot__link").click(function(e){
   e.preventDefault();
-
   let token = $("meta[name=csrf-token]").attr("content");
   const sendata = ({'_token':token,'_method':'POST'});
 //verificar si el carrito es vacio 
-
-
-
+  let course_id = $(this).data('id');
+  let user_id = $(this).data('user');
 //verifica inicio de sesion
   $.ajax({
     url:'/cart/checksesion',
     type:'GET',
     dataType:'json',
-    success:function(response){
-     
-      
+    success:function(response){ 
             if(response.estado==true){
-      
-       
-
               $.ajax({
                 url:'/cart-estado',
                 type:'GET',
                 dataType:'json',
                 success:function(response){
-                  
-                  
-                  if(response==false){
-
-                    
+          
+                  if(response==false){            
                     $(".texto__error").html("You have no courses in your cart")
                     $("#errorModal").modal('show');
 
                     return false;
-                 
-
+  
                   }else{
-
-                     //verificar firma
+                    //Verificar si adquiri el curso
+                  let userdata = {'user_id':user_id,'course_id':course_id,'_token':token,'_method':'POST'};
+                  $.ajax({
+                    url:'/verify-mycourse',
+                    type:'POST',
+                    dataType:'json',
+                    data:userdata,
+                    success:function(dresponse){
+                      if(dresponse==true){
+                    $("#existeModal").modal('show');
+                      }else{
+                        //verificar firma
                     $.ajax({
                       url:'/cart/checksign',
                       type:'GET',
                       dataType:'json',
                       success:function(response){
-          
-                     
-          
                         if(response.estado==true){
-                         
-                               //return stripe.redirectToCheckout({ sessionId: response.id });
-
-                               $.ajax({
+                              $.ajax({
                                 url:'/cart/process-signed',
                                 type:'POST',
                                 dataType:'json',
                                 data:sendata,
-                                success:function(response){
-                                 
-                                   
-                                    
-                
+                                success:function(response){             
                                     return stripe.redirectToCheckout({ sessionId: response.id });
-                
-                                  
                                 }
                               })
 
                             }else{
                               
                               window.location.href="/cart/sign";
-
-                              // $.ajax({
-                              //   url:'/cart/process-signed',
-                              //   type:'POST',
-                              //   dataType:'json',
-                              //   data:sendata,
-                              //   success:function(response){
-                              //     if(response.firmado==false){
-                              //       window.location.href="/cart/sign";
-                                    
-                              //     }else{
-                                   
-                              //       console.log(response);
-                
-                              //       return stripe.redirectToCheckout({ sessionId: response.id });
-                
-                              //     }
-                              //   }
-                              // })
-          
-          
                             }
                           }
                         })
-          
+
+                      }
+                    }
+                  })
 
                   }
                 }
               });
-         
 
-              
-              
-
-            }else{
-              
+            }else{          
             $("#loginModal").modal("show");
-              //alert("login1");
-              //verificación de firma 
-
-             
             }
           }
-        });
-        
-
+        });     
 });
+
+
+
 
 $(".btn__start").on('click',function(e){
   e.preventDefault();
@@ -208,43 +169,43 @@ $("#password__login").focus(function() {
 try {
   
 
-var player = videojs('my-player');
-var options = {};
-var player = videojs('my-player', options, function onPlayerReady() {
-  videojs.log('Your player is ready!');
-  // In this context, `this` is the player that was created by Video.js.
-  this.play();
-  // How about an event listener?
-  this.on('ended', function() {
-    videojs.log('Awww...over so soon?!');
-    //registro de capitulo completado
-    const token = $('meta[name="csrf-token"]').attr('content');
-    let usercourseid = $("input[name='user_course_id']").val();
-    let usercoursechapterid = $("input[name='user_course_chapter_id']").val();
-    let usercoursechaptercontentid= $("input[name='user_course_chapter_content_id']").val();
-    
-    //alert(usercourseid+' '+usercoursechapterid+' '+usercoursechaptercontentid);
+  var player = videojs('my-player');
+  var options = {};
+  var player = videojs('my-player', options, function onPlayerReady() {
+    videojs.log('Your player is ready!');
+    // In this context, `this` is the player that was created by Video.js.
+    this.play();
+    // How about an event listener?
+    this.on('ended', function() {
+      videojs.log('Awww...over so soon?!');
+      //registro de capitulo completado
+      const token = $('meta[name="csrf-token"]').attr('content');
+      let usercourseid = $("input[name='user_course_id']").val();
+      let usercoursechapterid = $("input[name='user_course_chapter_id']").val();
+      let usercoursechaptercontentid= $("input[name='user_course_chapter_content_id']").val();
+      
+      //alert(usercourseid+' '+usercoursechapterid+' '+usercoursechaptercontentid);
 
-    let sendata = {
-      '_token':token,
-      '_method':'post',
-      'usercourseid':usercourseid,
-      'usercoursechapterid':usercoursechapterid,
-      'usercoursechaptercontentid':usercoursechaptercontentid
-    };
+      let sendata = {
+        '_token':token,
+        '_method':'post',
+        'usercourseid':usercourseid,
+        'usercoursechapterid':usercoursechapterid,
+        'usercoursechaptercontentid':usercoursechaptercontentid
+      };
 
-    $.ajax({
-      url:'/user/set-chapter',
-      type:'POST',
-      dataType:'json',
-      data:sendata,
-      success:function(response){
-        console.log(response);
-      }
-    })
+      $.ajax({
+        url:'/user/set-chapter',
+        type:'POST',
+        dataType:'json',
+        data:sendata,
+        success:function(response){
+          console.log(response);
+        }
+      })
 
+    });
   });
-});
 
 } catch (error) {
   console.log("no inicializado");
@@ -621,18 +582,32 @@ $(".btn__start").on('click',function(e){
   e.preventDefault();
   let path = $(this).attr('href');
 
-  $.ajax({
-    url:'/user/exist-profile',
-    type:'GET',
-    dataType:'json',
-    success:function(response){
-      if(response===false){
-        window.location.href='/user/user-profile';
-      }else{
-        window.location.href = path;
+    $.ajax({
+      url:'/user/exist-profile',
+      type:'GET',
+      dataType:'json',
+      success:function(response){
+        if(response===false){
+          window.location.href='/user/user-profile';
+        }else{
+          window.location.href = path;
+        }
       }
-    }
-  })
+    })
+  
 });
 
 var validaton =  $("#frm-profile").validate();
+
+$(".encurso__temas__lista__item").on('click',function(e){
+  //e.preventDefault();
+  $(".encurso__temas__lista__item__sublista").removeClass("active");
+  $(this).children("ul").addClass("active");
+});
+
+$(".access__login").on('click',function(e){
+  e.preventDefault();
+  $("#loginModal").modal('show');
+});
+
+

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Chapter;
+use App\Models\ChapterQuiz;
 use App\Models\Quiz;
 
 class ChapterController extends Controller
@@ -49,18 +50,26 @@ class ChapterController extends Controller
     public function store(Request $request)
     {
 
-      
         $chapter = new Chapter();
         $chapter->title = $request->title;
         $chapter->slug = Str::slug($request->title, '-');
        // $chapter->contenido = $request->description;
         $chapter->course_id = $request->parent_id;
-        $chapter->quiz_id = $request->quiz_id;
+       // $chapter->quiz_id = $request->quiz_id;
 
         $chapter->video = $request->video;
         $chapter->audio = $request->audio;
         $chapter->reading = $request->reading;
         $chapter->save();
+
+        if(isset($request->quiz_id)){
+        $chapquiz = new ChapterQuiz();
+        $chapquiz->chapter_id = $chapter->id;
+        $chapquiz->quiz_id = $request->quiz_id;
+
+        $chapquiz->save();
+        }
+
 
         return redirect('/admin/chapters/'.$request->parent_id)
         ->with('info','Industry satisfactoriamente');

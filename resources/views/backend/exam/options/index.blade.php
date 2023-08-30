@@ -56,7 +56,7 @@
           
                           <div class="row">
                               <div class="col-md-3">
-                                  <a href="{{route('option.create',['opt'=>$quiz_id])}}" class="btn btn-block btn-outline-primary btn-flat mb-5">Create Question</a>
+                                  <a href="{{route('option.create',['opt'=>$exam_id])}}" class="btn btn-block btn-outline-primary btn-flat mb-5">Create Question</a>
                               </div>
                           </div>
           
@@ -79,7 +79,7 @@
                                     <td>{{$preg->answer}}</td>
                                     <td>{{$preg->created_at}}</td>
                                     <td>
-                                        <a href="/admin/exams/options/{{$quiz_id}}/{{$preg->id}}/edit" class="btn btn-sm btn-warning legitRipple"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="/admin/exams/options/{{$exam_id}}/{{$preg->id}}/edit" class="btn btn-sm btn-warning legitRipple"><i class="fas fa-pencil-alt"></i></a>
                                         <a href="#" data-id="{{$preg->id}}" data-toggle="modal" data-target="#delobjeto" class="btn btn-sm btn-danger btn-object-delete"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                   </tr>
@@ -121,7 +121,7 @@
     <div class="modal-dialog">
         <div class="modal-content bg-danger">
 
-            <form class="delete-objeto" action="/admin/exams/options/{{$quiz_id}}/delete" method="POST">
+            <form class="delete-objeto" action="/admin/exams/options/{{$exam_id}}/delete" method="POST">
                 @csrf
 
                 <div class="modal-header">

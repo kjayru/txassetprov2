@@ -118,8 +118,15 @@ class UsuarioController extends Controller
      }
     
 
-     public function outcome($resultado){
-        return view('frontpage.usuario.outcome',['resultado'=>$resultado]);
+     public function outcome($resultado,$id){
+
+      $user_course = UserCourse::find($id);
+      
+      $capitulos = count($user_course->UserCourseChapters);
+      $dias = UserCourse::dayleft($id);
+
+    
+        return view('frontpage.usuario.outcome',['resultado'=>$resultado,'user_course'=>$user_course,'capitulos'=>$capitulos,'dias'=>$dias]);
      }
 
      public function userProfile(){
@@ -190,6 +197,33 @@ class UsuarioController extends Controller
        //Mail::to(env('MAIL_CONTACT'))->send(new DatosUser($data));
 
        return redirect()->route('user.index')->with('info','User profile Updated, thanks');
+
+     }
+
+
+     public function courseAgain(Request $request){
+         $registro = UserCourse::where('user_id',$request->user_id)->where('course_id',$course_id)->first();
+
+         $user_course_id = $registro->id;
+         $registro->intentos = $registro->intentos + 1;
+         $registro->save();
+
+         //eliminamos registros
+
+         $ucc = UserCourseChapter::where('user_course_id',$user_course_id)->get();
+
+         foreach($ucc as $col){
+            UserCourseChapterContent::where('user_course_chapter_id',$col->id)->delete();
+         }
+
+         UserCourseChapter::where('user_course_id',$user_course_id)->delete();
+
+         $capitulos = Course::where('id',$registro->course_id)->get();
+
+         foreach($capitulos as $cap){
+            UserChapterQuiz::where('user_id',$request->user_id)->where('chapter_id',$cap->id)->delete();
+         }
+
 
      }
 }

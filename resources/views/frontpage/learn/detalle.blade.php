@@ -10,7 +10,7 @@
            <div class="breadcrum">
                <ul>
                    <li><a href="/" class="breadcrum__link chevron"><img src="/images/Emblema-blanco.png" alt=""></a></li>
-                   <li><a href="/courses/all" class="breadcrum__link chevron"> Cursos</a></li>
+                   <li><a href="/courses/all" class="breadcrum__link chevron"> Courses</a></li>
                    <li><a href="#" class="breadcrum__link "> {{$curso->titulo}}</a></li>
                </ul>
            </div>

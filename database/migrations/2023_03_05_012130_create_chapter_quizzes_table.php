@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Models\Chapter;
+use App\Models\Quiz;
 class CreateChapterQuizzesTable extends Migration
 {
     /**
@@ -15,8 +16,12 @@ class CreateChapterQuizzesTable extends Migration
     {
         Schema::create('chapter_quizzes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Chapter::class)->constrained();
-            $table->text('question');
+          
+            $table->unsignedBigInteger('chapter_id');
+            $table->foreign('chapter_id','chapter_id_pk_foreign')->references('id')->on('chapters');
+
+           
+            $table->string('question');
             $table->timestamps();
         });
     }
