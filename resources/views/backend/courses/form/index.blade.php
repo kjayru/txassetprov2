@@ -5,11 +5,11 @@
         <span class="help-block">{{ $errors->first('title') }}</span>
     </div>
 
-    <div class="form-group @if($errors->first('subtitle')) has-error @endif">
+    {{-- <div class="form-group @if($errors->first('subtitle')) has-error @endif">
         <label for="subtitle" class="control-label">Subtitle</label>
         <input type="text"  name="subtitle" class="form-control" value="{{ @$course->titulo}}" id="subtitle" placeholder="Subtitle">
         <span class="help-block">{{ $errors->first('subtitle') }}</span>
-    </div>
+    </div> --}}
 
 
     <div class="form-group @if($errors->first('responsable')) has-error @endif">
@@ -57,8 +57,12 @@
     <div class="form-group">
         <label for="video" class="col-sm-2 control-label">Video</label>
             <div class="thumbnail">
-                <img src="/storage/{{ @$course->video }}"  class="img-thumbnail img-responsive" width="100">
-
+               
+                <video controls="false" style="width:100px;">
+                    <source src="/storage/{{ @$course->video}}" type="video/mp4">
+                   
+                    Your browser does not support the video tag.
+                  </video>
                 <a href="javascript:void(0)" class="btn-mod btn btn-xs btn-primary">Modify</a>
             </div>
             <input type=file name="video"  id="video" class=" form-control" style="display: none">
@@ -93,7 +97,7 @@
     </div>
 
     <div class="form-group">
-        <label for="nivel">Nivel</label>
+        <label for="nivel">Level</label>
         <select name="nivel" id="nivel" class="custom-select">
             <option value="">Selected</option>
             <option value="Beginner" {{@$course->nivel=="Beginner"?'selected':''}}>Beginner</option>
