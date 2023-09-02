@@ -101,6 +101,7 @@
         <select name="nivel" id="nivel" class="custom-select">
             <option value="">Selected</option>
             <option value="Beginner" {{@$course->nivel=="Beginner"?'selected':''}}>Beginner</option>
+            <option value="Intermediate" {{@$course->nivel=="Intermediate"?'selected':''}}>Intermediate</option>
             <option value="Advanced" {{@$course->nivel=="Advanced"?'selected':''}}>Advanced</option>
         </select>
     </div>

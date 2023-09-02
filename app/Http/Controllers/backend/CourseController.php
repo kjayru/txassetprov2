@@ -124,6 +124,10 @@ class CourseController extends Controller
             $banner = $request->file('banner')->store('banner');
             $course->banner = $banner;
         }
+        if($request->hasFile('video')) {
+            $video = $request->file('video')->store('video');
+            $course->video = $video;
+        }
         
         $course->save();
 

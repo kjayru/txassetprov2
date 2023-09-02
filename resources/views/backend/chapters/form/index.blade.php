@@ -32,3 +32,9 @@
       </div>
 
 
+      <div class="form-check">
+        <input type="checkbox" name="quiz" value="1"  class="form-check-input" id="quiz"  {{ @$chapter->quiz==1?"checked":""}}>
+        <label class="form-check-label" for="quiz">Quiz</label>
+      </div>
+
+

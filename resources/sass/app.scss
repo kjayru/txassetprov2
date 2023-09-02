@@ -916,6 +916,11 @@ footer {
                 padding-bottom: 1rem;
                 display: block;
             }
+            .interlineado{
+                div{
+                    padding-left:4rem;
+                }
+            }
         }
         span{
             background:$gristexto;
@@ -924,6 +929,7 @@ footer {
             border-radius: 50%;
             color: white;
             margin-right:1rem;
+            margin-left: -4rem;
         }
     }
     &__costo{
@@ -977,11 +983,14 @@ footer {
                 .date{
                     &:before{
                         font-size:1.2rem;
-                        content: "\f073";
+                        content: "";
                         font-family: "FontAwesome";
                         position: absolute;
-                        left: -30px;
-                        top:14px;
+                        left: -36px;
+                        top: 12px;
+                        width: 27px;
+                        height: 31px;
+                        background:url(/images/curso-calendario.svg) no-repeat 0px 0px;
                     }
                 }
                 .capitulo{
