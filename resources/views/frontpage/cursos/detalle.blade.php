@@ -94,7 +94,7 @@
                                               
                                                   @foreach($curso->chapters as $k => $chapter)
                                                   <div class="row justify-content-between interlineado">
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-7">
                                                                       <span>{{$k+1}}</span>  {{$chapter->title}}
                                                             </div>
                                                             <div class="col-md-4">
