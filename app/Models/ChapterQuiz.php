@@ -36,12 +36,11 @@ class ChapterQuiz extends Model
 
         if(isset($capitulo)){
             $aprobo = UserCourseChapter::where('user_course_id',$user_course_id)->where('chapter_id',$capitulo->id)->first();
-            if($aprobo->quiz_result==1){
-                    
-                    return true;
-                    
+           if(isset($aprobo)){
+                if($aprobo->quiz_result==1){
+                        return true; 
                 } 
-
+            }
                return false;
           }
 
