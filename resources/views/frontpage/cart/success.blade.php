@@ -36,7 +36,7 @@
 				</div>
 				<div class="gracias__subtitulo">
 					You just finished your purchase
-					<span>You have 30 days to finish the course</span>
+					<span>You have {{@Course::info($col)['disponible']}} days to finish the course</span>
 				</div>
 		
 			</div>	

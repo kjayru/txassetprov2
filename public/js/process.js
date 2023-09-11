@@ -172,12 +172,12 @@ try {
   var player = videojs('my-player');
   var options = {};
   var player = videojs('my-player', options, function onPlayerReady() {
-    videojs.log('Your player is ready!');
-    // In this context, `this` is the player that was created by Video.js.
+ 
+    
     this.play();
-    // How about an event listener?
+    
     this.on('ended', function() {
-      videojs.log('Awww...over so soon?!');
+     
       //registro de capitulo completado
       const token = $('meta[name="csrf-token"]').attr('content');
       let usercourseid = $("input[name='user_course_id']").val();
@@ -359,12 +359,16 @@ $(".detalle__header__home__course").on('click',function(e){
 $(".btn__quiz").on('click',function(e){
   e.preventDefault();
   let quizid = $(this).data('quizid');
+  let ucc = $(this).data('ucc');
+
   let input = $(this).parent().children('.card__question__opciones').find('input[name="respuesta"]:checked').val();
   let padre =  $(this).parent();
   let chapter_id =  $('input[name="chapter_id"]').val();
+  let tiempo = $("#tiempoquiz").val();
+
   const token = $('meta[name="csrf-token"]').attr('content');
 
-  let sendata = {'_token':token,'_method':'POST',quizid:quizid,optionid:input,'chapter_id':chapter_id};
+  let sendata = {'_token':token,'_method':'POST',quizid:quizid,optionid:input,'chapter_id':chapter_id,'user_course_chapter_id':ucc,'tiempo':tiempo};
   $.ajax({
     url:"/learn/set-quiz",
     type:"POST",
@@ -374,12 +378,14 @@ $(".btn__quiz").on('click',function(e){
      
       padre.hide();
       padre.next('.card__question').show();
+
       if(response.completado==true){
         $(".quiz__preguntas").hide();
         $(".quiz__resultados").show();
          $(".quiz__botones").show();
 
          window.location.reload();
+         clearInterval(refreshIntervalId);
       }
       
     }
@@ -397,9 +403,9 @@ $(".btn__view").on('click',function(e){
 $(".btn__restart").on('click',function(e){
   e.preventDefault();
   const token = $('meta[name="csrf-token"]').attr('content');
-  let chapter_id =  $('input[name="chapter_id"]').val();
+  let id =  $(this).data('id');
 
-  let sendata = {'_token':token,'_method':'POST','chapter_id':chapter_id};
+  let sendata = {'_token':token,'_method':'POST','user_course_chapter_id':id};
   $.ajax({
     url:"/learn/reset-quiz",
     type:"POST",
@@ -414,9 +420,7 @@ $(".btn__restart").on('click',function(e){
 
 });
 
-document.addEventListener('DOMContentLoaded', () => { 
 
-});
 
 $(".btn__examen").on('click',function(e){
   e.preventDefault();
@@ -482,7 +486,7 @@ $(".btn__examen").on('click',function(e){
        }
        
       // 7200segundos =100%
-      
+      $("#tiempo").val(hora+":"+minuto+":"+segundo);
 
      //porcentaje= Math.round((total*100)/contador);
      porcentaje = (100*contador)/total;
@@ -490,42 +494,131 @@ $(".btn__examen").on('click',function(e){
      //console.log(contador+" "+parseFloat(porcentaje).toFixed(2));
      document.querySelector(".quiz__timelapse__bar").style.width= parseFloat(porcentaje).toFixed(2)+"%";
   }
-
   updateCountdown();
-
   var refreshIntervalId = setInterval(updateCountdown, MILLISECONDS_OF_A_SECOND);
-
 })
 
 
+var urlpath = window.location.href;
+if(urlpath.indexOf('quiz')!="-1"){
+  
+  const MILLISECONDS_OF_A_SECOND = 1000;
+  const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
+  const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
+  
+   const conshora = $(".q-hora");
+   const consminuto = $(".q-minute");
+   const conssegundo = $(".q-segundo");
+
+   let prhora = 0;
+   let prminutos = 0;
+   let prsegundo = 0;
+
+   var segundo=0;
+  var minuto=0;
+  var hora = 1;
+  var contador = 0;
+  var porcentaje=0;
+  var total = 7200;
+  function updateCountdown2() {
+      contador +=1;
+
+       segundo += 1;
+       if(segundo==59){
+        minuto+=1;
+        segundo=0;
+       }
+
+       if(segundo==60){
+      
+       prsegundo = "00";
+       }else{
+        if(segundo<10){
+         
+          prsegundo = "0"+segundo;
+        }else{
+
+          conssegundo.html(segundo);
+          prsegundo = segundo;
+        }
+       
+       }
+
+  
+       if(minuto==60){
+       
+        prminuto = "00";
+       }else{
+        if(minuto<10){
+          
+          prminuto = "0"+minuto;
+        }else{
+
+      
+        prminuto = minuto;
+        }
+       }
+
+       let consolidar = `00:${prminuto}:${prsegundo}`;
+       $("#tiempoquiz").val(consolidar);
+
+       if(hora==0 && minuto == 0 &&  segundo==1){
+         
+          clearInterval(refreshIntervalId);
+       }
+       
+      // 7200segundos =100%
+      
+
+     //porcentaje= Math.round((total*100)/contador);
+     porcentaje = (100*contador)/total;
+
+     //console.log(contador+" "+parseFloat(porcentaje).toFixed(2));
+     
+  }
+
+  updateCountdown2();
+  var refreshIntervalId = setInterval(updateCountdown2, MILLISECONDS_OF_A_SECOND);
+}
+
+
+
+
+
 $(".btn__exam").on('click',function(e){
+
   e.preventDefault();
+  let user_course_id = $("#user_course_id").val();
+  let exam_id = $("#exam_id").val();
+  let tiempo = $("#tiempo").val();
+
+  
   let quizid = $(this).data('quizid');
   let input = $(this).parent().children('.card__question__opciones').find('input[name="respuesta"]:checked').val();
   let padre =  $(this).parent();
   let chapter_id =  $('input[name="chapter_id"]').val();
   const token = $('meta[name="csrf-token"]').attr('content');
 
-  let sendata = {'_token':token,'_method':'POST',quizid:quizid,optionid:input,'chapter_id':chapter_id};
-  /*$.ajax({
+  let sendata = {'_token':token,'_method':'POST',quizid:quizid,optionid:input,'chapter_id':chapter_id,'exam_id':exam_id,'tiempo':tiempo,'user_course_id':user_course_id};
+  $.ajax({
     url:"/learn/set-exam",
     type:"POST",
     dataType:'json',
     data:sendata,
-    success:function(response){*/
+    success:function(response){
      
       padre.hide();
       padre.next('.card__question').show();
-      //if(response.completado==true){
-        // $(".quiz__preguntas").hide();
-        // $(".quiz__resultados").show();
-        //  $(".quiz__botones").show();
+      if(response.completo==true){
+         $(".quiz__preguntas").hide();
+         $(".quiz__resultados").show();
+          $(".quiz__botones").show();
 
         //  window.location.reload();
-    /*  }
+     }
       
     }
-  })*/
+  })
 })
 
 $(".btn__registro").on('click',function(e){
@@ -610,4 +703,84 @@ $(".access__login").on('click',function(e){
   $("#loginModal").modal('show');
 });
 
+const playaudio = document.getElementById("audiocontent");
+$(".timeline__play").on('click',function(e){
+  e.preventDefault();
 
+  playaudio.play();
+  playaudio.addEventListener("timeupdate",myFunction);
+  $(this).hide();
+  $(".timeline__stop").show();
+})
+
+$(".timeline__stop").on('click',function(e){
+  e.preventDefault();
+  playaudio.pause();
+  $(this).hide();
+  $(".timeline__play").show();
+});
+
+function myFunction(){
+
+	if (playaudio.currentTime >0){
+		//const barra = document.getElementById('progress')
+		// barra.value = (playaudio.currentTime / playaudio.duration) * 100
+		// console.log(barra.value);
+		var duracionSegundos= playaudio.duration.toFixed(0);
+		dura=secondsToString(duracionSegundos);
+		var actualSegundos = playaudio.currentTime.toFixed(0)
+		actual=secondsToString(actualSegundos);
+		
+		duracion= actual +' / '+ dura
+		document.getElementById('timer').innerText=duracion 
+
+    valorrange = (playaudio.currentTime / playaudio.duration) * 100;
+    $(".timelinebox__solid").css("width",valorrange+"%");
+
+    if($valorrange==100){
+
+
+      const token = $('meta[name="csrf-token"]').attr('content');
+      let usercourseid = $("input[name='user_course_id']").val();
+      let usercoursechapterid = $("input[name='user_course_chapter_id']").val();
+      let usercoursechaptercontentid= $("input[name='user_course_chapter_content_id']").val();
+      
+      //alert(usercourseid+' '+usercoursechapterid+' '+usercoursechaptercontentid);
+
+      let sendata = {
+        '_token':token,
+        '_method':'post',
+        'usercourseid':usercourseid,
+        'usercoursechapterid':usercoursechapterid,
+        'usercoursechaptercontentid':usercoursechaptercontentid
+      };
+
+      $.ajax({
+        url:'/user/set-chapter',
+        type:'POST',
+        dataType:'json',
+        data:sendata,
+        success:function(response){
+          console.log(response);
+        }
+      })
+
+      
+    }
+	}
+	
+}
+
+function secondsToString(seconds) {
+	var hour="";
+	if (seconds>3600){
+		hour = Math.floor(seconds / 3600);
+		hour = (hour < 10)? '0' + hour : hour;
+		hour+=":"
+	}
+   var minute = Math.floor((seconds / 60) % 60);
+  minute = (minute < 10)? '0' + minute : minute;
+  var second = seconds % 60;
+  second = (second < 10)? '0' + second : second;
+  return hour  + minute + ':' + second;
+}

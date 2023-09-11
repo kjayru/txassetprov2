@@ -95,6 +95,8 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         $user->save();
 
+        $user->assignRole('usuario');
+
         $profile = new Profile();
         $profile->user_id = $user->id;
         $profile->firstname = $data['firstname'];
@@ -125,10 +127,6 @@ class RegisterController extends Controller
 
         $profile->save();
 
-        $roleuser = new RoleUser();
-        $roleuser->role_id = 3;
-        $roleuser->user_id = $user->id;
-        $roleuser->save();
 
         $correo = $data['email'];
 

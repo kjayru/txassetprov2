@@ -46,7 +46,7 @@
                 </div>
             @endif
 
-            <form class="form-horizontal" action="{{ route('chapterequiz.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" id="frm-question" action="{{ route('chapterequiz.store') }}" method="POST" enctype="multipart/form-data">
 
               <div class="card-body">
                   @csrf

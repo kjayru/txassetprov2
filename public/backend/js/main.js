@@ -47,23 +47,22 @@ $(function() {
 
 
 
-    $(".btn-add-option").on('click',function(e){
+    $(document).on('click',".btn-add-option",function(e){
         e.preventDefault();
        let htm = '';
 
-       let items = $(".icheck").length;
+       let items = $(".check__respuesta").length;
 
         htm =  `<div class="form-row">
                     <div class="form-group  col-md-9">
                         <label for="option${items+1}" class="control-label">Option</label>
                         <input type="text" name="option[]" id="option${items+1}" class="form-control ">
                     </div>
-                    <div class="form-group col-md-3">
-                        <div class="form-check form__pad">
-                            <div class="option${items+1} icheck "></div>
-                            <input type="hidden" class="inputoption" name="result[]" value="">
-                        </div>
-                    </div>
+                   
+                    <div class="form-check col-md-3">
+                    <input type="radio" name="result" id="result${items+1}" class="form-check form-check-inline check__respuesta" value="${items+1}">
+                    <label class="form-check-label" for="result${items+1}">Result</label>
+                </div>
                 </div>`;
 
                 $(".card-question").append(htm);
@@ -103,4 +102,18 @@ $(".btn__getcourses").on('click',function(e){
         $("#course_id").val(id);
       }
     });
+});
+
+
+
+$("#frm-question").validate({
+    rules: {
+        "option[]": {required: true},
+        "result[]": {required: true},
+
+      },
+      messages: {
+        "option[]": "Debe escoger un sector obligatoriamente.",
+        "result[]": "marque una respuesta."
+      },
 });

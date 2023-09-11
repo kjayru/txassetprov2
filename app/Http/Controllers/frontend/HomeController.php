@@ -949,17 +949,21 @@ class HomeController extends Controller
             
         ]);
 
-        
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
 
+        $user->assignRole('usuario');
+
         Auth::login($user);
+       
 
         return response()->json(['rpta'=>'ok','mensaje'=>' Account created successfully']);
     }
+
+
     public function estadoCarrito(){
         $mensaje = false;
         if (Session::get('cart')) {

@@ -182,20 +182,29 @@
 
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/admin/courses" class="nav-link  {{{ (Request::is('admin/courses') ? 'active' : '') }}}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List</p>
-                </a>
-              </li>
-            </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/admin/courses" class="nav-link  {{{ (Request::is('admin/courses') ? 'active' : '') }}}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List</p>
+                  </a>
+                </li>
+              </ul>
 
-                <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="/admin/exams" class="nav-link  {{{ (Request::is('admin/exams') ? 'active' : '') }}}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Exams</p>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/admin/users" class="nav-link  {{{ (Request::is('admin/users') ? 'active' : '') }}}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>User</p>
                   </a>
                 </li>
               </ul>

@@ -28,6 +28,28 @@ class ChapterQuiz extends Model
     }
 
 
+    public static function pasoQuiz($id,$user_course_id,$curso_id,$chapter_id){
+      
+            $capitulo = Chapter::where('course_id',$curso_id)->where('id','<',$chapter_id)->orderBy('id')->first();
+
+           // return $capitulo;
+
+        if(isset($capitulo)){
+            $aprobo = UserCourseChapter::where('user_course_id',$user_course_id)->where('chapter_id',$capitulo->id)->first();
+            if($aprobo->quiz_result==1){
+                    
+                    return true;
+                    
+                } 
+
+               return false;
+          }
+
+        return false;
+    }
+       
+    
+
     
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Models\User;
 
 use App\Models\Profile;
@@ -20,10 +22,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        $role = Role::where('id',3)->first();
+       // $users = User::orderBy('id','desc')->get();
 
-        $users = $role->users;
-        return view('backend.users.index',['users'=>$users]);
+        $total_usuarios = User::with('roles')->get()->filter(
+            fn ($user) => $user->roles->where('name', 'usuario')->toArray()
+        )->count();
+
+        //$roles = Role::all()->pluck('name');
+        $usuarios = User::role('usuario')->get();
+       
+       // $users = $role->users;
+        return view('backend.users.index',['users'=>$usuarios]);
     }
 
 
@@ -94,6 +103,13 @@ class UserController extends Controller
         ->with('info',' User data updated');
     }
 
+
+    public function destroy(Request $request){
+        User::find($request->id)->delete();
+
+        return redirect()->route('adminuser.index')
+        ->with('info','User deleted');
+    }
     /**
      * Remove the specified resource from storage.
      *

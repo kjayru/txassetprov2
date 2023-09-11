@@ -2,6 +2,7 @@
 @section('content')
 @php
  use App\Models\UserCourse;
+ use App\Models\ChapterQuiz;
  use App\Models\ChapterQuizOption;
  use App\Models\UserChapterQuizOption;
 @endphp
@@ -56,8 +57,12 @@
 						</div>
 					</div>
 					
-					<div class="quiz__preguntas"  >
-						
+					<div class="quiz__preguntas">
+
+					<input type="hidden" name="user_course_id" id="user_course_id" value="{{@$user_course_id}}">
+					<input type="hidden" name="exam_id" id="exam_id" value="{{@$examen->id}}">
+					<input type="hidden" name="tiempo" id="tiempo">
+
 						@foreach($examen->examquestions as $key => $question)
 
 							<div class="card__question" style="display:{{$key==0?'block':'none'}}">
@@ -93,32 +98,34 @@
 											You have {{@$curso->tiempovalido}} days left to finish the course
 								  </div>
 								  <ul class="encurso__temas__lista">
+										
+									
+									@if(isset($contents))										
+										@foreach($contents as $k => $cont)
 
-										@if(isset($contenidos))										
-											@foreach($contenidos as $k => $cont)
-													<li class="encurso__temas__lista__item {{UserCourse::capitulo($user_course_id,$cont['capitulo_id'])?"active":""}}"><span>{{$k+1}}</span>
-														<a href="#">{{@$cont['capitulo_titulo']}}</a>
-														
-															<ul class="encurso__temas__lista__item__sublista active">
-																@foreach($cont['contenidos'] as $c)
-																	<li class="encurso__temas__lista__item__sublista__item {{UserCourse::contenido($user_course_id,$cont['capitulo_id'],$c['id'])?"finalizado":""}}">
-																		<a href="/learn/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/{{$c['slug']}}"> {{@$c['titulo']}}</a> 
-																	</li>
-																@endforeach	
-																@if($cont['quiz']==true)
-																	<li>
-																		<a href="/learn/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/quiz/{{$cont['quiz_content']->chapter_id}}">Quiz chapter</a>
-																	</li>
-																@endif
-															</ul>
-													</li>
-											@endforeach
-										@endif	
+									
+										@if($k==0)
+											@include('layouts.backend.partials.curso.contenidoactivo')
+										@else	
+										
+										
+												@if(ChapterQuiz::pasoQuiz($cont['contenidos']['quiz_id'],$user_course_id,$curso_id,$cont['contenidos']['capitulo_id'])==true)
+											
+													@include('layouts.backend.partials.curso.contenidoactivo')
+											
+												@else
+													@include('layouts.backend.partials.curso.contenido')
+												@endif	
 
-										@if(isset($examen))										
-										<li class="encurso__temas__lista__item"><a href="/learn/exam/{{$curso->slug}}/{{$examen->id}}">Final Exam</a></li>
+										
 										@endif
-								  </ul>
+										@endforeach
+									@endif		
+									
+									@if(isset($examen))										
+									<li class="encurso__temas__lista__item"><a href="/learn/exam/{{$curso->slug}}/{{$examen->id}}">Final Exam</a></li>
+									@endif
+							  </ul>
 						</div>
 			  </div>
 

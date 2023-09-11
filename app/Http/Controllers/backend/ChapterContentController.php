@@ -17,16 +17,21 @@ class ChapterContentController extends Controller
     public function index($id)
     {
         $contents = Chaptercontent::where('chapter_id',$id)->get();
-
-        return view("backend.content.index",['contents'=>$contents,'chapter_id'=>$id]);
+        $chapter = Chapter::find($id);
+        $course_id = $chapter->course_id;
+      
+        return view("backend.content.index",['contents'=>$contents,'course_id'=>$course_id,'chapter_id'=>$id]);
     }
 
 
     public function show($id)
     {
         $contents = Chaptercontent::where('chapter_id',$id)->get();
+        
+        $chapter = Chapter::find($id);
+        $course_id = $chapter->course_id;
 
-        return view("backend.content.index",['contents'=>$contents,'chapter_id'=>$id]);
+        return view("backend.content.index",['contents'=>$contents,'course_id'=>$course_id,'chapter_id'=>$id]);
     }
     /**
      * Show the form for creating a new resource.

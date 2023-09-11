@@ -14,47 +14,57 @@ use App\Models\UserCourseChapterContent;
 use App\Models\ChapterQuiz;
 use App\Models\ChapterQuizOption;
 use App\Models\UserChapterQuizOption;
+use App\Models\UserCourseChapterQuiz;
 use App\Models\UserChapterQuiz;
+use App\Models\ExamQuestion;
+use App\Models\ExamQuestionOption;
+use App\Models\UserCourseExamResult;
+use App\Models\UserCourseExam;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Quiz;
 use App\Models\QuizQuestion;
 use App\Models\QuizQuestionOption;
 use App\Models\Profile;
 use App\Models\Exam;
+use App\Http\Controllers\Traits\CourseMenuTrait;
 
 class LearnController extends Controller
 {
+    use CourseMenuTrait;
+
     public function __construct(){
         $this->middleware('auth');
    }
    
     public function index($slug){
-        
-      
-
+     
         $capVisitados=null;
         $contVisitados=null;
         $contenido=null;
         $capitulo=null;
         $examen=null;
+        $user_course_chapter_id = null;
+        $user_course_chapter_content_id = null;
+        $quiz=null;
+        $url_next=null;
+        $url_next_quiz=null;
+        $chapter = null;
 
         $user_id = Auth::id();
         $user = User::find($user_id);
+       
 
+        //verificamos si usuario lleno profile
         $profile = Profile::where('user_id',$user_id)->count();
-
         if($profile==0){
             return redirect()->route('profile.index');
         }
 
 
         $curso = Course::where('slug',$slug)->first();
-       
         $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
-        $user_course_chapter_id = null;
-        $user_course_chapter_content_id = null;
         $userCourseChapter = UserCourseChapter::where('user_course_id',$userCourse->id)->first();
-        
+      
         if(isset($userCourseChapter)){
             $user_course_chapter_id = $userCourseChapter->id;
             $userCourseChapterContent = UserCourseChapterContent::where('user_course_chapter_id',$userCourseChapter->id)->first();
@@ -64,52 +74,26 @@ class LearnController extends Controller
             $user_course_chapter_content_id = $userCourseChapterContent->id;
         }
 
-        /*$chapters = $curso->chapters;
-        if(isset($chapters)){
-            $contenido = Chaptercontent::where('chapter_id',$chapters[0]->id)->where('slug',$chapters[0]->chaptercontents[0]->slug)->first();
-        }*/
-        //$chapter = Chapter::where('slug',$chapter)->where('course_id',$curso->id)->first();
-        //chapter crear order en tabla
 
         $capitulos = Chapter::where('course_id',$curso->id)->get();
+        //obtenemos el contenido del primer  capitulo
         $content = Chaptercontent::where('chapter_id',$capitulos[0]->id)->first();
-        $menulat=null;
+       
+        $sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$content->chapter->id)->orderBy('id')->first();
+        if(isset($sig)){
 
-        foreach($capitulos as $cap){
-            $menucont=null;
-            $quiz=false;
-            if(isset($cap->chapterquiz)){
-                $quiz = true;
-            }
-            foreach($cap->chaptercontents as $cont){
-
-                $menucont[] = [
-                    'id'=>$cont->id,
-                    'titulo'=>$cont->titulo,
-                    'slug'=>$cont->slug,
-                ];
-            }
-            $menulat[] = [
-                    'capitulo_id'=>$cap->id,
-                    'capitulo_titulo'=>$cap->title,
-                    'curso_titulo'=>$curso->titulo,
-                    'curso_slug'=>$curso->slug,
-                    'capitulo_slug'=>$cap->slug,
-                    'contenidos'=>$menucont,
-                    'quiz'=>$quiz,
-                    'quiz_content'=>$cap->chapterquiz,
-            ];
+            $url_next = $sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
+        }else{
+           
+            $url_next_quiz = $content->chapter->course->slug."/".$content->chapter->slug."/quiz";
         }
+        
+        //funcion menu
+        
+        $sidelad = $this->getContent($capitulos,$curso);
+        
+        
 
-        $quiz=null;
-
-        // if(isset($curso->quiz)){
-        // $examen = $curso->quiz;
-        // }
-
-        $examen=null;
-
-     // dd(UserCourse::dayleft($userCourse->id));
           //verificamos el estado del curso
         //-- caducidad
        if(UserCourse::dayleft($userCourse->id)<0){
@@ -127,12 +111,27 @@ class LearnController extends Controller
         return redirect()->route('usuario.outcome',['resultado'=>1,'course'=>$userCourse->id]);
        }
 
-        return view('frontpage.learn.index',['examen'=>$examen,'quiz'=>$quiz,'content'=>$content,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id,'user_course_chapter_id'=>$user_course_chapter_id,'user_course_chapter_content_id'=>$user_course_chapter_content_id]);
+      
+
+        return view('frontpage.learn.index',[
+            'examen'=>$examen,
+            'quiz'=>$quiz,
+            'curso_id'=>$curso->id,
+            'user_id'=>$user_id,
+            'content'=>$content,
+            'contents'=>$sidelad,
+            'curso'=>$curso,
+            'user_course_id'=>$userCourse->id,
+            'user_course_chapter_id'=>$user_course_chapter_id,
+            'user_course_chapter_content_id'=>$user_course_chapter_content_id,
+            'url_next'=>$url_next,
+            'url_next_quiz'=>$url_next_quiz,
+            'chapter'=>$chapter
+        ]);
     }
 
-
     public function chapter($id,$chapter){
-      
+     
         $capVisitados=null;
         $contVisitados=null;
         $contenido=null;
@@ -152,8 +151,9 @@ class LearnController extends Controller
         return view('frontpage.learn.index',['capitulo'=>$capitulo,'contenido'=>$contenido,'curso'=>$curso,'chapters'=>$chapters,'curso_id'=>$id,'chapter'=>$chapter,'user_course_id'=>$userCourse->id]);
     }
 
+
     public function content($id,$chapter,$content){
-       
+    
         $capVisitados=null;
         $contVisitados=null;
         $contenido=null;
@@ -176,62 +176,81 @@ class LearnController extends Controller
     }
 
     public function cursoChapterContent($slug,$chapter,$content){
-      
+       
+        $user_course_chapter_id=null;
+        $menulat=null;
+        $examen = null;
+        $quiz=null;
+        $url_next=null;
+        $url_next_quiz=null;
+
         $user_id = Auth::id();
         $curso = Course::where('slug',$slug)->first();
         $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
-
-        $chapter = Chapter::where('slug',$chapter)->where('course_id',$curso->id)->first();
-       
+        $chapter = Chapter::where('slug',$chapter)->where('course_id',$curso->id)->first();  
         $content = Chaptercontent::where('slug',$content)->where('chapter_id',$chapter->id)->first();
-        $menulat=null;
-      
+        
+     
         //chapter crear order en tabla
         $capitulos = Chapter::where('course_id',$curso->id)->get();
 
       
-        
-        $examen = null;
-       foreach($capitulos as $cap){
-        $menucont=null;
-        $quiz=false;
-            if(isset($cap->chapterquiz)){
-                $quiz = true;
-            }
-       
-            foreach($cap->chaptercontents as $cont){
-                $menucont[] = [
-                    'id'=>$cont->id,
-                    'titulo'=>$cont->titulo,
-                    'slug'=>$cont->slug,
-                ];
-            }
+        $ucc = UserCourseChapter::where('user_course_id',$userCourse->id)->where('chapter_id',$chapter->id)->count(); 
 
-            $menulat[] = [
-                    'capitulo_id'=>$cap->id,
-                    'capitulo_titulo'=>$cap->title,
-                    'curso_titulo'=>$curso->titulo,
-                    'curso_slug'=>$curso->slug,
-                    'capitulo_slug'=>$cap->slug,
-                    'contenidos'=>$menucont,
-                    'quiz'=>$quiz,
-                    'quiz_content'=>$cap->chapterquiz,
-            ];
-
-       }
-    $quiz=null;
-      
-   
-    if(isset($curso->examcourse)){
-        $examen = $curso->examcourse->exam;
+        if($ucc>0){
+            $user_course_chapter = UserCourseChapter::where('user_course_id',$userCourse->id)->where('chapter_id',$chapter->id)->first();
+            $user_course_chapter_id = $user_course_chapter->id;
         }
-        return view('frontpage.learn.index',['examen'=>$examen,'quiz'=>$quiz,'content'=>$content,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
-    
+
+
+        
+        //funcion menu
+        $sidelad = $this->getContent($capitulos,$curso);
+        
+       
+        if(isset($curso->examcourse)){
+            $examen = $curso->examcourse->exam;
+        }
+
+
+        //armado de contenido siguiente
+      
+        $sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$chapter->id)->orderBy('id')->first();
+        if(isset($sig)){
+
+            $url_next = $sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
+        }else{
+           
+            $url_next_quiz = $content->chapter->course->slug."/".$content->chapter->slug."/quiz";
+        }
+
+            //dd($url_next_quiz);
+        //$cont['contenidos']['curso_slug']}}/{{$cont['contenidos']['capitulo_slug']
+
+
+        return view('frontpage.learn.index',[
+            'examen'=>$examen,
+            'user_id'=>$user_id,
+            'chapter_id'=> $chapter->id,
+            'curso_id'=>$curso->id,
+            'quiz'=>$quiz,
+            'content'=>$content,
+            'contents'=>$sidelad,
+            'curso'=>$curso,
+            'user_course_id'=>$userCourse->id,
+            'user_course_chapter_id' =>$user_course_chapter_id,
+            'url_next'=>$url_next,
+            'url_next_quiz'=>$url_next_quiz,
+            'chapter'=>$chapter
+        ]);  
     }
 
-    public function cursoChapterContentQuiz($slug,$chapter,$id){
-     
+    public function cursoChapterContentQuiz($slug, $chapter, $id){
+       
         $user_id = Auth::id();
+        $url_next=null;
+        $fin_curso = false;
+        $user_course_chapter_id =null;
         $curso = Course::where('slug',$slug)->first();
         $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
 
@@ -240,54 +259,41 @@ class LearnController extends Controller
       //  $content = Chaptercontent::where('slug',$content)->where('chapter_id',$chapter->id)->first();
         $menulat=null;
       
+        $ucc = UserCourseChapter::where('user_course_id',$userCourse->id)->where('chapter_id',$chapter->id)->count(); 
+
+        if($ucc>0){
+            $user_course_chapter = UserCourseChapter::where('user_course_id',$userCourse->id)->where('chapter_id',$chapter->id)->first();
+            $user_course_chapter_id = $user_course_chapter->id;
+        }
+
         //chapter crear order en tabla
         $capitulos = Chapter::where('course_id',$curso->id)->get();
 
       
 
-       foreach($capitulos as $cap){
-        $menucont=null;
-        $quiz=false;
-        if(isset($cap->chapterquiz)){
-            $quiz = true;
-        }
-       
-            foreach($cap->chaptercontents as $cont){
-                $menucont[] = [
-                    'id'=>$cont->id,
-                    'titulo'=>$cont->titulo,
-                    'slug'=>$cont->slug,
-                ];
-            }
-
-            $menulat[] = [
-                    'capitulo_id'=>$cap->id,
-                    'capitulo_titulo'=>$cap->title,
-                    'curso_titulo'=>$curso->titulo,
-                    'curso_slug'=>$curso->slug,
-                    'capitulo_slug'=>$cap->slug,
-                    'contenidos'=>$menucont,
-                    'quiz'=>$quiz,
-                    'quiz_content'=>$cap->chapterquiz,
-            ];
-
-       }
+        $sidelad = $this->getContent($capitulos,$curso);
         
-       //quiz data
-       $quizes = ChapterQuiz::where('chapter_id',$id)->get();
-      $content=null;
-       
-      //verificamos si el usuario tomo el quiz
+        
+      
+        //quiz data
+        $quizes = ChapterQuiz::where('chapter_id',$id)->get();
+        $content=null;
+        $tiempoquiz=0;
+        //verificamos si el usuario tomo el quiz
 
         $total=0;
+        $totalcorrectas = 0;
         $completado = false;
+        $aprobado = false;
         //obtenemos el numero de preguntas
         $numeroPreguntas = ChapterQuiz::where('chapter_id',$chapter->id)->count();
-        
-        
         $preguntas = ChapterQuiz::where('chapter_id',$chapter->id)->get();
+        
+        //determinar si completo todas las preguntas
         foreach($preguntas as $preg){
-            $numerContestadas = UserChapterQuizOption::where('user_id',$user_id)->where('chapter_question_id',$preg->id)->count();
+
+            $numerContestadas = UserCourseChapterQuiz::where('user_course_chapter_id',$user_course_chapter_id)->where('chapter_quiz_id',$preg->id)->count();
+            
             $total +=$numerContestadas;
         }
        
@@ -296,71 +302,111 @@ class LearnController extends Controller
         }
 
 
-        // $preguntas = ChapterQuiz::where('chapter_id',$chapter->id)->get();
-        // $totales=0;
-        // foreach($preguntas as $preg){
-        //     $resultado = ChapterQuizOption::where('chapter_quiz_id',$preg->id)->where('estado',1)->first();
-        //     $respuesta[] = $resultado->id;
+        //determinar si obtuvo el 75% de aciertos
 
-        //     $resultadoUsuario = UserChapterQuizOption::where('user_id',$user_id)->where('chapter_question_option_id',$resultado->id)->first();
-        //     if(isset($resultadoUsuario->id)){
-        //         $totales+=1;
-        //     }
+        // foreach($preguntas as $preg){
+        //     $correctas = UserCourseChapterQuiz::where('user_course_chapter_id',$user_course_chapter_id)->where('chapter_quiz_id',$preg->id)->where('result','1')->count();
+        //     $totalcorrectas +=$correctas;
         // }
 
-        // $preguntas = count($respuesta);
 
-        // $porcentaje = round($totales*100/$preguntas ,2);
        
-        // dd($porcentaje);
+        //obtener respuestas correctas
+        $correctas = UserCourseChapterQuiz::where('user_course_chapter_id',$user_course_chapter_id)->where('result',1)->count();
 
+  
+        //obtener tiempo quiz
+        $ultimo_registro = UserCourseChapterQuiz::where('user_course_chapter_id',$user_course_chapter_id)->orderBy('id','desc')->first();
+       if(isset( $ultimo_registro)){
+        $tiempoquiz = $ultimo_registro->timequiz;
+       }
+        
+
+        $porcentaje = round($correctas*100/$numeroPreguntas ,2);
+       
+        $resultado_quiz=false;
+        if($correctas ==$numeroPreguntas){
+            $resultado_quiz = true;
+            $registro = UserCourseChapter::where('user_course_id',$userCourse->id)->where('chapter_id',$id)->first();
+            $registro->quiz_result= 1;
+            $registro->save();
+        }
       
-        return view('frontpage.learn.index',['completado'=>$completado,'user_id'=>$user_id,'chapter_id'=> $chapter->id,'quizes'=>$quizes,'content'=>$content,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
+
+       
+        $sig = Chaptercontent::where('chapter_id','>',$chapter->id)->orderBy('id')->first();
+       
+        if(isset($sig)){
+            if($sig->chapter->course->slug == $slug){
+            $url_next = $sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
+            }else{
+                $fin_curso=true;
+            }
+        }
+
+        if(isset($curso->examcourse)){
+            $examen = $curso->examcourse->exam;
+        }
+      
+        return view('frontpage.learn.index',[
+            'examen'=>$examen,
+            'resultado_quiz' =>$resultado_quiz,
+            'numero_preguntas'=>$numeroPreguntas,
+            'correctas'=>$correctas,
+            'completado'=>$completado,
+            'user_id'=>$user_id,
+            'chapter_id'=> $chapter->id,
+            'curso_id'=>$curso->id,
+            'quizes'=>$quizes,
+            'content'=>$content,
+            'contents'=>$sidelad,
+            'curso'=>$curso,
+            'quiz_chapter_id'=>$id,
+            'user_course_id'=>$userCourse->id,
+            'user_course_chapter_id' =>$user_course_chapter_id,
+            'porcentaje'=>$porcentaje,
+            'tiempoquiz'=>$tiempoquiz,
+            'url_next'=>$url_next,
+            'fin_curso' => $fin_curso
+        ]);
     }
 
     public function setQuestion(Request $request){
         $user_id = Auth::id();
-        //registro eventos quiz
-
-        $participo = UserChapterQuiz::where('user_id',$user_id)->where('chapter_id',$request->chapter_id)->count();
-
-        if($participo>0){
-            $actualiza = UserChapterQuiz::where('user_id',$user_id)->where('chapter_id',$request->chapter_id)->first();
-            $intentos = $actualiza->intentos+=1;
-
-            $actualiza->puntos = "0";
-            $actualiza->intentos = $intentos;
-            $actualiza->save();
-
-        }else{
-
-           $registro = new UserChapterQuiz();
-           $registro->user_id = $user_id;
-           $registro->chapter_id = $request->chapter_id;
-           $registro->puntos = "0";
-           $registro->intentos = 1;
-           $registro->save();
+      
+        $respuesta = 0;
+        $resultado = ChapterQuizOption::where('id',$request->optionid)->first();
+       
+        if($resultado->estado==1){
+            $respuesta = 1;
         }
-        //registro respuesta quiz
        
 
-        $ucqo = new UserChapterQuizOption();
-        $ucqo->user_id = $user_id;
-        $ucqo->chapter_question_id = $request->quizid;
-        $ucqo->chapter_question_option_id = $request->optionid;
-
+        $ucqo = new UserCourseChapterQuiz();
+        $ucqo->chapter_quiz_id = $request->quizid;
+        $ucqo->user_course_chapter_id = $request->user_course_chapter_id;
+       
+        $ucqo->quiz_question_option_id = $request->optionid;
+        $ucqo->result = $respuesta;
+        $ucqo->timequiz = $request->tiempo;
         $ucqo->save();
 
+       
         //calculo de puntos
         $total=0;
         $completado = false;
         //obtenemos el numero de preguntas
-        $numeroPreguntas = ChapterQuiz::where('chapter_id',$request->chapter_id)->count();
+       
+        $numeroPreguntas = ChapterQuiz::where('chapter_id',$request->user_course_chapter_id)->count();
         
-        
-        $preguntas = ChapterQuiz::where('chapter_id',$request->chapter_id)->get();
+       
+
+
+        $preguntas = ChapterQuiz::where('chapter_id',$request->user_course_chapter_id)->get();
+       
         foreach($preguntas as $preg){
-            $numerContestadas = UserChapterQuizOption::where('user_id',$user_id)->where('chapter_question_id',$preg->id)->count();
+
+            $numerContestadas = UserCourseChapterQuiz::where('user_course_chapter_id',$request->user_course_chapter_id)->where('chapter_quiz_id',$preg->id)->count();
             $total +=$numerContestadas;
         }
        
@@ -369,6 +415,7 @@ class LearnController extends Controller
         }
 
       
+       
 
         return response()->json(['rpta'=>'ok','completado'=>$completado]);
 
@@ -377,71 +424,101 @@ class LearnController extends Controller
 
     public function resetChapter(Request $request){
         $user_id = Auth::id();
-        $ucq = UserChapterQuiz::where('user_id',$user_id)->where('chapter_id',$request->chapter_id)->delete();
-
-        $chapterquestions = ChapterQuiz::where('chapter_id',$request->chapter_id)->get();
-
-        foreach($chapterquestions as $chapter){
-            UserChapterQuizOption::where('user_id',$user_id)->where('chapter_question_id',$chapter->id)->delete();
-        }
+        UserCourseChapterQuiz::where('user_course_chapter_id',$request->user_course_chapter_id)->delete();
         return response()->json(['rtpa'=>'ok']);
-     }
+    }
 
 
-     public function cursoQuiz($slug,$id){
-       
-       
+    public function cursoQuiz($slug,$id){
+ 
+    /*$user_id = Auth::id();
+    $curso = Course::where('slug',$slug)->first();
+    $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
 
-        $user_id = Auth::id();
-        $curso = Course::where('slug',$slug)->first();
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
+    $content=null;
+   
+    //chapter crear order en tabla
+    $capitulos = Chapter::where('course_id',$curso->id)->get();
 
-       
-      
-        //chapter crear order en tabla
-        $capitulos = Chapter::where('course_id',$curso->id)->get();
 
-      
-        
+    
+        $user_course_chapter = null;
+        $user_course_chapter_id = null;
+    
+    
+    $sidelad = $this->getContent($capitulos,$curso);*/
 
-       foreach($capitulos as $cap){
-        $menucont=null;
-        $quiz=false;
-            if(isset($cap->chapterquiz)){
-                $quiz = true;
-            }
-       
-            foreach($cap->chaptercontents as $cont){
-                $menucont[] = [
-                    'id'=>$cont->id,
-                    'titulo'=>$cont->titulo,
-                    'slug'=>$cont->slug,
-                ];
-            }
-
-            $menulat[] = [
-                    'capitulo_id'=>$cap->id,
-                    'capitulo_titulo'=>$cap->title,
-                    'curso_titulo'=>$curso->titulo,
-                    'curso_slug'=>$curso->slug,
-                    'capitulo_slug'=>$cap->slug,
-                    'contenidos'=>$menucont,
-                    'quiz'=>$quiz,
-                    'quiz_content'=>$cap->chapterquiz,
-            ];
-
-       }
+    $capVisitados=null;
+    $contVisitados=null;
+    $contenido=null;
+    $capitulo=null;
+    $examen=null;
+    $user_course_chapter_id = null;
+    $user_course_chapter_content_id = null;
     $quiz=null;
+    $url_next=null;
+    $url_next_quiz=null;
+    $chapter = null;
+
+    $user_id = Auth::id();
+    $user = User::find($user_id);
+   
+    $curso = Course::where('slug',$slug)->first();
+    $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
+    $userCourseChapter = UserCourseChapter::where('user_course_id',$userCourse->id)->first();
+  
+    if(isset($userCourseChapter)){
+        $user_course_chapter_id = $userCourseChapter->id;
+        $userCourseChapterContent = UserCourseChapterContent::where('user_course_chapter_id',$userCourseChapter->id)->first();
+    }
+   
+    if(isset($userCourseChapterContent)){
+        $user_course_chapter_content_id = $userCourseChapterContent->id;
+    }
+
+
+    $capitulos = Chapter::where('course_id',$curso->id)->get();
+    //obtenemos el contenido del primer  capitulo
+    $content = Chaptercontent::where('chapter_id',$capitulos[0]->id)->first();
+   
+    $sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$content->chapter->id)->orderBy('id')->first();
+    if(isset($sig)){
+
+        $url_next = $sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
+    }else{
        
+        $url_next_quiz = $content->chapter->course->slug."/".$content->chapter->slug."/quiz";
+    }
+
+
+    $sidelad = $this->getContent($capitulos,$curso);   
+    
+   
     $exam = Exam::find($id);
 
 
-      
-        return view('frontpage.exam.index',['examen'=>$exam,'quiz'=>$quiz,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
-    
-     }
+   
 
-     public function congratulation($slug){
+    
+    return view('frontpage.exam.index',[
+        'examen'=>$exam,
+        'quiz'=>$quiz,
+        'curso_id'=>$curso->id,
+        'user_id'=>$user_id,
+        'content'=>$content,
+        'contents'=>$sidelad,
+        'curso'=>$curso,
+        'user_course_id'=>$userCourse->id,
+        'user_course_chapter_id'=>$user_course_chapter_id,
+        'user_course_chapter_content_id'=>$user_course_chapter_content_id,
+        'url_next'=>$url_next,
+        'url_next_quiz'=>$url_next_quiz,
+        'chapter'=>$chapter
+    ]);
+
+    }
+
+    public function congratulation($slug){
 
 
 
@@ -484,16 +561,16 @@ class LearnController extends Controller
             ];
 
        }
-    $quiz=null;
-    $exam=null;
-       
+        $quiz=null;
+        $exam=null;
+        
     
 
 
         return view('frontpage.exam.exitos',['examen'=>$exam,'quiz'=>$quiz,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
-     }
+    }
 
-     public function fail($slug){
+    public function fail($slug){
 
 
 
@@ -535,12 +612,56 @@ class LearnController extends Controller
                     'quiz_content'=>$cap->chapterquiz,
             ];
 
-       }
-    $quiz=null;
-    $exam=null;
+        }
+        $quiz=null;
+        $exam=null;
        
 
 
         return view('frontpage.exam.fallido',['examen'=>$exam,'quiz'=>$quiz,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
-     }
+    }
+
+    
+    public function setExam(Request $request){
+      
+
+        
+
+      //registro general
+      if(UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->count()==0){
+        $registro = new UserCourseExam();
+        $registro->user_course_id = $request->user_course_id;
+        $registro->exam_id = $request->exam_id;
+        $registro->tiempo = $request->tiempo;
+        $registro->resultado = 0;
+        $registro->save();
+
+      }else{
+
+        $registro =  UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->first();
+        $registro->tiempo = $request->tiempo;
+        $registro->save();
+
+      }
+
+      $regoption = new UserCourseExamResult();
+      $regoption->user_course_exam_id = $registro->id;
+      $regoption->exam_question_id = $request->quizid;
+      //buscamos resultado correcto
+      $regoption->exam_question_option_id = $request->optionid;
+
+        $findresult = ExamQuestionOption::find($request->optionid);
+       $regoption->result = $findresult->resultado;
+       $regoption->save();
+
+
+       $total_preguntas = ExamQuestion::where('exam_id',$request->exam_id)->count();
+       $total_respondidas = UserCourseExamResult::where('user_course_exam_id',$registro->id)->count();
+
+       if($total_preguntas == $total_respondidas){
+        return response()->json(['rpta'=>'ok','status'=>'200','completo'=>true]);
+       }
+
+        return response()->json(['rpta'=>'ok','status'=>'200','completo'=>false]);
+    }
 }

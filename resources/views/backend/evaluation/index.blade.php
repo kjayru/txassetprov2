@@ -67,7 +67,7 @@
                     <tr>
                         <th width="5%">{{$key+1}}</th>
                         <td>{{@$eval->question}}</td>
-                        <td>{{ChapterQuiz::getAnswer($eval->id)}}</td>
+                        <td>{{@ChapterQuiz::getAnswer($eval->id)}}</td>
                         <td width="8%">{{ @$eval->created_at->format("Y-m-d")}}</td>
                         <td width="8%">
                             <a href="/admin/chapterequiz/{{@$eval->id}}/edit" class="btn btn-sm btn-warning legitRipple">

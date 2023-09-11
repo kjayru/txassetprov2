@@ -16,10 +16,10 @@
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
 
               <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
-              <li class="breadcrumb-item active"><a href="/admin/chapters/{{@$chapter_id}}">Chapters</a></li>
+              <li class="breadcrumb-item active"><a href="{{route('chapters.index',['course'=>@$course_id])}}">Chapters</a></li>
               <li class="breadcrumb-item active">Contents</li>
             </ol>
-          </div>
+          </div>  
         </div>
       </div><!-- /.container-fluid -->
     </section>

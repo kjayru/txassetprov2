@@ -94,6 +94,11 @@
                                                   </div>
                                         </div>
                               </div>
+                              <div class="row justify-content-end">
+                                <div class="col-md-6 text-right">
+                                   <a href="#" class="btn btn__polices">Learn about out Privacy Polices and Term and Conditions</a>
+                                </div>
+                              </div>
                     </div>
           </div>
         </div>

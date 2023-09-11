@@ -1057,6 +1057,29 @@ footer {
     }
 }
 
+.btn__polices {
+    position: relative;
+    top: -3rem;
+    z-index: 1;
+    color:#9d9d9d;
+    padding-right: 2rem;
+    &:before{
+        content:"";
+        position:absolute;
+        right:0px;
+        width:25px;
+        height: 30px;
+        top: 11px;
+        background:url(/images/terminos-condiciones-flecha.svg) no-repeat 0 0;
+    }
+    &:hover{
+        color:#555973;
+    }
+}
+
+.check__respuesta{
+    margin-top: 2.6rem;
+}
 .interlineado{
     position: relative;
     padding-bottom:3rem;
@@ -1684,6 +1707,12 @@ footer {
                 padding-right: 1rem;
                
             }
+            .timeline__stop{
+                color:$rojo;
+                display: inline-block;
+                padding-right: 1rem;
+               
+            }
             .timelinebox{
                 height:10px;
                 display: block;
@@ -1692,7 +1721,7 @@ footer {
                 display:inline-block;
                 position: relative;
                 &__solid{
-                    width:10%;
+                    width:0;
                     background:$rojo;
                     position: absolute;
                     left:0;
@@ -2343,6 +2372,14 @@ footer {
     margin-top:1rem;
     margin-bottom:1rem;
 }
+.btn__exam{
+    background: #555973;
+    color:white;
+    border-radius: 50px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 2rem;
+}
 .btn__inline{
     display: inline;
 }
@@ -2552,6 +2589,23 @@ footer {
         box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
     }
 }
+
+progress{
+	width: 80%;
+	margin: 10px;
+	opacity: 0.5;
+ 
+}
+.timer{
+	width:50%;
+	position: relative;
+	top:10px;
+	left:0px;
+	text-align:left;
+	float:left;
+	color: #6c5ce7;
+}
+
 @media(min-width: 980px) and (max-width: 1300px){
     .learn__titulo {
         font-size: 6.188rem;

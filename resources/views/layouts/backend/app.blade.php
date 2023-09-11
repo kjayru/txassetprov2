@@ -78,6 +78,8 @@
 <script>CKFinder.config( { connectorPath: "/ckfinder/connector" } );</script>
 <script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
 
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 
 <script src="/backend/js/main.js?v={{ uniqid() }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

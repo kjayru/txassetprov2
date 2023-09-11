@@ -16,6 +16,10 @@ class UserCourseChapter extends Model
         return $this->hasMany(UserCourseChapterContent::class);
     }
 
+    public function usercoursechapterquizes(){
+        return $this->hasMany(UserCourseChapterQuiz::class);
+    }
+
     public static function completeChapter($user_id,$course_id){
 
         $usercourse = UserCourse::where('course_id',$course_id)->where('user_id',$user_id)->first();

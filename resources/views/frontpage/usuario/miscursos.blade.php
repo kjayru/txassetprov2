@@ -61,7 +61,7 @@
 
 									@switch($curso->aprobado)
 										@case(0)
-										<div class="item__mensaje__time">You have {{UserCourse::leftdays($curso->course->id,$user->id)}} days left to finish the course</div>
+										<div class="item__mensaje__time">You have {{UserCourse::dayleft($curso->id)}} days left to finish the course</div>
 										@break
 										@case(1)
 										<div class="course__aprobado">

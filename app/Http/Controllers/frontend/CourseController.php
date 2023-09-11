@@ -62,6 +62,7 @@ class CourseController extends Controller
 
         return view('frontpage.cursos.datoscurso');
     }
+    
     public function cursoChapterContent($slug,$chapter,$content){
        
         $curso = Course::where('slug',$slug)->first();

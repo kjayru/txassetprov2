@@ -67,13 +67,14 @@
                             <td>{{ $user->name}} {{ @$user->profile->lastname }} {{ @$user->profile->middlename }}</td>
                             <td>{{ @$user->profile->birthday  }}</td>
                             <td>{{ @$user->profile->ssn }}</td>
-                            <td>{{ @$user->profile->license }}</td>
+                            <td>{{ @$user->profile->drivernumber }}</td>
                             <td>{{ @$user->profile->zipcode }}</td>
-                            <td>{{  @strftime("%d %B %Y", date (strtotime($user->profile->created_at )) )  }}</td>
+                            <td>{{@$user->profile->created_at}}</td>
                             <td>
                                 <a href="/admin/users/{{$user->id}}/edit" class="btn btn-sm btn-warning legitRipple" data-tooltip="Edit" data-delay="500" data-hasqtip="0" aria-describedby="qtip-0">
                                     <i class="fas fa-pencil-alt"></i></a>
-
+                                
+                                <a href="#" data-id="{{ $user->id }}" data-toggle="modal" data-target="#delobjeto" class="btn btn-sm btn-danger btn-object-delete"><i class="far fa-trash-alt"></i></a>
 
                             </td>
                             </td>
@@ -108,7 +109,7 @@
             <div class="modal-dialog">
                 <div class="modal-content bg-danger">
 
-                    <form class="delete-objeto" action="/admin/posts/delete" method="POST">
+                    <form class="delete-objeto" action="/admin/users/delete" method="POST">
                         @csrf
 
                         <div class="modal-header">

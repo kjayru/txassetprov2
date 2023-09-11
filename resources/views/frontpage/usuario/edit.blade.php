@@ -34,11 +34,11 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>User</strong>  </td>
-                            <td><input type="text" name="user" id="user" class="form-control" value="{{$user->profile->firstname}}"> </td>
+                            <td><input type="text" name="user" id="user" class="form-control" value="{{@$user->profile->user}}"> </td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Email</strong>  </td>
-                            <td><input type="text" name="email" id="email" class="form-control" value="{{$user->email}}" readonly></td>
+                            <td><input type="text" name="email" id="email" class="form-control" value="{{@$user->email}}" readonly></td>
                         </tr>
                     </table>
 				</div>
@@ -49,7 +49,7 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>Name</strong>  </td>
-                            <td><input type="text" name="name" id="name" value="{{$user->profile->firstname}}" class="form-control"></td>
+                            <td><input type="text" name="name" id="name" value="{{@$user->profile->firstname}}" class="form-control"></td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Middle</strong>  </td>

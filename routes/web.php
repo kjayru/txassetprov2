@@ -49,12 +49,11 @@ Route::group(['prefix' => 'admin'],function(){
     
     //users
 
-    Route::get('users',[UserController::class,'index'])->name('user.index');
-    Route::get('users/create',[UserController::class,'create'])->name('user.create');
-    Route::get('users/{user}/edit',[UserController::class,'edit'])->name('user.edit');
-    Route::put('users/{user}',[UserController::class,'update'])->name('user.update');
-    Route::get('users/{user}',[UserController::class,'show'])->name('user.show');
-    Route::delete('users/{user}',[UserController::class,'destroy'])->name('user.destroy');
+    Route::get('users',[UserController::class,'index'])->name('adminuser.index');
+    Route::get('users/{user}/edit',[UserController::class,'edit'])->name('adminuser.edit');
+    Route::put('users/{user}',[UserController::class,'update'])->name('adminuser.update');
+    Route::get('users/{user}',[UserController::class,'show'])->name('adminuser.show');
+    Route::delete('users/{user}',[UserController::class,'destroy'])->name('adminuser.destroy');
     
 
     Route::get('trainings',[TrainingController::class,'index'])->name('training.index');
@@ -251,7 +250,7 @@ Route::group(['prefix'=>'learn'],function(){
     Route::post('/set-quiz',[LearnController::class,'setQuestion']);
     Route::post('/reset-quiz',[LearnController::class,'resetChapter']);
 
-    
+    Route::post('/set-exam',[LearnController::class,'setExam']);
     
 });
 

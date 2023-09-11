@@ -7,7 +7,7 @@
 
     <div class="form-group @if($errors->first('duration')) has-error @endif">
         <label for="duration" class="control-label">Duration</label>
-        <input type="text"  name="duration" class="form-control" value="{{@$exam->duration}}" id="duration" placeholder="Duration" required>
+        <input type="number"  name="duration" class="form-control" value="{{@$exam->duration}}" id="duration" placeholder="Duration" required>
         <span class="help-block">{{ $errors->first('duration') }}</span>
     </div>
 

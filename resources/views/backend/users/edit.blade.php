@@ -12,7 +12,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Nota</h1>
+            <h1>User</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -34,12 +34,10 @@
     <div class="col-md-12">
         <!-- general form elements -->
         <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">User Edit</h3>
-          </div>
+         
 
 
-          <form role="form" action="{{ route('user.update',$profile->id) }}" method="POST" enctype="multipart/form-data">
+          <form role="form" action="{{ route('adminuser.update',$profile->id) }}" method="POST" enctype="multipart/form-data">
             <div class="card-body">
 
                 @csrf
@@ -50,7 +48,7 @@
               </div>
 
               <div class="card-footer">
-                <a href="{{ route('user.index') }}" class="btn btn-danger">Cancell</a>
+                <a href="{{ route('adminuser.index') }}" class="btn btn-danger">Cancel</a>
                 <button type="submit" class="btn btn-info pull-right">Save</button>
               </div>
           </form>

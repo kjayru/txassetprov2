@@ -82,6 +82,7 @@ class UsuarioController extends Controller
      }
 
      
+     
      public function setChapterContent(Request $request){
         $uccc = new UserCourseChapterContent();
         $uccc->user_course_chapter_id= $request->user_course_chapter_id;
@@ -105,6 +106,26 @@ class UsuarioController extends Controller
         $user_id = Auth::id();
         $user = User::find($user_id);
 
+        if(Profile::where('user_id',$user_id)->count()>0){
+         $profile = Profile::where('user_id',$user_id)->first();
+         $profile->user = $request->user;
+         $profile->firstname = $request->name;
+         $profile->middlename = $request->middle;
+         $profile->lastname = $request->lastname;
+         
+         $profile->save();
+
+        }else{
+         $profile = new Profile();
+         $profile->user_id = $user_id;
+         $profile->user = $request->user;
+         $profile->firstname = $request->name;
+         $profile->middlename = $request->middle;
+         $profile->lastname = $request->lastname;
+
+         $profile->save();
+
+        }
 
       $user->usuario = $request->user;
       $user->email = $request->email;

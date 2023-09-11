@@ -64,7 +64,9 @@ class ChapterEvaluationController extends Controller
            
             $opcion = New ChapterQuizOption();
             $opcion->option = $op;
-            $opcion->estado = $request->result[$k];
+            if($request->result==$k+1){
+                $opcion->estado = 1;
+                }
             $opcion->chapter_quiz_id = $quest->id;
             $opcion->save();
         }
@@ -101,8 +103,6 @@ class ChapterEvaluationController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-      
         $quest = ChapterQuiz::find($id);
 
         $quest->question = $request->question;
@@ -116,7 +116,9 @@ class ChapterEvaluationController extends Controller
 
             $opcion = New ChapterQuizOption();
             $opcion->option = $op;
-            $opcion->estado = $request->result[$k];
+            if($request->result==$k+1){
+            $opcion->estado = 1;
+            }
             $opcion->chapter_quiz_id = $id;
             $opcion->save();
         }
