@@ -37,7 +37,7 @@ class LearnController extends Controller
    }
    
     public function index($slug){
-     
+    
         $capVisitados=null;
         $contVisitados=null;
         $contenido=null;
@@ -60,7 +60,6 @@ class LearnController extends Controller
             return redirect()->route('profile.index');
         }
 
-
         $curso = Course::where('slug',$slug)->first();
         $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
         $userCourseChapter = UserCourseChapter::where('user_course_id',$userCourse->id)->first();
@@ -76,6 +75,7 @@ class LearnController extends Controller
 
 
         $capitulos = Chapter::where('course_id',$curso->id)->get();
+        $chapter = Chapter::where('course_id',$curso->id)->first();
         //obtenemos el contenido del primer  capitulo
         $content = Chaptercontent::where('chapter_id',$capitulos[0]->id)->first();
        
@@ -111,8 +111,8 @@ class LearnController extends Controller
         return redirect()->route('usuario.outcome',['resultado'=>1,'course'=>$userCourse->id]);
        }
 
-      
-
+     // dd($url_next_quiz);
+      // dd($chapter);
         return view('frontpage.learn.index',[
             'examen'=>$examen,
             'quiz'=>$quiz,
