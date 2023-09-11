@@ -10,11 +10,12 @@
 <div class="card-header"><a href="#" class="btn btn-xs btn-primary btn-add-option float-right">Add Option</a></div>
 <div class="card-body card-question">
   
-@if(isset($question->examquestionoptions))
+
 
 
 @if(count($question->examquestionoptions)>0)
     @foreach(@$question->examquestionoptions as $k=> $opt)
+
         <div class="form-row">
             <div class="form-group col-md-9">
                 <label for="option{{$k+1}}" class="control-label">Option</label>
@@ -26,21 +27,22 @@
                 <label class="form-check-label" for="result{{$k+1}}">Result</label>
             </div>
         </div>
+        
     @endforeach  
-   
-
 
 @else
-<div class="form-row">
-    <div class="form-group  col-md-9">
-        <label for="option1" class="control-label">Option</label>
-        <input type="text" name="option[]" id="option1" class="form-control">
+
+    <div class="form-row">
+        <div class="form-group  col-md-9">
+            <label for="option1" class="control-label">Option</label>
+            <input type="text" name="option[]" id="option1" class="form-control">
+        </div>
+        <div class="form-check col-md-3">
+            <input type="radio" name="result" id="result1" class="form-check form-check-inline check__respuesta" value="1">
+            <label class="form-check-label" for="result1">Result</label>
+        </div>
     </div>
-    <div class="form-check col-md-3">
-        <input type="radio" name="result" id="result1" class="form-check form-check-inline check__respuesta" value="1">
-        <label class="form-check-label" for="result1">Result</label>
-    </div>
-</div>
+
 @endif
 
 
