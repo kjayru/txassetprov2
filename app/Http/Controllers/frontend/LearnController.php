@@ -490,16 +490,9 @@ class LearnController extends Controller
         $url_next_quiz = $content->chapter->course->slug."/".$content->chapter->slug."/quiz";
     }
 
-
     $sidelad = $this->getContent($capitulos,$curso);   
-    
-   
     $exam = Exam::find($id);
 
-
-   
-
-    
     return view('frontpage.exam.index',[
         'examen'=>$exam,
         'quiz'=>$quiz,

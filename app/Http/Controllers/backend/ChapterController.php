@@ -53,22 +53,20 @@ class ChapterController extends Controller
         $chapter = new Chapter();
         $chapter->title = $request->title;
         $chapter->slug = Str::slug($request->title, '-');
-       // $chapter->contenido = $request->description;
         $chapter->course_id = $request->parent_id;
-       // $chapter->quiz_id = $request->quiz_id;
-
         $chapter->video = $request->video;
         $chapter->audio = $request->audio;
         $chapter->reading = $request->reading;
+        $chapter->quiz = $request->quiz;
         $chapter->save();
+        
+        // if(isset($request->quiz_id)){
+        // $chapquiz = new ChapterQuiz();
+        // $chapquiz->chapter_id = $chapter->id;
+        // $chapquiz->quiz_id = $request->quiz_id;
 
-        if(isset($request->quiz_id)){
-        $chapquiz = new ChapterQuiz();
-        $chapquiz->chapter_id = $chapter->id;
-        $chapquiz->quiz_id = $request->quiz_id;
-
-        $chapquiz->save();
-        }
+        // $chapquiz->save();
+        // }
 
 
         return redirect('/admin/chapters/'.$request->parent_id)
@@ -101,16 +99,25 @@ class ChapterController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $chapter = Chapter::find($id);
+
         $chapter->title = $request->title;
         $chapter->slug = Str::slug($request->title, '-');
-        //$chapter->contenido = $request->description;
         $chapter->course_id = $request->parent_id;
-        $chapter->quiz_id = $request->quiz_id;
         $chapter->video = $request->video;
         $chapter->audio = $request->audio;
         $chapter->reading = $request->reading;
+        $chapter->quiz = $request->quiz;
         $chapter->save();
+
+        // ChapterQuiz::where('chapter_id',$chapter->id)->where('quiz_id',$request->quiz_id)->first();
+        // if(isset($request->quiz_id)){
+        //     $chapquiz = new ChapterQuiz();
+        //     $chapquiz->chapter_id = $chapter->id;
+        //     $chapquiz->quiz_id = $request->quiz_id;
+        //     $chapquiz->save();
+        // }
 
         return redirect('/admin/chapters/'.$request->parent_id)
         ->with('info','Chapter updated');
