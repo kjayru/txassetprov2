@@ -129,8 +129,7 @@ class ExamController extends Controller
 
             $opcion = New ExamQuestionOption();
             $opcion->opcion = $op;
-            $opcion->resultado = $request->result[$k];
-
+            
             
             if($request->result==$k+1){
             $opcion->resultado = 1;
@@ -196,7 +195,7 @@ class ExamController extends Controller
 
             $opcion = New ExamQuestionOption();
             $opcion->opcion = $op;
-            $opcion->resultado = $request->result[$k];
+           
             if($request->result==$k+1){
             $opcion->resultado = 1;
             }
