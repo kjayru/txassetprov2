@@ -130,6 +130,12 @@ class ExamController extends Controller
             $opcion = New ExamQuestionOption();
             $opcion->opcion = $op;
             $opcion->resultado = $request->result[$k];
+
+            
+            if($request->result==$k+1){
+            $opcion->resultado = 1;
+            }
+
             $opcion->exam_question_id = $pregunta->id;
             $opcion->save();
         }
@@ -180,6 +186,7 @@ class ExamController extends Controller
         $pregunta = ExamQuestion::find($id);
         $pregunta->question=$request->question;
         $pregunta->exam_id = $request->exam_id;
+        
         $pregunta->save();
 
 
@@ -190,6 +197,10 @@ class ExamController extends Controller
             $opcion = New ExamQuestionOption();
             $opcion->opcion = $op;
             $opcion->resultado = $request->result[$k];
+            if($request->result==$k+1){
+            $opcion->resultado = 1;
+            }
+
             $opcion->exam_question_id = $pregunta->id;
             $opcion->save();
         }
