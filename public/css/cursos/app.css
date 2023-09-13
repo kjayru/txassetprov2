@@ -12287,6 +12287,7 @@ footer .little {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin-top: 2rem;
+  margin-bottom: 1.5rem;
   font-weight: bold;
 }
 .encurso__video__titulo {
@@ -12899,6 +12900,22 @@ footer .little {
   display: none;
 }
 
+.correcto {
+  border: 1px solid #00b335;
+  border-radius: 20px;
+}
+
+.incorrecto {
+  border: 1px solid #e01f26;
+  border-radius: 20px;
+}
+
+.correcto.acierto {
+  border: 1px solid #00b335;
+  border-radius: 20px;
+  background: #00b335;
+}
+
 .quiz__resultados__barra {
   border: 1px solid #031059;
   height: 10px;
@@ -12960,9 +12977,22 @@ footer .little {
   margin-left: 1rem;
 }
 
+.btn__gray {
+  background: #555973;
+  color: white;
+  border-radius: 50px;
+  display: block;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
 .btn__examen {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
 }
 
 .btn__exam {
@@ -12982,6 +13012,27 @@ footer .little {
   padding-top: 2rem;
 }
 
+.quiz__resultado__titulo {
+  color: #031059;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 1.5rem;
+}
+.quiz__resultado__sub {
+  color: #031059;
+  font-weight: bold;
+}
+.quiz__resultado__time {
+  color: #031059;
+}
+.quiz__resultado__puntaje {
+  color: #031059;
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 3rem;
+  padding-top: 1rem;
+}
 .quiz__timelapse {
   background: #f2f2f2;
   height: 85px;
@@ -12990,6 +13041,7 @@ footer .little {
   padding-left: 2rem;
   padding-right: 2rem;
   padding-top: 10px;
+  display: none;
 }
 .quiz__timelapse__box {
   height: 10px;
@@ -13009,17 +13061,11 @@ footer .little {
   font-weight: bold;
   padding-bottom: 10px;
 }
-
 .quiz__inicio {
   display: block;
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
-
-.quiz__timelapse {
-  display: none;
-}
-
 .quiz__preguntas {
   display: none;
 }

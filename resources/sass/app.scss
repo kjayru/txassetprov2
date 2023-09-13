@@ -1636,6 +1636,7 @@ footer {
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
         margin-top: 2rem;
+        margin-bottom:1.5rem;
         font-weight: bold;
     }
     &__video{
@@ -2306,6 +2307,20 @@ footer {
 .quiz__botones{
     display: none;
 }
+.correcto{
+    border:1px solid #00b335;
+    border-radius:20px;
+}
+.incorrecto{
+    border:1px solid #e01f26;
+    border-radius:20px;
+}
+.correcto.acierto{
+    border:1px solid #00b335;
+    border-radius:20px;
+    background:#00b335;
+}
+
 .quiz__resultados{
     &__barra {
         border: 1px solid #031059;
@@ -2368,9 +2383,21 @@ footer {
     margin-right: 1rem;
     margin-left: 1rem;
 }
+.btn__gray{
+    background: #555973;
+    color: white;
+    border-radius: 50px;
+    display: block;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
 .btn__examen{
-    margin-top:1rem;
-    margin-bottom:1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
 }
 .btn__exam{
     background: #555973;
@@ -2386,45 +2413,72 @@ footer {
 .quiz__botones {
     padding-top: 2rem;
 }
-.quiz__timelapse {
-    background: #f2f2f2;
-    height: 85px;
-    width: 100%;
-    border-radius: 20px;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 10px;
-    &__box{
-        height: 10px;
-        position: relative;
-        border:solid 1px #031059;
+.quiz{
+    &__resultado{
+       
+        &__titulo{
+            color:#031059;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding-bottom: 10px;
+            padding-top:1.5rem;
+        }
+        &__sub{
+            color:#031059;
+            font-weight: bold;
+        }
+        &__time{
+            color:#031059;
+        }
+        &__puntaje{
+            color:#031059;
+            text-align: center;
+            font-weight: bold;
+            padding-bottom:3rem;
+            padding-top: 1rem;
+        }
     }
-    &__bar{
-        height: 9px;
-        background:#e01f26;
-        width: 0;
-        position: absolute;
-        left: 0;
+    &__timelapse {
+        background: #f2f2f2;
+        height: 85px;
+        width: 100%;
+        border-radius: 20px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 10px;
+        display: none;
+        &__box{
+            height: 10px;
+            position: relative;
+            border:solid 1px #031059;
+        }
+        &__bar{
+            height: 9px;
+            background:#e01f26;
+            width: 0;
+            position: absolute;
+            left: 0;
+        }
+        &__titulo{
+            color:#031059;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+        
     }
-    &__titulo{
-        color:#031059;
-        text-transform: uppercase;
-        font-weight: bold;
-        padding-bottom: 10px;
+    &__inicio {
+        display: block;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+    }
+    &__preguntas{
+        display: none;
     }
 }
 
-.quiz__inicio {
-    display: block;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-}
-.quiz__timelapse{
-    display: none;
-}
-.quiz__preguntas{
-    display: none;
-}
+
+
 
 .exam__exito {
     margin-top:4rem;

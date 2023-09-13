@@ -12,7 +12,7 @@
 			<div class="col-md-4">
 				<div class="breadcrum">
 					<ul>
-						<li><a href="/" class="breadcrum__link chevron"><img src="/images/Emblema-blanco.png" alt=""></a></li>
+						<li><a href="/" class="breadcrum__link "><img src="/images/Emblema-blanco.png" alt=""></a></li>
 						<li><span>></span><a href="/user/my-courses" class="breadcrum__link "> Courses</a></li>
 						<li><span>></span><a href="#" class="breadcrum__link active">{{$curso->titulo}}</a></li>
 					</ul>
@@ -44,11 +44,37 @@
                             <p>You have 3 attempts to pass this exam before you have to retake the entire course. The pass is 75%.</p>
                             <p>By continuing, you understand and accept the aforementioned instructions.</p>
                         </div>
-					
+				@if(!isset($tomo_examen) || $completo_examen==0)
 						<div class="quiz__inicio">
 							<a href="#" class="btn btn__red btn__examen btn__inline">Final Exam</a>
 						</div>
-
+				@else
+					<div class="quiz__resultado">
+						<div class="quiz__resultado__titulo">Result</div>
+						<div class="quiz__resultado__sub">{{$total_correctas}} of {{$total_preguntas}} questions answered correctly</div>
+						<div class="quiz__resultado__time">Your time: {{$tomo_examen->tiempo}}</div>
+						<div class="quiz__resultado__puntaje">
+							You have reached {{$total_correctas}} or {{$total_preguntas}} point(s). ({{$porcentaje}}%)
+						</div>
+						<div class="quiz__resultado__botones">
+							<div class="row justify-content-center">
+								<div class="col-4"><a href="#" class="btn btn__red btn__question__exam"   data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">View Questions</a></div>
+								<div class="col-4"><a href="#" class="btn btn__gray btn__restart__exam" data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">Restart test</a></div>
+								<div class="col-4">
+									@if($porcentaje > 75)
+									<a href="/{{$curso->slug}}/congratulation" class="btn btn__red btn__continue">Continue</a>
+									@else
+									<a href="#" class="btn btn__red btn__continue disabled">Continue</a>
+									@endif
+								</div>
+							</div>
+						</div>		
+						
+					</div>
+					<div class="quiz__respuestas">
+						
+					</div>
+				@endif
 
 					<div class="quiz__timelapse">
 						<div class="quiz__timelapse__titulo">Time limit: <span id="hora">01</span>:<span id="minuto">59</span>:<span id="segundo">00</span></div>
@@ -92,10 +118,10 @@
 
 			  </div>
 
-			  <div class="col-md-3">
+			  <div class="col-md-4">
 						<div class="encurso__temas">
 								  <div class="encurso__temas__titulo">
-											You have {{@$curso->tiempovalido}} days left to finish the course
+											You have {{UserCourse::dayleft($user_course_id)}} days left to finish the course
 								  </div>
 								  <ul class="encurso__temas__lista">
 										

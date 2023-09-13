@@ -251,7 +251,8 @@ Route::group(['prefix'=>'learn'],function(){
     Route::post('/reset-quiz',[LearnController::class,'resetChapter']);
 
     Route::post('/set-exam',[LearnController::class,'setExam']);
-    
+    Route::post('/exam/reset-exam',[LearnController::class,'resetExam']);
+    Route::post('/exam/view-exam',[LearnController::class,'viewExam']);
 });
 
 Route::group(['prefix'=>'user'],function(){

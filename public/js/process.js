@@ -40,10 +40,10 @@ $(".cart__body__foot__link").click(function(e){
   e.preventDefault();
   let token = $("meta[name=csrf-token]").attr("content");
   const sendata = ({'_token':token,'_method':'POST'});
-//verificar si el carrito es vacio 
+  //verificar si el carrito es vacio 
   let course_id = $(this).data('id');
   let user_id = $(this).data('user');
-//verifica inicio de sesion
+  //verifica inicio de sesion
   $.ajax({
     url:'/cart/checksesion',
     type:'GET',
@@ -586,7 +586,6 @@ if(urlpath.indexOf('quiz')!="-1"){
 
 
 $(".btn__exam").on('click',function(e){
-
   e.preventDefault();
   let user_course_id = $("#user_course_id").val();
   let exam_id = $("#exam_id").val();
@@ -614,6 +613,8 @@ $(".btn__exam").on('click',function(e){
          $(".quiz__resultados").show();
           $(".quiz__botones").show();
 
+          //return aprobo no aproboå
+          
         //  window.location.reload();
      }
       
@@ -784,3 +785,78 @@ function secondsToString(seconds) {
   second = (second < 10)? '0' + second : second;
   return hour  + minute + ':' + second;
 }
+
+$(".btn__restart__exam").on('click',function(e){
+
+  
+  e.preventDefault();
+  let curso_id = $(this).data("cursoid");
+  let usercourseid = $(this).data("usercourseid");
+  let usercourseexamid = $(this).data("usercourseexamid");
+  let examid = $(this).data("examid");
+  const token = $('meta[name="csrf-token"]').attr('content');
+
+  let sendata = {'_token':token,'_method':'POST',curso_id:curso_id,user_course_id:usercourseid,user_course_exam_id:usercourseexamid,'exam_id':examid};
+
+  $.ajax({
+    url:'/learn/exam/reset-exam',
+    type:'POST',
+    dataType:'json',
+    data:sendata,
+    success:function(response){
+      window.location.reload();
+      
+    }
+  })
+
+
+})
+
+
+$(".btn__question__exam").on('click',function(e){
+  e.preventDefault();
+  let curso_id = $(this).data("cursoid");
+  let usercourseid = $(this).data("usercourseid");
+  let usercourseexamid = $(this).data("usercourseexamid");
+  let examid = $(this).data("examid");
+  const token = $('meta[name="csrf-token"]').attr('content');
+
+  let sendata = {'_token':token,'_method':'POST',curso_id:curso_id,user_course_id:usercourseid,user_course_exam_id:usercourseexamid,'exam_id':examid};
+
+  $.ajax({
+    url:'/learn/exam/view-exam',
+    type:'POST',
+    dataType:'json',
+    data:sendata,
+    success:function(response){
+      var htm='';
+      $.each(response,function(i,e){
+        
+       htm+=` <div class="card__question">
+									${i+1}. ${e.question_name}
+						
+						<div class="card__question__opciones">`;
+									$.each(e.opciones,function(x,y){
+
+                 
+
+										htm+=`	<div class="form-check  ${y.responde?'incorrecto':''} ${y.resultado?'correcto':''} ${y.acierto?'acierto':''} ">	
+											<input class="form-check-input " type="radio" name="respuesta${i+1}" value="${x+1}"   id="respuesta${x+1}" data-res="${y.responde}"  ${y.responde?'checked':''}>
+											<label class="form-check-label" for="respuesta${x+1}">
+												${y.name}
+											</label>
+											</div>`;
+										
+                    })
+											
+        htm+=`</div>
+								
+			</div>`;
+
+
+      })
+      console.log(htm);
+      $(".quiz__respuestas").html(htm);
+    }
+  })
+})

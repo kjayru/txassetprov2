@@ -431,22 +431,6 @@ class LearnController extends Controller
 
     public function cursoQuiz($slug,$id){
  
-    /*$user_id = Auth::id();
-    $curso = Course::where('slug',$slug)->first();
-    $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
-
-    $content=null;
-   
-    //chapter crear order en tabla
-    $capitulos = Chapter::where('course_id',$curso->id)->get();
-
-
-    
-        $user_course_chapter = null;
-        $user_course_chapter_id = null;
-    
-    
-    $sidelad = $this->getContent($capitulos,$curso);*/
 
     $capVisitados=null;
     $contVisitados=null;
@@ -459,6 +443,12 @@ class LearnController extends Controller
     $url_next=null;
     $url_next_quiz=null;
     $chapter = null;
+    $tomo_examen=null;
+    $total_preguntas=null;
+    $total_respondidas = null;
+    $total_correctas= null;
+    $porcentaje=0;
+    $completo_examen=0;
 
     $user_id = Auth::id();
     $user = User::find($user_id);
@@ -482,16 +472,27 @@ class LearnController extends Controller
     $content = Chaptercontent::where('chapter_id',$capitulos[0]->id)->first();
    
     $sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$content->chapter->id)->orderBy('id')->first();
+    
     if(isset($sig)){
-
         $url_next = $sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
-    }else{
-       
+    }else{ 
         $url_next_quiz = $content->chapter->course->slug."/".$content->chapter->slug."/quiz";
     }
 
     $sidelad = $this->getContent($capitulos,$curso);   
     $exam = Exam::find($id);
+
+    //comprobar si tomo examen
+    if(UserCourseExam::where('exam_id',$id)->where('user_course_id',$userCourse->id)->count()>0){
+
+        $tomo_examen = UserCourseExam::where('exam_id',$id)->where('user_course_id',$userCourse->id)->first();   
+        $total_preguntas = ExamQuestion::where('exam_id',$id)->count();
+        $total_respondidas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)->count();     
+        $total_correctas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)->where('result','1')->count();
+        $porcentaje = round($total_correctas*100/$total_preguntas ,2);
+        $completo_examen = $tomo_examen->complete;
+
+    }
 
     return view('frontpage.exam.index',[
         'examen'=>$exam,
@@ -506,27 +507,24 @@ class LearnController extends Controller
         'user_course_chapter_content_id'=>$user_course_chapter_content_id,
         'url_next'=>$url_next,
         'url_next_quiz'=>$url_next_quiz,
-        'chapter'=>$chapter
+        'chapter'=>$chapter,
+        'tomo_examen'=>$tomo_examen,
+        'total_preguntas'=>$total_preguntas,
+        'total_respondidas'=>$total_respondidas,
+        'total_correctas'=>$total_correctas,
+        'porcentaje'=>$porcentaje,
+        'completo_examen'=>$completo_examen
+
     ]);
 
     }
 
     public function congratulation($slug){
-
-
-
         $user_id = Auth::id();
         $curso = Course::where('slug',$slug)->first();
         $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
-
-       
-      
         //chapter crear order en tabla
         $capitulos = Chapter::where('course_id',$curso->id)->get();
-
-      
-        
-
        foreach($capitulos as $cap){
         $menucont=null;
         $quiz=false;
@@ -556,10 +554,6 @@ class LearnController extends Controller
        }
         $quiz=null;
         $exam=null;
-        
-    
-
-
         return view('frontpage.exam.exitos',['examen'=>$exam,'quiz'=>$quiz,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
     }
 
@@ -616,9 +610,6 @@ class LearnController extends Controller
 
     
     public function setExam(Request $request){
-      
-
-        
 
       //registro general
       if(UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->count()==0){
@@ -627,6 +618,7 @@ class LearnController extends Controller
         $registro->exam_id = $request->exam_id;
         $registro->tiempo = $request->tiempo;
         $registro->resultado = 0;
+        
         $registro->save();
 
       }else{
@@ -652,9 +644,72 @@ class LearnController extends Controller
        $total_respondidas = UserCourseExamResult::where('user_course_exam_id',$registro->id)->count();
 
        if($total_preguntas == $total_respondidas){
+        $actualizar =  UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->first();
+        $actualizar->complete =1;
+        $actualizar->save();
         return response()->json(['rpta'=>'ok','status'=>'200','completo'=>true]);
        }
 
         return response()->json(['rpta'=>'ok','status'=>'200','completo'=>false]);
     }
+
+    public function resetExam(Request $request){
+        $uce = UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->first();
+        $uce->intentos = $uce->intentos+1;
+        $uce->complete = 0;
+        $uce->save();
+
+        UserCourseExamResult::where('user_course_exam_id',$request->user_course_exam_id)->delete();
+
+        return response()->json(['status'=>'200','rpta'=>'ok']);
+    }
+
+    public function viewExam(Request $request){
+        $total_preguntas = ExamQuestion::where('exam_id',$request->exam_id)->get();
+        $total_respondidas = UserCourseExamResult::where('user_course_exam_id',$request->user_course_exam_id)->get();
+        
+       
+
+        foreach($total_preguntas as $preg){
+           
+            $opciones=null;
+            foreach($preg->examquestionoptions as $opcion){
+                $user_responde=false;
+                $acierto = false;
+
+                if(UserCourseExamResult::where('exam_question_option_id',$opcion->id)->count()>0){
+                    $user_responde = true;
+
+                    $urespuesta = UserCourseExamResult::where('exam_question_option_id',$opcion->id)->first();
+
+                    if($urespuesta->exam_question_option_id == $opcion->id && $urespuesta->result ==1){
+                        $acierto = true;
+                    }
+                }
+
+               
+                $opciones[]=[
+                    'id'=>$opcion->id,
+                    'name'=> $opcion->opcion,
+                    'resultado'=>$opcion->resultado,
+                    'responde'=>$user_responde,
+                    'acierto'=>$acierto,
+                    'exam_question_option_id'=>@$urespuesta->exam_question_option_id,
+                    'opcion_resultado'=>@$urespuesta->result
+
+                ];
+
+            }
+
+            $preguntas[]=[
+                'question_id'=>$preg->id,
+                'question_name'=>$preg->question,
+                'opciones'=>$opciones
+
+            ];
+
+        }
+        return response()->json($preguntas);
+    }
+    
 }
