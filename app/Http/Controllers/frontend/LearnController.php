@@ -53,6 +53,7 @@ class LearnController extends Controller
         $user_id = Auth::id();
         $user = User::find($user_id);
        
+       
 
         //verificamos si usuario lleno profile
         $profile = Profile::where('user_id',$user_id)->count();
@@ -373,7 +374,7 @@ class LearnController extends Controller
 
     public function setQuestion(Request $request){
         $user_id = Auth::id();
-      
+       
         $respuesta = 0;
         $resultado = ChapterQuizOption::where('id',$request->optionid)->first();
        
@@ -397,17 +398,14 @@ class LearnController extends Controller
         $completado = false;
         //obtenemos el numero de preguntas
        
-        $numeroPreguntas = ChapterQuiz::where('chapter_id',$request->user_course_chapter_id)->count();
-        
-       
-
-
-        $preguntas = ChapterQuiz::where('chapter_id',$request->user_course_chapter_id)->get();
-       
+        $numeroPreguntas = ChapterQuiz::where('chapter_id',$request->chapter_id)->count();
+    
+        $preguntas = ChapterQuiz::where('chapter_id',$request->chapter_id)->get();
+      
         foreach($preguntas as $preg){
 
             $numerContestadas = UserCourseChapterQuiz::where('user_course_chapter_id',$request->user_course_chapter_id)->where('chapter_quiz_id',$preg->id)->count();
-            $total +=$numerContestadas;
+            $total += $numerContestadas;
         }
        
         if($numeroPreguntas  == $total){
@@ -417,7 +415,7 @@ class LearnController extends Controller
       
        
 
-        return response()->json(['rpta'=>'ok','completado'=>$completado]);
+        return response()->json(['rpta'=>'ok','completado'=>$completado,'np'=>$numeroPreguntas,'nc'=>$total]);
 
     }
 

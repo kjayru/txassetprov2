@@ -363,7 +363,7 @@ $(".btn__quiz").on('click',function(e){
 
   let input = $(this).parent().children('.card__question__opciones').find('input[name="respuesta"]:checked').val();
   let padre =  $(this).parent();
-  let chapter_id =  $('input[name="chapter_id"]').val();
+  let chapter_id =  $('input[name="quiz_chapter_id"]').val();
   let tiempo = $("#tiempoquiz").val();
 
   const token = $('meta[name="csrf-token"]').attr('content');
