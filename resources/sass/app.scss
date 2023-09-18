@@ -1612,6 +1612,22 @@ footer {
 }
 
 .encurso{
+    .advertencia{
+        color:#031059;
+        font-size:20px;
+        position: relative;
+        padding-left: 2rem;
+
+        &:before{
+            content:"";
+            background:url('/images/atention.svg') no-repeat;
+            background-size:contain;
+            width:30px;
+            height: 30px;
+            position: absolute;
+            left:0;
+        }
+    }
     
     &__titulo{
         font-size:4rem;
@@ -1683,7 +1699,7 @@ footer {
         margin-top:3rem;
         background:$grisclaro;
         border-radius: 20px;
-        padding:19px 39px;
+        padding: 19px 39px 39px;
         position: relative;
         margin-bottom:5rem;
         &__titulo{
@@ -1694,6 +1710,7 @@ footer {
            position: relative;
            display: inline-block;
            margin:0 auto;
+           color:#031059;
            &:before{
             content:"\f028";
             font-family: "FontAwesome";
@@ -1729,6 +1746,9 @@ footer {
                     height: 10px;
                 }
             }
+            .timer{
+                color:#031059;
+            }
         }
         &:after{
             content:"";
@@ -1741,7 +1761,7 @@ footer {
         }
     }
     &__footer{
-        margin-bottom: 10rem;
+        margin-bottom: 4rem;
         text-align:right;
         &__link{
             display:inline-block;
@@ -1752,6 +1772,11 @@ footer {
             text-decoration: none;
             padding:10px 2rem;
             border-radius:50px;
+
+            &:hover{
+                background:#B7161C;
+                color:white;
+            }
         }
     }
 
@@ -2663,7 +2688,7 @@ progress{
 	left:0px;
 	text-align:left;
 	float:left;
-	color: #6c5ce7;
+	
 }
 
 @media(min-width: 980px) and (max-width: 1300px){

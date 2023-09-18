@@ -75,7 +75,7 @@
 						@include('layouts.backend.partials.curso.quiz-botones')
 					@endif
 
-					<p class="mt-5">To continue to the next chapter, you need to pass the quiz for the chapter you are taking.</p>
+					<p class="mb-5 advertencia">To continue to the next chapter, you need to pass the quiz for the chapter you are taking.</p>
 			  </div>
 
 

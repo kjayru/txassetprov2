@@ -38,7 +38,7 @@
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Email</strong>  </td>
-                            <td><input type="text" name="email" id="email" class="form-control" value="{{@$user->email}}" readonly></td>
+                            <td><input type="text" name="email" id="email" class="form-control" value="{{@$user->email}}" readonly disabled></td>
                         </tr>
                     </table>
 				</div>

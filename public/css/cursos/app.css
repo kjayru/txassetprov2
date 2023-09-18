@@ -12264,6 +12264,21 @@ footer .little {
   padding-bottom: 1.5rem;
 }
 
+.encurso .advertencia {
+  color: #031059;
+  font-size: 20px;
+  position: relative;
+  padding-left: 2rem;
+}
+.encurso .advertencia:before {
+  content: "";
+  background: url("/images/atention.svg") no-repeat;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 0;
+}
 .encurso__titulo {
   font-size: 4rem;
   font-family: "Bebas Neue", cursive;
@@ -12328,7 +12343,7 @@ footer .little {
   margin-top: 3rem;
   background: #f2f2f2;
   border-radius: 20px;
-  padding: 19px 39px;
+  padding: 19px 39px 39px;
   position: relative;
   margin-bottom: 5rem;
 }
@@ -12340,6 +12355,7 @@ footer .little {
   position: relative;
   display: inline-block;
   margin: 0 auto;
+  color: #031059;
 }
 .encurso__audio__titulo:before {
   content: "\f028";
@@ -12372,6 +12388,9 @@ footer .little {
   left: 0;
   height: 10px;
 }
+.encurso__audio__timeline .timer {
+  color: #031059;
+}
 .encurso__audio:after {
   content: "";
   background: #9d9d9d;
@@ -12382,7 +12401,7 @@ footer .little {
   left: 0;
 }
 .encurso__footer {
-  margin-bottom: 10rem;
+  margin-bottom: 4rem;
   text-align: right;
 }
 .encurso__footer__link {
@@ -12394,6 +12413,10 @@ footer .little {
   text-decoration: none;
   padding: 10px 2rem;
   border-radius: 50px;
+}
+.encurso__footer__link:hover {
+  background: #B7161C;
+  color: white;
 }
 .encurso__temas {
   margin-top: 5rem;
@@ -13253,7 +13276,6 @@ progress {
   left: 0px;
   text-align: left;
   float: left;
-  color: #6c5ce7;
 }
 
 @media (min-width: 980px) and (max-width: 1300px) {
