@@ -12528,7 +12528,15 @@ footer .little {
 }
 
 .final__examen span {
-  padding-top: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.final__examen:before {
+  content: "";
+  width: 0;
 }
 
 .gracias {

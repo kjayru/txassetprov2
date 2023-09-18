@@ -1907,7 +1907,15 @@ footer {
 }
 .final__examen{
     span{
-        padding-top:5px;
+        font-family: $open-sans;
+        font-weight: lighter;
+        font-size: 15px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    &:before{
+        content:"";
+        width: 0;
     }
 }
 .gracias{
