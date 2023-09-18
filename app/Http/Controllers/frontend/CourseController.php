@@ -22,7 +22,7 @@ class CourseController extends Controller
     }
 
     public function curso($slug){
-     
+  
         $curso = Course::where('slug',$slug)->first();
        
         $relacionados = Course::where('id','<>',$curso->id)->orderBy('id','desc')->take(3)->get();
@@ -32,7 +32,7 @@ class CourseController extends Controller
     }
 
     public function cursoContent(Request $request){
-           
+      
             $curso = Course::find($request->id);
             $contenidos=null;
 

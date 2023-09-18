@@ -899,9 +899,10 @@ class HomeController extends Controller
         
         $cart = new Cart($oldcart);
 
-
-        if(count($oldcart->items)>0){
-            return response()->json(['rpta'=>'error']);
+        if(isset($oldcart->items)){
+            if(count($oldcart->items)>0){
+                return response()->json(['rpta'=>'error']);
+            }
         }
         $cart->add($curso,$curso->precio,1,$curso->id);
 

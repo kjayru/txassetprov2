@@ -14,8 +14,8 @@
                 </li>
             @endforeach	
             @if($cont['contenidos']['quiz']==true)
-                <li>
-                    <a href="#">Quiz chapter</a>
+                <li class="encurso__temas__lista__item__sublista__item">
+                    <a href="#">Question about the chapter</a>
                 </li>
             @endif
         </ul>

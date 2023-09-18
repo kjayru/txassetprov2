@@ -37,7 +37,7 @@ class LearnController extends Controller
    }
    
     public function index($slug){
-    
+       
         $capVisitados=null;
         $contVisitados=null;
         $contenido=null;
@@ -93,7 +93,9 @@ class LearnController extends Controller
         
         $sidelad = $this->getContent($capitulos,$curso);
         
-        
+        if(isset($curso->examcourse)){
+            $examen = $curso->examcourse->exam;
+        }
 
           //verificamos el estado del curso
         //-- caducidad
