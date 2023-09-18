@@ -264,6 +264,7 @@ class CartController extends Controller
         $contador = (count($carrito->items));
  
         if($contador>1){
+           // return redirect()->route('curso.todos')->with(['info'=>'You can only purchase one course per purchase']);
             $titulo="Varios cursos";
             $resumen="";
         }else{

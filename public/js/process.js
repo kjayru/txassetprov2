@@ -11,6 +11,9 @@ $(".detalle__costo__boton__link").on('click',function(e){
       success:function(response){
          if(response.rpta=="ok"){
           window.location.href="/cart";
+         }else{
+          $(".texto__error").html("You can only purchase one course at a time")
+          $("#errorModal").modal('show');
          }
       }
     });

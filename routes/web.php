@@ -206,7 +206,7 @@ Route::get('/blog',[Home::class,'blog']);
 Route::get('/blog/{slug}',[Home::class,'blogDetail']);
 
 Route::get('/courses',[Course::class,'index']);
-Route::get('/courses/all',[Course::class,'todos']);
+Route::get('/courses/all',[Course::class,'todos'])->name('curso.todos');
 Route::get('/course/{slug}',[Course::class,'curso']);
 Route::get('/course/{slug}/{chapters}',[Course::class,'cursoChapter']);
 Route::get('/course/{slug}/{chapters}/{content}',[Course::class,'cursoChapterContent']);

@@ -900,6 +900,9 @@ class HomeController extends Controller
         $cart = new Cart($oldcart);
 
 
+        if(count($oldcart->items)>0){
+            return response()->json(['rpta'=>'error']);
+        }
         $cart->add($curso,$curso->precio,1,$curso->id);
 
         $request->session()->put('cart', $cart);
