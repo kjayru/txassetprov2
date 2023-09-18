@@ -33,10 +33,10 @@
     <div class="form-row">
         <div class="form-group  col-md-9">
             <label for="option1" class="control-label">Option</label>
-            <input type="text" name="option[]" id="option1" class="form-control">
+            <input type="text" name="option[]" id="option1" class="form-control" required>
         </div>
         <div class="form-check col-md-3">
-            <input type="radio" name="result" id="result1" class="form-check form-check-inline check__respuesta" value="1">
+            <input type="radio" name="result" id="result1" class="form-check form-check-inline check__respuesta" value="1" required>
             <label class="form-check-label" for="result1">Result</label>
         </div>
     </div>
@@ -48,10 +48,10 @@
     <div class="form-row">
         <div class="form-group  col-md-9">
             <label for="option1" class="control-label">Option</label>
-            <input type="text" name="option[]" id="option1" class="form-control">
+            <input type="text" name="option[]" id="option1" class="form-control" required>
         </div>
         <div class="form-check col-md-3">
-            <input type="radio" name="result" id="result1" class="form-check form-check-inline check__respuesta" value="1">
+            <input type="radio" name="result" id="result1" class="form-check form-check-inline check__respuesta" value="1" required>
             <label class="form-check-label" for="result1">Result</label>
         </div>
     </div>

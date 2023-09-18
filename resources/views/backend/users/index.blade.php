@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Orders</h1>
+            <h1>Users</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -46,7 +46,7 @@
 
 
 
-                <table id="example1" class="table table-bordered table-hover">
+                <table id="example2" class="table table-bordered table-hover">
                     <thead>
                     <tr>
                         <th></th>
@@ -61,7 +61,7 @@
                     </thead>
                     <tbody>
                         @if(count($users)>0)
-                        @foreach($users as $k => $user)
+                        @foreach($users->sortByDesc('id') as $k => $user)
                         <tr>
                             <td>{{ $k+1 }}</td>
                             <td>{{ $user->name}} {{ @$user->profile->lastname }} {{ @$user->profile->middlename }}</td>

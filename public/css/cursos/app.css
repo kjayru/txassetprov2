@@ -12544,8 +12544,9 @@ footer .little {
 }
 .gracias__box__info__properties ul .date:before {
   font-size: 1.2rem;
-  content: "\f073";
-  font-family: "FontAwesome";
+  content: "";
+  background: url(/images/curso-calendario.svg) no-repeat 0px 0px;
+  background-size: contain;
   position: absolute;
   left: -30px;
   top: 14px;
@@ -12914,6 +12915,13 @@ footer .little {
   border: 1px solid #00b335;
   border-radius: 20px;
   background: #00b335;
+}
+
+.vjs-big-play-button {
+  position: absolute !important;
+  transform: translate(-50%, -50%);
+  left: 50% !important;
+  top: 50% !important;
 }
 
 .quiz__resultados__barra {

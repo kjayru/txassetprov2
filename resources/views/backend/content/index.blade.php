@@ -72,8 +72,17 @@
                         <td>{{@$content->titulo}}</td>
                         <td>{!!Str::limit($content->contenido,60)!!}</td>
                        
-                        <td>{{ @$content->video }} </td>
-                        <td>{{ @$content->audio }} </td>
+                        <td>
+                          <video src="/storage/{{ @$content->video }}" width="200" height="120" controls></video>
+                         </td>
+                        <td>
+                          <audio controls>
+                            <source src="/storage/{{ @$content->audio }}" type="audio/mp3">
+                                Tu navegador no soporta audio HTML5.
+                        </audio>
+                          
+                        
+                        </td>
                         <td>{{ @$content->created_at}}</td>
                         <td width="8%">
                             <a href="/admin/chaptercontent/{{@$content->id}}/edit" class="btn btn-sm btn-warning legitRipple">

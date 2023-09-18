@@ -220,7 +220,7 @@ class CartController extends Controller
             }
         }
 
-       // Session::forget('cart');
+       Session::forget('cart');
 
         //send email
 

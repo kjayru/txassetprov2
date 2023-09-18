@@ -54,26 +54,31 @@
     @if(!@$content->audio)
     
     <div class="form-group">
-        <label for="">Audio</label>
+        <label for="audio">Audio</label>
         <input type=file name="audio"  id="audio" class="form-control">
+        <small id="emailHelp" class="form-text text-muted">Format audio mp3</small>
     </div>
 
     @else
     <div class="form-group">
 
-        <label for="video" class="col-sm-2 control-label">Audio</label>
+        <label for="audio" class="col-sm-2 control-label">Audio</label>
 
 
             <div class="thumbnail">
-                {{ @$content->audio }}
+               
+                <audio controls>
+                    <source src="/storage/{{ @$content->audio }}" type="audio/mp3">
+                        Tu navegador no soporta audio HTML5.
+                </audio>
 
                 <a href="javascript:void(0)" class="btn-mod btn btn-xs btn-primary">Modificar</a>
             </div>
 
-            <input type=file name="video"  id="video" class=" form-control" style="display: none">
-            <span class="help-block">{{ $errors->first('video') }}</span>
+            <input type=file name="audio"  id="audio" class=" form-control" style="display: none">
+            <span class="help-block">{{ $errors->first('audio') }}</span>
 
-            <small id="emailHelp" class="form-text text-muted">Format video mp4</small>
+            <small id="emailHelp" class="form-text text-muted">Format audio mp3</small>
 
     </div>
 @endif

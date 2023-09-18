@@ -328,7 +328,7 @@ $(".detalle__header__home__course").on('click',function(e){
                               <div class="col-md-4">
                               <ul class="capitulos">`;
                                        if(e.video!=null){
-                                        htm+=`<li class="videocap">Introduccion</li>`;
+                                        htm+=`<li class="videocap">Chapter video</li>`;
                                       }
                                        if(e.reading!=null){
                                       htm+=` <li class="capitulo">Chapter reading</li>`;
@@ -348,6 +348,9 @@ $(".detalle__header__home__course").on('click',function(e){
           htm+=`</div>`;
 
           $(".detalle__secciones").html(htm);
+          $('html, body').animate({
+            scrollTop: $("#contenido").offset().top
+        }, 360);
         }
       });
     break;

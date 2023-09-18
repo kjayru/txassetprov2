@@ -49,7 +49,7 @@
 
     <div class="form-group @if($errors->first('video')) has-error @endif">
         <label for="video" class="col-sm-2 control-label">Video</label>
-            <input type=file name="video"  id="video" class="form-control">
+            <input type=file name="video"  id="video" class="form-control" required>
             <span class="help-block">{{ $errors->first('video') }}</span>
     </div>
 @else
@@ -74,7 +74,7 @@
 
     <div class="form-group">
         <label for="available">Available</label>
-        <input type="date" name="available" id="available" value="{{@$course->disponible}}" placeholder="Available" class="form-control">
+        <input type="date" name="available" id="available"  value="{{@$course->disponible}}" max="2099-12-12" placeholder="Available" class="form-control">
     </div>
 
     <div class="form-group">

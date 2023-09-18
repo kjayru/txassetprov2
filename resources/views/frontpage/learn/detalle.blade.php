@@ -51,7 +51,7 @@
 
                                      </div>
 
-                                     <div class="detalle__informacion interlineado">
+                                     <div  class="detalle__informacion interlineado">
                                         <strong>Course Information</strong>
 
                                         {!! $curso->contenido !!}
@@ -76,7 +76,7 @@
                                                             </div>
                                                             <div class="col-md-4">
                                                                      <ul class="capitulos">
-                                                                              @if(isset($chapter->video)) <li class="videocap">Introduccion</li>@endif
+                                                                              @if(isset($chapter->video)) <li class="videocap">Chapter video</li>@endif
                                                                               @if($chapter->reading==1) <li class="capitulo">Chapter reading</li>@endif
                                                                               @if($chapter->audio==1)  <li class="audio">Chapter audio</li>@endif
                                                                               @if($chapter->audio==1)  <li class="question">Questions about the chapter</li>@endif
@@ -88,7 +88,7 @@
                                        
 
                                      </div>
-                                     <div class="detalle__secciones detalle__contenido">
+                                     <div id="contenido" class="detalle__secciones detalle__contenido">
 
                                      </div>
 

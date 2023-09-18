@@ -92,6 +92,12 @@
     $(function () {
       $('#example1').DataTable();
     });
+
+    $(function () {
+      $('#example2').DataTable({
+        order: [[6, 'desc']]
+      });
+    });
   </script>
 </body>
 </html>
