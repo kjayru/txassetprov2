@@ -12539,6 +12539,13 @@ footer .little {
   width: 0;
 }
 
+.form-check.acierto.resultfail.resulcorrect {
+  border: 1px solid #00b335;
+  width: 100%;
+  display: block;
+  border-radius: 50px;
+}
+
 .gracias {
   margin-top: 6rem;
   margin-bottom: 12rem;

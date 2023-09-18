@@ -25,36 +25,43 @@ class ChapterQuizOption extends Model
 
     }
 
-    public static function isCorrect($id,$user_id){
+    public static function isCorrect($id){
         //resultado usuario
-        $resultUser = UserChapterQuizOption::where('user_id',$user_id)->where('chapter_question_option_id',$id)->first();
+        $resultUser = chapterQuizOption::where('id',$id)->first();
         
-        $resultOption = ChapterQuizOption::where('id',$id)->where('estado',1)->first();
-        //se compara
-       
-        if(isset($resultUser->id)){
-           if(isset($resultOption->id)){
-                if($resultUser->chapter_question_option_id==$resultOption->id){
-                    return $resultUser->chapter_question_option_id." verdad ".$resultOption->id;
-                }else{
-                    return false;
-                }
-            }else{
-                return false;
-            }            
+        if($resultUser->estado==1){
+            return true;
         }
         return false;
+        // $resultOption = ChapterQuizOption::where('id',$id)->where('estado',1)->first();
+        // //se compara
+       
+        // if(isset($resultUser->id)){
+        //    if(isset($resultOption->id)){
+        //         if($resultUser->chapter_question_option_id==$resultOption->id){
+        //             return $resultUser->chapter_question_option_id." verdad ".$resultOption->id;
+        //         }else{
+        //             return false;
+        //         }
+        //     }else{
+        //         return false;
+        //     }            
+        // }
+        // return false;
 
     }
 
-    public static function resultUser($id,$user_id){
-        $resultUser = UserChapterQuizOption::where('user_id',$user_id)->where('chapter_question_option_id',$id)->first();
-        
-        if(isset($resultUser->id)){
-        return true;
+    public static function resultUser($id,$user_course_chapter_id){
+        $resultUser = UserCourseChapterQuiz::where('quiz_question_option_id',$id)->where('user_course_chapter_id',$user_course_chapter_id)->first();
+        if(isset($resultUser)){
+            if($resultUser->result==1){
+                return 1;
+            }else{
+                return 2;
+            }
         }
 
-        return false;
+        return 3;
 
     }
 }
