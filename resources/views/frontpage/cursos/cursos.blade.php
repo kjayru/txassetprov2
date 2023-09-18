@@ -32,7 +32,7 @@
                   <div class="col-md-4">
                       <div class="grilla__cursos__card">
                           <div class="grilla__cursos__card__imagen">
-                              <img src="/images/curso1.png" class="img-fluid">
+                              <img src="/storage/{{$curso->banner}}" class="img-fluid">
                           </div>
                           <div class="grilla__cursos__card__contenido">
                             <div class="post__nombre">
