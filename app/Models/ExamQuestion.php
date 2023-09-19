@@ -20,8 +20,10 @@ class ExamQuestion extends Model
     public static function getResult($id){
        
         $resultado = ExamQuestionOption::where('exam_question_id',$id)->where('resultado',1)->first();
-      
+      if(isset($resultado)){
         return $resultado->opcion;
+      }
+      return false;
     }
 }
 
