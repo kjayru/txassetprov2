@@ -58,7 +58,7 @@
 						</div>
 						<div class="quiz__resultado__botones">
 							<div class="row justify-content-center">
-								<div class="col-4"><a href="#" class="btn btn__red btn__question__exam"   data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">View Questions</a></div>
+								<div class="col-4"><a href="#" class="btn btn__gray btn__question__exam"   data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">View Questions</a></div>
 								<div class="col-4"><a href="#" class="btn btn__gray btn__restart__exam" data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">Restart test</a></div>
 								<div class="col-4">
 									@if($porcentaje > 75)

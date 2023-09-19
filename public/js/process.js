@@ -635,7 +635,7 @@ $(".btn__exam").on('click',function(e){
 
           //return aprobo no aproboå
           
-        //  window.location.reload();
+       window.location.reload();
      }
       
     }

@@ -13096,6 +13096,10 @@ footer .little {
   margin-right: 1rem;
   margin-left: 1rem;
 }
+.btn__gray:hover {
+  background-color: #031059;
+  color: white;
+}
 
 .btn__examen {
   margin-top: 1rem;
