@@ -1923,8 +1923,8 @@ footer {
         width: 0;
     }
     a{
-        top:0;
-        padding-left: 0;
+        top:0 !important;
+        padding-left: 0 !important;
     }
 }
 .form-check.acierto.resultfail.resulcorrect{

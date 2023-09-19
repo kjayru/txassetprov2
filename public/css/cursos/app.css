@@ -12543,6 +12543,10 @@ footer .little {
   content: "";
   width: 0;
 }
+.final__examen a {
+  top: 0 !important;
+  padding-left: 0 !important;
+}
 
 .form-check.acierto.resultfail.resulcorrect {
   border: 1px solid #00b335;
