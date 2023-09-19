@@ -12471,7 +12471,7 @@ footer .little {
   text-decoration: none;
   font-weight: lighter !important;
   font-family: "Open Sans", sans-serif;
-  padding-left: 2rem !important;
+  padding-left: 3rem !important;
 }
 .encurso__temas__lista__item__sublista .finalizado {
   position: relative;
@@ -12488,7 +12488,7 @@ footer .little {
   font-family: "FontAwesome";
   position: absolute;
   top: -29px;
-  left: 24px;
+  left: 40px;
 }
 .encurso__temas__lista__item__sublista .active a {
   color: #e01f26 !important;
@@ -12503,7 +12503,7 @@ footer .little {
   color: #031059;
   text-decoration: none;
   font-weight: bold;
-  padding-left: 3rem;
+  padding-left: 3.5rem;
   display: block;
   top: -31px;
   position: relative;
@@ -12521,6 +12521,14 @@ footer .little {
 }
 .encurso__temas__lista .active span {
   background: #e01f26;
+}
+.encurso__temas__lista .active:after {
+  content: "\f00c";
+  font-family: "FontAwesome";
+  position: absolute;
+  top: 0;
+  left: 36px;
+  color: #E01F26;
 }
 .encurso__question ul {
   list-style: none;

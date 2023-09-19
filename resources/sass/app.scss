@@ -1831,7 +1831,7 @@ footer {
                             text-decoration: none;
                             font-weight: lighter !important;
                             font-family:$open-sans;
-                            padding-left:2rem !important;
+                            padding-left:3rem !important;
                         }
                         
                     }
@@ -1849,7 +1849,7 @@ footer {
                             font-family: "FontAwesome";
                             position: absolute;
                             top: -29px;
-                            left: 24px;
+                            left: 40px;
                         }
                     }
                     .active{
@@ -1869,7 +1869,7 @@ footer {
                     color:$azultexto;
                     text-decoration: none;
                     font-weight: bold;
-                    padding-left: 3rem;
+                    padding-left: 3.5rem;
                     display: block;
                     top: -31px;
                     position: relative;
@@ -1894,6 +1894,16 @@ footer {
                 span{
                     background:$rojo;
                 }
+                
+            &:after{
+                    content:'\f00c';
+                    font-family: "FontAwesome";
+                    position: absolute;
+                    top: 0;
+                    left: 36px;
+                    color:#E01F26;
+                }
+
             }
         } 
     }
