@@ -85,9 +85,14 @@
 
 <script>
 $(function() {
-        CKEDITOR.replace( description, {   height: 300 });
+  var editor =   CKEDITOR.replace( description, {   height: 300 });
         CKEDITOR.config.allowedContent = true;
         CKEDITOR.config.contentsCss = '/css/app.css';
+
+        editor.on( 'required', function( evt ) {
+            editor.showNotification( 'This field is required.', 'warning' );
+            evt.cancel();
+        });
 })
 </script>
 

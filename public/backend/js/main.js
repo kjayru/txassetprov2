@@ -2,19 +2,24 @@
 
 /**EDITOR  */
 
-try {
-    var newCKEdit = CKEDITOR.replace("description", {
-        height: "600px",
-    });
-    CKEDITOR.config.allowedContent = true;
+// try {
+//     var newCKEdit = CKEDITOR.replace("description", {
+//         height: "600px",
+//     });
+//     CKEDITOR.config.allowedContent = true;
   
-    CKFinder.config({ connectorPath: "/ckfinder/connector" });
-    CKFinder.setupCKEditor(newCKEdit, "/");
+//     CKFinder.config({ connectorPath: "/ckfinder/connector" });
+//     CKFinder.setupCKEditor(newCKEdit, "/");
 
-} catch (e) {
-    console.log(e);
-    console.log("no iniciado sdsds");
-}
+//     newCKEdit.on( 'required', function( evt ) {
+//       editor.showNotification( 'This field is required.', 'warning' );
+//       evt.cancel();
+//   } );
+
+// } catch (e) {
+//     console.log(e);
+//     console.log("no iniciado sdsds");
+// }
 
 
 

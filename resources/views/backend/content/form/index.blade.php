@@ -22,7 +22,7 @@
         <div class="form-group @if($errors->first('video')) has-error @endif">
             <label for="video" class="col-sm-2 control-label">Video</label>
 
-                <input type=file name="video"  id="video" class="form-control">
+                <input type=file name="video"  id="video" class="form-control" required>
                 <span class="help-block">{{ $errors->first('video') }}</span>
 
                 <small id="emailHelp" class="form-text text-muted">Format video mp4</small>
@@ -55,7 +55,7 @@
     
     <div class="form-group">
         <label for="audio">Audio</label>
-        <input type=file name="audio"  id="audio" class="form-control">
+        <input type=file name="audio"  id="audio" class="form-control" required>
         <small id="emailHelp" class="form-text text-muted">Format audio mp3</small>
     </div>
 
@@ -98,12 +98,12 @@
 
 <div class="form-group">
     <label for="order">Order</label>
-    <input type="number" class="form-control" name="order" value="{{@$content->order}}" placeholder="Order">
+    <input type="number" class="form-control" name="order" value="{{@$content->order}}" placeholder="Order" required>
 </div>
 
     <div class="form-group @if($errors->first('description')) has-error @endif">
         <label for="description" class="control-label">Content</label>
-        <textarea class="form-control" name="description" id="description"> {{ @$content->contenido }}</textarea>
+        <textarea class="form-control" name="description" id="description" required> {{ @$content->contenido }}</textarea>
         <span class="help-block">{{ $errors->first('description') }}</span>
     </div>
 
