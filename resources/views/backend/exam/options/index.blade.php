@@ -1,7 +1,8 @@
 @extends('layouts.backend.app')
 @section('content')
-
-
+@php
+    use App\Models\ExamQuestion;
+@endphp
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -73,10 +74,11 @@
                           </thead>
                               <tbody>
                                 @foreach ($questions as $k=> $preg)
+                             
                                 <tr>
                                     <th>{{$k+1}}</th>
                                     <td>{{$preg->question}}</td>
-                                    <td>{{$preg->answer}}</td>
+                                    <td>{{ExamQuestion::getResult($preg->id)}}</td>
                                     <td>{{$preg->created_at}}</td>
                                     <td>
                                         <a href="/admin/exams/options/{{$exam_id}}/{{$preg->id}}/edit" class="btn btn-sm btn-warning legitRipple"><i class="fas fa-pencil-alt"></i></a>

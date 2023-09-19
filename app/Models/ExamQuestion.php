@@ -16,4 +16,12 @@ class ExamQuestion extends Model
     public function exam(){
         return $this->belongsTo(Exam::class);
     }
+
+    public static function getResult($id){
+       
+        $resultado = ExamQuestionOption::where('exam_question_id',$id)->where('resultado',1)->first();
+      
+        return $resultado->opcion;
+    }
 }
+
