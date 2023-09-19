@@ -12496,6 +12496,10 @@ footer .little {
   color: #031059;
   text-decoration: none;
   font-weight: bold;
+  padding-left: 3rem;
+  display: inline-block;
+  top: -31px;
+  position: relative;
 }
 .encurso__temas__lista__item:before {
   content: "";
