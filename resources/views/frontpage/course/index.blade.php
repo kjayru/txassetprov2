@@ -93,11 +93,11 @@
 					@endif
 					@if(isset($capitulo->quiz_id))
 						 <div class="encurso__footer">
-								   <a href="#" class="encurso__footer__link">Continue with questions</a>
+								   <a href="#" class="encurso__footer__link disabled"  >Continue with questions</a>
 						</div>
 					@endif
 			  </div>
-
+  
 			  <div class="col-md-3">
 						<div class="encurso__temas">
 								  <div class="encurso__temas__titulo">

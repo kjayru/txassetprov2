@@ -11,7 +11,7 @@
 				<div class="breadcrum">
 					<ul>
 						<li><a href="/" class="breadcrum__link chevron"><img src="/images/Emblema-blanco.png" alt=""></a></li>
-						<li><a href="#" class="breadcrum__link ">My courses</a></li>
+						<li><a class="breadcrum__link ">My courses</a></li>
 					</ul>
 				</div>
 

@@ -204,6 +204,7 @@ try {
         data:sendata,
         success:function(response){
           console.log(response);
+          $(".encurso__footer__link").removeClass("disabled");
         }
       })
 

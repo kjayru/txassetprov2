@@ -100,10 +100,11 @@
 						@endif
 						@if(isset($capitulo->quiz_id))
 							<div class="encurso__footer">
-									<a href="#" class="encurso__footer__link">Continue with questions</a>
+									<a href="#" class="encurso__footer__link disabled">Continue with questions</a>
 							</div>
 						@endif
 					@else
+
 					<div class="quiz__preguntas" style="display:{{$completado==false?"block":"none"}}" >
 						<input type="hidden" name="chapter_id" value="{{$chapter_id}}">
 						@foreach ($quizes as $key=> $quiz)

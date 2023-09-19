@@ -57,15 +57,15 @@
 						@if($url_next_quiz!=null)
 							<div class="encurso__footer">
 								
-								<a href="/learn/{{$url_next_quiz}}/{{$chapter->id}}" class="encurso__footer__link">Continue with questions</a>
+								<a href="/learn/{{$url_next_quiz}}/{{$chapter->id}}" class="btn encurso__footer__link {{UserCourse::capitulo($user_course_id,$content->chapter->id)?"":"disabled"}} " role="button" aria-disabled="true">Continue with questions</a>
 							</div>
 						@else
 							<div class="encurso__footer">
-								<a href="/learn/{{@$url_next}}" class="encurso__footer__link">Continue </a>
+								<a href="/learn/{{@$url_next}}" class="btn encurso__footer__link disabled" role="button" aria-disabled="true">Continue </a>
 							</div>
 						@endif
 					@else
-
+  
 					
 					<!--quiz question-->
 						@include('layouts.backend.partials.curso.quiz-preguntas')
@@ -75,6 +75,8 @@
 						@include('layouts.backend.partials.curso.quiz-botones')
 					@endif
 
+					
+					
 					<p class="mb-5 advertencia">To continue to the next chapter, you need to pass the quiz for the chapter you are taking.</p>
 			  </div>
 
