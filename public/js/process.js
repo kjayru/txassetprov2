@@ -453,13 +453,14 @@ $(".btn__examen").on('click',function(e){
   const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
  
   var segundo=60;
-  var minuto=2;
+  var minuto=59;
   var hora = 1;
   var contador = 0;
   var porcentaje=0;
   var total = 7200;
   function updateCountdown() {
 
+    SPAN_HOURS.textContent= '0';
       contador +=1;
        segundo -= 1;
       
@@ -502,10 +503,38 @@ $(".btn__examen").on('click',function(e){
 
        if(hora==0 && minuto == 0 &&  segundo==1){
          
+
           clearInterval(refreshIntervalId);
+          let user_course_id = $("#user_course_id").val();
+          let exam_id = $("#exam_id").val();
+          let tiempo = $("#tiempo").val();
+
+          
+          let quizid = $(this).data('quizid');
+          // let input = $(this).parent().children('.card__question__opciones').find('input[name="respuesta"]:checked').val();
+          // let padre =  $(this).parent();
+          let chapter_id =  $('input[name="chapter_id"]').val();
+          const token = $('meta[name="csrf-token"]').attr('content');
+
+          let sendata = {'_token':token,'_method':'POST',quizid:quizid,'evento':"excedio",'chapter_id':chapter_id,'exam_id':exam_id,'tiempo':tiempo,'user_course_id':user_course_id};
+          $.ajax({
+            url:"/learn/set-exam",
+            type:"POST",
+            dataType:'json',
+            data:sendata,
+            success:function(response){
+ 
+              window.location.reload();
+            
+              
+            }
+          })
+
+
        }
        
       // 7200segundos =100%
+     
       $("#tiempo").val(hora+":"+minuto+":"+segundo);
 
      //porcentaje= Math.round((total*100)/contador);
@@ -584,7 +613,10 @@ if(urlpath.indexOf('quiz')!="-1"){
 
        if(hora==0 && minuto == 0 &&  segundo==1){
          
-          clearInterval(refreshIntervalId);
+
+          clearInterval(refreshIntervalId)
+
+
        }
        
       // 7200segundos =100%

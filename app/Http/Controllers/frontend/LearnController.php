@@ -619,6 +619,36 @@ class LearnController extends Controller
     
     public function setExam(Request $request){
 
+        if(isset($request->evento)){
+            if(UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->count()==0){
+                $registro = new UserCourseExam();
+                $registro->user_course_id = $request->user_course_id;
+                $registro->exam_id = $request->exam_id;
+                $registro->tiempo = $request->tiempo;
+                $registro->resultado = 0;
+                $registro->complete = 1;
+                
+                $registro->save();
+        
+              }else{
+        
+                $registro =  UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->first();
+                $registro->tiempo = $request->tiempo;
+                $registro->resultado = 0;
+                $registro->complete = 1;
+                $registro->save();
+        
+              }
+
+
+              return response()->json(['rpta'=>'ok','status'=>'200','completo'=>false]);
+              //numero de preguntas
+             // $preguntas = ExamQuestion::where('exam_id',$request->exam_id)->get();
+
+
+        }
+
+
       //registro general
       if(UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->count()==0){
         $registro = new UserCourseExam();

@@ -45,9 +45,11 @@
                             <p>By continuing, you understand and accept the aforementioned instructions.</p>
                         </div>
 				@if(!isset($tomo_examen) || $completo_examen==0)
+
 						<div class="quiz__inicio">
 							<a href="#" class="btn btn__red btn__examen btn__inline">Final Exam</a>
 						</div>
+						
 				@else
 					<div class="quiz__resultado">
 						<div class="quiz__resultado__titulo">Result</div>
