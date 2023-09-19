@@ -8,7 +8,8 @@
         </div>
         <div class="col-md-4">
             @if($porcentaje<75)
-                <a href="#" class="btn btn__red btn__continue disabled">Continue</a>
+                <a href="#" class="btn btn__red btn__continue disabled" >Continue</a>
+                <input type="hidden" name="activamodal" value="1" id="activamodal">
             @else	
                 @if(!$fin_curso)
                 <a href="/learn/{{$url_next}}" class="btn btn__red btn__continue">Continue</a>

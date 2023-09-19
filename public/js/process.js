@@ -867,3 +867,12 @@ $(".btn__question__exam").on('click',function(e){
     }
   })
 })
+
+$(window).on('load',function(){
+  let activa = $("#activamodal").val();
+
+  if(activa == 1){
+    $(".texto__error").html("You must pass the quiz with 75% to continue");
+    $("#errorModal").modal('show');
+  }
+})
