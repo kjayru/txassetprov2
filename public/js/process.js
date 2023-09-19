@@ -453,7 +453,7 @@ $(".btn__examen").on('click',function(e){
   const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
  
   var segundo=60;
-  var minuto=59;
+  var minuto=2;
   var hora = 1;
   var contador = 0;
   var porcentaje=0;
@@ -486,7 +486,12 @@ $(".btn__examen").on('click',function(e){
         SPAN_MINUTES.textContent = '00';
        }else{
         if(minuto<10){
+          if(minuto<0){
+            SPAN_MINUTES.textContent = "59";
+            SPAN_HOURS.textContent="00";
+          }else{
           SPAN_MINUTES.textContent = "0"+minuto;
+          }
         }else{
 
         SPAN_MINUTES.textContent = minuto;
