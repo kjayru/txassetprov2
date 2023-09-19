@@ -128,7 +128,7 @@
                                                   </div>
                                                   <div class="detalle__costo__propiedades">
                                                             <ul>
-                                                                      <li class="date">Available from   {{@$curso->disponible}}</li>
+                                                                      <li class="date">Available from  {{ @strftime("%B %d, %Y", date (strtotime(@$curso->disponible )) )}} </li>
                                                                       <li class="capitulo">{{@$curso->capitulos}} chapters</li>
                                                                       <li class="audio">Audio:{{@$curso->audio}}</li>
                                                                       <li class="level">Level:{{@$curso->nivel}}</li>
