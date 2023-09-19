@@ -8,14 +8,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Create Question</h1>
+            <h1>Edit Question</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
-              <li class="breadcrumb-item"><a href="/admin/chapter/">Chapters</a></li>
-              <li class="breadcrumb-item active">Create question</li>
+              <li class="breadcrumb-item"><a href="/admin/exams">Exams</a></li>
+              <li class="breadcrumb-item"><a href="/admin/exams/options/{{$exam_id}}">Options</a></li>
+              <li class="breadcrumb-item active">Edit question</li>
             </ol>
           </div>
         </div>
