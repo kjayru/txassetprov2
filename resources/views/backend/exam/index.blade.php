@@ -55,8 +55,7 @@
                     <tr>
                         <th></th>
                         <th>Title</th>
-                        <th>Time exam</th>
-                        
+                       
                         <th>Options</th>
                         <th>Date</th>
                         <th></th>
@@ -68,7 +67,7 @@
                             <tr>
                                 <th>{{$key + 1}}</th>
                                 <td>{{$exam->title}}</td>
-                                <td>{{$exam->duration}}</td>
+                                
                                 <td><a href="/admin/exams/options/{{$exam->id}}" class="btn btn-xs btn-success">Options exam</a></td>
                                 <td>{{$exam->created_at}}</td>
                                 <td width="8%">
