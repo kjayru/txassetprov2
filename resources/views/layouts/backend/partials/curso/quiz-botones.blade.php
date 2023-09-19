@@ -1,5 +1,12 @@
 <div class="quiz__botones"  style="display:{{$completado==true?"block":"none"}}">
     <div class="row">
+        <div class="col-12 text-center mb-4">
+            You have reached {{$correctas}} of {{$numero_preguntas}} point(s). ({{$porcentaje}}%)
+
+           
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-4">
             <a href="#" class="btn btn__blue btn__view">View questions</a>
         </div>
