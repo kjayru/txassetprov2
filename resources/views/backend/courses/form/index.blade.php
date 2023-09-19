@@ -87,14 +87,7 @@
         </select>
     </div>
 
-    <div class="form-group">
-        <label for="language">Language</label>
-        <select name="language" id="language" class="custom-select">
-            <option value="">Selected</option>
-            <option value="English" {{@$course->language=="English"?'selected':''}} >English</option>
-            <option value="Spanish" {{@$course->language=="Spanish"?'selected':''}} >Spanish</option>
-        </select>
-    </div>
+    
 
     <div class="form-group">
         <label for="nivel">Level</label>
@@ -112,6 +105,14 @@
             <option value="">Selected</option>
             <option value="Yes"  {{@$course->audio=="Yes"?'selected':''}}>Yes</option>
             <option value="No" {{@$course->audio=="No"?'selected':''}}>No</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="language">Audio language</label>
+        <select name="language" id="language" class="custom-select">
+            <option value="">Selected</option>
+            <option value="English" {{@$course->language=="English"?'selected':''}} >English</option>
+            <option value="Spanish" {{@$course->language=="Spanish"?'selected':''}} >Spanish</option>
         </select>
     </div>
 

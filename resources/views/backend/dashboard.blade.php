@@ -56,7 +56,7 @@
                 <p>ORDERS</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion ion-bag"></i>
               </div>
               <a href="/admin/orders" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -72,7 +72,7 @@
                 <p>APPLICANTS</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-person-add"></i>
               </div>
               <a href="/admin/applicants" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -89,7 +89,7 @@
                 <p>CONTACTS</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-person-add"></i>
               </div>
               <a href="/admin/contacts" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
             </div>

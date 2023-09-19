@@ -80,7 +80,7 @@
                         <td class="text-center">
                           <a href="/admin/chapterequiz/{{@$chapter->id}}" class="btn btn-app bg-success">
                             <span class="badge bg-teal">{{Quiz::preguntas($chapter->id)?Quiz::preguntas($chapter->id):'0'}}</span>
-                            <i class="fas fa-inbox"></i> 
+                          <i class="fas fa-inbox"></i> Quiz
                           </a>
 
                         </td>
