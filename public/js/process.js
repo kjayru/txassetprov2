@@ -375,6 +375,13 @@ $(".btn__quiz").on('click',function(e){
 
     const token = $('meta[name="csrf-token"]').attr('content');
 
+    if(input==undefined){
+      $(".texto__error").html("you must check an option");
+      $("#errorModal").modal('show');
+      return false;
+    }
+
+
     let sendata = {'_token':token,'_method':'POST',quizid:quizid,optionid:input,'chapter_id':chapter_id,'user_course_chapter_id':ucc,'tiempo':tiempo,'user_course_id':user_course_id};
     $.ajax({
       url:"/learn/set-quiz",

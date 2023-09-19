@@ -1824,7 +1824,7 @@ footer {
                             text-decoration: none;
                             font-weight: lighter !important;
                             font-family:$open-sans;
-                            padding-left:0;
+                            padding-left:2rem !important;
                         }
                         
                     }
@@ -1834,13 +1834,15 @@ footer {
                         a{
                             font-weight: normal;
                             color:$rojo  !important;
+                            padding-left: 2rem;
+                            padding-bottom: 0 !important;
                         }
                         &:after{
                             content:'\f00c';
                             font-family: "FontAwesome";
                             position: absolute;
-                            top: 1px;
-                            left: -6px;
+                            top: -29px;
+                            left: 24px;
                         }
                     }
                     .active{
@@ -1861,9 +1863,10 @@ footer {
                     text-decoration: none;
                     font-weight: bold;
                     padding-left: 3rem;
-                    display: inline-block;
+                    display: block;
                     top: -31px;
                     position: relative;
+                    padding-bottom: 1rem;
                 }
 
              &:before{
@@ -1925,6 +1928,7 @@ footer {
     a{
         top:0 !important;
         padding-left: 0 !important;
+        display: inline;
     }
 }
 .form-check.acierto.resultfail.resulcorrect{

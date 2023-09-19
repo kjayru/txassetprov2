@@ -12467,7 +12467,7 @@ footer .little {
   text-decoration: none;
   font-weight: lighter !important;
   font-family: "Open Sans", sans-serif;
-  padding-left: 0;
+  padding-left: 2rem !important;
 }
 .encurso__temas__lista__item__sublista .finalizado {
   position: relative;
@@ -12476,13 +12476,15 @@ footer .little {
 .encurso__temas__lista__item__sublista .finalizado a {
   font-weight: normal;
   color: #e01f26 !important;
+  padding-left: 2rem;
+  padding-bottom: 0 !important;
 }
 .encurso__temas__lista__item__sublista .finalizado:after {
   content: "\f00c";
   font-family: "FontAwesome";
   position: absolute;
-  top: 1px;
-  left: -6px;
+  top: -29px;
+  left: 24px;
 }
 .encurso__temas__lista__item__sublista .active a {
   color: #e01f26 !important;
@@ -12498,9 +12500,10 @@ footer .little {
   text-decoration: none;
   font-weight: bold;
   padding-left: 3rem;
-  display: inline-block;
+  display: block;
   top: -31px;
   position: relative;
+  padding-bottom: 1rem;
 }
 .encurso__temas__lista__item:before {
   content: "";
@@ -12546,6 +12549,7 @@ footer .little {
 .final__examen a {
   top: 0 !important;
   padding-left: 0 !important;
+  display: inline;
 }
 
 .form-check.acierto.resultfail.resulcorrect {
