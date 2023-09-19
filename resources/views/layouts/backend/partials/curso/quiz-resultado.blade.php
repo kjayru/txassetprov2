@@ -6,7 +6,7 @@
 @endphp
 <div class="quiz__resultados" style="display:{{$completado==true?"block":"none"}}">
 
-    <div class="quiz__resultados__titulo">Resultados</div>
+    <div class="quiz__resultados__titulo">Result</div>
     <div class="quiz__resultados__respuesta">
         {{$correctas}} of {{$numero_preguntas}} question answer correctly
     </div>
