@@ -5,16 +5,16 @@
         <span class="help-block">{{ $errors->first('name') }}</span>
     </div>
 
-    <div class="form-group @if($errors->first('duration')) has-error @endif">
+    {{-- <div class="form-group @if($errors->first('duration')) has-error @endif">
         <label for="duration" class="control-label">Duration</label>
         <input type="number"  name="duration" class="form-control" value="{{@$exam->duration}}" id="duration" placeholder="Duration" required>
         <span class="help-block">{{ $errors->first('duration') }}</span>
-    </div>
+    </div> --}}
 
 
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea name="description" id="description" cols="4" rows="4" class="form-control">{!!@$exam->description!!}</textarea>
+        <textarea name="description" id="description2" cols="4" rows="3" class="form-control">{!!@$exam->description!!}</textarea>
     </div>
 
 
