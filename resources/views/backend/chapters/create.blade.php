@@ -14,7 +14,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
-              <li class="breadcrumb-item"><a href="/admin/chapter/{{$course_id}}">Chapters</a></li>
+              <li class="breadcrumb-item"><a href="/admin/chapters/{{$course_id}}">Chapters</a></li>
               <li class="breadcrumb-item active">Create chapter</li>
             </ol>
           </div>
