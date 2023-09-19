@@ -12949,6 +12949,7 @@ footer .little {
 
 .quiz__resultados {
   display: none;
+  color: #031059;
 }
 
 .quiz__desarrollado {
@@ -13033,6 +13034,10 @@ footer .little {
   margin-right: 1rem;
   margin-left: 1rem;
 }
+.btn__blue:hover {
+  background-color: #031059;
+  color: white;
+}
 
 .btn__red {
   background: #e01f26;
@@ -13041,6 +13046,10 @@ footer .little {
   display: block;
   margin-right: 1rem;
   margin-left: 1rem;
+}
+.btn__red:hover {
+  background-color: #B7161C;
+  color: white;
 }
 
 .btn__gray {
@@ -13076,6 +13085,7 @@ footer .little {
 
 .quiz__botones {
   padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .quiz__resultado__titulo {

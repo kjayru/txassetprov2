@@ -2367,6 +2367,7 @@ footer {
 }
 .quiz__resultados{
     display: none;
+    color:#031059;
 }
 .quiz__desarrollado{
     display: none;
@@ -2445,6 +2446,10 @@ footer {
     display: block;
     margin-right: 1rem;
     margin-left: 1rem;
+    &:hover{
+        background-color: #031059;
+        color:white;
+    }
 }
 
 .btn__red{
@@ -2454,6 +2459,10 @@ footer {
     display: block;
     margin-right: 1rem;
     margin-left: 1rem;
+    &:hover{
+        background-color: #B7161C;
+        color:white;
+    }
 }
 .btn__gray{
     background: #555973;
@@ -2484,6 +2493,7 @@ footer {
 }
 .quiz__botones {
     padding-top: 2rem;
+    padding-bottom:2rem;
 }
 .quiz{
     &__resultado{
