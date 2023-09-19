@@ -917,8 +917,11 @@ footer {
                 display: block;
             }
             .interlineado{
-                div{
+                div:first-child{
                     padding-left:4rem;
+                }
+                div{
+                    padding-left:0.5rem;
                 }
             }
         }

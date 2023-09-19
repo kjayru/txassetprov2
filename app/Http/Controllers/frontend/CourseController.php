@@ -23,8 +23,7 @@ class CourseController extends Controller
 
     public function curso($slug){
   
-        $curso = Course::where('slug',$slug)->first();
-       
+        $curso = Course::where('slug',$slug)->first();  
         $relacionados = Course::where('id','<>',$curso->id)->orderBy('id','desc')->take(3)->get();
         
        
@@ -52,7 +51,7 @@ class CourseController extends Controller
                 'quiz'=>@$cap->quiz_id
 
               ]; 
-
+ 
             }
 
         return response()->json(["contents"=>$contenidos]);

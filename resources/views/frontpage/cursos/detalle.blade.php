@@ -102,7 +102,7 @@
                                                                               @if(isset($chapter->video)) <li class="videocap">Chapter video</li>@endif
                                                                               @if($chapter->reading==1) <li class="capitulo">Chapter reading</li>@endif
                                                                               @if($chapter->audio==1)  <li class="audio">Chapter audio</li>@endif
-                                                                              @if($chapter->audio==1)  <li class="question">Questions about the chapter</li>@endif
+                                                                              @if($chapter->quiz==1)  <li class="question">Questions about the chapter</li>@endif
                                                                       </ul> 
                                                             </div>
                                                   </div>

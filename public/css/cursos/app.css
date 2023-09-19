@@ -11628,8 +11628,11 @@ footer .little {
   padding-bottom: 1rem;
   display: block;
 }
-.detalle__contenido__capitulo .interlineado div {
+.detalle__contenido__capitulo .interlineado div:first-child {
   padding-left: 4rem;
+}
+.detalle__contenido__capitulo .interlineado div {
+  padding-left: 0.5rem;
 }
 .detalle__contenido span {
   background: #9d9d9d;
