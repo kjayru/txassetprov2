@@ -2518,12 +2518,17 @@ footer {
     margin-left: 0;
 }
 .btn__exam{
-    background: #555973;
+    background: #e01f26;
     color:white;
     border-radius: 50px;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 5rem;
+    padding-right: 4rem;
     margin-top: 2rem;
+    float: right;
+    &:hover{
+        background-color: #B7161C;
+        color:white;
+    }
 }
 .btn__inline{
     display: inline;
