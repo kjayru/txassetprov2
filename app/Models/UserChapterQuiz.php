@@ -16,15 +16,31 @@ class UserChapterQuiz extends Model
     public static function verificar($id,$chapter_id){
 
        
-        $userquiz = UserCourseChapterQuiz::where('user_course_chapter_id',$id)->first();
+        $userquiz = UserCourseChapter::where('user_course_id',$id)->where('chapter_id',$chapter_id)->where('quiz_result','1')->first();
       
        
 
         $activo = false;
         if(isset($userquiz)){
-            if($userquiz->usercoursechapter->chapter_id == $chapter_id){
+            //if($userquiz->usercoursechapter->chapter_id == $chapter_id){
                 $activo= true;
-            }
+            //}
+        }
+
+        return $activo;
+    }
+
+    public static function observar($id,$chapter_id){
+
+        $userquiz = UserCourseChapter::where('user_course_id',$id)->where('chapter_id',$chapter_id)->where('quiz_result','0')->first();
+      
+       
+
+        $activo = false;
+        if(isset($userquiz)){
+           
+                $activo= true;
+            
         }
 
         return $activo;

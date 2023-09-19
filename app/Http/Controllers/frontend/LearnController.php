@@ -331,7 +331,7 @@ class LearnController extends Controller
         if($correctas ==$numeroPreguntas){
             $resultado_quiz = true;
             $registro = UserCourseChapter::where('user_course_id',$userCourse->id)->where('chapter_id',$id)->first();
-            $registro->quiz_result= 1;
+           // $registro->quiz_result= 1;
             $registro->save();
         }
       
@@ -414,8 +414,16 @@ class LearnController extends Controller
             $completado = true;
         }
 
+        $correctas = UserCourseChapterQuiz::where('user_course_chapter_id',$request->user_course_chapter_id)->where('result',1)->count();
+
+        $porcentaje = round($correctas*100/$numeroPreguntas ,2);
+
+        if($correctas ==$numeroPreguntas &&  $porcentaje >75){
+        $registro = UserCourseChapter::where('user_course_id',$request->user_course_id)->where('chapter_id',$request->chapter_id)->first();
+            $registro->quiz_result= 1;
+            $registro->save();
       
-       
+        }
 
         return response()->json(['rpta'=>'ok','completado'=>$completado,'np'=>$numeroPreguntas,'nc'=>$total]);
 

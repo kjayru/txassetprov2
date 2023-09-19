@@ -364,38 +364,39 @@ $(".detalle__header__home__course").on('click',function(e){
 
 $(".btn__quiz").on('click',function(e){
   e.preventDefault();
-  let quizid = $(this).data('quizid');
-  let ucc = $(this).data('ucc');
+    let quizid = $(this).data('quizid');
+    let ucc = $(this).data('ucc');
 
-  let input = $(this).parent().children('.card__question__opciones').find('input[name="respuesta"]:checked').val();
-  let padre =  $(this).parent();
-  let chapter_id =  $('input[name="quiz_chapter_id"]').val();
-  let tiempo = $("#tiempoquiz").val();
+    let input = $(this).parent().children('.card__question__opciones').find('input[name="respuesta"]:checked').val();
+    let padre =  $(this).parent();
+    let chapter_id =  $('input[name="quiz_chapter_id"]').val();
+    let tiempo = $("#tiempoquiz").val();
+    let user_course_id = $('input[name="user_course_id"]').val();
 
-  const token = $('meta[name="csrf-token"]').attr('content');
+    const token = $('meta[name="csrf-token"]').attr('content');
 
-  let sendata = {'_token':token,'_method':'POST',quizid:quizid,optionid:input,'chapter_id':chapter_id,'user_course_chapter_id':ucc,'tiempo':tiempo};
-  $.ajax({
-    url:"/learn/set-quiz",
-    type:"POST",
-    dataType:'json',
-    data:sendata,
-    success:function(response){
-     
-      padre.hide();
-      padre.next('.card__question').show();
-
-      if(response.completado==true){
-        $(".quiz__preguntas").hide();
-        $(".quiz__resultados").show();
-         $(".quiz__botones").show();
-
-         window.location.reload();
-         clearInterval(refreshIntervalId);
-      }
+    let sendata = {'_token':token,'_method':'POST',quizid:quizid,optionid:input,'chapter_id':chapter_id,'user_course_chapter_id':ucc,'tiempo':tiempo,'user_course_id':user_course_id};
+    $.ajax({
+      url:"/learn/set-quiz",
+      type:"POST",
+      dataType:'json',
+      data:sendata,
+      success:function(response){
       
-    }
-  })
+        padre.hide();
+        padre.next('.card__question').show();
+
+        if(response.completado==true){
+          $(".quiz__preguntas").hide();
+          $(".quiz__resultados").show();
+          $(".quiz__botones").show();
+
+          window.location.reload();
+          clearInterval(refreshIntervalId);
+        }
+        
+      }
+    })
 })
 
 $(".btn__view").on('click',function(e){

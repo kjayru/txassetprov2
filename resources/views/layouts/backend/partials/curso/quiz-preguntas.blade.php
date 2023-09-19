@@ -6,6 +6,7 @@
 @endphp
 <div class="quiz__preguntas" style="display:{{@$completado==false?"block":"none"}}" >
     <input type="hidden" name="quiz_chapter_id" value="{{$quiz_chapter_id}}">
+    <input type="hidden" name="user_course_id" value="{{@$user_course_id}}">
     @foreach ($quizes as $key=> $quiz)
     
         <div class="card__question" style="display:{{$key==0?'block':'none'}}">
