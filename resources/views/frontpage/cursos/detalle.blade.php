@@ -130,7 +130,12 @@
                                                             <ul>
                                                                       <li class="date">Available from  {{ @strftime("%B %d, %Y", date (strtotime(@$curso->disponible )) )}} </li>
                                                                       <li class="capitulo">{{@$curso->capitulos}} chapters</li>
+                                                                        @if($curso->audio=="Yes")
                                                                       <li class="audio">Audio:{{@$curso->language}}</li>
+                                                                       @else
+                                                                       <li class="audio">Audio:No</li>
+                                                                      @endif   
+
                                                                       <li class="level">Level:{{@$curso->nivel}}</li>
                                                                       <li class="access">Access:{{@$curso->tiempovalido}} days to finish the course</li>
                                                             </ul>
