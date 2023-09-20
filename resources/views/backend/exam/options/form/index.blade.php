@@ -19,7 +19,7 @@
             <div class="form-row">
                 <div class="form-group col-md-9">
                     <label for="option{{$k+1}}" class="control-label">Option</label>
-                    <input type="text" name="option[]" id="option{{$k+1}}" class="form-control" value="{{@$opt->opcion}}">
+                    <input type="text" name="option[]" id="option{{$k+1}}" class="form-control" value="{{@$k+1}}">
                 </div>
                 
                 <div class="form-check col-md-3">
