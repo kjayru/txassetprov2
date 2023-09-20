@@ -31,7 +31,7 @@
 					<table class="todocursos__card__body_table table">
                         <tr>
                             <td class="titulo"><strong>User</strong>  </td>
-                            <td>{{@$user->name}}</td>
+                            <td>{{@$user->profile->firstname}}</td>
                         </tr>
                         <tr>
                             <td class="titulo"><strong>Email</strong>  </td>
