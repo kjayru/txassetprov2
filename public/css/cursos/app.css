@@ -12492,11 +12492,15 @@ footer .little {
   padding-bottom: 0 !important;
 }
 .encurso__temas__lista__item__sublista .finalizado:after {
-  content: "\f00c";
+  content: "";
   font-family: "FontAwesome";
   position: absolute;
-  top: -29px;
-  left: 40px;
+  background: url("/images/check-curso.svg") no-repeat;
+  background-size: contain;
+  width: 12px;
+  height: 16px;
+  top: -23px;
+  left: 43px;
 }
 .encurso__temas__lista__item__sublista .active a {
   color: #e01f26 !important;
@@ -12531,11 +12535,15 @@ footer .little {
   background: #e01f26;
 }
 .encurso__temas__lista .active:after {
-  content: "\f00c";
+  content: "";
   font-family: "FontAwesome";
+  background: url("/images/check-curso.svg") no-repeat;
+  background-size: contain;
+  width: 12px;
+  height: 16px;
   position: absolute;
-  top: 0;
-  left: 36px;
+  top: 7px;
+  left: 40px;
   color: #E01F26;
 }
 .encurso__question ul {

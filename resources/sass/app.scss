@@ -1854,11 +1854,15 @@ footer {
                             padding-bottom: 0 !important;
                         }
                         &:after{
-                            content:'\f00c';
+                            content:'';
                             font-family: "FontAwesome";
                             position: absolute;
-                            top: -29px;
-                            left: 40px;
+                            background:url('/images/check-curso.svg') no-repeat;
+                            background-size:contain;
+                            width: 12px;
+                            height: 16px;
+                            top: -23px;
+                            left: 43px;
                         }
                     }
                     .active{
@@ -1905,11 +1909,15 @@ footer {
                 }
                 
             &:after{
-                    content:'\f00c';
+                    content:'';
                     font-family: "FontAwesome";
+                    background:url('/images/check-curso.svg') no-repeat;
+                    background-size:contain;
+                    width: 12px;
+                    height: 16px;
                     position: absolute;
-                    top: 0;
-                    left: 36px;
+                    top: 7px;
+                    left: 40px;
                     color:#E01F26;
                 }
 
