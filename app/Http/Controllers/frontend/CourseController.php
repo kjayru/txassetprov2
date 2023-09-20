@@ -48,7 +48,7 @@ class CourseController extends Controller
                 'audio'=>$cap->audio,
                 'contenidos'=>$cap->chaptercontents,
                 'chapter_slug'=>$cap->slug,
-                'quiz'=>@$cap->quiz_id
+                'quiz'=>@$cap->quiz
 
               ]; 
  
