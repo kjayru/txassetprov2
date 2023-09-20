@@ -124,7 +124,7 @@ class UserCourse extends Model
     public static function dayleft($id){
        
         $uc = UserCourse::find($id);
-        $fecha_inicio = $uc->updated_at;
+        $fecha_inicio = $uc->created_at;
         $dias_disponible = $uc->dias_activo;
         $fecha_actual = Carbon::now();
 
