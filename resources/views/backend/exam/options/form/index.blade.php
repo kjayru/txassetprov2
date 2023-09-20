@@ -19,11 +19,11 @@
             <div class="form-row">
                 <div class="form-group col-md-9">
                     <label for="option{{$k+1}}" class="control-label">Option</label>
-                    <input type="text" name="option[]" id="option{{$k+1}}" class="form-control" value="{{@$k+1}}">
+                    <input type="text" name="option[]" id="option{{$k+1}}" class="form-control" value="{{@$opt->opcion}}">
                 </div>
                 
                 <div class="form-check col-md-3">
-                    <input type="radio" name="result" id="result{{$k+1}}" class="form-check form-check-inline check__respuesta" value="{{@$opt->resultado}}" @if(@$opt->resultado==1) checked @endif>
+                    <input type="radio" name="result" id="result{{$k+1}}" class="form-check form-check-inline check__respuesta" value="{{@$k+1}}" @if(@$opt->resultado==1) checked @endif>
                     <label class="form-check-label" for="result{{$k+1}}">Result</label>
                 </div>
             </div>
