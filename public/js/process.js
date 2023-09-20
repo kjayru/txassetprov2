@@ -460,7 +460,7 @@ $(".btn__examen").on('click',function(e){
   var total = 7200;
   function updateCountdown() {
 
-    SPAN_HOURS.textContent= '0';
+    SPAN_HOURS.textContent= '1';
       contador +=1;
        segundo -= 1;
       
