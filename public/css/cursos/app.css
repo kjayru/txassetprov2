@@ -13057,11 +13057,13 @@ footer .little {
   width: 100%;
   display: block;
   border-radius: 50px;
+  padding-left: 3rem;
 }
 
 .form-check.noacierto.resulcorrect {
   border: 1px solid #00b335;
   border-radius: 50px;
+  padding-left: 3rem;
 }
 
 .form-check.acierto.resultuser.resulcorrect {
@@ -13069,6 +13071,7 @@ footer .little {
   background: #00b335;
   color: white;
   border-radius: 50px;
+  padding-left: 3rem;
 }
 
 .btn__blue {
