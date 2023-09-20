@@ -129,7 +129,7 @@ class UsuarioController extends Controller
         }
 
       $user->usuario = $request->user;
-      $user->email = $request->email;
+     
       $user->name = $request->name;
       $user->middle = $request->middle;
       $user->lastname = $request->lastname;
