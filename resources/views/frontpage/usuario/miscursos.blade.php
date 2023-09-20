@@ -80,6 +80,7 @@
 										@break
 										@case(3)
 										<div class="course__desaprobado">
+											Expired
 											<div class="item__mensaje__time">You Have 0 days left to finish the course </div>
 										</div>
 										@break

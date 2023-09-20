@@ -11,7 +11,7 @@ class Chapter extends Model
     }
 
     public function chaptercontents(){
-        return $this->hasMany(Chaptercontent::class);
+        return $this->hasMany(Chaptercontent::class)->orderBy('order','asc');
     }
 
     public function chapterevaluations(){
