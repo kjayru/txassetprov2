@@ -55,7 +55,7 @@
     
     <div class="form-group">
         <label for="audio">Audio</label>
-        <input type=file name="audio"  id="audio" class="form-control" required>
+        <input type=file name="audio"  id="audio" class="form-control" >
         <small id="emailHelp" class="form-text text-muted">Format audio mp3</small>
     </div>
 
