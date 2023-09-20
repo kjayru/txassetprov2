@@ -43,6 +43,8 @@
                             </p>
                             <p>You have 3 attempts to pass this exam before you have to retake the entire course. The pass is 75%.</p>
                             <p>By continuing, you understand and accept the aforementioned instructions.</p>
+
+							{!! @$examen->description!!}
                         </div>
 				@if(!isset($tomo_examen) || $completo_examen==0)
 
