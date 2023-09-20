@@ -78,6 +78,11 @@
 											Failed
 										</div>
 										@break
+										@case(3)
+										<div class="course__desaprobado">
+											<div class="item__mensaje__time">You Have 0 days left to finish the course </div>
+										</div>
+										@break
 	
 									@endswitch
 									

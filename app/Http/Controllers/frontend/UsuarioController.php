@@ -38,7 +38,8 @@ class UsuarioController extends Controller
         $user = User::find($user_id);
 
         $cursos = UserCourse::where('user_id',$user_id)->get();
-       
+      
+        dd($cursos);
         return view('frontpage.usuario.miscursos',['cursos'=>$cursos,'user'=>$user]);
      }
 
