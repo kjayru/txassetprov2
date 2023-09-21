@@ -460,7 +460,7 @@ $(".btn__examen").on('click',function(e){
   var total = 7200;
   function updateCountdown() {
 
-    SPAN_HOURS.textContent= '1';
+    SPAN_HOURS.textContent= hora;
       contador +=1;
        segundo -= 1;
       
@@ -471,34 +471,44 @@ $(".btn__examen").on('click',function(e){
 
    
        
-       if(segundo==60){
-       SPAN_SECONDS.textContent = '00';
-       }else{
-        if(segundo<10){
-          SPAN_SECONDS.textContent = "0"+segundo;
-        }else{
+      if(segundo==60){
+          SPAN_SECONDS.textContent = '00';
+      }else{
+            if(segundo<10){
+              SPAN_SECONDS.textContent = "0"+segundo;
+            }else{
 
-          SPAN_SECONDS.textContent = segundo;
-        }
-       
-       }
+              SPAN_SECONDS.textContent = segundo;
+            }
+          
+      }
 
        if(minuto==60){
+
         SPAN_MINUTES.textContent = '00';
        }else{
+
         if(minuto<10){
-          if(minuto<0){
-            SPAN_MINUTES.textContent = "59";
-            SPAN_HOURS.textContent="00";
-          }else{
-          SPAN_MINUTES.textContent = "0"+minuto;
-          }
+ 
+            SPAN_MINUTES.textContent = "0"+minuto;
+            // if(minuto==0){
+            //   SPAN_MINUTES.textContent = "00";
+             
+            // }
+
         }else{
 
         SPAN_MINUTES.textContent = minuto;
+
         }
        }
-
+       console.log(hora+' '+minuto);
+       if(hora>0 && minuto ==0 ){
+        console.log("cumple");
+         hora -=1;
+         minuto=59;
+         SPAN_HOURS.textContent = hora;
+       }
        
 
        if(hora==0 && minuto == 0 &&  segundo==1){
