@@ -502,9 +502,9 @@ $(".btn__examen").on('click',function(e){
 
         }
        }
-       console.log(hora+' '+minuto);
+      
        if(hora>0 && minuto ==0 ){
-        console.log("cumple");
+      
          hora -=1;
          minuto=59;
          SPAN_HOURS.textContent = hora;
