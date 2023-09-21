@@ -50,9 +50,9 @@
             <div class="container">
               <div class="row justify-content-center">
                 <div class="col-md-7">
-                  {{-- <div class="video__player">
-                    <a href="#" class="video__player__link"></a>
-                  </div> --}}
+                  <div class="video__player">
+                    {{-- <a href="#" class="video__player__link"></a> --}}
+                  </div>
                 </div>
               </div>
             </div>

@@ -50,7 +50,7 @@
 						<div class="row">
 							<div class="col-md-4">
 								<div class="todocursos__card__body__item__imagen">
-									<img src="/images/curso1.png" class="img-fluid">
+									<img src="/storage/{{$user_course->course->banner}}" class="img-fluid">
 								</div>
 							</div>
 							<div class="col-md-8">
