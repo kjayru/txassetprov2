@@ -16,7 +16,7 @@ class ChapterQuiz extends Model
     }
 
     public static function getAnswer($id){
-       
+
        $result = null;
 
        if(ChapterQuizOption::where('chapter_quiz_id',$id)->count()>0){
@@ -29,27 +29,42 @@ class ChapterQuiz extends Model
 
 
     public static function pasoQuiz($id,$user_course_id,$curso_id,$chapter_id){
-      
-            $capitulo = Chapter::where('course_id',$curso_id)->where('id','<',$chapter_id)->orderBy('id')->first();
 
-           // return $capitulo;
-
+        $capitulo = Chapter::where('course_id',$curso_id)->where('id','<',$chapter_id)->orderBy('id')->first();
+        // return $capitulo;
         if(isset($capitulo)){
             $aprobo = UserCourseChapter::where('user_course_id',$user_course_id)->where('chapter_id',$capitulo->id)->first();
            if(isset($aprobo)){
                 if($aprobo->quiz_result==1){
-                        return true; 
-                } 
+                        return true;
+                }
             }
                return false;
           }
-
         return false;
     }
-       
-    
 
-    
+
+    public static function cursandoQuiz($slug,$chapter_id,$quiz){
+
+        $activo = false;
+        if(isset($slug)){
+            $capmenu = Chapter::where('slug',$slug)->first();
+
+            $capactivo = Chapter::where('id',$chapter_id)->first();
+
+            if($capmenu->slug == $capactivo->slug && $quiz==true){
+                $activo = true;
+            }
+        }
+
+        return $activo;
+
+    }
+
+
+
+
 
 
 }

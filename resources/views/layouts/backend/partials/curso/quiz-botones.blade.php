@@ -3,7 +3,7 @@
         <div class="col-12 text-center mb-4">
             You have reached {{$correctas}} of {{$numero_preguntas}} point(s). ({{$porcentaje}}%)
 
-           
+
         </div>
     </div>
     <div class="row">
@@ -17,11 +17,12 @@
             @if($porcentaje<75)
                 <a href="#" class="btn btn__red btn__continue disabled" >Continue</a>
                 <input type="hidden" name="activamodal" value="1" id="activamodal">
-            @else	
+            @else
                 @if(!$fin_curso)
                 <a href="/learn/{{$url_next}}" class="btn btn__red btn__continue">Continue</a>
                 @else
                 <a href="/learn/exam/{{$curso->slug}}/{{$examen->id}}" class="btn btn__red btn__continue">Continue Exam</a>
+
                 @endif
             @endif
         </div>

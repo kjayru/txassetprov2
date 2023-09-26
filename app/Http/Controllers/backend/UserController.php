@@ -24,13 +24,13 @@ class UserController extends Controller
     {
        // $users = User::orderBy('id','desc')->get();
 
-        $total_usuarios = User::with('roles')->get()->filter(
-            fn ($user) => $user->roles->where('name', 'usuario')->toArray()
-        )->count();
+        // $total_usuarios = User::with('roles')->get()->filter(
+        //     fn ($user) => $user->roles->where('name', 'usuario')->toArray()
+        // )->count();
 
         //$roles = Role::all()->pluck('name');
         $usuarios = User::role('usuario')->get();
-       
+
        // $users = $role->users;
         return view('backend.users.index',['users'=>$usuarios]);
     }

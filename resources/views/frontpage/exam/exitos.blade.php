@@ -18,10 +18,10 @@
 					</ul>
 				</div>
 			</div>
-            @include('layouts.backend.partials.menucurso')	   
+            @include('layouts.backend.partials.menucurso')
 		</div>
 	</div>
-   
+
 </div>
 
 <!--contenido-->
@@ -30,7 +30,7 @@
 	<div class="row justify-content-between">
 
 			  <div class="col-md-8 mb-5">
-					
+
                 <div class="exam__exito">
                     <div class="exam__exito__titulo">
                         CONGRATULATIONS!<br>
@@ -40,7 +40,7 @@
                     <div class="exam__exito__contenido">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="/images/cursoplayer.png" class="img-fluid">
+                                <img src="/storage/{{$curso->banner}}" class="img-fluid">
                             </div>
                             <div class="col-md-8">
                                 <div class="exam__exito__contenido__titulo">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
 
                 <div class="exam__blue">
@@ -68,39 +68,43 @@
                         </div>
                     </div>
                 </div>
-						
-					
+
+                <div class="exam__timeline">
+                    <div class="barra">
+                        <div class="box"></div><span>100% COMPLETE</span>
+                    </div>
+                    <div class="texto">Last activity on May 19, 2021 5:17 pm <span>COMPLETE</span></div>
+                </div>
+
                 <div class="exam__course__content">
-
-
                         <div class="encurso__temas">
-                           
+                            <div class="title">Course Content</div>
                             <ul class="encurso__temas__lista">
 
-                                @if(isset($contenidos))										
+                                @if(isset($contenidos))
                                     @foreach($contenidos as $k => $cont)
                                             <li class="encurso__temas__lista__item {{UserCourse::capitulo($user_course_id,$cont['capitulo_id'])?"active":""}}"><span>{{$k+1}}</span>
                                                 <a href="#">{{@$cont['capitulo_titulo']}}</a>
-                                                
+
                                                     <ul class="encurso__temas__lista__item__sublista active">
                                                         @foreach($cont['contenidos'] as $c)
                                                             <li class="encurso__temas__lista__item__sublista__item {{UserCourse::contenido($user_course_id,$cont['capitulo_id'],$c['id'])?"finalizado":""}}">
-                                                                <a href="/learn/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/{{$c['slug']}}"> {{@$c['titulo']}}</a> 
+                                                                <a href="#"> {{@$c['titulo']}}</a>
                                                             </li>
-                                                        @endforeach	
+                                                        @endforeach
                                                         @if($cont['quiz']==true)
-                                                            <li>
-                                                                <a href="/learn/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/quiz/{{$cont['quiz_content']->chapter_id}}">Quiz chapter</a>
+                                                            <li class="encurso__temas__lista__item__sublista__item finalizado">
+                                                                <a href="#">Question about the chapter</a>
                                                             </li>
                                                         @endif
                                                     </ul>
                                             </li>
                                     @endforeach
-                                @endif	
-
-                                @if(isset($examen))										
-                                <li class="encurso__temas__lista__item"><a href="/learn/exam/{{$curso->slug}}/{{$examen->id}}">Final Exam</a></li>
                                 @endif
+
+
+                                <li class="encurso__temas__lista__item final__examen  active"><span>FE</span><a href="#">Final Exam</a></li>
+
                             </ul>
                         </div>
 
@@ -108,7 +112,7 @@
 
 			  </div>
 
-		
+
 
 	</div>
 </div>

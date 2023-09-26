@@ -30,7 +30,38 @@ class UserCourseChapter extends Model
 
         $porcentaje = round($courseChapter*100/$chapters ,2);
 
-      
+
         return $porcentaje;
+    }
+
+    public static function cursandoContenido($slug,$active_slug){
+         $activo=false;
+         if(Chaptercontent::where('slug',$slug)->count()>0){
+            if($slug==$active_slug){
+                $activo =  true;
+            }
+         }
+
+         return $activo;
+
+    }
+
+    public static function capituloCursado($capitulo_id,$user_course_id){
+        $activo = false;
+        if(UserCourseChapter::where('chapter_id',$capitulo_id)->where('user_course_id',$user_course_id)->count()>0){
+            $activo = true;
+        }
+
+        return $activo;
+    }
+
+    public static function userQuiz($user_course_id,$chapter_id){
+              $activo = false;
+        if(UserCourseChapter::where('user_course_id',$user_course_id)->where('chapter_id',$chapter_id)->where('quiz_result',1)->count()>0){
+            $activo = true;
+        }
+
+        return $activo;
+
     }
 }

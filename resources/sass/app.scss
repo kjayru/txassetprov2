@@ -48,8 +48,8 @@ header{
     .collapse{
           .navbar-nav{
                     .nav-item{
-                              
-                             
+
+
                               .nav-link{
                                         color:$blanco;
                                         text-transform: uppercase;
@@ -57,21 +57,21 @@ header{
                                         border: 1px solid $azulbarra;
                                         border-radius: 12px;
                                         &:hover{
-                                                   
+
                                                   border: 1px solid $red;
                                                   border-radius: 12px !important;
                                                   width: auto;
                                                   height: auto;
                                                   cursor: pointer;
-                                                        
+
                                         }
-                                       
+
                               }
                               .backred{
                                         background:$red;
                                         border-radius: 12px;
                               }
-                              
+
                     }
                     .activo{
                               border: 1px solid $rojo;
@@ -80,8 +80,8 @@ header{
           }
     }
 
-    
-      
+
+
 }
 .lista__redes{
           list-style: none;
@@ -115,7 +115,7 @@ footer {
                               border-radius: 30px;
                      }
                 }
-          } 
+          }
           .signo{
                      figure {
                               img {
@@ -138,7 +138,7 @@ footer {
           box-shadow: 0 10px 40px 0 rgba(224, 31, 38, .6);
 }
 .cursos{
-         #contenido{ 
+         #contenido{
                     #banner{
                               background:url('/images/banner-inicial-cursos.jpg')no-repeat center center;
                               background-size:cover;
@@ -155,8 +155,8 @@ footer {
                               position: relative;
                               display: inline-block;
                               margin-top: 6rem;
-                              
-                              
+
+
                               &:after{
                                   content:"";
                                   border-bottom:1px solid $rojo;
@@ -167,7 +167,7 @@ footer {
                                   left: 50%;
                               }
                               &:before{
-                                  content:""; 
+                                  content:"";
                                   background: url(/images/Emblema-blanco.png) no-repeat 0px 0px;
                                   background-size: cover;
                                   height: 46px;
@@ -175,17 +175,17 @@ footer {
                                   position: absolute;
                                   top: -30px;
                                   transform: translate(-50%, -50%);
-                                  left: 50%;  
+                                  left: 50%;
                               }
                     }
                     p{
-                        font-size:2.25rem; 
-                        margin-bottom: 3rem;     
+                        font-size:2.25rem;
+                        margin-bottom: 3rem;
                     }
           }
           .video{
           background-color: #010626;
-         
+
           &__player{
                     background:url('/images/tap-8_1.jpg') no-repeat center center;
                     background-size:cover;
@@ -215,7 +215,7 @@ footer {
                                         font-family: $bebas-neue;
                                         position: relative;
                                         display: inline-block;
-                                        margin-top: 6rem;   
+                                        margin-top: 6rem;
                                         padding-top: 4rem;
                                         padding-bottom: 5rem;
                                         &::before{
@@ -228,10 +228,10 @@ footer {
                                             left: 50%;
                                             top: -52px;
                                             margin-left: -51px;
-                                        }  
+                                        }
                               }
                     }
-                    &__contenido{ 
+                    &__contenido{
                               .card{
                                         box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.16);
                                         background:$blanco;
@@ -349,7 +349,7 @@ footer {
                                                 top: -155px;
                                             }
                                         }
-                              
+
                               &-container{
                                 p{
                                     padding-top:0.5rem;
@@ -458,7 +458,7 @@ footer {
             width: 118px;
             position: absolute;
             top: -30px;
-            left: 6rem;  
+            left: 6rem;
         }
         &:after{
             content:"";
@@ -546,9 +546,9 @@ footer {
         max-width:1564px;
     }
     background: #031059;
-    
+
     &__grilla{
-        
+
         padding:3rem;
         &__titulo{
             background-color: #031059;
@@ -562,7 +562,7 @@ footer {
                       margin-top: 6rem;
                       margin-bottom: 3rem;
                       &:before{
-                          content:""; 
+                          content:"";
                           background: url(/images/Emblema-blanco.png) no-repeat 0px 0px;
                           background-size: cover;
                           height: 46px;
@@ -570,10 +570,10 @@ footer {
                           position: absolute;
                           top: -30px;
                           transform: translate(-50%, -50%);
-                          left: 50%;  
+                          left: 50%;
                       }
             }
-            
+
   }
     }
     &__card{
@@ -590,7 +590,7 @@ footer {
             color: $blanco;
             padding-top: 1rem;
             padding-bottom: 1rem;
-           
+
             }
             .post__texto{
                 font-size:1.25rem;
@@ -624,7 +624,7 @@ footer {
                     backdrop-filter: blur(30px);
                     box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
 
-               
+
                 }
             }
         }
@@ -650,7 +650,7 @@ footer {
 
 .color__banner{
     background:$gris;
-    color:$blanco; 
+    color:$blanco;
 }
 .banner{
 
@@ -667,7 +667,7 @@ footer {
             li{
                 padding-top: 2rem;
                 display:inline;
-                
+
                 a{
                     color:$blanco;
                     text-decoration: none;
@@ -679,22 +679,22 @@ footer {
                 &:first-child{
                     a{
                         display: inline-block;
-                       
+
                         padding-right: 13px;
                         height: 17px;
-                      
+
                         img {
                             width: 48px;
                             display: block;
                         }
                     }
-                  
+
                 }
                 .active{
                     font-weight: bold;
                 }
             }
-           
+
         }
     }
     .chevron{
@@ -708,7 +708,7 @@ footer {
             position: absolute;
             font-size: 11px;
             top: 5px;
-        
+
         }
     }
     .cart{
@@ -741,7 +741,7 @@ footer {
         box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.16);
         padding: 0 0 29px;
         margin-bottom: 6rem;
-    
+
         &__imagen{
             display: block;
         }
@@ -792,12 +792,12 @@ footer {
                     backdrop-filter: blur(30px);
                     box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
 
-               
+
                 }
             }
 
         }
-       
+
     }
     &__link{
         display: block;
@@ -839,7 +839,7 @@ footer {
                     padding-left:0;
                     padding-right:2rem;
                 }
-            
+
             }
             .active{
                 color:$azulbarra;
@@ -854,7 +854,7 @@ footer {
                     left: 0;
                 }
             }
-        
+
             &:after{
                 content:"";
                 width:100%;
@@ -881,7 +881,7 @@ footer {
             }
         }
 
-        
+
     }
 
     &__informacion{
@@ -948,7 +948,7 @@ footer {
             }
         }
         &__boton{
-          
+
             text-align: left;
             padding-bottom:5rem;
             a{
@@ -1104,7 +1104,7 @@ footer {
 }
 
 .capitulos{
-    
+
         list-style: none;
             li{
                 font-size:1rem;
@@ -1192,7 +1192,7 @@ footer {
 
             }
             .question{
-                
+
                 &:before{
                     font-size:1.2rem;
                     content: "";
@@ -1346,7 +1346,7 @@ footer {
             top: 1px;
         }
     }
-   
+
 }
 .cart__body{
     &__header{
@@ -1451,12 +1451,12 @@ footer {
             margin-top: 3rem;
             position: relative;
             &:hover{
-              
+
                 background: #e01f26;
                 color:white;
                 box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
             }
-           
+
             &:before{
                 content: "\f07a";
                 font-family: "FontAwesome";
@@ -1497,7 +1497,7 @@ footer {
             }
         }
         &__form{
-           
+
             position: relative;
             &__input{
                 display: block;
@@ -1536,7 +1536,7 @@ footer {
 
 .firma{
     text-align: center;
-   
+
     &__header{
         background:$azulbarra;
         padding-top:1rem;
@@ -1581,7 +1581,7 @@ footer {
         }
     &__form{
         margin-top:5rem;
-       
+
         padding-left: 3rem;
         text-align: left;
         .form-group{
@@ -1595,7 +1595,7 @@ footer {
             display: inline-block;
             margin-top:2rem;
             margin-bottom:4rem;
-            
+
             a{
                 font-family: $open-sans;
             color:$azultexto;
@@ -1644,7 +1644,7 @@ footer {
         }
 
     }
-    
+
     &__titulo{
         font-size:4rem;
         font-family: $bebas-neue;
@@ -1739,13 +1739,13 @@ footer {
                 color:$rojo;
                 display: inline-block;
                 padding-right: 1rem;
-               
+
             }
             .timeline__stop{
                 color:$rojo;
                 display: inline-block;
                 padding-right: 1rem;
-               
+
             }
             .timelinebox{
                 height:10px;
@@ -1807,7 +1807,7 @@ footer {
             text-transform: uppercase;
             padding: 6px 4px 6px 4px;
             text-align: center;
-        } 
+        }
         &__lista{
             list-style: none;
             padding-top:1rem;
@@ -1833,7 +1833,7 @@ footer {
                     display: none;
                     padding-top:5px;
                     &__item{
-                        padding-bottom:15px;
+                        padding-bottom:7px;
                         padding-left: 1rem;
                         a{
                             color:$azultexto;
@@ -1842,7 +1842,11 @@ footer {
                             font-family:$open-sans;
                             padding-left:3rem !important;
                         }
-                        
+
+                        &:after{
+                            content:"";
+                            background: none !important;
+                        }
                     }
                     .finalizado{
                         position: relative;
@@ -1852,25 +1856,27 @@ footer {
                             color:$rojo  !important;
                             padding-left: 2rem;
                             padding-bottom: 0 !important;
+
+                            &:after{
+                                content:'';
+                                font-family: "FontAwesome";
+                                position: absolute;
+                                background:url('/images/check-curso.svg') no-repeat;
+                                background-size:contain;
+                                width: 12px;
+                                height: 16px;
+                                top: 8px;
+                                left: 31px;
+                            }
                         }
-                        &:after{
-                            content:'';
-                            font-family: "FontAwesome";
-                            position: absolute;
-                            background:url('/images/check-curso.svg') no-repeat;
-                            background-size:contain;
-                            width: 12px;
-                            height: 16px;
-                            top: -23px;
-                            left: 43px;
-                        }
+
                     }
                     .active{
                         a{
                             color:$rojo !important;
                         }
                     }
-                    
+
                 }
                 .active{
                     height: auto;
@@ -1883,17 +1889,18 @@ footer {
                     text-decoration: none;
                     font-weight: bold;
                     padding-left: 3.5rem;
-                    display: block;
-                    top: -31px;
+                    display: inline;
+                    top: 0;
                     position: relative;
                     padding-bottom: 1rem;
+                    padding-left: 0.6rem;
                 }
 
              &:before{
                 content:"";
                 width:2px;
                 height: 89%;
-              
+
                 position: absolute;
                 position: absolute;
                 left: 14px;
@@ -1907,8 +1914,9 @@ footer {
                 span{
                     background:$rojo;
                 }
-                
+
             &:after{
+                /**capitulo*/
                     content:'';
                     font-family: "FontAwesome";
                     background:url('/images/check-curso.svg') no-repeat;
@@ -1916,13 +1924,13 @@ footer {
                     width: 12px;
                     height: 16px;
                     position: absolute;
-                    top: 7px;
+                    top: 11px;
                     left: 40px;
-                    color:#E01F26;
+
                 }
 
             }
-        } 
+        }
     }
     &__question{
         ul{
@@ -1961,12 +1969,52 @@ footer {
     }
     a{
         top:0 !important;
-        padding-left: 0 !important;
+        padding-left: 1rem !important;
         display: inline;
     }
 }
+.exam__timeline {
+    display: block;
+    width: 100%;
+    padding: 4rem 0 1.5rem 0;
+    .barra{
+        width: 57%;
+        display: inline-block;
+        .box {
+            width: 70%;
+            background: #e01f26;
+            height: 5px;
+            display: inline-block;
+        }
+        span{
+            display: inline-block;
+            width: 26%;
+            font-size: 14px;
+            color: #e01f26;
+            padding-left: 9px;
+            font-weight: bold;
+        }
+    }
+    .texto{
+        display: inline-block;
+        font-size: 14px;
+        color: #031059;
+        text-align: right;
+        width: 41%;
+        span{
+            background:#e01f26;
+            text-transform: uppercase;
+            color:white;
+            padding:1px 5px;
+            margin-left:10px;
+        }
+    }
+
+
+}
+
 .form-check.acierto.resultfail.resulcorrect{
-    
+
     border: 1px solid #00b335;
     width: 100%;
     display: block;
@@ -2025,7 +2073,7 @@ footer {
                             padding-bottom:0;
                             position: relative;
                             color:$azultexto;
-                            
+
                         }
                         .date{
                             &:before{
@@ -2050,7 +2098,7 @@ footer {
                             width: 27px;
                             height: 31px;
                             }
-        
+
                         }
                         .audio{
                             &:before{
@@ -2065,7 +2113,7 @@ footer {
                                 width: 27px;
                                 height: 31px;
                             }
-        
+
                         }
                         .level{
                             &:before{
@@ -2080,7 +2128,7 @@ footer {
                                 width: 27px;
                                 height: 31px;
                             }
-        
+
                         }
                         .access{
                             &:before{
@@ -2095,7 +2143,7 @@ footer {
                                 width: 27px;
                                 height: 31px;
                             }
-        
+
                         }
                    }
             }
@@ -2190,7 +2238,7 @@ footer {
                     display: flex;
                     justify-content: space-between;
                     padding-top: 1.5rem;
-                    
+
                     .item__link{
                         color:$azultexto;
                         font-family: $open-sans;
@@ -2224,7 +2272,7 @@ footer {
                         padding-left: 0.5rem;
                         padding-right: 0.5rem;
                     }
-                   
+
                 }
                 &__only{
                     display:flex;
@@ -2273,8 +2321,8 @@ footer {
                     color:#031059;
                     font-family: $open-sans;
                     p:first-child{
-                        font-size:28px; 
-                        text-transform:uppercase; 
+                        font-size:28px;
+                        text-transform:uppercase;
                         font-weight: bold;
                         span{
                             font-size:20px;
@@ -2287,7 +2335,7 @@ footer {
                         }
                     }
                     p:last-child{
-                        font-size:16px;  
+                        font-size:16px;
                     }
                 }
                 .foot{
@@ -2372,7 +2420,7 @@ footer {
         text-align: center;
         font-size:0.7rem;
     }
-    
+
 }
 #frm_login{
     .error{
@@ -2469,7 +2517,7 @@ footer {
     &__tiempo{
         padding-top:0.5rem;
     }
-    
+
 }
 
 .form-check.noacierto.resultuser {
@@ -2561,7 +2609,7 @@ footer {
 }
 .quiz{
     &__resultado{
-       
+
         &__titulo{
             color:#031059;
             text-transform: uppercase;
@@ -2611,7 +2659,7 @@ footer {
             font-weight: bold;
             padding-bottom: 10px;
         }
-        
+
     }
     &__inicio {
         display: block;
@@ -2664,6 +2712,23 @@ footer {
     padding-left:1rem;
     padding-right:1rem;
 }
+.exam{
+    &__course{
+        &__content{
+            .encurso__temas{
+                margin-top: 1rem;
+                padding-left:0;
+                &__lista{
+                    padding-left:1rem;
+                }
+                .title{
+                    font-size:22px;
+                    color:#031059;
+                }
+            }
+        }
+    }
+}
 .course{
     &__aprobado{
         font-family: $open-sans;
@@ -2696,7 +2761,7 @@ footer {
     color: red;
 }
 .error__entexto {
-   
+
     font-size: 15px;
     padding-bottom: 10px;
 }
@@ -2767,10 +2832,10 @@ footer {
     padding-left: 1rem;
     &:hover{
         background: #e01f26;
-       
+
         color:white;
         box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
-       
+
     }
 }
 #existeModal{
@@ -2794,7 +2859,7 @@ progress{
 	width: 80%;
 	margin: 10px;
 	opacity: 0.5;
- 
+
 }
 .timer{
 	width:50%;
@@ -2803,7 +2868,24 @@ progress{
 	left:0px;
 	text-align:left;
 	float:left;
-	
+
+}
+.finalizado.active{
+    a{
+    position: relative;
+        &:after{
+            content: "";
+            /* font-family: "FontAwesome"; */
+            background: url(/images/check-curso.svg) no-repeat;
+            background-size: contain;
+            width: 12px;
+            height: 16px;
+            position: absolute;
+            top: 8px;
+            left: 31px;
+            color: #E01F26;
+        }
+    }
 }
 
 @media(min-width: 980px) and (max-width: 1300px){

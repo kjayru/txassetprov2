@@ -12471,7 +12471,7 @@ footer .little {
   padding-top: 5px;
 }
 .encurso__temas__lista__item__sublista__item {
-  padding-bottom: 15px;
+  padding-bottom: 7px;
   padding-left: 1rem;
 }
 .encurso__temas__lista__item__sublista__item a {
@@ -12480,6 +12480,10 @@ footer .little {
   font-weight: lighter !important;
   font-family: "Open Sans", sans-serif;
   padding-left: 3rem !important;
+}
+.encurso__temas__lista__item__sublista__item:after {
+  content: "";
+  background: none !important;
 }
 .encurso__temas__lista__item__sublista .finalizado {
   position: relative;
@@ -12491,7 +12495,7 @@ footer .little {
   padding-left: 2rem;
   padding-bottom: 0 !important;
 }
-.encurso__temas__lista__item__sublista .finalizado:after {
+.encurso__temas__lista__item__sublista .finalizado a:after {
   content: "";
   font-family: "FontAwesome";
   position: absolute;
@@ -12499,8 +12503,8 @@ footer .little {
   background-size: contain;
   width: 12px;
   height: 16px;
-  top: -23px;
-  left: 43px;
+  top: 8px;
+  left: 31px;
 }
 .encurso__temas__lista__item__sublista .active a {
   color: #e01f26 !important;
@@ -12516,10 +12520,11 @@ footer .little {
   text-decoration: none;
   font-weight: bold;
   padding-left: 3.5rem;
-  display: block;
-  top: -31px;
+  display: inline;
+  top: 0;
   position: relative;
   padding-bottom: 1rem;
+  padding-left: 0.6rem;
 }
 .encurso__temas__lista__item:before {
   content: "";
@@ -12535,6 +12540,7 @@ footer .little {
   background: #e01f26;
 }
 .encurso__temas__lista .active:after {
+  /**capitulo*/
   content: "";
   font-family: "FontAwesome";
   background: url("/images/check-curso.svg") no-repeat;
@@ -12542,9 +12548,8 @@ footer .little {
   width: 12px;
   height: 16px;
   position: absolute;
-  top: 7px;
+  top: 11px;
   left: 40px;
-  color: #E01F26;
 }
 .encurso__question ul {
   list-style: none;
@@ -12576,8 +12581,46 @@ footer .little {
 }
 .final__examen a {
   top: 0 !important;
-  padding-left: 0 !important;
+  padding-left: 1rem !important;
   display: inline;
+}
+
+.exam__timeline {
+  display: block;
+  width: 100%;
+  padding: 4rem 0 1.5rem 0;
+}
+.exam__timeline .barra {
+  width: 57%;
+  display: inline-block;
+}
+.exam__timeline .barra .box {
+  width: 70%;
+  background: #e01f26;
+  height: 5px;
+  display: inline-block;
+}
+.exam__timeline .barra span {
+  display: inline-block;
+  width: 26%;
+  font-size: 14px;
+  color: #e01f26;
+  padding-left: 9px;
+  font-weight: bold;
+}
+.exam__timeline .texto {
+  display: inline-block;
+  font-size: 14px;
+  color: #031059;
+  text-align: right;
+  width: 41%;
+}
+.exam__timeline .texto span {
+  background: #e01f26;
+  text-transform: uppercase;
+  color: white;
+  padding: 1px 5px;
+  margin-left: 10px;
 }
 
 .form-check.acierto.resultfail.resulcorrect {
@@ -13245,6 +13288,18 @@ footer .little {
   padding-right: 1rem;
 }
 
+.exam__course__content .encurso__temas {
+  margin-top: 1rem;
+  padding-left: 0;
+}
+.exam__course__content .encurso__temas__lista {
+  padding-left: 1rem;
+}
+.exam__course__content .encurso__temas .title {
+  font-size: 22px;
+  color: #031059;
+}
+
 .course__aprobado {
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
@@ -13380,6 +13435,22 @@ progress {
   left: 0px;
   text-align: left;
   float: left;
+}
+
+.finalizado.active a {
+  position: relative;
+}
+.finalizado.active a:after {
+  content: "";
+  /* font-family: "FontAwesome"; */
+  background: url(/images/check-curso.svg) no-repeat;
+  background-size: contain;
+  width: 12px;
+  height: 16px;
+  position: absolute;
+  top: 8px;
+  left: 31px;
+  color: #E01F26;
 }
 
 @media (min-width: 980px) and (max-width: 1300px) {

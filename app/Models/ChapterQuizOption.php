@@ -18,10 +18,10 @@ class ChapterQuizOption extends Model
 
         //dd($answer->id);
        if(isset($answer)){
-        return $answer->id;
-       }else{
-        return 0;
+        return true;
        }
+       
+       return false;
 
     }
 

@@ -18,10 +18,10 @@
 					</ul>
 				</div>
 			</div>
-			@include('layouts.backend.partials.menucurso')	   
+			@include('layouts.backend.partials.menucurso')
 		</div>
 	</div>
-   
+
 </div>
 
 <!--contenido-->
@@ -33,9 +33,9 @@
 						<div class="encurso__titulo">{{@$curso->titulo}}</div>
 						<div class="encurso__subtitulo">{{@$curso->subtitulo}}</div>
 						<div class="encurso__intro">
-						
+
 								FINAL EXAM
-							
+
 						</div>
                         <div class="encurso__texto__exam">
                             <p>You have reached the testing phase. In this step you will not be able to close the window because you will lose the test. Verify that your internet connection is active</p>
@@ -51,7 +51,7 @@
 						<div class="quiz__inicio">
 							<a href="#" class="btn btn__red btn__examen btn__inline">Final Exam</a>
 						</div>
-						
+
 				@else
 					<div class="quiz__resultado">
 						<div class="quiz__resultado__titulo">Result</div>
@@ -66,17 +66,18 @@
 								<div class="col-4"><a href="#" class="btn btn__gray btn__restart__exam" data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">Restart test</a></div>
 								<div class="col-4">
 									@if($porcentaje > 75)
-									<a href="/{{$curso->slug}}/congratulation" class="btn btn__red btn__continue">Continue</a>
+
+									<a href="/learn/exam/{{$curso->slug}}/congratulation" class="btn btn__red btn__continue">Continue</a>
 									@else
 									<a href="#" class="btn btn__red btn__continue disabled">Continue</a>
 									@endif
 								</div>
 							</div>
-						</div>		
-						
+						</div>
+
 					</div>
 					<div class="quiz__respuestas">
-						
+
 					</div>
 				@endif
 
@@ -86,7 +87,7 @@
 							<div class="quiz__timelapse__bar"></div>
 						</div>
 					</div>
-					
+
 					<div class="quiz__preguntas">
 
 					<input type="hidden" name="user_course_id" id="user_course_id" value="{{@$user_course_id}}">
@@ -99,7 +100,7 @@
 								{{$key+1}}.  {{$question->question}}
 								<input type="hidden" name="quiz_id" value="{{$question->id}}">
 								<div class="card__question__opciones">
-								
+
 									@foreach($question->examquestionoptions as $option)
 										<div class="form-check">
 										<input class="form-check-input" type="radio" name="respuesta" value="{{$option->id}}" id="respuesta">
@@ -108,17 +109,17 @@
 										</label>
 										</div>
 									@endforeach
-								
-										
+
+
 							  </div>
-							  <a href="#" data-quizid="{{$question->id}}" class="btn btn-default btn__exam">Next</a>	
+							  <a href="#" data-quizid="{{$question->id}}" class="btn btn-default btn__exam">Next</a>
 							</div>
 
 						@endforeach
 					</div>
 
-						
-					
+
+
 
 			  </div>
 

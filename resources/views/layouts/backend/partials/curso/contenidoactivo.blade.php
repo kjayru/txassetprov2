@@ -15,9 +15,14 @@
            
          
             @foreach($cont['contenidos']['contenidos'] as $c)
+
+                <!--true-->
+                @if(UserCourse::contenidoVisto($c['titulo']))
+                <!--false-->
                 <li class="encurso__temas__lista__item__sublista__item {{UserCourse::contenido($user_course_id,$cont['contenidos']['capitulo_id'],$c['id'])?"finalizado":""}} {{UserCourse::contenidoActivo($curso->id,$cont['contenidos']['capitulo_id'],$c['id'])?'active':''}}">
                     <a href="/learn/{{$cont['contenidos']['curso_slug']}}/{{$cont['contenidos']['capitulo_slug']}}/{{$c['slug']}}"> {{@$c['titulo']}}</a> 
                 </li>
+
             @endforeach	
             @if($cont['contenidos']['quiz']==true)
            

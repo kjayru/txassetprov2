@@ -43,7 +43,7 @@ $(".cart__body__foot__link").click(function(e){
   e.preventDefault();
   let token = $("meta[name=csrf-token]").attr("content");
   const sendata = ({'_token':token,'_method':'POST'});
-  //verificar si el carrito es vacio 
+  //verificar si el carrito es vacio
   let course_id = $(this).data('id');
   let user_id = $(this).data('user');
   //verifica inicio de sesion
@@ -51,20 +51,20 @@ $(".cart__body__foot__link").click(function(e){
     url:'/cart/checksesion',
     type:'GET',
     dataType:'json',
-    success:function(response){ 
+    success:function(response){
             if(response.estado==true){
               $.ajax({
                 url:'/cart-estado',
                 type:'GET',
                 dataType:'json',
                 success:function(response){
-          
-                  if(response==false){            
+
+                  if(response==false){
                     $(".texto__error").html("You have no courses in your cart")
                     $("#errorModal").modal('show');
 
                     return false;
-  
+
                   }else{
                     //Verificar si adquiri el curso
                   let userdata = {'user_id':user_id,'course_id':course_id,'_token':token,'_method':'POST'};
@@ -89,13 +89,13 @@ $(".cart__body__foot__link").click(function(e){
                                 type:'POST',
                                 dataType:'json',
                                 data:sendata,
-                                success:function(response){             
+                                success:function(response){
                                     return stripe.redirectToCheckout({ sessionId: response.id });
                                 }
                               })
 
                             }else{
-                              
+
                               window.location.href="/cart/sign";
                             }
                           }
@@ -109,11 +109,11 @@ $(".cart__body__foot__link").click(function(e){
                 }
               });
 
-            }else{          
+            }else{
             $("#loginModal").modal("show");
             }
           }
-        });     
+        });
 });
 
 
@@ -131,7 +131,7 @@ $(".btn__loginsumit").on('click',function(){
   let password = $("#password__login").val();
 
   let sendata = {'_token':token,'_method':'POST','email':email,'password':password};
-  
+
   $.ajax({
     url:'/loginpop',
     type:'POST',
@@ -157,7 +157,7 @@ $(".btn__loginsumit").on('click',function(){
         $(".error__password").html("Ingrese su clave");
       }
   });
-  
+
 });
 
 $("#email__login").focus(function() {
@@ -170,23 +170,23 @@ $("#password__login").focus(function() {
 });
 
 try {
-  
+
 
   var player = videojs('my-player');
   var options = {};
   var player = videojs('my-player', options, function onPlayerReady() {
- 
-    
+
+
     this.play();
-    
+
     this.on('ended', function() {
-     
+
       //registro de capitulo completado
       const token = $('meta[name="csrf-token"]').attr('content');
       let usercourseid = $("input[name='user_course_id']").val();
       let usercoursechapterid = $("input[name='user_course_chapter_id']").val();
       let usercoursechaptercontentid= $("input[name='user_course_chapter_content_id']").val();
-      
+
       //alert(usercourseid+' '+usercoursechapterid+' '+usercoursechaptercontentid);
 
       let sendata = {
@@ -220,7 +220,7 @@ $(".detalle__header__mycourse").on('click',function(e){
 
   $('.detalle__header__mycourse').removeClass("active");
     $(this).addClass("active");
-  
+
   let valor = $(this).data("content");
   let id=$(this).data('id');
   const token = $('meta[name="csrf-token"]').attr('content');
@@ -230,7 +230,7 @@ $(".detalle__header__mycourse").on('click',function(e){
       $(".detalle__informacion").show();
       $(".detalle__secciones").hide();
     break;
-  
+
     case "secciones":
       $(".detalle__contenido").hide();
       $(".detalle__informacion").hide();
@@ -247,16 +247,16 @@ $(".detalle__header__mycourse").on('click',function(e){
           console.log("preparando");
         },
         success:function(response){
-          $.each(response.contents, function (i, e) { 
+          $.each(response.contents, function (i, e) {
 
               htm+=`<div class="detalle__contenido__capitulo interlineado">
               <div class="row">
                      <div class="col-md-12">
-                        <div class="detalle__contenido__capitulo__titulo"> ${e.titulo} </div>                                                           
+                        <div class="detalle__contenido__capitulo__titulo"> ${e.titulo} </div>
                      </div>
               </div>
-          
-              
+
+
               <div class="row justify-content-between">`;
                       $.each(e.contenidos,function(p,q){
 
@@ -292,7 +292,7 @@ $(".detalle__header__home__course").on('click',function(e){
       $(".detalle__informacion").show();
       $(".detalle__secciones").hide();
     break;
-  
+
     case "secciones":
       $(".detalle__contenido").hide();
       $(".detalle__informacion").hide();
@@ -311,19 +311,19 @@ $(".detalle__header__home__course").on('click',function(e){
         success:function(response){
 
           htm+=`<div class="detalle__contenido__capitulo ">
-             
+
           <div class="row">
                  <div class="col-md-12">
-                    <div class="detalle__contenido__capitulo__titulo"> Contents </div>                                                           
+                    <div class="detalle__contenido__capitulo__titulo"> Contents </div>
                  </div>`;
-          $.each(response.contents, function (i, e) { 
+          $.each(response.contents, function (i, e) {
 
-             
-          
-              
+
+
+
             htm+=` <div class="row justify-content-between interlineado">`;
 
-                     
+
                         htm+=`<div class="col-md-4">
                                   <span>${i+1} </span>
                                   ${e.titulo}
@@ -340,12 +340,12 @@ $(".detalle__header__home__course").on('click',function(e){
                                        if(e.audio!=null){
                                          htm+=`<li class="audio">Chapter audio</li>`;
                                       }
-                                       if(e.quiz!=null){ 
+                                       if(e.quiz!=null){
                                        htm+=`<li class="question">Questions about the chapter</li>`;
                                      }
-                              htm+=` </ul> 
+                              htm+=` </ul>
                      </div>`;
-                    
+
 
               htm+=`</div>`;
           });
@@ -390,7 +390,7 @@ $(".btn__quiz").on('click',function(e){
       dataType:'json',
       data:sendata,
       success:function(response){
-      
+
         padre.hide();
         padre.next('.card__question').show();
 
@@ -402,7 +402,7 @@ $(".btn__quiz").on('click',function(e){
           window.location.reload();
           clearInterval(refreshIntervalId);
         }
-        
+
       }
     })
 })
@@ -427,9 +427,9 @@ $(".btn__restart").on('click',function(e){
     dataType:'json',
     data:sendata,
     success:function(response){
-     
+
       window.location.reload();
-      
+
     }
   })
 
@@ -451,7 +451,7 @@ $(".btn__examen").on('click',function(e){
   const MILLISECONDS_OF_A_SECOND = 1000;
   const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
   const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
- 
+
   var segundo=60;
   var minuto=59;
   var hora = 1;
@@ -463,14 +463,14 @@ $(".btn__examen").on('click',function(e){
     SPAN_HOURS.textContent= hora;
       contador +=1;
        segundo -= 1;
-      
+
        if(segundo==0){
         minuto-=1;
         segundo=60;
        }
 
-   
-       
+
+
       if(segundo==60){
           SPAN_SECONDS.textContent = '00';
       }else{
@@ -480,7 +480,7 @@ $(".btn__examen").on('click',function(e){
 
               SPAN_SECONDS.textContent = segundo;
             }
-          
+
       }
 
        if(minuto==60){
@@ -489,11 +489,11 @@ $(".btn__examen").on('click',function(e){
        }else{
 
         if(minuto<10){
- 
+
             SPAN_MINUTES.textContent = "0"+minuto;
             // if(minuto==0){
             //   SPAN_MINUTES.textContent = "00";
-             
+
             // }
 
         }else{
@@ -502,24 +502,24 @@ $(".btn__examen").on('click',function(e){
 
         }
        }
-      
+
        if(hora>0 && minuto ==0 ){
-      
+
          hora -=1;
          minuto=59;
          SPAN_HOURS.textContent = hora;
        }
-       
+
 
        if(hora==0 && minuto == 0 &&  segundo==1){
-         
+
 
           clearInterval(refreshIntervalId);
           let user_course_id = $("#user_course_id").val();
           let exam_id = $("#exam_id").val();
           let tiempo = $("#tiempo").val();
 
-          
+
           let quizid = $(this).data('quizid');
           // let input = $(this).parent().children('.card__question__opciones').find('input[name="respuesta"]:checked').val();
           // let padre =  $(this).parent();
@@ -533,18 +533,18 @@ $(".btn__examen").on('click',function(e){
             dataType:'json',
             data:sendata,
             success:function(response){
- 
+
               window.location.reload();
-            
-              
+
+
             }
           })
 
 
        }
-       
+
       // 7200segundos =100%
-     
+
       $("#tiempo").val(hora+":"+minuto+":"+segundo);
 
      //porcentaje= Math.round((total*100)/contador);
@@ -560,11 +560,11 @@ $(".btn__examen").on('click',function(e){
 
 var urlpath = window.location.href;
 if(urlpath.indexOf('quiz')!="-1"){
-  
+
   const MILLISECONDS_OF_A_SECOND = 1000;
   const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
   const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
-  
+
    const conshora = $(".q-hora");
    const consminuto = $(".q-minute");
    const conssegundo = $(".q-segundo");
@@ -589,31 +589,31 @@ if(urlpath.indexOf('quiz')!="-1"){
        }
 
        if(segundo==60){
-      
+
        prsegundo = "00";
        }else{
         if(segundo<10){
-         
+
           prsegundo = "0"+segundo;
         }else{
 
           conssegundo.html(segundo);
           prsegundo = segundo;
         }
-       
+
        }
 
-  
+
        if(minuto==60){
-       
+
         prminuto = "00";
        }else{
         if(minuto<10){
-          
+
           prminuto = "0"+minuto;
         }else{
 
-      
+
         prminuto = minuto;
         }
        }
@@ -622,21 +622,21 @@ if(urlpath.indexOf('quiz')!="-1"){
        $("#tiempoquiz").val(consolidar);
 
        if(hora==0 && minuto == 0 &&  segundo==1){
-         
+
 
           clearInterval(refreshIntervalId)
 
 
        }
-       
+
       // 7200segundos =100%
-      
+
 
      //porcentaje= Math.round((total*100)/contador);
      porcentaje = (100*contador)/total;
 
      //console.log(contador+" "+parseFloat(porcentaje).toFixed(2));
-     
+
   }
 
   updateCountdown2();
@@ -653,7 +653,7 @@ $(".btn__exam").on('click',function(e){
   let exam_id = $("#exam_id").val();
   let tiempo = $("#tiempo").val();
 
-  
+
   let quizid = $(this).data('quizid');
   let input = $(this).parent().children('.card__question__opciones').find('input[name="respuesta"]:checked').val();
   let padre =  $(this).parent();
@@ -667,7 +667,7 @@ $(".btn__exam").on('click',function(e){
     dataType:'json',
     data:sendata,
     success:function(response){
-     
+
       padre.hide();
       padre.next('.card__question').show();
       if(response.completo==true){
@@ -676,10 +676,10 @@ $(".btn__exam").on('click',function(e){
           $(".quiz__botones").show();
 
           //return aprobo no aproboå
-          
+
        window.location.reload();
      }
-      
+
     }
   })
 })
@@ -701,7 +701,7 @@ $(".btn__register").on('click',function(e){
 
   if(password===passwordconfirm){
     let sendata = {'_token':token,'_method':'POST','name':name,'email':email,'password':password,'password_confirm':passwordconfirm};
-  
+
     $.ajax({
       url:'/register-user',
       type:'POST',
@@ -731,7 +731,7 @@ $(".btn__register").on('click',function(e){
   }else{
     $(".register__alerta").show();
   }
-  
+
 })
 
 $(".btn__start").on('click',function(e){
@@ -750,14 +750,14 @@ $(".btn__start").on('click',function(e){
         }
       }
     })
-  
+
 });
 
 var validaton =  $("#frm-profile").validate();
 
 $(".encurso__temas__lista__item").on('click',function(e){
   //e.preventDefault();
-  $(".encurso__temas__lista__item__sublista").removeClass("active");
+  //$(".encurso__temas__lista__item__sublista").removeClass("active");
   $(this).children("ul").addClass("active");
 });
 
@@ -793,9 +793,9 @@ function myFunction(){
 		dura=secondsToString(duracionSegundos);
 		var actualSegundos = playaudio.currentTime.toFixed(0)
 		actual=secondsToString(actualSegundos);
-		
+
 		duracion= actual +' / '+ dura
-		document.getElementById('timer').innerText=duracion 
+		document.getElementById('timer').innerText=duracion
 
     valorrange = (playaudio.currentTime / playaudio.duration) * 100;
     $(".timelinebox__solid").css("width",valorrange+"%");
@@ -807,7 +807,7 @@ function myFunction(){
       let usercourseid = $("input[name='user_course_id']").val();
       let usercoursechapterid = $("input[name='user_course_chapter_id']").val();
       let usercoursechaptercontentid= $("input[name='user_course_chapter_content_id']").val();
-      
+
       //alert(usercourseid+' '+usercoursechapterid+' '+usercoursechaptercontentid);
 
       let sendata = {
@@ -828,10 +828,10 @@ function myFunction(){
         }
       })
 
-      
+
     }
 	}
-	
+
 }
 
 function secondsToString(seconds) {
@@ -850,7 +850,7 @@ function secondsToString(seconds) {
 
 $(".btn__restart__exam").on('click',function(e){
 
-  
+
   e.preventDefault();
   let curso_id = $(this).data("cursoid");
   let usercourseid = $(this).data("usercourseid");
@@ -867,7 +867,7 @@ $(".btn__restart__exam").on('click',function(e){
     data:sendata,
     success:function(response){
       window.location.reload();
-      
+
     }
   })
 
@@ -893,26 +893,26 @@ $(".btn__question__exam").on('click',function(e){
     success:function(response){
       var htm='';
       $.each(response,function(i,e){
-        
+
        htm+=` <div class="card__question">
 									${i+1}. ${e.question_name}
-						
+
 						<div class="card__question__opciones">`;
 									$.each(e.opciones,function(x,y){
 
-                 
 
-										htm+=`	<div class="form-check  ${y.responde?'incorrecto':''} ${y.resultado?'correcto':''} ${y.acierto?'acierto':''} ">	
+
+										htm+=`	<div class="form-check  ${y.responde?'incorrecto':''} ${y.resultado?'correcto':''} ${y.acierto?'acierto':''} ">
 											<input class="form-check-input " type="radio" name="respuesta${i+1}" value="${x+1}"   id="respuesta${x+1}" data-res="${y.responde}"  ${y.responde?'checked':''}>
 											<label class="form-check-label" for="respuesta${x+1}">
 												${y.name}
 											</label>
 											</div>`;
-										
+
                     })
-											
+
         htm+=`</div>
-								
+
 			</div>`;
 
 

@@ -17,11 +17,11 @@
                         <li><span>></span><a href="#" class="breadcrum__link active">Final Exam</a></li>
 					</ul>
 				</div>
-			</div>	
-            @include('layouts.backend.partials.menucurso')   
+			</div>
+            @include('layouts.backend.partials.menucurso')
 		</div>
 	</div>
-   
+
 </div>
 
 <!--contenido-->
@@ -30,13 +30,13 @@
 	<div class="row justify-content-between">
 
 			  <div class="col-md-8 mb-5">
-					
+
                 <div class="encurso__titulo">{{@$curso->titulo}}</div>
 						<div class="encurso__subtitulo">{{@$curso->subtitulo}}</div>
 						<div class="encurso__intro__exam">
-						
+
 								You´ve completed the test
-							
+
 						</div>
                         <div class="encurso__texto__exam">
                             <p>You have reached the testing phase. In this step you will not be able to close the window because you will lose the test. Verify that your internet connection is active</p>
@@ -53,30 +53,30 @@
                                 <p>you have reached 25 or 50 point(s). (50%)</p>
                             </div>
                         </div>
-					
+
 						<div class="quiz__inicio">
-							<a href="#" class="btn btn__red btn__examen btn__inline">Restart Test</a>
+							<a href="#" class="btn btn__red btn__examen btn__inline btn__restart__exam">Restart Test</a>
 						</div>
-						
-			
+
+
 			  </div>
 
             <div class="col-md-3">
                 <div class="encurso__temas">
-                      
+
                         <ul class="encurso__temas__lista">
 
-                                @if(isset($contenidos))										
+                                @if(isset($contenidos))
                                     @foreach($contenidos as $k => $cont)
                                             <li class="encurso__temas__lista__item {{UserCourse::capitulo($user_course_id,$cont['capitulo_id'])?"active":""}}"><span>{{$k+1}}</span>
                                                 <a href="#">{{@$cont['capitulo_titulo']}}</a>
-                                                
+
                                                     <ul class="encurso__temas__lista__item__sublista active">
                                                         @foreach($cont['contenidos'] as $c)
                                                             <li class="encurso__temas__lista__item__sublista__item {{UserCourse::contenido($user_course_id,$cont['capitulo_id'],$c['id'])?"finalizado":""}}">
-                                                                <a href="/learn/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/{{$c['slug']}}"> {{@$c['titulo']}}</a> 
+                                                                <a href="/learn/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/{{$c['slug']}}"> {{@$c['titulo']}}</a>
                                                             </li>
-                                                        @endforeach	
+                                                        @endforeach
                                                         @if($cont['quiz']==true)
                                                             <li>
                                                                 <a href="/learn/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/quiz/{{$cont['quiz_content']->chapter_id}}">Quiz chapter</a>
@@ -85,15 +85,15 @@
                                                     </ul>
                                             </li>
                                     @endforeach
-                                @endif	
+                                @endif
 
-                                @if(isset($examen))										
+                                @if(isset($examen))
                                 <li class="encurso__temas__lista__item"><a href="/learn/exam/{{$curso->slug}}/{{$examen->id}}">Final Exam</a></li>
                                 @endif
                         </ul>
                 </div>
             </div>
-		
+
 
 	</div>
 </div>
