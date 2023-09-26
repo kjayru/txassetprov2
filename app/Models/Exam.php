@@ -19,6 +19,8 @@ class Exam extends Model
 
     public static function cursado($user_course_id,$exam_id){
 
+
+
         $activo = false;
         if(UserCourseExam::where('user_course_id',$user_course_id)->where('exam_id',$exam_id)->count()>0){
             $activo = true;
