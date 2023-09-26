@@ -774,6 +774,9 @@ $(".timeline__play").on('click',function(e){
   playaudio.addEventListener("timeupdate",myFunction);
   $(this).hide();
   $(".timeline__stop").show();
+  playaudio.addEventListener('ended',(event)=>{
+    console.log("audio terminado");
+  })
 })
 
 $(".timeline__stop").on('click',function(e){
@@ -800,7 +803,7 @@ function myFunction(){
     valorrange = (playaudio.currentTime / playaudio.duration) * 100;
     $(".timelinebox__solid").css("width",valorrange+"%");
 
-    if($valorrange==100){
+    if(valorrange==100){
 
 
       const token = $('meta[name="csrf-token"]').attr('content');
@@ -825,6 +828,7 @@ function myFunction(){
         data:sendata,
         success:function(response){
           console.log(response);
+          $(".encurso__footer__link").removeClass('disabled');
         }
       })
 
