@@ -483,7 +483,8 @@ class LearnController extends Controller
     $user = User::find($user_id);
 
     $curso = Course::where('slug',$slug)->first();
-    $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->where('intentos',null)->first();
+    $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
+
     $userCourseChapter = UserCourseChapter::where('user_course_id',$userCourse->id)->first();
 
     if(isset($userCourseChapter)){
@@ -650,7 +651,7 @@ class LearnController extends Controller
 
 
     public function setExam(Request $request){
-
+        $intentos = 0;
         if(isset($request->evento)){
             if(UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->count()==0){
                 $registro = new UserCourseExam();
@@ -724,15 +725,28 @@ class LearnController extends Controller
         $total_correctas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)->where('result','1')->count();
         $porcentaje = round($total_correctas*100/$total_preguntas ,2);
 
+
+        if(UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->count()>0){
+            $registro = UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->first();
+            $intentos = $registro->intentos;
+        }
+
+
         if($porcentaje>=75){
             $usercourse = UserCourse::where('id',$request->user_course_id)->where('intentos',null)->first();
             $usercourse->aprobado = 1;
-            $usercourse->intentos = 1;
+            if($intentos ==3){
+                $usercourse->intentos = 1;
+            }
+
+
             $usercourse->save();
         }else{
             $usercourse = UserCourse::where('id',$request->user_course_id)->where('intentos',null)->first();
             $usercourse->aprobado = 0;
-            $usercourse->intentos = 1;
+            if($intentos ==3){
+                $usercourse->intentos = 1;
+            }
             $usercourse->save();
         }
 
