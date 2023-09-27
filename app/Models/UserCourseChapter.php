@@ -22,7 +22,8 @@ class UserCourseChapter extends Model
 
     public static function completeChapter($user_id,$course_id){
 
-        $usercourse = UserCourse::where('course_id',$course_id)->where('user_id',$user_id)->first();
+        $usercourse = UserCourse::where('course_id',$course_id)->where('user_id',$user_id)->where('intentos',null)->first();
+
         $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
 
         $course= Course::find($course_id);
@@ -57,18 +58,28 @@ class UserCourseChapter extends Model
 
     public static function userQuiz($user_course_id,$chapter_id){
               $activo = false;
+              $contenidosCompletados=0;
         // if(UserCourseChapter::where('user_course_id',$user_course_id)->where('chapter_id',$chapter_id)->where('quiz_result',1)->count()>0){
         //     $activo = true;
         // }
 
-        $ucc = UserCourseChapter::where('user_course_id',$user_course_id)->where('chapter_id',$chapter_id)->first();
-        $contenidosCompletados = UserCourseChapterContent::where('user_course_chapter_id',$ucc->id)->count();
 
-        $contenidosCapitulos = Chaptercontent::where('chapter_id',$chapter_id)->count();
+        // if(UserCourseChapter::where('user_course_id',$user_course_id)->where('chapter_id',$chapter_id)->count()>0){
+        // $ucc = UserCourseChapter::where('user_course_id',$user_course_id)->where('chapter_id',$chapter_id)->first();
 
-        if($contenidosCompletados == $contenidosCapitulos){
+        // $contenidosCompletados = UserCourseChapterContent::where('user_course_chapter_id',$ucc->id)->count();
+        // }
+
+        // $contenidosCapitulos = Chaptercontent::where('chapter_id',$chapter_id)->count();
+
+        // if($contenidosCompletados == $contenidosCapitulos){
+        //     $activo = true;
+        // }
+        if(UserCourseChapter::where('user_course_id',$user_course_id)->where('chapter_id',$chapter_id)->where('quiz_result',1)->count()>0){
             $activo = true;
         }
+
+
         return $activo;
 
     }

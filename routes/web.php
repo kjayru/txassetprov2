@@ -46,7 +46,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('roles/{role}',[HomeController::class,'show'])->name('roles.show');
     Route::delete('roles/{role}',[HomeController::class,'destroy'])->name('roles.destroy');
     Route::get('roles/{role}/edit',[HomeController::class,'edit'])->name('roles.edit');
-    
+
     //users
 
     Route::get('users',[UserController::class,'index'])->name('adminuser.index');
@@ -54,7 +54,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::put('users/{user}',[UserController::class,'update'])->name('adminuser.update');
     Route::get('users/{user}',[UserController::class,'show'])->name('adminuser.show');
     Route::delete('users/{user}',[UserController::class,'destroy'])->name('adminuser.destroy');
-    
+
 
     Route::get('trainings',[TrainingController::class,'index'])->name('training.index');
     Route::post('trainings/store',[TrainingController::class,'store'])->name('training.store');
@@ -63,7 +63,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::put('trainings/{training}',[TrainingController::class,'update'])->name('training.update');
     Route::get('trainings/{training}',[TrainingController::class,'show'])->name('training.show');
     Route::delete('trainings/{training}',[TrainingController::class,'destroy'])->name('training.destroy');
-    
+
 
     Route::get('orders',[OrderController::class,'index'])->name('orders.index');
     Route::post('orders/store',[OrderController::class,'store'])->name('orders.store');
@@ -83,11 +83,11 @@ Route::group(['prefix' => 'admin'],function(){
     Route::put('contacts/{contact}',[ContactController::class,'update'])->name('contacts.update');
     Route::get('contacts/{contact}',[ContactController::class,'show'])->name('contacts.show');
     Route::delete('contacts/{contact}',[ContactController::class,'destroy'])->name('contacts.destroy');
-    
+
     Route::get('configs',[ConfigurationController::class,'index'])->name('configs.index');
     Route::get('configs/{config}/edit',[ConfigurationController::class,'edit'])->name('configs.edit');
     Route::put('configs/{config}',[ConfigurationController::class,'update'])->name('configs.update');
-    
+
     /**category */
 
     Route::post('categories/store',[CategoryController::class,'store'])->name('categories.store');
@@ -97,7 +97,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('categories/{role}',[CategoryController::class,'show'])->name('categories.show');
     Route::delete('categories/{role}',[CategoryController::class,'destroy'])->name('categories.destroy');
     Route::get('categories/{role}/edit',[CategoryController::class,'edit'])->name('categories.edit');
-    
+
     /**Industry */
     Route::post('industries/store',[IndustryController::class,'store'])->name('industries.store');
     Route::get('industries',[IndustryController::class,'index'])->name('industries.index');
@@ -106,7 +106,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('industries/{role}',[IndustryController::class,'show'])->name('industries.show');
     Route::delete('industries/{role}',[IndustryController::class,'destroy'])->name('industries.destroy');
     Route::get('industries/{role}/edit',[IndustryController::class,'edit'])->name('industries.edit');
-    
+
     /**Post */
 
     Route::post('posts/store',[PostController::class,'store'])->name('posts.store');
@@ -116,7 +116,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('posts/{role}',[PostController::class,'show'])->name('posts.show');
     Route::delete('posts/{role}',[PostController::class,'destroy'])->name('posts.destroy');
     Route::get('posts/{role}/edit',[PostController::class,'edit'])->name('posts.edit');
-    
+
 
     /***Course */
 
@@ -127,7 +127,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('courses/{role}',[CourseController::class,'show'])->name('courses.show');
     Route::delete('courses/{role}',[CourseController::class,'destroy'])->name('courses.destroy');
     Route::get('courses/{role}/edit',[CourseController::class,'edit'])->name('courses.edit');
-    
+
     Route::get('get-exam',[CourseController::class,'getExam']);
     Route::post('set-courses',[CourseController::class,'setCourseExam'])->name('course.exam');
 
@@ -138,7 +138,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('chapters/{chapter}',[ChapterController::class,'show'])->name('chapters.show');
     Route::delete('chapters/{chapter}',[ChapterController::class,'destroy'])->name('chapters.destroy');
     Route::get('chapters/{chapter}/edit',[ChapterController::class,'edit'])->name('chapters.edit');
-    
+
 
     Route::post('chaptercontent/store',[ChapterContentController::class,'store'])->name('chaptercontent.store');
     Route::get('chaptercontent',[ChapterContentController::class,'index'])->name('chaptercontent.index');
@@ -147,16 +147,16 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('chaptercontent/{content}',[ChapterContentController::class,'show'])->name('chaptercontent.show');
     Route::delete('chaptercontent/{content}',[ChapterContentController::class,'destroy'])->name('chaptercontent.destroy');
     Route::get('chaptercontent/{content}/edit',[ChapterContentController::class,'edit'])->name('chaptercontent.edit');
-    
+
     Route::post('chapterequiz/store',[ChapterEvaluationController::class,'store'])->name('chapterequiz.store');
     Route::get('chapterequiz/{chapter}',[ChapterEvaluationController::class,'index'])->name('chapterequiz.index');
     Route::get('chapterequiz/create/{chapter}',[ChapterEvaluationController::class,'create'])->name('chapterequiz.create');
-    Route::put('chapterequiz/{quiz}',[ChapterEvaluationController::class,'update'])->name('chapterequiz.update'); 
-    //Route::get('chapterequiz/{quiz}',[ChapterEvaluationController::class,'show'])->name('chapterequiz.show'); 
+    Route::put('chapterequiz/{quiz}',[ChapterEvaluationController::class,'update'])->name('chapterequiz.update');
+    //Route::get('chapterequiz/{quiz}',[ChapterEvaluationController::class,'show'])->name('chapterequiz.show');
     Route::delete('chapterequiz/{quiz}',[ChapterEvaluationController::class,'destroy'])->name('chapterequiz.destroy');
     Route::get('chapterequiz/{quiz}/edit',[ChapterEvaluationController::class,'edit'])->name('chapterequiz.edit');
-    
-   
+
+
 
     //examenes
     Route::get('exams',[ExamController::class,'index'])->name('exam.index');
@@ -236,7 +236,7 @@ Route::group(['prefix' => 'cart'],function(){
     Route::get('/success/{session_id}', [CartController::class,'success']);
     Route::get('/cancel', [CartController::class,'cancel']);
 
-   
+
 });
 
 Route::group(['prefix'=>'learn'],function(){
@@ -253,6 +253,7 @@ Route::group(['prefix'=>'learn'],function(){
     Route::post('/set-exam',[LearnController::class,'setExam']);
     Route::post('/exam/reset-exam',[LearnController::class,'resetExam']);
     Route::post('/exam/view-exam',[LearnController::class,'viewExam']);
+    Route::post('/restart-course',[LearnController::class,'restartCourse']);
 });
 
 Route::group(['prefix'=>'user'],function(){

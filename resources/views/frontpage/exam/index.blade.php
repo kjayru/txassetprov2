@@ -61,9 +61,18 @@
 							You have reached {{$total_correctas}} or {{$total_preguntas}} point(s). ({{$porcentaje}}%)
 						</div>
 						<div class="quiz__resultado__botones">
+
+                            {{-- comprabar que sus intentos sean menor a 3 --}}
+                            @if($numero_intentos <3)
 							<div class="row justify-content-center">
-								<div class="col-4"><a href="#" class="btn btn__gray btn__question__exam"   data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">View Questions</a></div>
-								<div class="col-4"><a href="#" class="btn btn__gray btn__restart__exam" data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">Restart test</a></div>
+								<div class="col-4">
+                                    <a href="#" class="btn btn__gray btn__question__exam"   data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">View Questions</a></div>
+								<div class="col-4">
+                                    @if($porcentaje < 75)
+                                    <a href="#" class="btn btn__gray btn__restart__exam" data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">Restart exam</a></div>
+                                    @else
+                                    <a href="#" class="btn btn__gray btn__restart__exam disabled" >Restart exam</a></div>
+                                    @endif
 								<div class="col-4">
 									@if($porcentaje > 75)
 
@@ -73,6 +82,18 @@
 									@endif
 								</div>
 							</div>
+                          @else
+                            {{-- supero los 3 intentos  --}}
+
+                            <div class="row justify-content-end">
+								<div class="col-4">
+
+									<a href="#" class="btn btn__red btn__restart__course"  data-cursoid="{{@$curso->id}}" data-userid="{{@$user_id}}">Restart Course</a>
+
+								</div>
+							</div>
+
+                        @endif
 						</div>
 
 					</div>

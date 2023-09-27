@@ -19,7 +19,7 @@ class ExamController extends Controller
     public function index()
     {
         $examenes = Exam::orderBy('id','desc')->get();
-      
+
        return view('backend.exam.index',['examenes'=>$examenes]);
     }
 
@@ -30,11 +30,9 @@ class ExamController extends Controller
      */
     public function create()
     {
-       
-       
         return view('backend.exam.create',);
     }
- 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -43,7 +41,7 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-       
+
        $exam = new Exam();
        $exam->title=$request->name;
        $exam->duration = $request->duration;
@@ -64,7 +62,7 @@ class ExamController extends Controller
     public function edit($id)
     {
         $exam = Exam::where('id',$id)->first();
-       
+
         return view('backend.exam.edit',['exam'=>$exam]);
     }
 
@@ -93,7 +91,7 @@ class ExamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         Exam::find($request->id)->delete();
 
@@ -104,21 +102,21 @@ class ExamController extends Controller
 
 
     public function options($opt){
-      
+
         $questions = ExamQuestion::where('exam_id',$opt)->get();
 
         return view('backend.exam.options.index',['exam_id'=>$opt,'questions'=>$questions]);
     }
 
     public function optionCreate($opt){
-      
+
 
         return view('backend.exam.options.create',['exam_id'=>$opt]);
     }
 
     public function optionStore(Request $request){
-      
-        
+
+
        $pregunta = new ExamQuestion();
        $pregunta->question=$request->question;
        $pregunta->exam_id = $request->exam_id;
@@ -129,8 +127,8 @@ class ExamController extends Controller
 
             $opcion = New ExamQuestionOption();
             $opcion->opcion = $op;
-            
-            
+
+
             if($request->result==$k+1){
             $opcion->resultado = 1;
             }
@@ -180,12 +178,12 @@ class ExamController extends Controller
     }
 
     public function optionUpdate(Request $request,$opt,$id){
-       
+
 
         $pregunta = ExamQuestion::find($id);
         $pregunta->question=$request->question;
         $pregunta->exam_id = $request->exam_id;
-        
+
         $pregunta->save();
 
 
@@ -195,7 +193,7 @@ class ExamController extends Controller
 
             $opcion = New ExamQuestionOption();
             $opcion->opcion = $op;
-           
+
             if($request->result==$k+1){
             $opcion->resultado = 1;
             }
@@ -203,43 +201,43 @@ class ExamController extends Controller
             $opcion->exam_question_id = $pregunta->id;
             $opcion->save();
         }
-        
+
         // $opciona =  ExamQuestionOption::find($request->quiz_question_option_a);
         // $opciona->option = $request->option_a;
         // $opciona->identificador="a";
-    
+
         // $opciona->save();
- 
+
         // $opcionb =  ExamQuestionOption::find($request->quiz_question_option_b);
         // $opcionb->option = $request->option_b;
         // $opcionb->identificador="b";
-       
+
         // $opcionb->save();
- 
+
         // $opcionc =  ExamQuestionOption::find($request->quiz_question_option_c);
         // $opcionc->option = $request->option_c;
         // $opcionc->identificador="c";
-        
+
         // $opcionc->save();
- 
+
         // $opciond =  ExamQuestionOption::find($request->quiz_question_option_d);
         // $opciond->option = $request->option_d;
         // $opciond->identificador="d";
-       
+
         // $opciond->save();
- 
+
         return redirect()->route('option.index',['opt' => $request->exam_id])
          ->with('info','option update');
     }
 
 
     public function optionDestroy(Request $request,$opt){
-       
+
         ExamQuestion::find($request->id)->delete();
 
         return redirect()->route('option.index',['opt'=>$opt])
         ->with('info','Option deleted');
     }
 
-    
+
 }

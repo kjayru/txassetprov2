@@ -12470,6 +12470,10 @@ footer .little {
 .encurso__temas__lista__item .alink {
   padding-left: 0.8rem;
 }
+.encurso__temas__lista__item .open {
+  display: block;
+  height: auto;
+}
 .encurso__temas__lista__item__sublista {
   list-style: none;
   padding-left: 0;
@@ -12490,6 +12494,7 @@ footer .little {
   font-weight: lighter !important;
   font-family: "Open Sans", sans-serif;
   padding-left: 0.5rem !important;
+  padding-bottom: 0 !important;
 }
 .encurso__temas__lista__item__sublista__item:after {
   content: "";

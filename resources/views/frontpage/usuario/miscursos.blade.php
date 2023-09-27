@@ -15,12 +15,12 @@
 					</ul>
 				</div>
 
-				
+
 			</div>
-			@include('layouts.backend.partials.menucurso')  
+			@include('layouts.backend.partials.menucurso')
 		</div>
 	</div>
-   
+
 </div>
 
 <!--contenido-->
@@ -34,7 +34,7 @@
 				</div>
 				<div class="todocursos__card__body">
 					@foreach($cursos as $curso)
-					
+
 					<div class="todocursos__card__body__item">
 						<div class="row">
 							<div class="col-md-4">
@@ -50,11 +50,11 @@
 									{{$curso->course->subtitulo}}
 								</div>
 								<div class="todocursos__card__body__item__timeline">
-									
+
 									<div class="line">
 										<div class="linea_avance" style="width:{{UserCourseChapter::completeChapter($user->id,$curso->course->id)}}%"></div>
 									</div>
-								
+
 									@if(UserCourse::complete($curso->course->id,$user->id))
 									<span class="status">completed  </span>
 									@else
@@ -84,9 +84,9 @@
 											<div class="item__mensaje__time">You Have 0 days left to finish the course </div>
 										</div>
 										@break
-	
+
 									@endswitch
-									
+
 								</div>
 
 							</div>

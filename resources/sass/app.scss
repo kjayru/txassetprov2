@@ -1811,6 +1811,7 @@ footer {
         &__lista{
             list-style: none;
             padding-top:1rem;
+
             &__item{
                 color:$azultexto;
                 padding-bottom: 1rem;
@@ -1834,6 +1835,10 @@ footer {
                 .alink{
                     padding-left: 0.8rem;
                 }
+                .open{
+                    display: block;
+                    height: auto;
+                }
                 &__sublista{
                     list-style: none;
                     padding-left: 0;
@@ -1852,6 +1857,7 @@ footer {
                             font-weight: lighter !important;
                             font-family:$open-sans;
                             padding-left:0.5rem !important;
+                            padding-bottom:0 !important;
                         }
 
                         &:after{

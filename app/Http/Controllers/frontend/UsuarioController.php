@@ -37,14 +37,15 @@ class UsuarioController extends Controller
         $user_id = Auth::id();
         $user = User::find($user_id);
 
-        $cursos = UserCourse::where('user_id',$user_id)->get();
-      
-       
+        $cursos = UserCourse::where('user_id',$user_id)->where('intentos',null)->get();
+
+
+
         return view('frontpage.usuario.miscursos',['cursos'=>$cursos,'user'=>$user]);
      }
 
      public function setChapter(Request $request){
-      
+
         //   "usercourseid" => "18"
         //   "usercoursechapterid" => "2"
         //   "usercoursechaptercontentid" => "2"
@@ -62,7 +63,7 @@ class UsuarioController extends Controller
                 $uccc->content_id =$request->usercoursechaptercontentid;
                 $uccc->save();
 
-            
+
 
         }else{
             $uchap=UserCourseChapter::where('user_course_id',$request->usercourseid)->where('chapter_id',$request->usercoursechapterid)->first();
@@ -82,12 +83,12 @@ class UsuarioController extends Controller
         return response()->json(['rpta'=>'ok']);
      }
 
-     
-     
+
+
      public function setChapterContent(Request $request){
         $uccc = new UserCourseChapterContent();
         $uccc->user_course_chapter_id= $request->user_course_chapter_id;
-        $uccc->$content_id =$request->content_id;
+        $uccc->content_id =$request->content_id;
         $uccc->save();
         return response()->json(['rpta'=>'ok']);
      }
@@ -96,14 +97,14 @@ class UsuarioController extends Controller
      public function editUser(){
         $user_id = Auth::id();
         $user = User::find($user_id);
-     
+
         return view('frontpage.usuario.edit',['user'=>$user]);
 
      }
 
      public function saveProfile(Request $request){
-     
-       
+
+
         $user_id = Auth::id();
         $user = User::find($user_id);
 
@@ -113,7 +114,7 @@ class UsuarioController extends Controller
          $profile->firstname = $request->name;
          $profile->middlename = $request->middle;
          $profile->lastname = $request->lastname;
-         
+
          $profile->save();
 
         }else{
@@ -129,30 +130,30 @@ class UsuarioController extends Controller
         }
 
       $user->usuario = $request->user;
-     
+
       $user->name = $request->name;
       $user->middle = $request->middle;
       $user->lastname = $request->lastname;
       $user->save();
 
       return redirect()->route('user.index')
-      ->with('info','Usuario actualizado'); 
+      ->with('info','Usuario actualizado');
      }
-    
+
 
      public function outcome($resultado,$id){
 
       $user_course = UserCourse::find($id);
-      
+
       $capitulos = count($user_course->UserCourseChapters);
       $dias = UserCourse::dayleft($id);
 
-    
+
         return view('frontpage.usuario.outcome',['resultado'=>$resultado,'user_course'=>$user_course,'capitulos'=>$capitulos,'dias'=>$dias]);
      }
 
      public function userProfile(){
-        
+
       $user_id = Auth::id();
       $user = User::find($user_id);
 
@@ -165,7 +166,7 @@ class UsuarioController extends Controller
      }
 
      public function firstProfile(){
-          
+
       $user_id = Auth::id();
       $user = User::find($user_id);
 
@@ -173,7 +174,7 @@ class UsuarioController extends Controller
      }
 
      public function userSaveProfile(Request $request){
-    
+
 
        $user_id = Auth::id();
        $user = User::find($user_id);
@@ -224,7 +225,7 @@ class UsuarioController extends Controller
 
 
      public function courseAgain(Request $request){
-         $registro = UserCourse::where('user_id',$request->user_id)->where('course_id',$course_id)->first();
+         $registro = UserCourse::where('user_id',$request->user_id)->where('course_id',$request->course_id)->first();
 
          $user_course_id = $registro->id;
          $registro->intentos = $registro->intentos + 1;

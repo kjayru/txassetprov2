@@ -527,6 +527,7 @@ $(".btn__examen").on('click',function(e){
           const token = $('meta[name="csrf-token"]').attr('content');
 
           let sendata = {'_token':token,'_method':'POST',quizid:quizid,'evento':"excedio",'chapter_id':chapter_id,'exam_id':exam_id,'tiempo':tiempo,'user_course_id':user_course_id};
+
           $.ajax({
             url:"/learn/set-exam",
             type:"POST",
@@ -904,15 +905,12 @@ $(".btn__question__exam").on('click',function(e){
 						<div class="card__question__opciones">`;
 									$.each(e.opciones,function(x,y){
 
-
-
-										htm+=`	<div class="form-check  ${y.responde?'incorrecto':''} ${y.resultado?'correcto':''} ${y.acierto?'acierto':''} ">
-											<input class="form-check-input " type="radio" name="respuesta${i+1}" value="${x+1}"   id="respuesta${x+1}" data-res="${y.responde}"  ${y.responde?'checked':''}>
-											<label class="form-check-label" for="respuesta${x+1}">
-												${y.name}
-											</label>
-											</div>`;
-
+                        htm+=`	<div class="form-check  ${y.responde?'incorrecto':''} ${y.resultado?'correcto':''} ${y.acierto?'acierto':''} ">
+                            <input class="form-check-input " type="radio" name="respuesta${i+1}" value="${x+1}"   id="respuesta${x+1}" data-res="${y.responde}"  ${y.responde?'checked':''}>
+                            <label class="form-check-label" for="respuesta${x+1}">
+                                ${y.name}
+                            </label>
+                            </div>`;
                     })
 
         htm+=`</div>
@@ -935,3 +933,22 @@ $(window).on('load',function(){
     $("#errorModal").modal('show');
   }
 })
+
+
+$(".btn__restart__course").on('click',function(e){
+    e.preventDefault();
+    let course_id = $(this).data('cursoid');
+    let user_id = $(this).data('userid');
+    let token = $("meta[name=csrf-token]").attr("content");
+    $.ajax({
+        url:'/learn/restart-course',
+        type:'post',
+        dataType:'json',
+        data:{course_id:course_id,user_id:user_id,'_token':token,'_method':'POST'},
+        success:function(response){
+            window.location.href= '/user/my-courses';
+        }
+
+    })
+
+});
