@@ -12451,6 +12451,9 @@ footer .little {
   color: #031059;
   padding-bottom: 1rem;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 .encurso__temas__lista__item span {
   display: inline-block;
@@ -12462,6 +12465,10 @@ footer .little {
   padding-top: 3px;
   padding-bottom: 3px;
   margin-right: 1rem;
+  height: 30px;
+}
+.encurso__temas__lista__item .alink {
+  padding-left: 0.8rem;
 }
 .encurso__temas__lista__item__sublista {
   list-style: none;
@@ -12472,14 +12479,17 @@ footer .little {
 }
 .encurso__temas__lista__item__sublista__item {
   padding-bottom: 7px;
-  padding-left: 1rem;
+  padding-left: 0;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: start;
 }
 .encurso__temas__lista__item__sublista__item a {
   color: #031059;
   text-decoration: none;
   font-weight: lighter !important;
   font-family: "Open Sans", sans-serif;
-  padding-left: 3rem !important;
+  padding-left: 0.5rem !important;
 }
 .encurso__temas__lista__item__sublista__item:after {
   content: "";
@@ -12504,7 +12514,7 @@ footer .little {
   width: 12px;
   height: 16px;
   top: 8px;
-  left: 31px;
+  left: -11px;
 }
 .encurso__temas__lista__item__sublista .active a {
   color: #e01f26 !important;
@@ -13449,7 +13459,7 @@ progress {
   height: 16px;
   position: absolute;
   top: 8px;
-  left: 31px;
+  left: -11px;
   color: #E01F26;
 }
 

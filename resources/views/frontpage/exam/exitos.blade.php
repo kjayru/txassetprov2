@@ -84,7 +84,7 @@
                                 @if(isset($contenidos))
                                     @foreach($contenidos as $k => $cont)
                                             <li class="encurso__temas__lista__item {{UserCourse::capitulo($user_course_id,$cont['capitulo_id'])?"active":""}}"><span>{{$k+1}}</span>
-                                                <a href="#">{{@$cont['capitulo_titulo']}}</a>
+                                                <div class="alink">{{@$cont['capitulo_titulo']}}
 
                                                     <ul class="encurso__temas__lista__item__sublista active">
                                                         @foreach($cont['contenidos'] as $c)
@@ -98,6 +98,7 @@
                                                             </li>
                                                         @endif
                                                     </ul>
+                                                </div>
                                             </li>
                                     @endforeach
                                 @endif
