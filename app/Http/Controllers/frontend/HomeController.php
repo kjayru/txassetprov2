@@ -620,18 +620,18 @@ class HomeController extends Controller
 
         //$output = $dompdf->output();
 
-        $mm = new Mail_mime("\n");
+        // $mm = new Mail_mime("\n");
 
-        $mm->setTxtBody($body);
-        $mm->addAttachment($output,'application/pdf','output.pdf', false);
+        // $mm->setTxtBody($body);
+        // $mm->addAttachment($output,'application/pdf','output.pdf', false);
 
-        $body = $mm->get();
-        $headers = $mm->headers(array('From'=>$from,'Subject'=>$subject));
+        // $body = $mm->get();
+        // $headers = $mm->headers(array('From'=>$from,'Subject'=>$subject));
 
-        $mail =& Mail::factory('mail');
-        if($mail->send($to,$headers,$body)){
-            echo "Your message has been sent.";
-        }
+        // $mail =& Mail::factory('mail');
+        // if($mail->send($to,$headers,$body)){
+        //     echo "Your message has been sent.";
+        // }
 
     }
 
