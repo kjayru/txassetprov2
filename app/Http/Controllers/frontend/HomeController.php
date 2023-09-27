@@ -715,7 +715,7 @@ class HomeController extends Controller
 
         $id =  $form->id;
         $data = ["html"=>$htmlcode,"form_id"=>$id];
-  
+
 
 
         Mail::to(env('MAIL_CONTACT'))->send(new Form8850($data));
@@ -805,7 +805,7 @@ class HomeController extends Controller
         $category = Category::where('slug',$cat)->first();
         $industry = Industry::where('slug',$slug)->first();
 
-      
+
         return view('frontpage.industry.detail',['categories'=>$categories,'industry'=>$industry,'category'=>$category]);
     }
 
@@ -835,7 +835,7 @@ class HomeController extends Controller
         $post = Post::where('slug',$slug)->first();
 
         $posts = Post::where('id','<>',$post->id)->orderBy('id','desc')->take(3)->get();
-       
+
         $articulos =[];
 
         foreach($posts as $col){
@@ -856,7 +856,7 @@ class HomeController extends Controller
 
     public function checksesion(){
        $estado = Auth::check();
-     
+
        return response()->json(['estado'=>$estado]);
     }
 
@@ -865,12 +865,12 @@ class HomeController extends Controller
         $user_id = Auth::id();
        // $perfil = Profile::where('user_id',$user_id)->first();
         $mensaje = false;
-       
+
         $check = UserSign::where('user_id',$user_id)->count();
         if($check > 0){
             $mensaje = true;
         }else{
-            $mensaje = false; 
+            $mensaje = false;
         }
         return response()->json(['estado'=>$mensaje]);
 
@@ -881,7 +881,7 @@ class HomeController extends Controller
         $carrito=null;
         if (Session::get('cart')) {
             $carrito = Session::get('cart');
-           
+
         }
         $user_id = null;
         if(Auth::id()){
@@ -892,11 +892,11 @@ class HomeController extends Controller
     }
 
     public function process(Request $request){
-        
+
         $curso = Course::find($request->id);
 
         $oldcart = Session::has('cart') ? Session::get('cart') : null;
-        
+
         $cart = new Cart($oldcart);
 
         if(isset($oldcart->items)){
@@ -925,32 +925,32 @@ class HomeController extends Controller
     }
 
     public function loginPop(Request $request){
-       
+
         $credentials = $request->validate([
-          
+
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
+
             return response()->json(['rtpa'=>'ok']);
             //return redirect()->intended();
         }
- 
+
         /*return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');*/
         return response()->json(['rpta'=>'error','mensaje'=>'Wrong email or password. Please try again.']);
     }
-    
+
     public function registerUser(Request $request){
         $credentials = $request->validate([
             'name'=>['required'],
             'email' => ['required', 'email','unique:users'],
             'password' =>[ 'required',Password::default()],
-            
+
         ]);
 
         $user = new User();
@@ -962,7 +962,7 @@ class HomeController extends Controller
         $user->assignRole('usuario');
 
         Auth::login($user);
-       
+
 
         return response()->json(['rpta'=>'ok','mensaje'=>' Account created successfully']);
     }
@@ -978,17 +978,20 @@ class HomeController extends Controller
     }
 
     public function verifyMycourse(Request $request){
-       
-        $exist = UserCourse::where('user_id',$request->user_id)->where('course_id',$request->course_id)->count();
 
         $verifica=false;
-        if($exist>0){
-            $verifica =  true;
+
+        if( UserCourse::where('user_id',$request->user_id)->where('course_id',$request->course_id)->count()>0){
+            if(UserCourse::where('user_id',$request->user_id)->where('course_id',$request->course_id)->whereNull('intentos')->count()>0){
+                $verifica =  true;
+            }
         }
-        
+
+
+
 
         return response()->json($verifica);
     }
 
-    
+
 }

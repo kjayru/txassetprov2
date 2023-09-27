@@ -478,6 +478,7 @@ class LearnController extends Controller
     $porcentaje=0;
     $completo_examen=0;
     $numeroIntentos=0;
+    $numeroVecesCurso = 0;
 
     $user_id = Auth::id();
     $user = User::find($user_id);
@@ -522,6 +523,9 @@ class LearnController extends Controller
         $porcentaje = round($total_correctas*100/$total_preguntas ,2);
         $completo_examen = $tomo_examen->complete;
         $numeroIntentos = $tomo_examen->intentos;
+
+        $numeroVecesCurso = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->count();
+
     }
 
     return view('frontpage.exam.index',[
@@ -548,6 +552,7 @@ class LearnController extends Controller
         'chapter_quiz_id'=>null,
         'quiz'=>false,
         'numero_intentos' =>$numeroIntentos,
+        'numero_veces_curso' => $numeroVecesCurso,
 
     ]);
 
