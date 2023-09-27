@@ -836,4 +836,10 @@ class LearnController extends Controller
         return response()->json(['rpta'=>'ok']);
 
     }
+
+    public function certificado($id){
+        $curso = Course::find($id);
+        $user_id = Auth::id();
+
+    }
 }
