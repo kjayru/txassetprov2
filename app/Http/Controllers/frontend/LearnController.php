@@ -811,7 +811,7 @@ class LearnController extends Controller
                 $opciones[]=[
                     'id'=>$opcion->id,
                     'name'=> $opcion->opcion,
-                    'resultado'=>$opcion->resultado,
+                    'resultado'=>$correcto,
                     'responde'=>$user_responde,
                     'acierto'=>$acierto,
                     'correcto'=>$correcto,
