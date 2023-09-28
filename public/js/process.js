@@ -905,7 +905,7 @@ $(".btn__question__exam").on('click',function(e){
 						<div class="card__question__opciones">`;
 									$.each(e.opciones,function(x,y){
 
-                        htm+=`	<div class="form-check   ${y.responde?'resultado':''}   ${y.correcto?'correcto':''} ">
+                        htm+=`	<div class="form-check   ${y.responde?'resultado':''}   ${y.correcto?'correcto':''} ${y.acierto?'acierto':''} ">
                             <input class="form-check-input " type="radio" name="respuesta${i+1}" value="${x+1}"   id="respuesta${x+1}" data-res="${y.responde}"  ${y.responde?'checked':''}>
                             <label class="form-check-label" for="respuesta${x+1}">
                                 ${y.name}
