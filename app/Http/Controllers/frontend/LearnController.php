@@ -801,9 +801,9 @@ class LearnController extends Controller
 
 
                      $urespuesta = UserCourseExamResult::where('exam_question_option_id',$opcion->id)->where('user_course_exam_id',$request->user_course_exam_id)->first();
-
+                     if($urespuesta->result == 1){
                         $user_responde = true;
-
+                    }
                     // if($urespuesta->exam_question_option_id == $opcion->id && $urespuesta->result == 1){
                     //     $acierto = true;
                     // }
