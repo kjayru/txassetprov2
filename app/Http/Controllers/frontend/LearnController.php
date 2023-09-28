@@ -266,7 +266,7 @@ class LearnController extends Controller
         $fin_curso = false;
         $user_course_chapter_id =null;
         $curso = Course::where('slug',$slug)->first();
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->where('intentos',null)->first();
+        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
 
         $chapter = Chapter::where('slug',$chapter)->where('course_id',$curso->id)->first();
 
@@ -274,9 +274,10 @@ class LearnController extends Controller
       //  $content = Chaptercontent::where('slug',$content)->where('chapter_id',$chapter->id)->first();
         $menulat=null;
 
-        $ucc = UserCourseChapter::where('user_course_id',$userCourse->id)->where('chapter_id',$chapter->id)->count();
 
-        if($ucc>0){
+        if( UserCourseChapter::where('user_course_id',$userCourse->id)->where('chapter_id',$chapter->id)->count()>0){
+
+
             $user_course_chapter = UserCourseChapter::where('user_course_id',$userCourse->id)->where('chapter_id',$chapter->id)->first();
             $user_course_chapter_id = $user_course_chapter->id;
         }
@@ -776,6 +777,9 @@ class LearnController extends Controller
     }
 
     public function viewExam(Request $request){
+
+        $user_course_exam = UserCourseExam::find($request->user_course_id);
+
         $total_preguntas = ExamQuestion::where('exam_id',$request->exam_id)->get();
         $total_respondidas = UserCourseExamResult::where('user_course_exam_id',$request->user_course_exam_id)->get();
 
@@ -787,13 +791,18 @@ class LearnController extends Controller
             foreach($preg->examquestionoptions as $opcion){
                 $user_responde=false;
                 $acierto = false;
+                $correcto = false;
 
-                if(UserCourseExamResult::where('exam_question_option_id',$opcion->id)->count()>0){
+                if($opcion->resultado==1){
+                    $correcto = true;
+                }
+
+                if(UserCourseExamResult::where('exam_question_option_id',$opcion->id)->where('user_course_exam_id',$request->user_course_exam_id)->count()>0){
                     $user_responde = true;
 
-                    $urespuesta = UserCourseExamResult::where('exam_question_option_id',$opcion->id)->first();
+                    $urespuesta = UserCourseExamResult::where('exam_question_option_id',$opcion->id)->where('user_course_exam_id',$request->user_course_exam_id)->first();
 
-                    if($urespuesta->exam_question_option_id == $opcion->id && $urespuesta->result ==1){
+                    if($urespuesta->exam_question_option_id == $opcion->id && $urespuesta->result == 1){
                         $acierto = true;
                     }
                 }
@@ -805,6 +814,7 @@ class LearnController extends Controller
                     'resultado'=>$opcion->resultado,
                     'responde'=>$user_responde,
                     'acierto'=>$acierto,
+                    'correcto'=>$correcto,
                     'exam_question_option_id'=>@$urespuesta->exam_question_option_id,
                     'opcion_resultado'=>@$urespuesta->result
 
