@@ -37,19 +37,19 @@
 
 
                       @if(ChapterQuizOption::isCorrect($q->id)==true)
-                      <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}"    >
+                        <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}"    >
                     @else
-                    <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}"    >
+                        <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}"    >
                     @endif
                       @if(ChapterQuizOption::resultUser($q->id,$user_course_chapter_id)==1)
-                      <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}"   checked >
+                        <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}"   checked >
                       @elseif(ChapterQuizOption::resultUser($q->id,$user_course_chapter_id)==2)
-                      <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}"   checked >
+                        <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}"   checked >
                       @else
-                      <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}"  >
+                        <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}"  >
                       @endif
                       @if(ChapterQuizOption::getResult($q->id))
-                      <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}" >
+                         <input class="form-check-input" type="radio" name="respuesta{{$q->id}}" value="{{$q->id}}" >
                       @endif
 
 

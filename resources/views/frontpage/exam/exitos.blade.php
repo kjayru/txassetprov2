@@ -34,7 +34,7 @@
                 <div class="exam__exito">
                     <div class="exam__exito__titulo">
                         CONGRATULATIONS!<br>
-                        You`ve passes the course
+                        You´ve passes the course
                         <span class="subtitulo"> Your certificate is ready. we appreciate yoyu using our courses.</span>
                     </div>
                     <div class="exam__exito__contenido">
@@ -61,7 +61,7 @@
                 <div class="exam__blue">
                     <div class="row justify-content-between">
                         <div class="col-md-7">
-                            You´re eardned a certificate
+                            You´re earned a certificate
                         </div>
                         <div class="col-md-5 text-end">
                             <a href="/learn/certificade/{{$curso->id}}" class="btn btn__red btn__descarga">Download certificate</a>

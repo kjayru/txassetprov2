@@ -112,35 +112,35 @@
 						</div>
 					</div>
 
-					<div class="quiz__preguntas">
+                    <div class="quiz__preguntas">
 
-					<input type="hidden" name="user_course_id" id="user_course_id" value="{{@$user_course_id}}">
-					<input type="hidden" name="exam_id" id="exam_id" value="{{@$examen->id}}">
-					<input type="hidden" name="tiempo" id="tiempo">
+                        <input type="hidden" name="user_course_id" id="user_course_id" value="{{@$user_course_id}}">
+                        <input type="hidden" name="exam_id" id="exam_id" value="{{@$examen->id}}">
+                        <input type="hidden" name="tiempo" id="tiempo">
 
-						@foreach($examen->examquestions as $key => $question)
+                            @foreach($examen->examquestions as $key => $question)
 
-							<div class="card__question" style="display:{{$key==0?'block':'none'}}">
-								{{$key+1}}.  {{$question->question}}
-								<input type="hidden" name="quiz_id" value="{{$question->id}}">
-								<div class="card__question__opciones">
+                                <div class="card__question" style="display:{{$key==0?'block':'none'}}">
+                                    {{$key+1}}.  {{$question->question}}
+                                    <input type="hidden" name="quiz_id" value="{{$question->id}}">
+                                    <div class="card__question__opciones">
 
-									@foreach($question->examquestionoptions as $option)
-										<div class="form-check">
-										<input class="form-check-input" type="radio" name="respuesta" value="{{$option->id}}" id="respuesta">
-										<label class="form-check-label" for="respuesta">
-											{{$option->opcion}}
-										</label>
-										</div>
-									@endforeach
+                                        @foreach($question->examquestionoptions as $option)
+                                            <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="respuesta" value="{{$option->id}}" id="respuesta">
+                                            <label class="form-check-label" for="respuesta">
+                                                {{$option->opcion}}
+                                            </label>
+                                            </div>
+                                        @endforeach
 
 
-							  </div>
-							  <a href="#" data-quizid="{{$question->id}}" class="btn btn-default btn__exam">Next</a>
-							</div>
+                                </div>
+                                <a href="#" data-quizid="{{$question->id}}" class="btn btn-default btn__exam">Next</a>
+                                </div>
 
-						@endforeach
-					</div>
+                            @endforeach
+                    </div>
 
 
 
