@@ -144,11 +144,13 @@ class UserCourse extends Model
 
         $consulta = UserCourseExam::where('user_course_id',$user_course_id)->where('exam_id',$exam_id)->first();
 
+        if(isset($consulta)){
         //0 = curso en proceso
         //1 = desaprobo
         if($consulta->intentos >0 && $consulta->complete==1){
             $resultado = 1;
         }
+    }
 
 
         return $resultado;
