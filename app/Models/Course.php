@@ -9,7 +9,7 @@ class Course extends Model
     public function chapters(){
         return $this->hasMany(Chapter::class);
     }
-   
+
 
     public function attributes(){
         return $this->belongsToMany(Attribute::class);
@@ -29,7 +29,7 @@ class Course extends Model
 
     public static function info($id){
         $course=Course::find($id);
-        
+
         $datos = [
             'id'=>$id,
             'titulo' => $course[0]->titulo,

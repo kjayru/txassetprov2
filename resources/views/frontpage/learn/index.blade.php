@@ -17,12 +17,12 @@
 						<li><span>></span><a href="#" class="breadcrum__link active">{{@$curso->titulo}}</a></li>
 					</ul>
 				</div>
-			</div>	
-			
+			</div>
+
 			@include('layouts.backend.partials.menucurso')
 		</div>
 	</div>
-   
+
 </div>
 
 <!--contenido-->
@@ -46,17 +46,17 @@
 						<input type="hidden" name="user_course_chapter_id" value="{{$content->chapter->id}}">
 						<input type="hidden" name="user_course_chapter_content_id" value="{{$content->id}}">
 					@endif
-					@if($content!=null)		
+					@if($content!=null)
 						@include('layouts.backend.partials.curso.video')
 						@include('layouts.backend.partials.curso.capitulo')
-						
+
 						@if(@isset($content->audio))
 							@include('layouts.backend.partials.curso.audio')
 						@endif
 
 						@if($url_next_quiz!=null)
 							<div class="encurso__footer">
-								
+
 								<a href="/learn/{{$url_next_quiz}}/{{$chapter->id}}" class="btn encurso__footer__link {{UserCourse::capitulo($user_course_id,$content->chapter->id)?"":"disabled"}} " role="button" aria-disabled="true">Continue with questions</a>
 							</div>
 						@else
@@ -65,18 +65,19 @@
 							</div>
 						@endif
 					@else
-  
-					
+
+
 					<!--quiz question-->
 						@include('layouts.backend.partials.curso.quiz-preguntas')
-					<!--end quiz question-->		
+					<!--end quiz question-->
 						@include('layouts.backend.partials.curso.quiz-resultado')
-						@include('layouts.backend.partials.curso.quiz-desarrollado')
+
 						@include('layouts.backend.partials.curso.quiz-botones')
+                        @include('layouts.backend.partials.curso.quiz-desarrollado')
 					@endif
 
-					
-					
+
+
 					<p class="mb-5 advertencia">To continue to the next chapter, you need to pass the quiz for the chapter you are taking.</p>
 			  </div>
 

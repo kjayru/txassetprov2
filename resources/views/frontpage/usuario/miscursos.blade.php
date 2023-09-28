@@ -63,7 +63,7 @@
 								</div>
 								<div class="todocursos__card__body__item__estado">
 									<a href="/learn/{{$curso->course->slug}}" class="item__link">Go to course</a>
-
+{{--
 									@switch($curso->aprobado)
 										@case(0)
 										<div class="item__mensaje__time">You have {{UserCourse::dayleft($curso->id)}} days left to finish the course</div>
@@ -85,7 +85,30 @@
 										</div>
 										@break
 
-									@endswitch
+									@endswitch --}}
+
+                                    @if($curso->aprobado==0 && $curso->intentos==null)
+
+                                        @if(UserCourse::estadoCurso($curso->id,$curso->course->examcourse->exam->id)==0)
+                                        <div class="item__mensaje__time">You have {{UserCourse::dayleft($curso->id)}} days left to finish the course</div>
+                                        @else
+                                        <div class="course__desaprobado">
+                                            Failed
+                                        </div>
+                                        @endif
+
+
+                                    @endif
+                                    @if($curso->aprobado==0 && $curso->intentos==1)
+                                        <div class="course__desaprobado">
+                                            Failed
+                                        </div>
+                                    @endif
+                                    @if($curso->aprobado==1)
+                                        <div class="course__aprobado">
+                                            Approved
+                                        </div>
+                                    @endif
 
 								</div>
 

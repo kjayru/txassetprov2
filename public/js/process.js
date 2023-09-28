@@ -410,7 +410,7 @@ $(".btn__quiz").on('click',function(e){
 $(".btn__view").on('click',function(e){
   e.preventDefault();
 
-  $(".quiz__resultados").hide();
+  //$(".quiz__resultados").hide();
   $(".quiz__botones").show();
   $(".quiz__desarrollado").show();
 });

@@ -15,7 +15,7 @@
 					</ul>
 				</div>
 
-				
+
 			</div>
 			<div class="col-md-1 text-right">
 				<div class="cart">
@@ -28,10 +28,10 @@
 						@csrf
 					</form>
 				</div>
-			</div>   
+			</div>
 		</div>
 	</div>
-   
+
 </div>
 
 <!--contenido-->
@@ -44,7 +44,7 @@
 					Course outcome
 				</div>
 				<div class="todocursos__card__body">
-					
+
 
                     <div class="todocursos__card__body__item">
 						<div class="row">
@@ -54,7 +54,7 @@
 								</div>
 							</div>
 							<div class="col-md-8">
-								
+
 								<div class="todocursos__card__body__item__titulo">
 									{{$user_course->course->titulo}}
 								</div>
@@ -81,10 +81,10 @@
 												@case("4")
 												<div class="item__mensaje__aprobado desaprobado">Failed</div>
 													@break
-										
-											
+
+
 									@endswitch
-									
+
 								</div>
 
 							</div>
@@ -93,9 +93,9 @@
 
 
                     <div class="todocursos__card__body__resultado">
-                        
-                        
-                        @if($resultado=="1")  
+
+
+                        @if($resultado=="1")
 							<div class="icono">
 								<img src="/images/curso-passes.svg" class="img-responsive">
 							</div>
@@ -109,11 +109,11 @@
                                 </p>
                             </div>
                             <div class="foot">
-                                <a href="#" class="btn__link">Download certificate</a>
+                                <a href="/learn/certificade/{{$curso->id}}" class="btn__link">Download certificate</a>
                             </div>
                         @endif
                         @if($resultado=="2")
-                        
+
                             <div class="texto">
                                 <p><span>Unfortunately you pass are failed due<br> to
                                     the test result</span>
@@ -142,7 +142,7 @@
 
 
 						@if($resultado=="3")
-                        
+
                             <div class="texto">
                                 <p><span>Unfortunately you pass are failed due to
                                     the test result</span>
@@ -165,7 +165,7 @@
                         @endif
 
 						@if($resultado=="4")
-                        
+
                             <div class="texto">
                                 <p><span>Unfortunately you pass are failed due to
                                     the test result</span>

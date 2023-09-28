@@ -148,8 +148,10 @@ class UsuarioController extends Controller
       $capitulos = count($user_course->UserCourseChapters);
       $dias = UserCourse::dayleft($id);
 
+      $curso = $user_course->course;
 
-        return view('frontpage.usuario.outcome',['resultado'=>$resultado,'user_course'=>$user_course,'capitulos'=>$capitulos,'dias'=>$dias]);
+
+        return view('frontpage.usuario.outcome',['curso'=>$curso,'resultado'=>$resultado,'user_course'=>$user_course,'capitulos'=>$capitulos,'dias'=>$dias]);
      }
 
      public function userProfile(){
