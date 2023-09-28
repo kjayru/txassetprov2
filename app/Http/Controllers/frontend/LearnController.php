@@ -817,7 +817,7 @@ class LearnController extends Controller
                     'acierto'=>$acierto,
                     'correcto'=>$correcto,
                     'exam_question_option_id'=>@$urespuesta->exam_question_option_id,
-                    'opcion_resultado'=>@$urespuesta->result
+                    'opcion_resultado'=>@$urespuesta->result,
 
                 ];
 
@@ -826,7 +826,10 @@ class LearnController extends Controller
             $preguntas[]=[
                 'question_id'=>$preg->id,
                 'question_name'=>$preg->question,
-                'opciones'=>$opciones
+                'opciones'=>$opciones,
+                '$equest->user_course_exam_id'=>$request->user_course_exam_id,
+                'ucer_id' =>@$user_course_exam->id
+
 
             ];
 
