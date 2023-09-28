@@ -782,16 +782,16 @@ class LearnController extends Controller
 
         $total_preguntas = ExamQuestion::where('exam_id',$request->exam_id)->get();
         $total_respondidas = UserCourseExamResult::where('user_course_exam_id',$request->user_course_exam_id)->get();
-
+        $user_responde=false;
+        $acierto = false;
+        $correcto = false;
 
 
         foreach($total_preguntas as $preg){
 
             $opciones=null;
             foreach($preg->examquestionoptions as $opcion){
-                $user_responde=false;
-                $acierto = false;
-                $correcto = false;
+
 
                 if($opcion->resultado==1){
                     $correcto = true;
@@ -827,7 +827,7 @@ class LearnController extends Controller
                 'question_id'=>$preg->id,
                 'question_name'=>$preg->question,
                 'opciones'=>$opciones,
-                '$equest->user_course_exam_id'=>$request->user_course_exam_id,
+                'user_course_exam_id'=>$request->user_course_exam_id,
                 'ucer_id' =>@$user_course_exam->id
 
 
