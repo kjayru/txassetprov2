@@ -13069,12 +13069,12 @@ footer .little {
   border-radius: 20px;
 }
 
-.incorrecto {
+.resultado {
   border: 1px solid #e01f26;
   border-radius: 20px;
 }
 
-.correcto.acierto {
+.resultado.correcto {
   border: 1px solid #00b335;
   border-radius: 20px;
   background: #00b335;
