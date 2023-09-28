@@ -243,10 +243,7 @@ Route::group(['prefix'=>'learn'],function(){
     Route::get('/exam/{slug}/congratulation',[LearnController::class,'congratulation']);
     Route::get('/exam/{slug}/fail',[LearnController::class,'fail']);
     Route::get('/exam/{slug}/{id}',[LearnController::class,'cursoQuiz']);
-    Route::get('/{slug}',[LearnController::class,'index']);
-    Route::get('/{slug}/{chapter}',[LearnController::class,'chapter']);
-    Route::get('/{slug}/{chapter}/quiz/{id}',[LearnController::class,'cursoChapterContentQuiz']);
-    Route::get('/{slug}/{chapter}/{content}',[LearnController::class,'cursoChapterContent']);
+
     Route::post('/set-quiz',[LearnController::class,'setQuestion']);
     Route::post('/reset-quiz',[LearnController::class,'resetChapter']);
 
@@ -254,6 +251,12 @@ Route::group(['prefix'=>'learn'],function(){
     Route::post('/exam/reset-exam',[LearnController::class,'resetExam']);
     Route::post('/exam/view-exam',[LearnController::class,'viewExam']);
     Route::post('/restart-course',[LearnController::class,'restartCourse']);
+    Route::get('/certificade/{id}',[LearnController::class,'certificado']);
+
+    Route::get('/{slug}',[LearnController::class,'index']);
+    Route::get('/{slug}/{chapter}',[LearnController::class,'chapter']);
+    Route::get('/{slug}/{chapter}/quiz/{id}',[LearnController::class,'cursoChapterContentQuiz']);
+    Route::get('/{slug}/{chapter}/{content}',[LearnController::class,'cursoChapterContent']);
 });
 
 Route::group(['prefix'=>'user'],function(){

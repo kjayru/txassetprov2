@@ -28,6 +28,7 @@ use App\Models\Profile;
 use App\Models\Exam;
 use App\Http\Controllers\Traits\CourseMenuTrait;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class LearnController extends Controller
 {
@@ -840,6 +841,24 @@ class LearnController extends Controller
     public function certificado($id){
         $curso = Course::find($id);
         $user_id = Auth::id();
+        $user = User::find($user_id);
 
+
+
+
+    $pdf = PDF::loadView('pdf.index', ['curso'=>$curso, 'user'=>$user ])->setOptions([
+        'isHtml5ParserEnabled' => true,
+        'isRemoteEnabled' => true,
+        'dpi' =>137,
+
+    ]);
+
+    $pdf->setPaper('a4', 'landscape')->render();
+
+    return $pdf->stream();
+   // return $pdf->setPaper('a4', 'landscape')->dpi()stream('certificate'.uniqid().'.pdf');
+    //$output =  $pdf->output('employment.pdf');
+
+       // return view('pdf.index',['curso'=>$curso,'user'=>$user]);
     }
 }

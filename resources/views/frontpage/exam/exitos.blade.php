@@ -64,7 +64,7 @@
                             You´re eardned a certificate
                         </div>
                         <div class="col-md-5 text-end">
-                            <a href="#" class="btn btn__red btn__descarga">Download certificate</a>
+                            <a href="/learn/certificade/{{$curso->id}}" class="btn btn__red btn__descarga">Download certificate</a>
                         </div>
                     </div>
                 </div>
