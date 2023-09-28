@@ -906,7 +906,7 @@ $(".btn__question__exam").on('click',function(e){
 									$.each(e.opciones,function(x,y){
 
                         htm+=`	<div class="form-check   ${y.resultado?'resultado':''}   ${y.correcto?'correcto':''} ">
-                            <input class="form-check-input " type="radio" name="respuesta${i+1}" value="${x+1}"   id="respuesta${x+1}" data-res="${y.responde}"  ${y.responde?'checked':''}>
+                            <input class="form-check-input " type="radio" name="respuesta${i+1}" value="${x+1}"   id="respuesta${x+1}" data-res="${y.resultado}"  ${y.resultado?'checked':''}>
                             <label class="form-check-label" for="respuesta${x+1}">
                                 ${y.name}
                             </label>
