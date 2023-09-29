@@ -994,4 +994,11 @@ class HomeController extends Controller
     }
 
 
+    public function test()
+    {
+        $course = Course::where('id',1)->get();
+
+
+        return view('frontpage.cart.success',['ids'=>$course]);
+    }
 }

@@ -219,6 +219,7 @@ Route::get('/cart-estado',[Home::class,'estadoCarrito']);
 
 Route::post('/verify-mycourse',[Home::class,'verifyMycourse']);
 
+Route::get('/test',[Home::class,'test']);
 
 Route::group(['prefix' => 'cart'],function(){
     Route::get('/',[Home::class,'carrito']);

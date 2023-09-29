@@ -12706,8 +12706,10 @@ footer .little {
   background: url(/images/curso-calendario.svg) no-repeat 0px 0px;
   background-size: contain;
   position: absolute;
-  left: -30px;
-  top: 14px;
+  left: -35px;
+  top: 10px;
+  width: 27px;
+  height: 31px;
 }
 .gracias__box__info__properties ul .capitulo:before {
   font-size: 1.2rem;
