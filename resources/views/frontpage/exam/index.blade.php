@@ -88,9 +88,10 @@
                             <div class="row justify-content-end">
 								<div class="col-4">
 
-                                    @if(@$numero_veces_curso<3)
+                                    @if(@$numero_intentos==3 && $estado_curso==0 && $reinicios==0)
 									<a href="#" class="btn btn__red btn__restart__course"  data-cursoid="{{@$curso->id}}" data-userid="{{@$user_id}}">Restart Course</a>
-                                    @else
+                                    @endif
+                                    @if(@$numero_intentos==3 && $estado_curso==0 && $reinicios==1)
                                     <a href="/course/{{@$curso->slug}}" class="btn btn__red btn__buy__course"  >Buy course</a>
                                     @endif
 								</div>

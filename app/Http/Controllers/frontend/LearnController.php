@@ -479,8 +479,10 @@ class LearnController extends Controller
     $total_correctas= null;
     $porcentaje=0;
     $completo_examen=0;
-    $numeroIntentos=0;
+    $numero_intentos=0;
     $numeroVecesCurso = 0;
+    $estado_curso=0;
+    $reinicios =0;
 
     $user_id = Auth::id();
     $user = User::find($user_id);
@@ -519,15 +521,18 @@ class LearnController extends Controller
     if(UserCourseExam::where('exam_id',$id)->where('user_course_id',$userCourse->id)->count()>0){
 
         $tomo_examen = UserCourseExam::where('exam_id',$id)->where('user_course_id',$userCourse->id)->first();
+        $comprobar = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
+
+
         $total_preguntas = ExamQuestion::where('exam_id',$id)->count();
         $total_respondidas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)->count();
         $total_correctas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)->where('result','1')->count();
         $porcentaje = round($total_correctas*100/$total_preguntas ,2);
         $completo_examen = $tomo_examen->complete;
-        $numeroIntentos = $tomo_examen->intentos;
-
+        $numero_intentos = $comprobar->intentos;
+        $estado_curso = $comprobar->aprobado;
         $numeroVecesCurso = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->count();
-
+        $reinicios = $comprobar->reiniciado;
     }
 
     return view('frontpage.exam.index',[
@@ -553,9 +558,10 @@ class LearnController extends Controller
         'content_slug'=>$content->slug,
         'chapter_quiz_id'=>null,
         'quiz'=>false,
-        'numero_intentos' =>$numeroIntentos,
+        'numero_intentos' =>$numero_intentos,
         'numero_veces_curso' => $numeroVecesCurso,
-
+        'estado_curso'=>$estado_curso,
+        'reinicios' => $reinicios
     ]);
 
     }
@@ -563,7 +569,7 @@ class LearnController extends Controller
     public function congratulation($slug){
         $user_id = Auth::id();
         $curso = Course::where('slug',$slug)->first();
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->where('intentos',null)->first();
+        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
         //chapter crear order en tabla
         $capitulos = Chapter::where('course_id',$curso->id)->get();
        foreach($capitulos as $cap){
@@ -735,25 +741,27 @@ class LearnController extends Controller
 
         if(UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->count()>0){
             $registro = UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->first();
-            $intentos = $registro->intentos;
+
+           // $registro->save();
         }
 
 
         if($porcentaje>=75){
-            $usercourse = UserCourse::where('id',$request->user_course_id)->where('intentos',null)->first();
+            $usercourse = UserCourse::where('id',$request->user_course_id)->first();
             $usercourse->aprobado = 1;
-            if($intentos ==3){
-                $usercourse->intentos = 1;
-            }
+            // if($intentos ==3){
+            //     $usercourse->intentos = 1;
+            // }
 
 
             $usercourse->save();
         }else{
-            $usercourse = UserCourse::where('id',$request->user_course_id)->where('intentos',null)->first();
+            $usercourse = UserCourse::where('id',$request->user_course_id)->first();
             $usercourse->aprobado = 0;
-            if($intentos ==3){
-                $usercourse->intentos = 1;
-            }
+            $usercourse->intentos+= 1;
+            // if($intentos ==3){
+            //     $usercourse->intentos = 1;
+            // }
             $usercourse->save();
         }
 
@@ -847,6 +855,7 @@ class LearnController extends Controller
         $curso->course_id = $request->course_id;
         $curso->fecha_inicio = Carbon::now()->format('Y-m-d');
         $curso->dias_activo = 15;
+        $curso->reiniciado = 1;
         $curso->save();
 
         return response()->json(['rpta'=>'ok']);
