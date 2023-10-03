@@ -483,6 +483,7 @@ class LearnController extends Controller
     $numeroVecesCurso = 0;
     $estado_curso=0;
     $reinicios =0;
+    $tiempo_examen =0;
 
     $user_id = Auth::id();
     $user = User::find($user_id);
@@ -533,6 +534,9 @@ class LearnController extends Controller
         $estado_curso = $comprobar->aprobado;
         $numeroVecesCurso = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->count();
         $reinicios = $comprobar->reiniciado;
+
+       $tiempo_examen =  UserCourse::tiempoExamen($tomo_examen->tiempo);
+
     }
 
     return view('frontpage.exam.index',[
@@ -561,7 +565,8 @@ class LearnController extends Controller
         'numero_intentos' =>$numero_intentos,
         'numero_veces_curso' => $numeroVecesCurso,
         'estado_curso'=>$estado_curso,
-        'reinicios' => $reinicios
+        'reinicios' => $reinicios,
+        'tiempo_examen'=>$tiempo_examen
     ]);
 
     }
