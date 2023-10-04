@@ -64,7 +64,7 @@ class LearnController extends Controller
         }
 
         $curso = Course::where('slug',$slug)->first();
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->where('intentos',null)->first();
+        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
         $userCourseChapter = UserCourseChapter::where('user_course_id',$userCourse->id)->first();
 
         if(isset($userCourseChapter)){
@@ -150,7 +150,8 @@ class LearnController extends Controller
         $user_id = Auth::id();
         $user = User::find($user_id);
 
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$id)->where('intentos',null)->first();
+        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$id)->first();
+
         $curso = Course::find($userCourse->course_id)->first();
         $chapters = $curso->chapters;
 
@@ -571,12 +572,15 @@ class LearnController extends Controller
 
     }
 
-    public function congratulation($slug){
+    public function congratulation($id){
+
         $user_id = Auth::id();
-        $curso = Course::where('slug',$slug)->first();
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
+       // $curso = Course::where('slug',$slug)->first();
+        $userCourse = UserCourse::find($id);
+        $curso = $userCourse->course;
+
         //chapter crear order en tabla
-        $capitulos = Chapter::where('course_id',$curso->id)->get();
+        $capitulos = Chapter::where('course_id',$userCourse->course->id)->get();
        foreach($capitulos as $cap){
         $menucont=null;
         $quiz=false;
@@ -609,14 +613,13 @@ class LearnController extends Controller
         return view('frontpage.exam.exitos',['examen'=>$exam,'quiz'=>$quiz,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
     }
 
-    public function fail($slug){
+    public function fail($id){
 
 
 
         $user_id = Auth::id();
-        $curso = Course::where('slug',$slug)->first();
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->where('intentos',null)->first();
-
+        $userCourse = UserCourse::find($id);
+        $curso = $userCourse->course;
 
 
         //chapter crear order en tabla
@@ -654,15 +657,21 @@ class LearnController extends Controller
         }
         $quiz=null;
         $exam=null;
+        $resultado = 2;
+        $dias = UserCourse::dayleft($id);
 
-
-
-        return view('frontpage.exam.fallido',[
+        return view('frontpage.usuario.outcome',[
             'examen'=>$exam,
             'quiz'=>$quiz,
             'contenidos'=>$menulat,
             'curso'=>$curso,
             'user_course_id'=>$userCourse->id,
+
+            'resultado'=>$resultado,
+            'user_course'=>$userCourse,
+            'capitulos'=>$capitulos,
+            'dias'=>$dias,
+            'user_id' =>$user_id
 
         ]);
     }
@@ -855,6 +864,12 @@ class LearnController extends Controller
 
         $user_id = Auth::id();
 
+        if(UserCourse::where('aprobado','1')->count()>0){
+
+            return response()->json(['rpta'=>'error','mensaje'=>'You already have the course approved']);
+        }
+
+
         $curso = new UserCourse();
         $curso->user_id = $user_id;
         $curso->course_id = $request->course_id;
@@ -862,6 +877,10 @@ class LearnController extends Controller
         $curso->dias_activo = 15;
         $curso->reiniciado = 1;
         $curso->save();
+
+        //verificar si aprobo
+
+
 
         return response()->json(['rpta'=>'ok']);
 

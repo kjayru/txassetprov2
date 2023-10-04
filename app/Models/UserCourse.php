@@ -51,19 +51,24 @@ class UserCourse extends Model
 
     public static function completeChapter($id,$user_id){
         $completo=false;
+        $courseChapter = 0;
         $usercourse = UserCourse::where('course_id',$id)->where('user_id',$user_id)->first();
 
+        if(UserCourseChapter::where('user_course_id',$usercourse->id)->count()>0){
         $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
+        }
 
         return $courseChapter;
     }
 
     public static function complete($id,$user_id){
         $completo=false;
+        $courseChapter = 0;
         $usercourse = UserCourse::where('course_id',$id)->where('user_id',$user_id)->first();
 
+        if(UserCourseChapter::where('user_course_id',$usercourse->id)->count()>0){
         $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
-
+        }
 
         $capitulos = Chapter::where('course_id',$id)->count();
 

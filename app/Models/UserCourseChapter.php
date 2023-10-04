@@ -21,10 +21,12 @@ class UserCourseChapter extends Model
     }
 
     public static function completeChapter($user_id,$course_id){
+        $courseChapter=0;
+        $usercourse = UserCourse::where('course_id',$course_id)->where('user_id',$user_id)->first();
 
-        $usercourse = UserCourse::where('course_id',$course_id)->where('user_id',$user_id)->where('intentos',null)->first();
-
+        if(UserCourseChapter::where('user_course_id',$usercourse->id)->count()>0){
         $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
+        }
 
         $course= Course::find($course_id);
         $chapters = Chapter::where('course_id',$course->id)->count();

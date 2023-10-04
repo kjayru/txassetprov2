@@ -981,16 +981,22 @@ class HomeController extends Controller
 
         $verifica=false;
 
-        if( UserCourse::where('user_id',$request->user_id)->where('course_id',$request->course_id)->count()>0){
-            if(UserCourse::where('user_id',$request->user_id)->where('course_id',$request->course_id)->whereNull('intentos')->count()>0){
-                $verifica =  true;
-            }
+        //si aprobe el curso
+        if(UserCourse::where('user_id',$request->user_id)->where('course_id',$request->course_id)->where('aprobado','1')->count()>0){
+            $verifica = true;
+            $mensaje = "You already have the course approved";
+        }
+        //si tengo activo el curso
+        if(UserCourse::where('user_id',$request->user_id)->where('course_id',$request->course_id)->where('aprobado','0')->where('finalizado','0')->count()>0){
+            $verifica = true;
+            $mensaje = "You still have the active course, go to your profile and finish";
         }
 
+        //
 
 
 
-        return response()->json($verifica);
+        return response()->json(["rpta"=>$verifica,"mensaje"=>$mensaje]);
     }
 
 

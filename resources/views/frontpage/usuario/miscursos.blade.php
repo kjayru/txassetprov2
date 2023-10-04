@@ -33,6 +33,7 @@
 					All my courses
 				</div>
 				<div class="todocursos__card__body">
+
 					@foreach($cursos as $curso)
 
 					<div class="todocursos__card__body__item">
@@ -56,13 +57,40 @@
 									</div>
 
 									@if(UserCourse::complete($curso->course->id,$user->id))
-									<span class="status">completed  </span>
+									    <span class="status">completed  </span>
 									@else
-									<span class="status">{{UserCourse::completeChapter($curso->course->id,$user->id)}}completed chapter </span>
+									    <span class="status">{{@UserCourse::completeChapter($curso->course->id,$user->id)}}completed chapter </span>
 									@endif
 								</div>
 								<div class="todocursos__card__body__item__estado">
-									<a href="/learn/{{$curso->course->slug}}" class="item__link">Go to course</a>
+
+                                    @if($curso->aprobado==0  && $curso->caducado==0 && $curso->finalizado==1)
+                                    {{-- curso fallido --}}
+									<a href="/learn/exam/{{$curso->id}}/fail" class="item__link">Go to course</a>
+                                    <div class="course__desaprobado">
+                                        Failed
+                                    </div>
+                                    @endif
+                                    @if($curso->aprobado==1  && $curso->caducado==0 && $curso->finalizado==1)
+                                    {{-- curso aprobado --}}
+                                    <a href="/learn/exam/{{$curso->id}}/congratulation" class="item__link">Go to course</a>
+                                    <div class="course__aprobado">
+                                        Approved
+                                    </div>
+                                    @endif
+                                    @if($curso->caducado==1 )
+                                    {{-- curso caducado --}}
+                                    <a href="/learn/expired/{{$curso->course->slug}}" class="item__link">Go to course </a>
+                                    <div class="course__desaprobado">
+                                        Expired
+                                        <div class="item__mensaje__time">You Have 0 days left to finish the course </div>
+                                    </div>
+                                    @endif
+                                    @if($curso->aprobado==0  && $curso->caducado==0 && $curso->finalizado==0)
+                                    {{-- curso en curso --}}
+
+                                    <a href="/learn/{{$curso->course->slug}}" class="item__link">  Go to course</a>
+                                    @endif
 {{--
 									@switch($curso->aprobado)
 										@case(0)
@@ -99,7 +127,7 @@
 
 
                                     @endif
-                                    @if($curso->aprobado==0 && $curso->intentos==1)
+                                    {{-- @if($curso->aprobado==0 && $curso->intentos==1)
                                         <div class="course__desaprobado">
                                             Failed
                                         </div>
@@ -108,7 +136,7 @@
                                         <div class="course__aprobado">
                                             Approved
                                         </div>
-                                    @endif
+                                    @endif --}}
 
 								</div>
 

@@ -73,14 +73,14 @@
 										<div class="item__mensaje__aprobado aprobado">Approved</div>
 											@break
 										@case("2")
-										<div class="item__mensaje__aprobado desaprobado">Failed</div>
-											@break
-											@case("3")
-											<div class="item__mensaje__aprobado desaprobado">Failed</div>
-												@break
-												@case("4")
-												<div class="item__mensaje__aprobado desaprobado">Failed</div>
-													@break
+										    <div class="item__mensaje__aprobado desaprobado">Failed</div>
+										@break
+										@case("3")
+										    <div class="item__mensaje__aprobado desaprobado">Failed</div>
+										@break
+										@case("4")
+										    <div class="item__mensaje__aprobado desaprobado">Failed</div>
+										@break
 
 
 									@endswitch
@@ -129,12 +129,13 @@
 									</p>
 								</div>
                                 <div class="col-md-6">
-                                    <a href="#" class="btn__link">Start the course again</a>
-									<form action="{{route('course.again')}}" action="POST">
-										@csrf
-										<input type="hidden" name="user_id" value="">
-										<input type="hidden" name="course_id" value="">
-									</form>
+
+                                   @if($user_course->intentos == 3 && $user_course->reiniciado==1 &&  $user_course->finalizado==1)
+                                    <a href="/course/{{@$user_course->course->slug}}" class="btn__link"> Buy the course again</a>
+                                   @else
+                                   <a href="#" class="btn__link btn__restart__course" data-cursoid="{{@$user_course->course->id}}" data-userid="{{@$user_id}}">Start the course again</a>
+                                    @endif
+
                                 </div>
                             </div>
 
@@ -143,28 +144,7 @@
 
 						@if($resultado=="3")
 
-                            <div class="texto">
-                                <p><span>Unfortunately you pass are failed due to
-                                    the test result</span>
-                                </p>
-                                <p>You have 15 days from the result to retake the course.<br>
-                                    If  you exced 15 days, you will have to pay for the course again.
-                                </p>
-                            </div>
-                            <div class="foot row">
-                                <div class="col-md-6">
-									<p class="respuesta">
-									You exceeded the time limit to take the course again
-									</p>
-								</div>
-                                <div class="col-md-6">
-                                    <a href="/courses/all" class="btn__link">Buy the course again</a>
-                                </div>
-                            </div>
 
-                        @endif
-
-						@if($resultado=="4")
 
                             <div class="texto">
                                 <p><span>Unfortunately you pass are failed due to

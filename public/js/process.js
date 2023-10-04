@@ -74,8 +74,11 @@ $(".cart__body__foot__link").click(function(e){
                     dataType:'json',
                     data:userdata,
                     success:function(dresponse){
-                      if(dresponse==true){
+
+                    if(dresponse.rpta==true){
+
                     $("#existeModal").modal('show');
+                    $(".mensaje__verify").html(dresponse.mensaje);
                       }else{
                         //verificar firma
                     $.ajax({
@@ -954,7 +957,13 @@ $(".btn__restart__course").on('click',function(e){
         dataType:'json',
         data:{course_id:course_id,user_id:user_id,'_token':token,'_method':'POST'},
         success:function(response){
+            if(response.rpta=='error'){
+
+                    alert(response.mensaje);
+            }else{
+
             window.location.href= '/user/my-courses';
+        }
         }
 
     })

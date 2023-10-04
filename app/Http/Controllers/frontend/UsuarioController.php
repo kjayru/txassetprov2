@@ -37,8 +37,25 @@ class UsuarioController extends Controller
         $user_id = Auth::id();
         $user = User::find($user_id);
 
-        $cursos = UserCourse::where('user_id',$user_id)->where('intentos',null)->get();
+        $cursos = UserCourse::where('user_id',$user_id)->get();
 
+        //verificar vencimiento
+        $grupo = null;
+
+        foreach($cursos as $curso){
+            if($curso->aprobado==1){
+                $grupo[] = $curso;
+            }else if($curso->intentos< 3  && $curso->reiniciado==0){
+                if($curso->aprobado==null || $curso->aprobado==0){
+
+                $grupo[] = $curso;
+                }
+            }
+        }
+
+        $courses = collect($grupo);
+
+       ///dd($courses);
 
 
         return view('frontpage.usuario.miscursos',['cursos'=>$cursos,'user'=>$user]);
@@ -143,6 +160,7 @@ class UsuarioController extends Controller
 
      public function outcome($resultado,$id){
 
+        $user_id = Auth::id();
       $user_course = UserCourse::find($id);
 
       $capitulos = count($user_course->UserCourseChapters);
@@ -151,7 +169,14 @@ class UsuarioController extends Controller
       $curso = $user_course->course;
 
 
-        return view('frontpage.usuario.outcome',['curso'=>$curso,'resultado'=>$resultado,'user_course'=>$user_course,'capitulos'=>$capitulos,'dias'=>$dias]);
+        return view('frontpage.usuario.outcome',[
+            'curso'=>$curso,
+            'resultado'=>$resultado,
+            'user_course'=>$user_course,
+            'capitulos'=>$capitulos,
+            'dias'=>$dias,
+            'user_id'=>$user_id
+        ]);
      }
 
      public function userProfile(){
