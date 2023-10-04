@@ -978,7 +978,7 @@ class HomeController extends Controller
     }
 
     public function verifyMycourse(Request $request){
-
+        $mensaje = null;
         $verifica=false;
 
         //si aprobe el curso

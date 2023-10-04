@@ -97,6 +97,8 @@ class UsuarioController extends Controller
             }
         }
 
+
+
         return response()->json(['rpta'=>'ok']);
      }
 
@@ -104,8 +106,8 @@ class UsuarioController extends Controller
 
      public function setChapterContent(Request $request){
         $uccc = new UserCourseChapterContent();
-        $uccc->user_course_chapter_id= $request->user_course_chapter_id;
-        $uccc->content_id =$request->content_id;
+        $uccc->user_course_chapter_id = $request->user_course_chapter_id;
+        $uccc->content_id = $request->content_id;
         $uccc->save();
         return response()->json(['rpta'=>'ok']);
      }
