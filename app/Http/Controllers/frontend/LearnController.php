@@ -490,6 +490,15 @@ class LearnController extends Controller
     $user = User::find($user_id);
 
     $curso = Course::where('slug',$slug)->first();
+    //verificamos si ya registro finalizacion del contenido
+    $existe_registro = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
+
+    if($existe_registro->finalizado==0){
+       $uc = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
+       $uc->finalizado = 1;
+       $uc->save();
+    }
+
     $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
 
     $userCourseChapter = UserCourseChapter::where('user_course_id',$userCourse->id)->first();
