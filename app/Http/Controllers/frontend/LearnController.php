@@ -621,7 +621,7 @@ class LearnController extends Controller
        }
         $quiz=null;
         $exam=null;
-        return view('frontpage.exam.exitos',['examen'=>$exam,'quiz'=>$quiz,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
+        return view('frontpage.exam.exitos',['user_course'=>$userCourse,'examen'=>$exam,'quiz'=>$quiz,'contenidos'=>$menulat,'curso'=>$curso,'user_course_id'=>$userCourse->id]);
     }
 
     public function fail($id){

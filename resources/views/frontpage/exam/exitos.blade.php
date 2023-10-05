@@ -4,6 +4,7 @@
  use App\Models\UserCourse;
  use App\Models\ChapterQuizOption;
  use App\Models\UserChapterQuizOption;
+ use Carbon\Carbon;
 @endphp
 <div class="banner color__banner">
 	<div class="container-fluid">
@@ -73,7 +74,10 @@
                     <div class="barra">
                         <div class="box"></div><span>100% COMPLETE</span>
                     </div>
-                    <div class="texto">Last activity on May 19, 2021 5:17 pm <span>COMPLETE</span></div>
+                    @php
+                        $fecha = new Carbon($user_course->updated_at);
+                    @endphp
+                    <div class="texto">Last activity on {{$fecha->format('M d, Y h:i A')}}  <span>COMPLETE</span></div>
                 </div>
 
                 <div class="exam__course__content">
