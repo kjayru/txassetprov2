@@ -198,13 +198,14 @@ class LearnController extends Controller
 
         $user_id = Auth::id();
         $curso = Course::where('slug',$slug)->first();
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->where('intentos',null)->first();
+        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
         $chapter = Chapter::where('slug',$chapter)->where('course_id',$curso->id)->first();
         $content = Chaptercontent::where('slug',$content)->where('chapter_id',$chapter->id)->first();
 
 
         //chapter crear order en tabla
         $capitulos = Chapter::where('course_id',$curso->id)->get();
+
 
 
         $ucc = UserCourseChapter::where('user_course_id',$userCourse->id)->where('chapter_id',$chapter->id)->count();
@@ -586,6 +587,7 @@ class LearnController extends Controller
         $user_id = Auth::id();
        // $curso = Course::where('slug',$slug)->first();
         $userCourse = UserCourse::find($id);
+
         $curso = $userCourse->course;
 
         //chapter crear order en tabla

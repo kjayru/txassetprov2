@@ -76,7 +76,7 @@
 								<div class="col-4">
 									@if($porcentaje > 75)
 
-									<a href="/learn/exam/{{$curso->slug}}/congratulation" class="btn btn__red btn__continue">Continue</a>
+									<a href="/learn/exam/{{$user_course_id}}/congratulation" class="btn btn__red btn__continue">Continue</a>
 									@else
 									<a href="#" class="btn btn__red btn__continue disabled">Continue</a>
 									@endif
