@@ -31,20 +31,20 @@ class CartController extends Controller
         $this->middleware('auth');
    }
 
-   
+
 
     public function sign(){
-       
+
         if(Auth::check()==false){
             return redirect('/login');
         }
 
-       
+
         return view('frontpage.cart.firma');
     }
 
     public function signRegister(Request $request){
-       
+
         $user_id = Auth::id();
         $user = User::find($user_id);
 
@@ -62,16 +62,16 @@ class CartController extends Controller
         }else{
             return false;
         }
- 
-      
-        
+
+
+
         $carrito=null;
-        
+
              $carrito = Session::get('cart');
-          
-         
+
+
         $contador = (count($carrito->items));
- 
+
         if($contador>1){
             $titulo="Varios cursos";
             $resumen="";
@@ -80,7 +80,7 @@ class CartController extends Controller
                 $titulo= $curso['curso']->titulo;
                 $resumen=$curso['curso']->resumen;
             }
-           
+
         }
 
         //Stripe
@@ -143,7 +143,7 @@ class CartController extends Controller
        }
 
        return response()->json([ 'id' => $session['id']]);
-        
+
 
     }
 
@@ -182,7 +182,7 @@ class CartController extends Controller
                 if($intent->status == 'succeeded'){
 
                     $order_id = Carbon::now()->timestamp;
-                  
+
                     $iname = $user->name;
                     $email = $customer->email;
                     $transactionID = $intent->id;
@@ -213,8 +213,8 @@ class CartController extends Controller
                         $curso->fecha_inicio = date("Y-m-d");
                         $curso->dias_activo = $item['curso']->tiempovalido;
                         $curso->save();
-                        
-                        $cursoid[] = ["id"=>$item['curso']->id];
+
+                        $cursoid = $item['curso']->id;
                     }
                 }
             }
@@ -232,9 +232,9 @@ class CartController extends Controller
 
          // Mail::to(env("MAIL_CONTACT"))->send(new Notificacion());
        $course = Course::find($cursoid);
-       
+      // $course = Course::find(3);
 
-         return view('frontpage.cart.success',['ids'=>$cursoid]);
+         return view('frontpage.cart.success',['course'=>$course]);
      }
 
      public function cancel(Request $request){
@@ -244,25 +244,25 @@ class CartController extends Controller
 
 
      public function process(Request $request){
-       
+
         $user_id = Auth::id();
-     
+
        $verificacion= UserSign::where('user_id',$user_id)->count();
 
-      
+
         if($verificacion== 0){
             return response()->json(['firmado'=>false]);
         }
 
          //carrito
-        
+
          $carrito=null;
          if (Session::get('cart')) {
              $carrito = Session::get('cart');
-          
+
          }
         $contador = (count($carrito->items));
- 
+
         if($contador>1){
            // return redirect()->route('curso.todos')->with(['info'=>'You can only purchase one course per purchase']);
             $titulo="Varios cursos";
@@ -272,10 +272,10 @@ class CartController extends Controller
                 $titulo= $curso['curso']->titulo;
                 $resumen=$curso['curso']->resumen;
             }
-           
+
         }
         $order_id = Carbon::now()->timestamp;
-       
+
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
         $response = array(
@@ -285,7 +285,7 @@ class CartController extends Controller
             )
             );
 
-            
+
        if(empty($request->checkoutSession)){
            try{
                $session = \Stripe\Checkout\Session::create([

@@ -12689,6 +12689,7 @@ footer .little {
   color: #031059;
 }
 .gracias__box__info__properties ul {
+  padding-top: 2rem;
   list-style: none;
   padding-left: 3rem;
 }

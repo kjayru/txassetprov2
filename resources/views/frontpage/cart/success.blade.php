@@ -2,6 +2,7 @@
 @section('content')
 @php
 	 use App\Models\Course;
+     use Carbon\Carbon;
 @endphp
 
 <div class="banner color__banner">
@@ -15,14 +16,14 @@
 					</ul>
 				</div>
 
-				
+
 			</div>
-			
+
 				@include('layouts.backend.partials.menucurso')
-			  
+
 		</div>
 	</div>
-   
+
 </div>
 
 
@@ -30,46 +31,52 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-						
+
 				<div class="gracias__titulo">
 					THANK YOU!
 				</div>
 				<div class="gracias__subtitulo">
 					You just finished your purchase
-					<span>You have {{@Course::info($col)['disponible']}} days to finish the course</span>
+					<span>You have {{@$course->tiempovalido}} days to finish the course</span>
 				</div>
-		
-			</div>	
+
+			</div>
 		</div>
-		@foreach($ids as $col)
-		
+		{{-- @foreach($ids as $col) --}}
+
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="gracias__box">
 					<div class="row">
 						<div class="col-md-5">
-							<img src="/storage/{{Course::info($col)['banner']}}" class="img-fluid">
+							<img src="/storage/{{@$course->banner}}" class="img-fluid">
 						</div>
 						<div class="col-md-7">
 							<div class="gracias__box__info">
 								<div class="gracias__box__info__titulo">
-									{{@Course::info($col)['titulo']}}
+									{{@$course->titulo}}
 								</div>
 								<div class="gracias__box__info__subtitulo">
-									{{@Course::info($col)['subtitulo']}}
+									{{@$course->responsable}}
 								</div>
 								<div class="gracias__box__info__properties">
 									<ul>
-										<li class="date">Available from {{@Course::info($col)['disponible']}}</li>
-										<li class="capitulo">{{@Course::info($col)['capitulos']}} chapters</li>
-										<li class="audio">Audio:{{@Course::info($col)['audio']}}</li>
-										<li class="level">Level:{{@Course::info($col)['nivel']}}</li>
-										<li class="access">Access:{{@Course::info($col)['tiempovalido']}} days to finish the course</li>
+                                        @php
+                                        $fecha = new Carbon($course->disponible);
+                                    @endphp
+
+										<li class="date">Available from  {{$fecha->format('M d, Y')}} </li>
+										<li class="capitulo">{{@$course->capitulos}} chapters</li>
+                                        @if(isset($course->audio))
+										<li class="audio">Audio: {{@$course->language}}</li>
+                                        @endif
+										<li class="level">Level: {{@$course->nivel}}</li>
+										<li class="access">Access: {{@$course->tiempovalido}} days to finish the course</li>
 							  </ul>
 								</div>
-								
+
 								<div class="gracias__box__info__enlace">
-									<a href="/learn/{{Course::info($col)['slug']}}" class="btn btn__start">Start course</a>
+									<a href="/learn/{{@$course->slug}}" class="btn btn__start">Start course</a>
 								</div>
 							</div>
 						</div>
@@ -77,8 +84,8 @@
 				</div>
 			</div>
 		</div>
-		@endforeach
+		{{-- @endforeach --}}
 	</div>
 </div>
-       
+
 @endsection
