@@ -168,4 +168,14 @@ class UserCourse extends Model
         return $valor;
     }
 
+    public static function procesoCaducado($id){
+
+        $uc = UserCourse::find($id);
+        $uc->caducado = 1;
+        $uc->finalizado = 1;
+        $uc->save();
+
+        return true;
+    }
+
 }

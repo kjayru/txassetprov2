@@ -14,7 +14,7 @@ use App\Models\ChapterQuiz;
 use App\Models\ChapterQuizOption;
 use App\Models\UserChapterQuizOption;
 use App\Models\UserChapterQuiz;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
@@ -46,8 +46,7 @@ class UsuarioController extends Controller
             if($curso->aprobado==1){
                 $grupo[] = $curso;
             }else if($curso->intentos< 3  && $curso->reiniciado==0){
-                if($curso->aprobado==null || $curso->aprobado==0){
-
+                if($curso->aprobado==0){
                 $grupo[] = $curso;
                 }
             }
@@ -56,6 +55,19 @@ class UsuarioController extends Controller
         $courses = collect($grupo);
 
        ///dd($courses);
+       //verificamos caducidad
+       $ahora = carbon::now();
+
+
+       foreach($cursos as $curso){
+            $dias_disponibles = UserCourse::dayleft($curso->id);
+
+            if($dias_disponibles<=0){
+                print_r($dias_disponibles);
+                UserCourse::procesoCaducado($curso->id);
+            }
+       }
+
 
 
         return view('frontpage.usuario.miscursos',['cursos'=>$cursos,'user'=>$user]);

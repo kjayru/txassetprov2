@@ -688,6 +688,70 @@ class LearnController extends Controller
     }
 
 
+    public function expired($id){
+
+
+
+        $user_id = Auth::id();
+        $userCourse = UserCourse::find($id);
+        $curso = $userCourse->course;
+
+
+        //chapter crear order en tabla
+        $capitulos = Chapter::where('course_id',$curso->id)->get();
+
+
+
+
+       foreach($capitulos as $cap){
+        $menucont=null;
+        $quiz=false;
+            if(isset($cap->chapterquiz)){
+                $quiz = true;
+            }
+
+            foreach($cap->chaptercontents as $cont){
+                $menucont[] = [
+                    'id'=>$cont->id,
+                    'titulo'=>$cont->titulo,
+                    'slug'=>$cont->slug,
+                ];
+            }
+
+            $menulat[] = [
+                    'capitulo_id'=>$cap->id,
+                    'capitulo_titulo'=>$cap->title,
+                    'curso_titulo'=>$curso->titulo,
+                    'curso_slug'=>$curso->slug,
+                    'capitulo_slug'=>$cap->slug,
+                    'contenidos'=>$menucont,
+                    'quiz'=>$quiz,
+                    'quiz_content'=>$cap->chapterquiz,
+            ];
+
+        }
+        $quiz=null;
+        $exam=null;
+        $resultado = 3;
+        $dias = UserCourse::dayleft($id);
+
+        return view('frontpage.usuario.outcome',[
+            'examen'=>$exam,
+            'quiz'=>$quiz,
+            'contenidos'=>$menulat,
+            'curso'=>$curso,
+            'user_course_id'=>$userCourse->id,
+
+            'resultado'=>$resultado,
+            'user_course'=>$userCourse,
+            'capitulos'=>$capitulos,
+            'dias'=>$dias,
+            'user_id' =>$user_id
+
+        ]);
+    }
+
+
     public function setExam(Request $request){
         $intentos = 0;
         if(isset($request->evento)){

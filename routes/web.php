@@ -243,6 +243,7 @@ Route::group(['prefix' => 'cart'],function(){
 Route::group(['prefix'=>'learn'],function(){
     Route::get('/exam/{slug}/congratulation',[LearnController::class,'congratulation']);
     Route::get('/exam/{slug}/fail',[LearnController::class,'fail']);
+    Route::get('/exam/{slug}/expired',[LearnController::class,'expired']);
     Route::get('/exam/{slug}/{id}',[LearnController::class,'cursoQuiz']);
 
     Route::post('/set-quiz',[LearnController::class,'setQuestion']);
