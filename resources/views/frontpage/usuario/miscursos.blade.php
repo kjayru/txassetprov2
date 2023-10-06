@@ -56,7 +56,7 @@
 										<div class="linea_avance" style="width:{{UserCourseChapter::completeChapter($user->id,$curso->course->id,$curso->id)}}%"></div>
 									</div>
 
-									@if(UserCourse::complete($curso->course->id,$user->id))
+									@if(UserCourse::complete($curso->course->id,$user->id,$curso->id))
 									    <span class="status">completed  </span>
 									@else
 									    <span class="status">{{@UserCourse::completeChapter($curso->course->id,$user->id,$curso->id)}} completed chapter </span>
