@@ -61,7 +61,7 @@
 							</div>
 						@else
 							<div class="encurso__footer">
-								<a href="/learn/{{$user_course_id}}/{{@$url_next}}" class="btn encurso__footer__link disabled" role="button" aria-disabled="true">Continue </a>
+								<a href="/learn/{{@$url_next}}" class="btn encurso__footer__link disabled" role="button" aria-disabled="true">Continue </a>
 							</div>
 						@endif
 					@else
