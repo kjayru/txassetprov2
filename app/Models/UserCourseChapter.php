@@ -25,15 +25,12 @@ class UserCourseChapter extends Model
         $usercourse = UserCourse::find($user_course_id);
 
         if(UserCourseChapter::where('user_course_id',$usercourse->id)->count()>0){
-        $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
+            $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
         }
 
         $course= Course::find($course_id);
         $chapters = Chapter::where('course_id',$course->id)->count();
-
         $porcentaje = round($courseChapter*100/$chapters ,2);
-
-
         return $porcentaje;
     }
 

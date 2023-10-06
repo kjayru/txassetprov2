@@ -53,13 +53,13 @@
 								<div class="todocursos__card__body__item__timeline">
 
 									<div class="line">
-										<div class="linea_avance" style="width:{{UserCourseChapter::completeChapter($user->id,$curso->course->id)}}%"></div>
+										<div class="linea_avance" style="width:{{UserCourseChapter::completeChapter($user->id,$curso->course->id,$user_course_id)}}%"></div>
 									</div>
 
 									@if(UserCourse::complete($curso->course->id,$user->id))
 									    <span class="status">completed  </span>
 									@else
-									    <span class="status">{{@UserCourse::completeChapter($curso->course->id,$user->id)}} completed chapter </span>
+									    <span class="status">{{@UserCourse::completeChapter($curso->course->id,$user->id,$user_course_id)}} completed chapter </span>
 									@endif
 								</div>
 								<div class="todocursos__card__body__item__estado">
