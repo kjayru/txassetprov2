@@ -950,12 +950,13 @@ $(".btn__restart__course").on('click',function(e){
     e.preventDefault();
     let course_id = $(this).data('cursoid');
     let user_id = $(this).data('userid');
+    let user_course_id = $(this).data('usercourseid');
     let token = $("meta[name=csrf-token]").attr("content");
     $.ajax({
         url:'/learn/restart-course',
         type:'post',
         dataType:'json',
-        data:{course_id:course_id,user_id:user_id,'_token':token,'_method':'POST'},
+        data:{course_id:course_id,user_id:user_id,'_token':token,'user_course_id':user_course_id,'_method':'POST'},
         success:function(response){
             if(response.rpta=='error'){
 

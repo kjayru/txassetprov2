@@ -939,7 +939,15 @@ class LearnController extends Controller
 
         $user_id = Auth::id();
 
-        if(UserCourse::where('aprobado','1')->count()>0){
+        $user_course_id = $request->user_course_id;
+         if(UserCourse::where('id',$user_course_id)->where('reiniciado','1')->count()>0){
+            return response()->json(['rpta'=>'error','mensaje'=>'The course has already been restarted']);
+         }
+
+
+
+
+        if(UserCourse::where('user_id',$request->user_id)->where('course_id',$request->course_id)->where('aprobado','1')->count()>0){
 
             return response()->json(['rpta'=>'error','mensaje'=>'You already have the course approved']);
         }
