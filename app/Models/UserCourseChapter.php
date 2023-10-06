@@ -20,9 +20,9 @@ class UserCourseChapter extends Model
         return $this->hasMany(UserCourseChapterQuiz::class);
     }
 
-    public static function completeChapter($user_id,$course_id){
+    public static function completeChapter($user_id,$course_id,$user_course_id){
         $courseChapter=0;
-        $usercourse = UserCourse::where('course_id',$course_id)->where('user_id',$user_id)->first();
+        $usercourse = UserCourse::find($user_course_id);
 
         if(UserCourseChapter::where('user_course_id',$usercourse->id)->count()>0){
         $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
@@ -37,7 +37,7 @@ class UserCourseChapter extends Model
         return $porcentaje;
     }
 
-    public static function cursandoContenido($slug,$active_slug){
+    public static function cursandoContenido($slug,$active_slug,$user_course_id){
          $activo=false;
          if(Chaptercontent::where('slug',$slug)->count()>0){
             if($slug==$active_slug){

@@ -38,7 +38,8 @@ class LearnController extends Controller
         $this->middleware('auth');
    }
 
-    public function index($slug){
+    public function index($id,$slug){
+
 
         $capVisitados=null;
         $contVisitados=null;
@@ -64,7 +65,7 @@ class LearnController extends Controller
         }
 
         $curso = Course::where('slug',$slug)->first();
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->first();
+        $userCourse = UserCourse::find($id);
         $userCourseChapter = UserCourseChapter::where('user_course_id',$userCourse->id)->first();
 
         if(isset($userCourseChapter)){
@@ -85,7 +86,7 @@ class LearnController extends Controller
         $sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$content->chapter->id)->orderBy('id')->first();
         if(isset($sig)){
 
-            $url_next = $sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
+            $url_next = $id."/".$sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
         }else{
 
             $url_next_quiz = $content->chapter->course->slug."/".$content->chapter->slug."/quiz";
@@ -187,7 +188,8 @@ class LearnController extends Controller
         return view('frontpage.learn.index',['capitulo'=>$capitulo,'contenido'=>$contenido,'curso'=>$curso,'chapters'=>$chapters,'curso_id'=>$id,'chapter'=>$chapter,'slug'=>$content,'user_course_id'=>$userCourse->id]);
     }
 
-    public function cursoChapterContent($slug,$chapter,$content){
+    public function cursoChapterContent($id,$slug,$chapter,$content){
+
 
         $user_course_chapter_id=null;
         $menulat=null;
@@ -198,7 +200,7 @@ class LearnController extends Controller
 
         $user_id = Auth::id();
         $curso = Course::where('slug',$slug)->first();
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
+        $userCourse = UserCourse::find($id);
         $chapter = Chapter::where('slug',$chapter)->where('course_id',$curso->id)->first();
         $content = Chaptercontent::where('slug',$content)->where('chapter_id',$chapter->id)->first();
 
@@ -261,7 +263,7 @@ class LearnController extends Controller
         ]);
     }
 
-    public function cursoChapterContentQuiz($slug, $chapter, $id){
+    public function cursoChapterContentQuiz($idcourseid, $slug, $chapter, $id){
 
         $user_id = Auth::id();
         $url_next=null;

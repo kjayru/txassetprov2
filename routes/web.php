@@ -255,10 +255,10 @@ Route::group(['prefix'=>'learn'],function(){
     Route::post('/restart-course',[LearnController::class,'restartCourse']);
     Route::get('/certificade/{id}',[LearnController::class,'certificado']);
 
-    Route::get('/{slug}',[LearnController::class,'index']);
-    Route::get('/{slug}/{chapter}',[LearnController::class,'chapter']);
-    Route::get('/{slug}/{chapter}/quiz/{id}',[LearnController::class,'cursoChapterContentQuiz']);
-    Route::get('/{slug}/{chapter}/{content}',[LearnController::class,'cursoChapterContent']);
+    Route::get('/{idcourseid}/{slug}',[LearnController::class,'index']);
+    Route::get('/{idcourseid}/{slug}/{chapter}',[LearnController::class,'chapter']);
+    Route::get('/{idcourseid}/{slug}/{chapter}/quiz/{id}',[LearnController::class,'cursoChapterContentQuiz']);
+    Route::get('/{idcourseid}/{slug}/{chapter}/{content}',[LearnController::class,'cursoChapterContent']);
 });
 
 Route::group(['prefix'=>'user'],function(){

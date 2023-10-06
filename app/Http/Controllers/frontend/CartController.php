@@ -156,6 +156,7 @@ class CartController extends Controller
         $ev = SP::where('txn_id',$seskey)->first();
         $carrito = Session::get('cart');
 
+        $curso = null;
 
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         try {
@@ -234,7 +235,7 @@ class CartController extends Controller
        $course = Course::find($cursoid);
       // $course = Course::find(3);
 
-         return view('frontpage.cart.success',['course'=>$course]);
+         return view('frontpage.cart.success',['course'=>$course,'user_course'=>$curso]);
      }
 
      public function cancel(Request $request){

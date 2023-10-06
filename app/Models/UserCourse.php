@@ -49,10 +49,10 @@ class UserCourse extends Model
 
     }
 
-    public static function completeChapter($id,$user_id){
+    public static function completeChapter($id,$user_id,$user_course_id){
         $completo=false;
         $courseChapter = 0;
-        $usercourse = UserCourse::where('course_id',$id)->where('user_id',$user_id)->first();
+        $usercourse = UserCourse::find($user_course_id);
 
         if(UserCourseChapter::where('user_course_id',$usercourse->id)->count()>0){
         $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
@@ -61,10 +61,10 @@ class UserCourse extends Model
         return $courseChapter;
     }
 
-    public static function complete($id,$user_id){
+    public static function complete($id,$user_id,$user_course_id){
         $completo=false;
         $courseChapter = 0;
-        $usercourse = UserCourse::where('course_id',$id)->where('user_id',$user_id)->first();
+        $usercourse = UserCourse::find($user_course_id);
 
         if(UserCourseChapter::where('user_course_id',$usercourse->id)->count()>0){
         $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
@@ -88,7 +88,7 @@ class UserCourse extends Model
     }
 
 
-    public static function contenidoActivo($course_id,$chapter_id,$content_id){
+    public static function contenidoActivo($course_id,$chapter_id,$content_id,$user_course_id){
 
         $activo = false;
         $curso = Course::find($course_id);
@@ -107,7 +107,7 @@ class UserCourse extends Model
         return $activo;
     }
 
-    public static function capituloActivo($course_id,$chapter_id){
+    public static function capituloActivo($course_id,$chapter_id,$user_course_id){
 
         $activo = false;
         $curso = Course::find($course_id);

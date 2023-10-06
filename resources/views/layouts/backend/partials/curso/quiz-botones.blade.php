@@ -19,7 +19,7 @@
                 <input type="hidden" name="activamodal" value="1" id="activamodal">
             @else
                 @if(!$fin_curso)
-                <a href="/learn/{{$url_next}}" class="btn btn__red btn__continue">Continue</a>
+                <a href="/learn/{{$user_course_id}}/{{$url_next}}" class="btn btn__red btn__continue">Continue</a>
                 @else
                 <a href="/learn/exam/{{$curso->slug}}/{{$examen->id}}" class="btn btn__red btn__continue">Continue Exam</a>
 

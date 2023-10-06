@@ -7,7 +7,7 @@
 
     @if(isset($cont['contenidos']['contenidos']))
 
-    <ul class="encurso__temas__lista__item__sublista open {{UserCourse::capituloActivo($curso->id,$cont['contenidos']['capitulo_id'])?'active':''}} {{UserCourseChapter::capituloCursado($cont['contenidos']['capitulo_id'],$user_course_id)?'active':''}}" >
+    <ul class="encurso__temas__lista__item__sublista open {{UserCourse::capituloActivo($curso->id,$cont['contenidos']['capitulo_id'],$user_course_id)?'active':''}} {{UserCourseChapter::capituloCursado($cont['contenidos']['capitulo_id'],$user_course_id)?'active':''}}" >
 
 
         @foreach($cont['contenidos']['contenidos'] as $c)
