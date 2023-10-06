@@ -133,7 +133,7 @@
                                    @if($user_course->intentos == 3 && $user_course->reiniciado==1 &&  $user_course->finalizado==1)
                                     <a href="/course/{{@$user_course->course->slug}}" class="btn__link"> Buy the course again</a>
                                    @else
-                                   <a href="#" class="btn__link btn__restart__course" data-cursoid="{{@$user_course->course->id}}" data-userid="{{@$user_id}}">Start the course again</a>
+                                   <a href="#" class="btn__link btn__restart__course" data-cursoid="{{@$user_course->course->id}}" data-userid="{{@$user_id}}"  data-usercourseid="{{$user_course->id}}">Start the course again</a>
                                     @endif
 
                                 </div>
