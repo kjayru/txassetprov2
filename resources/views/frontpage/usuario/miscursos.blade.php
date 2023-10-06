@@ -89,7 +89,7 @@
                                     @if($curso->aprobado==0  && $curso->caducado==0 && $curso->finalizado==0)
                                     {{-- curso en curso --}}
 
-                                    <a href="/learn/{{$curso->course->slug}}" class="item__link">  Go to course</a>
+                                    <a href="/learn/{{$curso->id}}/{{$curso->course->slug}}" class="item__link">  Go to course</a>
                                     <div class="item__mensaje__time">You have {{UserCourse::dayleft($curso->id)}} days left to finish the course</div>
                                     @endif
 {{--
