@@ -233,7 +233,7 @@ class LearnController extends Controller
         $sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$chapter->id)->orderBy('id')->first();
         if(isset($sig)){
 
-            $url_next = $sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
+            $url_next = $id."/".$sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
         }else{
 
             $url_next_quiz = $content->chapter->course->slug."/".$content->chapter->slug."/quiz";
@@ -263,14 +263,14 @@ class LearnController extends Controller
         ]);
     }
 
-    public function cursoChapterContentQuiz($idcourseid, $slug, $chapter, $id){
+    public function cursoChapterContentQuiz($user_course_id, $slug, $chapter, $id){
 
         $user_id = Auth::id();
         $url_next=null;
         $fin_curso = false;
         $user_course_chapter_id =null;
         $curso = Course::where('slug',$slug)->first();
-        $userCourse = UserCourse::where('user_id',$user_id)->where('course_id',$curso->id)->orderBy('id','desc')->first();
+        $userCourse = UserCourse::find($user_course_id);
 
         $chapter = Chapter::where('slug',$chapter)->where('course_id',$curso->id)->first();
 
@@ -359,7 +359,7 @@ class LearnController extends Controller
         if( Chaptercontent::where('chapter_id','>',$chapter->id)->orderBy('id')->count()>0){
             $sig = Chaptercontent::where('chapter_id','>',$chapter->id)->orderBy('id')->first();
             if($sig->chapter->course->slug == $slug){
-            $url_next = $sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
+            $url_next = $user_course_id."/".$sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
             }else{
                 $fin_curso=true;
             }
@@ -523,7 +523,7 @@ class LearnController extends Controller
     $sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$content->chapter->id)->orderBy('id')->first();
 
     if(isset($sig)){
-        $url_next = $sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
+        $url_next = $userCourse->id."/".$sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
     }else{
         $url_next_quiz = $content->chapter->course->slug."/".$content->chapter->slug."/quiz";
     }
