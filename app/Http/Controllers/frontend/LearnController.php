@@ -942,7 +942,7 @@ class LearnController extends Controller
         $user_id = Auth::id();
 
         $user_course_id = $request->user_course_id;
-         if(UserCourse::where('id',$user_course_id)->where('reiniciado','1')->count()>0){
+         if(UserCourse::where('parent_id',$user_course_id)->count()>0){
             return response()->json(['rpta'=>'error','mensaje'=>'The course has already been restarted']);
          }
 
@@ -961,6 +961,7 @@ class LearnController extends Controller
         $curso->fecha_inicio = Carbon::now()->format('Y-m-d');
         $curso->dias_activo = 15;
         $curso->reiniciado = 1;
+        $curso->parent_id = $user_course_id;
         $curso->save();
 
         //verificar si aprobo
