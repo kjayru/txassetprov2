@@ -76,7 +76,7 @@
 										    <div class="item__mensaje__aprobado desaprobado">Failed</div>
 										@break
 										@case("3")
-										    <div class="item__mensaje__aprobado desaprobado">Failed</div>
+										    <div class="item__mensaje__aprobado desaprobado">Expired</div>
 										@break
 										@case("4")
 										    <div class="item__mensaje__aprobado desaprobado">Failed</div>
@@ -147,16 +147,15 @@
 
 
                             <div class="texto">
-                                <p><span>Unfortunately you pass are failed due to
-                                    the test result</span>
+                                <p><span>
+									Unfortunately, time has expired.</span>
                                 </p>
-                                <p>More than 15 days have passed, you must buy the course again and pass the evaluation.
-                                </p>
+
                             </div>
                             <div class="foot row">
                                 <div class="col-md-6">
 									<p class="respuesta">
-									You exceeded the time limit to take the course again
+										You exceeded the time limit to take the course.
 									</p>
 								</div>
                                 <div class="col-md-6">
