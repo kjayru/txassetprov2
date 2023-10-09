@@ -54,36 +54,87 @@ class UserCourse extends Model
         $courseChapter = 0;
         $usercourse = UserCourse::find($user_course_id);
 
+        $conteo_contenido = 0;
+        $contenido_realizado = 0;
+
         if(UserCourseChapter::where('user_course_id',$usercourse->id)->count()>0){
-        $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
+            $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
+
+            //conteos_contenido_tomad
+            $curso_capitulos = UserCourseChapter::where('user_course_id',$usercourse->id)->get();
+
+            foreach($curso_capitulos as $cp){
+                foreach($cp->userCourseChapterContents as $ucc){
+                    $contenido_realizado +=1;
+                }
+            }
         }
+
+
+        $chapters = Chapter::where('course_id',$id)->get();
+
+
+        foreach($chapters as $chapter){
+            foreach($chapter->chaptercontents as  $content){
+                $conteo_contenido+=1;
+            }
+        }
+
 
         return $courseChapter;
     }
+
+
 
     public static function complete($id,$user_id,$user_course_id){
         $completo=false;
         $courseChapter = 0;
         $usercourse = UserCourse::find($user_course_id);
+        $conteo_contenido = 0;
+        $contenido_realizado = 0;
 
         if(UserCourseChapter::where('user_course_id',$usercourse->id)->count()>0){
-        $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
+                $courseChapter = UserCourseChapter::where('user_course_id',$usercourse->id)->count();
+
+                //conteos_contenido_tomad
+                $curso_capitulos = UserCourseChapter::where('user_course_id',$usercourse->id)->get();
+
+                foreach($curso_capitulos as $cp){
+                    foreach($cp->userCourseChapterContents as $ucc){
+                        $contenido_realizado +=1;
+                    }
+                }
         }
 
         $capitulos = Chapter::where('course_id',$id)->count();
 
-        if($capitulos == $courseChapter){
+        $chapters = Chapter::where('course_id',$id)->get();
+
+
+        foreach($chapters as $chapter){
+            foreach($chapter->chaptercontents as  $content){
+                $conteo_contenido+=1;
+            }
+        }
+
+
+
+       // dd($conteo_contenido." - - ".$contenido_realizado);
+
+        if($conteo_contenido == $contenido_realizado){
             $completo=true;
-            return $completo;
+
         }
 
         return $completo;
     }
 
+
+
+
+
     public static function leftdays($id,$user_id){
         $usercourse = UserCourse::where('course_id',$id)->where('user_id',$user_id)->first();
-
-
         return $usercourse->dias_activo;
     }
 

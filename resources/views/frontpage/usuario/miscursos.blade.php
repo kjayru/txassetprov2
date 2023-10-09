@@ -59,7 +59,7 @@
 									@if(UserCourse::complete($curso->course->id,$user->id,$curso->id))
 									    <span class="status">completed  </span>
 									@else
-									    <span class="status">{{@UserCourse::completeChapter($curso->course->id,$user->id,$curso->id)}} completed chapter </span>
+									    <span class="status">{{UserCourseChapter::completeChapter($user->id,$curso->course->id,$curso->id)}}% completed course </span>
 									@endif
 								</div>
 								<div class="todocursos__card__body__item__estado">
