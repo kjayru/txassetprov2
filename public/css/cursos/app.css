@@ -13312,13 +13312,14 @@ footer .little {
   font-family: "Open Sans", sans-serif;
   color: white;
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 .exam__blue .icon_start {
   position: relative;
   padding-left: 57px;
+  text-transform: uppercase;
 }
 .exam__blue .icon_start:before {
   content: "";

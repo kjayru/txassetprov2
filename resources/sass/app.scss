@@ -2740,13 +2740,14 @@ footer {
     font-family: $open-sans;
     color: white;
     padding-top:2rem;
-    padding-bottom:2rem;
+    padding-bottom:1rem;
     padding-left:1rem;
     padding-right:1rem;
 
     .icon_start{
         position: relative;
         padding-left: 57px;
+        text-transform: uppercase;
          &:before{
             content:"";
             background:url('/images/curso-certificate.svg') no-repeat center center;
