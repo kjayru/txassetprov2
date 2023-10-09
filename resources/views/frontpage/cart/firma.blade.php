@@ -26,7 +26,7 @@
 								<div class="error__entexto error">
 
 								</div>
-								<p>I <input type="text" name="fullname" id="fullname" placeholder="Full name" class="mb-2 form-control">
+								<p>I, <input type="text" name="fullname" id="fullname" placeholder="Full name" class="mb-2 form-control">
 
 									understand that the online course “Level II Non-Commissioned Officer Training Course” I am enrolling in is <strong>non-refundable</strong> and the cost of the course is $45.00.
                                      I am aware that no security agencies are guaranteed or obligated to hire me solely by me taking this course and that this course does not license me as a security officer.
