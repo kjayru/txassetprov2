@@ -26,10 +26,12 @@
 								<div class="error__entexto error">
 
 								</div>
-								<p>I.  <input type="text" name="fullname" id="fullname" placeholder="Full name" class="mb-2 form-control"> 
-									
-									understand that the online course “Level II Non-Commissioned Officer Training Course” I am enrolling in is non-refundable and the cost of the course is $45.00. I am aware that no security agencies are guaranteed or obligated to hire me solely by me taking this course and that this course does not license me as a security officer. I understand that I am taking the above course in order to increase my knowledge in the field of security and only grants me a Certification of Completion. 
-									 
+								<p>I <input type="text" name="fullname" id="fullname" placeholder="Full name" class="mb-2 form-control">
+
+									understand that the online course “Level II Non-Commissioned Officer Training Course” I am enrolling in is <strong>non-refundable</strong> and the cost of the course is $45.00.
+                                     I am aware that no security agencies are guaranteed or obligated to hire me solely by me taking this course and that this course does not license me as a security officer.
+                                      I understand that I am taking the above course in order to increase my knowledge in the field of security and only grants me a Certification of Completion.
+
 									 <input type="text" name="initial" id="initial" placeholder="Inital here" class="form-control"></p>
 								<h3>Notification of Eligibility:</h3>
 								<p>Please review Rule 35.4’s list of disqualifying offenses and the related periods of ineligibility which is attached and available on the department’s website at htttp://www.dps.textas.gov/rsd/psb/index.htm (click on the link to Administrative Code) prior to class enrollment or payment. You also have a right to request from the department a criminal history evaluation letter under Occupations Code Section 53.102.” The Private Security Act (Occ. Code Chapter 1702) and Administrative Rule 35.4 (37 Tex. Admin. Code 1), a criminal conviction may disqualify you from a registration, commission, or license under the Act.</p>
@@ -87,14 +89,15 @@
 <h3>OCCUPATION CODE</h3>
 <p>Sec. 53.102. REQUEST FOR CIMINAL HISTORY EVALUATION LETTER.<br>
 	(a)	A person may request a licensing authority to issue a criminal history evaluation letter regarding the person’s eligibility for a license issued by that authority if the person:<br>
-	(1)	is enrolled or planning to enroll in educational program that prepares a person for an initial license or is planning to take an examination for an initial license; and<br> 
+	(1)	is enrolled or planning to enroll in educational program that prepares a person for an initial license or is planning to take an examination for an initial license; and<br>
 	(2)	has reason to believe that the person is ineligible for the license due to a conviction or deferred adjudication for a felony or misdemeanor offense. <br>
-	(b)	The request must state the basis for the person’s potential ineligibility. 
+	(b)	The request must state the basis for the person’s potential ineligibility.
 	</p>
 <h3>ACKNOWLEDGMENT:</h3>
-<p>I <input type="text" name="fullname2" id="fullname2" placeholder="Full name" class="mb-2 form-control">  confirm that I have been made aware of and fully understand all the information listed above and have been informed that by taking this training course I am not guaranteed that the licensing agency will grant my license. <br><br>
+<p>I <input type="text" name="fullname2" id="fullname2" placeholder="Full name" class="mb-2 form-control">  confirm that I have been made aware of and fully understand
+    all the information listed above and have been informed that by taking this training course I am not guaranteed that the licensing agency will grant my license. <br><br>
 
-	The information below was provided to me;
+	The information below was provided to me;<br>
 	•	The department’s current eligibility guidelines (the board’s administrative rules) issued under Occupations Code, Section 53.025;<br>
 	•	The potential ineligibility of an individual who has been convicted of a criminal offense; <br>
 	•	The right to request a criminal history evaluation under Occupations Code Section 53.102. <br>
@@ -129,10 +132,10 @@
 											<div class="boton__sign"><img src="/images/firma.png" class="img-fluid"><br>Sign here</div>
 											<a href="#" class="btn btn-xs btn-default" id="clear">Clear</a>
 										</div>
-									</div>  
-									<span class="sign-error error"></span>          
+									</div>
+									<span class="sign-error error"></span>
 								</div>
-							</div>	
+							</div>
 						</div>
 					</div>
 					<div class="row justify-content-end">
@@ -149,24 +152,24 @@
 <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	  <div class="modal-content">
-	   
+
 		<div class="modal-body">
 		  <div class=" col-md-12" >
 			<div class="row">
-			  
+
 			  <div class="texto__error col s10">
-				
+
 			  </div>
 			</div>
 		  </div>
 
-		
-	  
+
+
 		</div>
 		<div class="modal-footer">
 		<button type="button" class="btn fondo__rojo btn__loginsumit" data-dismiss="modal">Close</button>
 		</div>
-	  
+
 	  </div>
 	</div>
   </div>
