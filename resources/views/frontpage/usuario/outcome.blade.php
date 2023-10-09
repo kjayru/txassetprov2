@@ -59,13 +59,17 @@
 									{{$user_course->course->titulo}}
 								</div>
 								<div class="todocursos__card__body__item__subtitulo">
-									{{$user_course->course->subtitulo}}
+									{{$user_course->course->responsable}}
 								</div>
 								<div class="todocursos__card__body__item__timeline">
+
+
 									<div class="line">
-										<div class="linea_avance" style="width:100%"></div>
+										<div class="linea_avance" style="width: {{UserCourseChapter::completeChapter($user_id,$user_course->course->id,$user_course->id)}}%"></div>
 									</div>
-									<span class="status">Course completed</span>
+									<span class="status">  {{UserCourseChapter::completeChapter($user_id,$user_course->course->id,$user_course->id)}}% Course completed</span>
+
+
 								</div>
 								<div class="todocursos__card__body__item__estado todocursos__card__body__item__only">
 									@switch($resultado)

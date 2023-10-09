@@ -2705,6 +2705,17 @@ footer {
         font-family: $open-sans;
         font-weight: bold;
         line-height: 36px;
+        position: relative;
+        padding-left: 6rem;
+        &:before{
+            content:"";
+            background: url("/images/curso-passes.svg") no-repeat center center;
+            background-size:contain;
+            width: 82px;
+            height: 90px;
+            position: absolute;
+            left: -5px;
+        }
         .subtitulo{
             display: block;
             font-size:16px;
@@ -2732,6 +2743,21 @@ footer {
     padding-bottom:2rem;
     padding-left:1rem;
     padding-right:1rem;
+
+    .icon_start{
+        position: relative;
+        padding-left: 30px;
+         &:before{
+            content:"";
+            background:url('/images/curso-certificate.svg') no-repeat center center;
+            background-size:contain;
+            width: 55px;
+            height: 51px;
+            position: absolute;
+            left: -4px;
+            top: -9px;
+         }
+    }
 }
 .exam{
     &__course{
