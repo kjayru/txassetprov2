@@ -972,15 +972,16 @@ class LearnController extends Controller
 
     }
 
-    public function certificado($id){
+    public function certificado($id,$user_course_id){
         $curso = Course::find($id);
         $user_id = Auth::id();
         $user = User::find($user_id);
+        $user_course = UserCourse::find($user_course_id);
 
 
 
 
-    $pdf = PDF::loadView('pdf.index', ['curso'=>$curso, 'user'=>$user ])->setOptions([
+    $pdf = PDF::loadView('pdf.index', ['curso'=>$curso, 'user'=>$user,'user_course'=>$user_course ])->setOptions([
         'isHtml5ParserEnabled' => true,
         'isRemoteEnabled' => true,
         'dpi' =>137,

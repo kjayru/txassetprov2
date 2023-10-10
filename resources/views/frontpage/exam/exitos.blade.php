@@ -65,7 +65,7 @@
                             <p class="icon_start">You´re earned a certificate</p>
                         </div>
                         <div class="col-md-5 text-end">
-                            <a href="/learn/certificade/{{$curso->id}}" class="btn btn__red btn__descarga">Download certificate</a>
+                            <a href="/learn/certificade/{{$curso->id}}/{{$user_course->id}}" class="btn btn__red btn__descarga">Download certificate</a>
                         </div>
                     </div>
                 </div>

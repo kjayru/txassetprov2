@@ -253,7 +253,7 @@ Route::group(['prefix'=>'learn'],function(){
     Route::post('/exam/reset-exam',[LearnController::class,'resetExam']);
     Route::post('/exam/view-exam',[LearnController::class,'viewExam']);
     Route::post('/restart-course',[LearnController::class,'restartCourse']);
-    Route::get('/certificade/{id}',[LearnController::class,'certificado']);
+    Route::get('/certificade/{id}/{user_course_id}',[LearnController::class,'certificado']);
 
     Route::get('/{idcourseid}/{slug}',[LearnController::class,'index']);
     Route::get('/{idcourseid}/{slug}/{chapter}',[LearnController::class,'chapter']);

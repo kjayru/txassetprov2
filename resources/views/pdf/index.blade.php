@@ -45,7 +45,7 @@ use Carbon\Carbon;
             {{$user->profile->firstname}} {{$user->profile->lastname}}
         </div>
         <div class="date_complete">
-            {{Carbon::now()->format('Y-m-d')}}
+            {{$user_course->updated_at->format('Y-m-d')}}
         </div>
     </div>
 </div>

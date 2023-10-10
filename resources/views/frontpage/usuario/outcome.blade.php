@@ -113,7 +113,7 @@
                                 </p>
                             </div>
                             <div class="foot">
-                                <a href="/learn/certificade/{{$curso->id}}" class="btn__link">Download certificate</a>
+                                <a href="/learn/certificade/{{$curso->id}}/{{$user_course->id}}" class="btn__link">Download certificate</a>
                             </div>
                         @endif
                         @if($resultado=="2")
