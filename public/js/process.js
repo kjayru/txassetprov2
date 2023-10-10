@@ -898,6 +898,7 @@ $(".btn__question__exam").on('click',function(e){
     type:'POST',
     dataType:'json',
     data:sendata,
+    async:false,
     success:function(response){
       var htm='';
       $.each(response,function(i,e){
