@@ -16,7 +16,7 @@ use Carbon\Carbon;
         .contenedor{
     width:100%;
     height:1000px;
-    background:url('{{env('APP_URL')}}/images/Certificado-generico-01.png') no-repeat center center;
+    background:url('{{env('APP_URL')}}/images/Certificado-generico-02.png') no-repeat center center;
     background-size: contain;
 }
 
