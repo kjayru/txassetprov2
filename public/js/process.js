@@ -936,14 +936,14 @@ $(".btn__question__exam").on('click',function(e){
   })
 })
 
-$(window).on('load',function(){
-  let activa = $("#activamodal").val();
+// $(window).on('load',function(){
+//   let activa = $("#activamodal").val();
 
-  if(activa == 1){
-    $(".texto__error").html("You must pass the quiz with 75% to continue");
-    $("#errorModal").modal('show');
-  }
-})
+//   if(activa == 1){
+//     $(".texto__error").html("You must pass the quiz with 75% to continue");
+//     $("#errorModal").modal('show');
+//   }
+// })
 
 
 $(".btn__restart__course").on('click',function(e){
@@ -962,7 +962,10 @@ $(".btn__restart__course").on('click',function(e){
             debugger
             if(response.rpta=='error'){
 
-                    alert(response.mensaje);
+                    //alert(response.mensaje);
+
+                    $(".texto__error").html(response.mensaje);
+                     $("#errorModal").modal('show');
             }else{
 
             window.location.href= '/user/my-courses';
