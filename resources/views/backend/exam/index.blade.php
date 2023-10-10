@@ -55,7 +55,7 @@
                     <tr>
                         <th></th>
                         <th>Title</th>
-                       
+
                         <th>Options</th>
                         <th>Date</th>
                         <th></th>
@@ -67,7 +67,7 @@
                             <tr>
                                 <th>{{$key + 1}}</th>
                                 <td>{{$exam->title}}</td>
-                                
+
                                 <td><a href="/admin/exams/options/{{$exam->id}}" class="btn btn-xs btn-success">Options exam</a></td>
                                 <td>{{$exam->created_at}}</td>
                                 <td width="8%">
@@ -101,7 +101,7 @@
             <div class="modal-dialog">
                 <div class="modal-content bg-danger">
 
-                    <form class="delete-objeto" action="/admin/chapterequiz/delete" method="POST">
+                    <form class="delete-objeto" action="/admin/exams/delete" method="POST">
                         @csrf
 
                         <div class="modal-header">
