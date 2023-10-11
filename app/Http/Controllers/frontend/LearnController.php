@@ -352,10 +352,6 @@ class LearnController extends Controller
             $registro->save();
         }
 
-
-
-
-
         if( Chaptercontent::where('chapter_id','>',$chapter->id)->orderBy('id')->count()>0){
             $sig = Chaptercontent::where('chapter_id','>',$chapter->id)->orderBy('id')->first();
             if($sig->chapter->course->slug == $slug){
@@ -549,6 +545,7 @@ class LearnController extends Controller
         $reinicios = $comprobar->reiniciado;
 
        $tiempo_examen =  UserCourse::tiempoExamen($tomo_examen->tiempo);
+
 
     }
 

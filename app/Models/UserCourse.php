@@ -214,9 +214,40 @@ class UserCourse extends Model
     }
 
     public static function tiempoExamen($tiempo){
-        $valor =  Carbon::parse($tiempo)->floatDiffInMinutes('02:00');
+
+
+        $hora =  Carbon::parse($tiempo)->floatDiffInHours('02:00');
+        $minuto =  Carbon::parse($tiempo)->floatDiffInMinutes('02:00');
+        $dt = explode(":",$tiempo);
+
+
+        $nhora = 0;
+        $nminuto = 0;
+        $nsegundo = 0;
+
+        //dd($tiempo.": ".$hora." - ".$minuto." - ".$segundos);
+
+            $nhora = $dt[0]-1;
+            if($nhora <0){
+                $nhora = 0;
+            }
+
+
+            $nminuto = 60 - $dt[1];
+            if($nminuto <10){
+                $nminuto = "0".$nminuto;
+                if($nminuto <0){
+                    $nminuto = 0;
+                }
+            }
+
+
+        $nsegundo = 60 - $dt[2];
+
+        $valor = $nhora.":".$nminuto.":".$nsegundo;
 
         return $valor;
+
     }
 
     public static function procesoCaducado($id){

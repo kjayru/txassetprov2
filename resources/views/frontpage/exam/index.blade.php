@@ -56,7 +56,7 @@
 					<div class="quiz__resultado">
 						<div class="quiz__resultado__titulo">Result</div>
 						<div class="quiz__resultado__sub">{{$total_correctas}} of {{$total_preguntas}} questions answered correctly</div>
-						<div class="quiz__resultado__time">Your time: {{intval($tiempo_examen)}} min.</div>
+						<div class="quiz__resultado__time">Your time: {{$tiempo_examen}}</div>
 						<div class="quiz__resultado__puntaje">
 							You have reached {{$total_correctas}} or {{$total_preguntas}} point(s). ({{$porcentaje}}%)
 						</div>
