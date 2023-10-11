@@ -460,7 +460,7 @@ $(".btn__examen").on('click',function(e){
 //   var hora = 1;
 
 var segundo=60;
-var minuto=3;
+var minuto=1;
 var hora = 0;
 
   var contador = 0;
