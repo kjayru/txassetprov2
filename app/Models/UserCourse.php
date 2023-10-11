@@ -241,8 +241,12 @@ class UserCourse extends Model
                 }
             }
 
+            if($nminuto == 60){
+                $nminuto = 0;
+            }
 
         $nsegundo = 60 - $dt[2];
+
 
         $valor = $nhora.":".$nminuto.":".$nsegundo;
 
