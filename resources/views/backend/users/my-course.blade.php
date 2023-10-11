@@ -51,35 +51,37 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>Name</th>
-                        <th>Birthday</th>
-                        <th>SSN</th>
-                        <th>License</th>
-                        <th>Zip code</th>
-                        <th>Courses</th>
-                        <th>Date</th>
+                        <th>Course</th>
+                        <th>Initial date</th>
+                        <th>Finish date</th>
+                        <th>Result</th>
+                        <th>Certificated</th>
 
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                        @if(count($users)>0)
-                        @foreach($users->sortByDesc('id') as $k => $user)
+                        @if(isset($cursos))
+                        @foreach($cursos as $k => $course)
                         <tr>
                             <td>{{ $k+1 }}</td>
-                            <td>{{ $user->name}} {{ @$user->profile->lastname }} {{ @$user->profile->middlename }}</td>
-                            <td>{{ @$user->profile->birthday  }}</td>
-                            <td>{{ @$user->profile->ssn }}</td>
-                            <td>{{ @$user->profile->drivernumber }}</td>
-                            <td>{{ @$user->profile->zipcode }}</td>
-                            <td><a href="/admin/users/courses/{{$user->id}}" class="btn btn-xs btn-warning btn__cursos">Courses</a></td>
-                            <td>{{@$user->profile->created_at}}</td>
+                            <td>{{ $course->course->titulo}} </td>
+                            <td>{{ @$course->created_at  }}</td>
+
+                            <td>{{@$course->updated_at}}</td>
                             <td>
-                                <a href="/admin/users/{{$user->id}}/edit" class="btn btn-sm btn-warning legitRipple" data-tooltip="Edit" data-delay="500" data-hasqtip="0" aria-describedby="qtip-0">
-                                    <i class="fas fa-pencil-alt"></i></a>
-
-                                <a href="#" data-id="{{ $user->id }}" data-toggle="modal" data-target="#delobjeto" class="btn btn-sm btn-danger btn-object-delete"><i class="far fa-trash-alt"></i></a>
-
+                                @if($course->aprobado==1 && $course->caducado==0)
+                                    Approved
+                                @elseif($course->caducado==1 && $course->aprobado==0)
+                                    Expired
+                                @else
+                                    Failed
+                                @endif
+                            </td>
+                            <td>
+                                @if($course->aprobado==1 && $course->caducado==0)
+                                <a href="/admin/users/courses/certified/{{$course->course->id}}/{{$course->id}}/{{$user_id}}" target="_blank" class="btn btn-primary">View</a>
+                                @endif
                             </td>
                             </td>
                         </tr>

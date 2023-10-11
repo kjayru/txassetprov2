@@ -7,8 +7,11 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
-
+use App\Models\UserCourse;
 use App\Models\Profile;
+use App\Models\Course;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class UserController extends Controller
 {
@@ -121,7 +124,34 @@ class UserController extends Controller
      public function myCourses($id){
          $cursos = UserCourse::where('user_id',$id)->get();
 
-         dd($cursos);
+
+         return view('backend.users.my-course',['cursos'=>$cursos,'user_id'=>$id]);
      }
+
+
+     public function certificado($id,$user_course_id,$user_id){
+        $curso = Course::find($id);
+
+        $user = User::find($user_id);
+        $user_course = UserCourse::find($user_course_id);
+
+
+
+
+    $pdf = PDF::loadView('pdf.index', ['curso'=>$curso, 'user'=>$user,'user_course'=>$user_course ])->setOptions([
+        'isHtml5ParserEnabled' => true,
+        'isRemoteEnabled' => true,
+        'dpi' =>137,
+
+    ]);
+
+    $pdf->setPaper('a4', 'landscape')->render();
+
+    return $pdf->stream();
+   // return $pdf->setPaper('a4', 'landscape')->dpi()stream('certificate'.uniqid().'.pdf');
+    //$output =  $pdf->output('employment.pdf');
+
+       // return view('pdf.index',['curso'=>$curso,'user'=>$user]);
+    }
 
 }

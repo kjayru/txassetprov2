@@ -42,7 +42,7 @@ use Carbon\Carbon;
 <div class="contenedor">
     <div class="contenido">
         <div class="certi_nombre">
-            {{$user->profile->firstname}} {{$user->profile->lastname}}
+            {{@$user->profile->firstname}} {{@$user->profile->lastname}}
         </div>
         <div class="date_complete">
             {{$user_course->updated_at->format('Y-m-d')}}
