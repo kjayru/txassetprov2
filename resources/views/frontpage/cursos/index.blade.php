@@ -5,17 +5,17 @@
           <div id="banner">
 
 
-            
+
             <div class="container-fluid">
-             
+
               <div class="row justify-content-end menu__carrito mb-0 pb-0">
-                
-               
+
+
                 @include('layouts.backend.partials.menucurso')
               </div>
 
 
-               
+
                 <div class="row">
 
                   <div class="banner__home d-flex align-items-center">
@@ -32,7 +32,7 @@
               </div>
 
 
-             
+
             </div>
           </div>
           <div class="cursos__titulo">
@@ -45,7 +45,7 @@
               </div>
             </div>
           </div>
-  
+
           <div class="video">
             <div class="container">
               <div class="row justify-content-center">
@@ -57,23 +57,23 @@
               </div>
             </div>
           </div>
-  
+
           <div class="beneficios">
             <div class="beneficios__titulo">
               <div class="container">
                 <div class="row justify-content-center">
-                 
+
                   <div class="col-md-9 text-center">
                     <h2>Benefits of online classes</h2>
                   </div>
-               
+
                 </div>
               </div>
             </div>
             <div class="beneficios__contenido">
               <div class="container">
                 <div class="row justify-content-center">
-                    
+
                     <div class="col-md-3">
                       <div class="card">
                         <div class="card-container">
@@ -82,7 +82,7 @@
                         </div>
                       </div>
                     </div>
-  
+
                     <div class="col-md-3">
                       <div class="card">
                         <div class="card-container">
@@ -91,7 +91,7 @@
                         </div>
                       </div>
                     </div>
-  
+
                     <div class="col-md-3">
                       <div class="card">
                         <div class="card-container">
@@ -100,7 +100,7 @@
                         </div>
                       </div>
                     </div>
-  
+
                     <div class="col-md-3">
                       <div class="card">
                         <div class="card-container">
@@ -109,8 +109,8 @@
                         </div>
                       </div>
                     </div>
-  
-  
+
+
                 </div>
               </div>
             </div>
@@ -124,11 +124,13 @@
                       </div>
             </div>
           </div>
-  
+
           <div class="learn">
             <div class="learn__bloque">
                       <div class="container-fluid">
+                        @desktop
                                 <div class="row">
+
                                           <div class="col-md-6 col-sm-6 col-lg-6 col-12">
                                                     <div class="learn__titulo">Learn without limits</div>
                                                     <div class="learn__texto">
@@ -138,13 +140,33 @@
                                           </div>
 
                                           <div class="col-md-6 col-sm-6 col-lg-6 col-12">
-                                            {{-- <img src="/images/banner-training-sinfondo.png" class="learn__image img-fluid"> --}}
+
                                           </div>
                                 </div>
+                        @enddesktop
+                        @mobile
+
+                        <div class="row">
+
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-12">
+                                      <div class="learn__titulo">Learn without limits</div>
+                                      <div class="learn__texto">
+                                      Improve your personal development skills with our training
+                                      </div>
+                                      <a href="/courses/all" class="btn__cursos color__azul learn__link">Go to courses</a>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-12">
+                             <img src="/images/banner-training-sinfondo.png" class="img-fluid">
+                            </div>
+                  </div>
+
+
+                        @endmobile
                       </div>
             </div>
           </div>
-  
+
           <div class="work">
             <div class="container">
                       <div class="row">
@@ -158,15 +180,15 @@
 
                                                     @mobile
                                                     <img src="/images/como-funciona-mobile.png" class="img-fluid">
-                                                   @endmobile 
+                                                   @endmobile
                                           </div>
                                 </div>
                       </div>
             </div>
           </div>
-  
+
         </div>
-  
+
         <div class="satisfaccion">
             <div class="container">
                                 <div class="row">
@@ -179,7 +201,7 @@
                       </div>
             </div>
         <div class="garantia">
-           
+
             <div class="container garantia__grilla">
                       <div class="row">
                                 <div class=" col-md-12">
@@ -188,12 +210,12 @@
                                           </div>
                                 </div>
                       </div>
-            
+
                       <div class="row">
 
                         @foreach ($cursos as $row)
-                          
-                       
+
+
                                 <div class="col-md-4">
                                           <div class="garantia__card">
                                                     <div class="garantia__card__imagen">
@@ -245,10 +267,10 @@
                                                               <a href="#" class="post__link">$150 USD</a>
                                                     </div>
                                           </div>
-                                
+
                                 </div> --}}
                       </div>
-  
+
                       <div class="row justify-content-center">
                                 <div class="col-md-5">
                                           <a href="/courses/all" class="btn__cursos fondo__rojo efecto__boton garantia__link">Explore all courses</a>

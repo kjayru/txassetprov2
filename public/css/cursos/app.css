@@ -13510,3 +13510,152 @@ progress {
     position: relative;
   }
 }
+@media (max-width: 780px) {
+  .cursos header .lista__redes {
+    display: none;
+  }
+  .cursos header .navbar .custom-toggler {
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+  }
+  .cursos header .navbar .btnquote {
+    color: #e01f26;
+    text-transform: uppercase;
+    width: 55px;
+    text-align: center;
+  }
+  .cursos #contenido #banner {
+    height: 300px;
+  }
+  .cursos #contenido #banner .menu__carrito {
+    position: absolute;
+    right: 0;
+  }
+  .cursos #contenido #banner .menu__carrito .cart ul {
+    background: #e01f26;
+    list-style: none;
+    display: inline-block;
+    text-align: center;
+    padding-left: 14px;
+    padding-top: 1rem;
+    padding-right: 0;
+    padding-bottom: 1rem;
+  }
+  .cursos #contenido #banner .menu__carrito .cart ul li {
+    display: block;
+    padding-bottom: 13px;
+    padding-right: 1rem;
+  }
+  .cursos #contenido #banner .banner__home {
+    height: 262px;
+    padding-left: 1.5rem;
+  }
+  .cursos #contenido #banner .banner__home .col-md-2 {
+    display: none;
+  }
+  .cursos #contenido #banner .banner__home p {
+    font-size: 3rem;
+    line-height: 47px;
+  }
+  .cursos #contenido .cursos__titulo h2, .cursos #contenido .cursos__titulo .h2 {
+    font-size: 3rem;
+  }
+  .cursos #contenido .cursos__titulo p {
+    font-size: 1.25rem;
+  }
+  .cursos #contenido .beneficios__titulo h2, .cursos #contenido .beneficios__titulo .h2 {
+    font-size: 3.5rem;
+    padding-top: 6rem;
+    line-height: 47px;
+  }
+  .cursos #contenido .learn {
+    margin-bottom: 9rem;
+  }
+  .cursos #contenido .learn__bloque {
+    background: none;
+  }
+  .cursos #contenido .learn__bloque .learn__titulo {
+    padding-left: 2rem;
+    line-height: 3.5rem;
+    padding-right: 4rem;
+    font-size: 3rem;
+  }
+  .cursos #contenido .learn__bloque .learn__titulo:before {
+    content: "";
+    background: url(/images/Emblema-blanco.png) no-repeat 0px 0px;
+    background-size: cover;
+    height: 46px;
+    width: 118px;
+    position: absolute;
+    top: -30px;
+    left: 1rem;
+  }
+  .cursos #contenido .learn__bloque .learn__titulo:after {
+    content: "";
+    background: #fff;
+    width: 82%;
+    height: 1px;
+    position: absolute;
+    left: 2rem;
+    bottom: -0.2em;
+  }
+  .cursos #contenido .learn__bloque .learn__texto {
+    font-size: 1.25rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    line-height: 2rem;
+  }
+  .cursos #contenido .learn__bloque .learn__link {
+    display: block;
+    margin: 2rem 1rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    text-decoration: none;
+    text-align: center;
+  }
+  .cursos .satisfaccion__titulo {
+    font-size: 2rem;
+    padding-left: 1rem;
+    margin-top: 6rem;
+  }
+  .cursos .satisfaccion__titulo:after {
+    content: "";
+    background: url(/images/logo-garantia.svg) no-repeat center center;
+    width: 140px;
+    height: 135px;
+    position: absolute;
+    left: -70px;
+    background-size: contain;
+    top: -140px;
+    margin-left: 50%;
+  }
+  .cursos .satisfaccion__subtitulo {
+    font-size: 1.2rem;
+  }
+  .cursos .work__titulo {
+    font-size: 3.5rem;
+    line-height: 53px;
+  }
+  .cursos .work__subtitulo {
+    font-size: 1.6rem;
+    padding-bottom: 4rem;
+  }
+  .cursos .garantia__grilla {
+    padding: 2rem;
+  }
+  .cursos .garantia__grilla__titulo h2, .cursos .garantia__grilla__titulo .h2 {
+    font-size: 3.5rem;
+  }
+  .cursos .garantia__card {
+    position: relative;
+    padding-left: 0;
+    margin-bottom: 5rem;
+  }
+  .cursos .garantia__card:before {
+    content: "";
+    background-color: transparent;
+  }
+}

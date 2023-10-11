@@ -2952,5 +2952,186 @@ progress{
     }
 }
 @media(max-width:780px){
+    .cursos{
+        header {
+            .lista__redes{
+                display: none;
+            }
+            .navbar{
+                .custom-toggler{
+                    cursor: pointer;
+                    background: transparent;
+                    border: 0;
+                }
+                .btnquote{
+                    color:$rojo;
+                    text-transform: uppercase;
+                    width: 55px;
+                    text-align: center;
+                }
+            }
+        }
 
+        #contenido{
+
+            #banner{
+                height:300px;
+                .menu__carrito{
+                    position: absolute;
+                    right: 0;
+                    .cart{
+                        ul {
+                            background: #e01f26;
+                            list-style: none;
+                            display: inline-block;
+                            text-align: center;
+                            padding-left: 14px;
+                            padding-top: 1rem;
+                            padding-right: 0;
+                            padding-bottom: 1rem;
+                            li{
+                                display: block;
+                                padding-bottom: 13px;
+                                padding-right: 1rem;
+                            }
+                        }
+                    }
+                }
+                .banner__home{
+                    height: 262px;
+                    padding-left: 1.5rem;
+                    .col-md-2{
+                        display: none;
+                    }
+                    p{
+                        font-size:3rem;
+                        line-height: 47px;
+                    }
+                }
+            }
+
+            .cursos__titulo{
+                h2{
+                    font-size:3rem;
+                }
+                p{
+                    font-size:1.25rem;
+                }
+            }
+            .beneficios{
+                &__titulo{
+
+
+                    h2{
+                        font-size: 3.5rem;
+                        padding-top: 6rem;
+                        line-height: 47px;
+                    }
+                }
+            }
+            .learn{
+                margin-bottom: 9rem;
+                &__bloque{
+                    background: none;
+                    .learn__titulo{
+                        padding-left: 2rem;
+                        line-height: 3.5rem;
+                        padding-right: 4rem;
+                        font-size:3rem;
+                        &:before {
+                            content: "";
+                            background: url(/images/Emblema-blanco.png) no-repeat 0px 0px;
+                            background-size: cover;
+                            height: 46px;
+                            width: 118px;
+                            position: absolute;
+                            top: -30px;
+                            left: 1rem;
+                        }
+                        &:after {
+                            content: "";
+                            background: #fff;
+                            width: 82%;
+                            height: 1px;
+                            position: absolute;
+                            left: 2rem;
+                            bottom: -0.2em;
+                        }
+                    }
+                    .learn__texto{
+                        font-size:1.25rem;
+                        padding-left: 2rem;
+                        padding-right: 1rem;
+                        line-height: 2rem;
+                    }
+                    .learn__link{
+
+                            display: block;
+                            margin: 2rem 1rem;
+                            padding-top: 0.7rem;
+                            padding-bottom: 0.7rem;
+                            padding-left: 5rem;
+                            padding-right: 5rem;
+                            text-decoration: none;
+                            text-align: center;
+
+                    }
+                }
+            }
+
+
+        }
+        .satisfaccion{
+            &__titulo{
+                font-size:2rem;
+                padding-left:1rem;
+                margin-top:6rem;
+                &:after {
+                    content: "";
+                    background: url(/images/logo-garantia.svg) no-repeat center center;
+                    width: 140px;
+                    height: 135px;
+                    position: absolute;
+                    left: -70px;
+                    background-size: contain;
+                    top: -140px;
+                    margin-left: 50%;
+                }
+            }
+            &__subtitulo{
+                font-size:1.2rem;
+            }
+        }
+        .work{
+            &__titulo{
+                font-size: 3.5rem;
+                line-height: 53px;
+            }
+            &__subtitulo{
+
+                font-size: 1.6rem;
+                padding-bottom: 4rem;
+            }
+        }
+        .garantia{
+            &__grilla{
+                padding: 2rem;
+                &__titulo{
+                    h2{
+                        font-size:3.5rem;
+                    }
+                }
+            }
+
+            &__card {
+                position: relative;
+                padding-left: 0;
+                margin-bottom: 5rem;
+                &:before{
+                    content:"";
+                    background-color: transparent;
+                }
+            }
+        }
+    }
 }
