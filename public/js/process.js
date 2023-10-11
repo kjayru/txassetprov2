@@ -519,7 +519,7 @@ var hora = 0;
        }
 
 
-       if(hora==0 && minuto == 0 &&  segundo==1){
+       if(hora==0 && minuto == 0 &&  segundo==0){
 
 
           clearInterval(refreshIntervalId);
