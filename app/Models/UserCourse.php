@@ -224,7 +224,7 @@ class UserCourse extends Model
         $nhora = 0;
         $nminuto = 0;
         $nsegundo = 0;
-
+        $valor = 0;
         //dd($tiempo.": ".$hora." - ".$minuto." - ".$segundos);
 
             $nhora = $dt[0]-1;
@@ -249,9 +249,11 @@ class UserCourse extends Model
 
         if($nhora==0 && $nminuto==0 && $dt[2]>57){
             $valor = "0:02:00";
+        }else{
+            $valor = $nhora.":".$nminuto.":".$nsegundo;
         }
 
-        $valor = $nhora.":".$nminuto.":".$nsegundo;
+
 
         return $valor;
 
