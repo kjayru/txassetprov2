@@ -455,13 +455,13 @@ $(".btn__examen").on('click',function(e){
   const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
   const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
 
-//   var segundo=60;
-//   var minuto=59;
-//   var hora = 1;
+  var segundo=60;
+  var minuto=59;
+  var hora = 1;
 
-var segundo=60;
-var minuto=1;
-var hora = 0;
+// var segundo=60;
+// var minuto=1;
+// var hora = 0;
 
   var contador = 0;
   var porcentaje=0;
@@ -519,7 +519,7 @@ var hora = 0;
        }
 
 
-       if(hora==0 && minuto == 0 &&  segundo==0){
+       if(hora==0 && minuto == 0 &&  segundo==1){
 
 
           clearInterval(refreshIntervalId);

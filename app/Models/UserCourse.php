@@ -248,7 +248,7 @@ class UserCourse extends Model
         $nsegundo = 60 - $dt[2];
 
         if($nhora==0 && $nminuto==0 && $nsegundo>57){
-            $valor = "0:02:00";
+            $valor = "2:00:00";
         }else{
             $valor = $nhora.":".$nminuto.":".$nsegundo;
         }
