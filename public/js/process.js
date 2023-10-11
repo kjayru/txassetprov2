@@ -455,9 +455,14 @@ $(".btn__examen").on('click',function(e){
   const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
   const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
 
-  var segundo=60;
-  var minuto=59;
-  var hora = 1;
+//   var segundo=60;
+//   var minuto=59;
+//   var hora = 1;
+
+var segundo=60;
+var minuto=3;
+var hora = 0;
+
   var contador = 0;
   var porcentaje=0;
   var total = 7200;

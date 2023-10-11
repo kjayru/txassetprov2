@@ -117,4 +117,11 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+     public function myCourses($id){
+         $cursos = UserCourse::where('user_id',$id)->get();
+
+         dd($cursos);
+     }
+
 }

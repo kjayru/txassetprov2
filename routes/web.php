@@ -50,6 +50,7 @@ Route::group(['prefix' => 'admin'],function(){
     //users
 
     Route::get('users',[UserController::class,'index'])->name('adminuser.index');
+    Route::get('users/courses/{$id}',[UserController::class,'myCourses'])->name('adminuser.courses');
     Route::get('users/{user}/edit',[UserController::class,'edit'])->name('adminuser.edit');
     Route::put('users/{user}',[UserController::class,'update'])->name('adminuser.update');
     Route::get('users/{user}',[UserController::class,'show'])->name('adminuser.show');
