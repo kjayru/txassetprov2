@@ -104,7 +104,7 @@ class UserController extends Controller
         $user->save();
 
 
-        return redirect()->route('user.index',['id' => $profile->id ])
+        return redirect()->route('adminuser.index',['id' => $profile->id ])
         ->with('info',' User data updated');
     }
 
