@@ -38,7 +38,7 @@
 <div class="todocursos">
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-md-8">
+		<div class="col-md-8 order-2 order-sm-1 canva">
 			<div class="todocursos__card">
 				<div class="todocursos__card__header">
 					Course outcome
@@ -174,7 +174,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 order-1 order-sm-2">
 			<ul class="nav__usuario">
 				<li class="nav__usuario__list">
 					<a href="/user" class="nav__usuario__list__item">My profile</a>
