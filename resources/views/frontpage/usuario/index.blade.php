@@ -10,19 +10,19 @@
 						<li><a class="breadcrum__link ">My profile</a></li>
 					</ul>
 				</div>
-                
+
 			</div>
-            @include('layouts.backend.partials.menucurso')   
+            @include('layouts.backend.partials.menucurso')
 		</div>
 	</div>
-   
+
 </div>
 
 <!--contenido-->
 <div class="todocursos">
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-md-8">
+		<div class="col-md-8 col-12 order-2 order-sm-1 canva">
 			<div class="todocursos__card">
 				<div class="todocursos__card__header">
 					Account
@@ -64,7 +64,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 col-12 order-1 order-sm-2">
 			<ul class="nav__usuario">
 				<li class="nav__usuario__list">
 					<a href="/user" class="nav__usuario__list__item active">My profile</a>

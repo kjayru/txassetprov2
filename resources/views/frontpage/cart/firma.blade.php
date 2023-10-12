@@ -138,11 +138,21 @@
 							</div>
 						</div>
 					</div>
-					<div class="row justify-content-end">
+                    @desktop
+                    <div class="row justify-content-end ">
 						<div class="col-md-3 text-right">
 							<a href="#" class="color__rojo btn__form__sign">Agree & Sign</a>
 						</div>
+                    </div>
+                    @enddesktop
+                    @mobile
+                     <div class="row justify-content-start ">
+						<div class="col-6 text-left">
+							<a href="#" class="color__rojo btn__form__sign">Agree & Sign</a>
+						</div>
 					</div>
+                    @endmobile
+
               	</div>
 			</form>
         </div>

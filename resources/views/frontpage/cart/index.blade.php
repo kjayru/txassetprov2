@@ -6,14 +6,14 @@
     <div class="row justify-content-between mb-0 pb-0">
       <div class="col-md-4">
           <div class="breadcrum">
-              
+
           </div>
       </div>
 
      @include('layouts.backend.partials.menucurso')
     </div>
   </div>
- 
+
 </div>
 
 <div class="container">
@@ -22,7 +22,7 @@
                               <div class="cart__bread">
                                         <div class="row justify-content-between">
                                                   <div class="col-md-5"><div class="cart__bread__titulo"> Cart ({{@$cart->cantidad}} course)</div></div>
-                                                  <div class="col-md-3 text-right"><a href="/courses/all" class="cart__bread__link">Continue shopping</a></div>
+                                                  <div class="col-md-3 text-right cart__bread__boton"><a href="/courses/all" class="cart__bread__link">Continue shopping</a></div>
                                         </div>
                               </div>
 
@@ -35,17 +35,20 @@
                                                   </div>
                                         </div>
                                       <div class="cart__body__grilla">
-                                         
+
                                         @if($cart!=null)
                                               @foreach($cart->items as $item)
-                                            
+
                                                   <div class="row justify-content-between cart__body__grilla__item">
-                                                      <div class="col-md-7 sinpadding__left">            
+                                                    <a href="#" data-id="{{$item['id']}}" class="cart__body__grilla__delete d-block d-sm-none"><i class="fa fa-times" aria-hidden="true"></i></a>
+
+
+                                                      <div class="col-md-7 col-12 sinpadding__left">
                                                             <div class="row">
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-3 col-4">
                                                                     <img src="/storage/{{$item['curso']->banner}}" class="img-fluid">
                                                                 </div>
-                                                                <div class="col-md-7">
+                                                                <div class="col-md-7 col-8">
                                                                     <div class="cart__body__grilla__titulo">
                                                                       {{$item['curso']->titulo}}
                                                                     </div>
@@ -53,13 +56,15 @@
                                                                       {{$item['curso']->subtitulo}}
                                                                     </div>
                                                                 </div>
-                                                            </div>            
+                                                            </div>
                                                       </div>
-                                                           
+
                                                       <div class="col-md-2 text-right">
                                                           <div class="cart__body__grilla__precio"> ${{$item['precio']}} <span>USD</span> </div>
-                                                          <a href="#" data-id="{{$item['id']}}" class="cart__body__grilla__delete"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                      </div>      
+
+                                                          <a href="#" data-id="{{$item['id']}}" class="cart__body__grilla__delete d-none d-sm-block"><i class="fa fa-times" aria-hidden="true"></i></a>
+
+                                                      </div>
                                                   </div>
 
                                               @endforeach
@@ -68,7 +73,7 @@
                                       </div>
                                       <div class="cart__body__foot">
                                           <div class="row justify-content-end">
-                                              <div class="col-md-4 text-right">
+                                              <div class="col-md-4 col-12 text-right">
                                                   <div class="cart__body__foot__total">Total ${{@$cart->total}} USD</div>
                                                   <a href="/cart/sign" class="cart__body__foot__link" data-id="{{@$item['id']}}" data-user="{{@$user_id}}">Proceed to checkout</a>
                                               </div>
@@ -87,8 +92,8 @@
                                                                                                     <button class="cart__body__cupon__form__boton btn">Apply</button>
                                                                                           </div>
                                                                                 </div>
-                                                                               
-                                                                                
+
+
                                                                       </div>
                                                             </div>
                                                   </div>
@@ -103,7 +108,7 @@
           </div>
         </div>
 
-      
+
 
 
 
