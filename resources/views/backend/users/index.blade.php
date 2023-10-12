@@ -72,6 +72,7 @@
                             <td>{{ @$user->profile->drivernumber }}</td>
                             <td>{{ @$user->profile->zipcode }}</td>
                             <td><a href="/admin/users/courses/{{$user->id}}" class="btn btn-xs btn-warning btn__cursos">Courses</a></td>
+                            <td><a href="/admin/users/enroll/{{$user->id}}" class="btn btn-xs btn-warning btn__cursos">Enrollment</a></td>
                             <td>{{@$user->profile->created_at}}</td>
                             <td>
                                 <a href="/admin/users/{{$user->id}}/edit" class="btn btn-sm btn-warning legitRipple" data-tooltip="Edit" data-delay="500" data-hasqtip="0" aria-describedby="qtip-0">

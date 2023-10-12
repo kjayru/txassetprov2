@@ -11,6 +11,8 @@ use App\Models\UserCourse;
 use App\Models\Profile;
 use App\Models\Course;
 use Carbon\Carbon;
+use App\Models\UserSign;
+
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class UserController extends Controller
@@ -152,6 +154,13 @@ class UserController extends Controller
     //$output =  $pdf->output('employment.pdf');
 
        // return view('pdf.index',['curso'=>$curso,'user'=>$user]);
+    }
+
+    public function enroll($id){
+
+        $user = UserSign::where('user_id',$id)->first();
+
+        return view('backend.users.sign',['user'=>$user]);
     }
 
 }

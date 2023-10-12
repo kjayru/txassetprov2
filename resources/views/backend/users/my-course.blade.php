@@ -51,6 +51,7 @@
                     <thead>
                     <tr>
                         <th></th>
+                        <th></th>
                         <th>Course</th>
                         <th>Initial date</th>
                         <th>Finish date</th>
@@ -65,16 +66,28 @@
                         @foreach($cursos as $k => $course)
                         <tr>
                             <td>{{ $k+1 }}</td>
+                            <td>{{$course->id}}</td>
                             <td>{{ $course->course->titulo}} </td>
                             <td>{{ @$course->created_at  }}</td>
 
-                            <td>{{@$course->updated_at}}</td>
+                            <td>
+
+
+
+                                @if($course->aprobado==1 && $course->caducado==0)
+                                {{@$course->updated_at}}
+                            @elseif($course->caducado==1 && $course->aprobado==0)
+                            {{@$course->updated_at}}
+                            @elseif($course->reiniciado==1 && $course->parent_id!=null && $course->aprobado==0)
+                            {{@$course->updated_at}}
+                            @endif
+                            </td>
                             <td>
                                 @if($course->aprobado==1 && $course->caducado==0)
                                     Approved
                                 @elseif($course->caducado==1 && $course->aprobado==0)
                                     Expired
-                                @else
+                                @elseif($course->reiniciado==1 && $course->parent_id!=null && $course->aprobado==0)
                                     Failed
                                 @endif
                             </td>
