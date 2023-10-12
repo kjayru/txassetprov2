@@ -13809,4 +13809,34 @@ progress {
     margin-top: 2rem;
     margin-bottom: 3rem;
   }
+  .todocursos__card__body {
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+  }
+  .todocursos__card__body_table tbody tr td.titulo {
+    width: 40%;
+  }
+  .todocursos__card__body_table tbody tr td:last-child {
+    text-align: right;
+  }
+  .todocursos__card__body .card__footer {
+    padding-right: 1rem;
+    margin-top: 5rem;
+  }
+  .todocursos__card__body__item__timeline .line {
+    width: 100%;
+  }
+  .todocursos__card__body__item__estado {
+    flex-direction: column;
+  }
+  .todocursos__card__body__item__estado .item__link {
+    display: inline;
+    width: 40%;
+    padding-bottom: 1.5rem;
+  }
+  .todocursos__card__body__item__estado .item__mensaje__time {
+    width: 86%;
+    padding-bottom: 0.5rem;
+  }
 }

@@ -27,7 +27,7 @@
 <div class="todocursos">
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-md-8">
+		<div class="col-md-8 col-12 order-2 order-sm-1 canva">
 			<div class="todocursos__card">
 				<div class="todocursos__card__header">
 					All my courses
@@ -92,41 +92,7 @@
                                     <a href="/learn/{{$curso->id}}/{{$curso->course->slug}}" class="item__link">  Go to course</a>
                                     <div class="item__mensaje__time">You have {{UserCourse::dayleft($curso->id)}} days left to finish the course</div>
                                     @endif
-{{--
-									@switch($curso->aprobado)
-										@case(0)
-										<div class="item__mensaje__time">You have {{UserCourse::dayleft($curso->id)}} days left to finish the course</div>
-										@break
-										@case(1)
-										<div class="course__aprobado">
-											Approved
-										</div>
-										@break
-										@case(2)
-										<div class="course__desaprobado">
-											Failed
-										</div>
-										@break
-										@case(3)
-										<div class="course__desaprobado">
-											Expired
-											<div class="item__mensaje__time">You Have 0 days left to finish the course </div>
-										</div>
-										@break
 
-									@endswitch --}}
-
-
-                                    {{-- @if($curso->aprobado==0 && $curso->intentos==1)
-                                        <div class="course__desaprobado">
-                                            Failed
-                                        </div>
-                                    @endif
-                                    @if($curso->aprobado==1)
-                                        <div class="course__aprobado">
-                                            Approved
-                                        </div>
-                                    @endif --}}
 
 								</div>
 
@@ -134,64 +100,11 @@
 						</div>
 					</div>
 					@endforeach
-					<!--<div class="todocursos__card__body__item">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="todocursos__card__body__item__imagen">
-									<img src="/images/curso1.png" class="img-fluid">
-								</div>
-							</div>
-							<div class="col-md-8">
-								<div class="todocursos__card__body__item__titulo">
-									OC Pepper
-								</div>
-								<div class="todocursos__card__body__item__subtitulo">
-									A course with
-								</div>
-								<div class="todocursos__card__body__item__timeline">
-									<div class="line"></div>
-									<span class="status">3 complemete chapter</span>
-								</div>
-								<div class="todocursos__card__body__item__estado todocursos__card__body__item__only">
-									<div class="item__mensaje__aprobado aprobado">approved</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-
-					<div class="todocursos__card__body__item">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="todocursos__card__body__item__imagen">
-									<img src="/images/curso1.png" class="img-fluid">
-								</div>
-							</div>
-							<div class="col-md-8">
-								<div class="todocursos__card__body__item__titulo">
-									OC Pepper
-								</div>
-								<div class="todocursos__card__body__item__subtitulo">
-									A course with
-								</div>
-								<div class="todocursos__card__body__item__timeline">
-									<div class="line"></div>
-									<span class="status">3 complemete chapter</span>
-								</div>
-								<div class="todocursos__card__body__item__estado todocursos__card__body__item__only">
-									<div class="item__mensaje__failed desaprobado">Failed</div>
-								</div>
-
-							</div>
-						</div>
-					</div>-->
-
 
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 order-1 order-sm-2">
 			<ul class="nav__usuario">
 				<li class="nav__usuario__list">
 					<a href="/user" class="nav__usuario__list__item">My profile</a>
