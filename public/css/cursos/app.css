@@ -13514,16 +13514,175 @@ progress {
   .cursos header .lista__redes {
     display: none;
   }
+  .cursos header .navbar .hide {
+    transform: translateX(-110%);
+    left: 0;
+  }
+  .cursos header .navbar .show-slide {
+    animation: slide-in 0.5s ease-in !important;
+    transform: translateX(0%);
+  }
+  @keyframes slide-in {
+    0% {
+      transform: translateX(-101%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0%);
+      opacity: 1 !important;
+    }
+  }
+  .cursos header .navbar .show-slide-out {
+    animation: slide-out 0.5s ease-out !important;
+    transform: translateX(-110%);
+  }
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-110%);
+      opacity: 1;
+    }
+  }
+  .cursos header .navbar .transparente {
+    background: transparent;
+    border: 0;
+  }
   .cursos header .navbar .custom-toggler {
     cursor: pointer;
     background: transparent;
     border: 0;
+  }
+  .cursos header .navbar .custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(224,31,38, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
   }
   .cursos header .navbar .btnquote {
     color: #e01f26;
     text-transform: uppercase;
     width: 55px;
     text-align: center;
+  }
+  .cursos header .navbar #navpeson {
+    background: #010b40;
+    position: absolute;
+    display: block;
+    width: 98%;
+    top: 0;
+    z-index: 100;
+    padding: 2rem 0 1rem 2rem;
+    left: -12px;
+  }
+  .cursos header .navbar #navpeson .bloquehead {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .cursos header .navbar #navpeson .bloquehead button {
+    display: inline-block;
+    padding: 2px 11px;
+    margin-top: 0;
+    background: none;
+    outline: 0;
+    border: 0;
+    color: #E01F26;
+    font-size: 30px;
+  }
+  .cursos header .navbar #navpeson .bloquehead button span {
+    color: #E01F26;
+    display: block;
+    padding-top: 7px;
+  }
+  .cursos header .navbar #navpeson .navbar-nav {
+    margin-top: 1rem;
+    position: relative;
+  }
+  .cursos header .navbar #navpeson .navbar-nav .nav-item {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .cursos header .navbar #navpeson .navbar-nav .nav-item .nav-link {
+    padding-top: 17px !important;
+    padding-bottom: 17px !important;
+    position: relative;
+  }
+  .cursos header .navbar #navpeson .navbar-nav .nav-item .nav-link:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #E01F26;
+    bottom: 0;
+    left: 0px;
+    opacity: 0.5;
+  }
+  .cursos header .navbar #navpeson .navbar-nav .activo {
+    border: 0;
+    border-radius: 0;
+  }
+  .cursos header .navbar #navpeson .navbar-nav .acuta {
+    display: inline-block;
+    width: 50%;
+    float: left;
+    padding-right: 0 !important;
+    padding-left: 10px !important;
+    margin-bottom: 15px;
+    margin-top: 10px;
+  }
+  .cursos header .navbar #navpeson .navbar-nav .acuta .inclass {
+    padding: 20px 0 !important;
+    border-radius: 43px;
+    border-bottom: 0px !important;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    left: -18px;
+  }
+  .cursos header .navbar #navpeson .navbar-nav .acuta .inclass:before {
+    content: "";
+    height: 0;
+  }
+  .cursos header .navbar #navpeson .navbar-nav .flotante-right {
+    width: 18%;
+    display: block;
+    position: absolute;
+    right: 64px;
+    bottom: -9px;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+  .cursos header .navbar #navpeson .navbar-nav .flotante-right .outclass {
+    line-height: 17px;
+    padding-top: 0px !important;
+    position: relative;
+    top: -9px;
+    padding-left: 0 !important;
+    color: #E01F26;
+  }
+  .cursos header .navbar #navpeson .navbar-nav .flotante-right .outclass:before {
+    content: "";
+    height: 0;
+  }
+  .cursos header .navbar #navpeson .lista__redes {
+    display: flex;
+    position: relative;
+  }
+  .cursos header .navbar #navpeson .lista__redes li a {
+    display: inline-block;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+  }
+  .cursos header .navbar #navpeson .flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+  }
+  .cursos header .navbar #navpeson .space-between {
+    justify-content: space-between;
   }
   .cursos #contenido #banner {
     height: 300px;
@@ -13838,5 +13997,96 @@ progress {
   .todocursos__card__body__item__estado .item__mensaje__time {
     width: 86%;
     padding-bottom: 0.5rem;
+  }
+  .todocursos__card__body__item__titulo {
+    padding-top: 1rem;
+  }
+  .encurso .exam__exito {
+    margin-top: 2rem;
+    padding: 0rem 1rem 1rem 1rem;
+  }
+  .encurso .exam__exito__titulo {
+    color: #031059;
+    font-size: 30px;
+    line-height: 30px;
+    padding-left: 0rem;
+    text-align: center;
+    padding-top: 10rem;
+  }
+  .encurso .exam__exito__titulo:before {
+    left: 50%;
+    margin-left: -41px;
+    top: 37px;
+  }
+  .encurso .exam__exito__titulo .subtitulo {
+    padding-top: 1.5rem;
+    line-height: 23px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .encurso .exam__exito__contenido__titulo {
+    font-size: 2.5rem;
+    padding-top: 1rem;
+  }
+  .encurso .exam__exito__contenido__subtitulo {
+    color: #031059;
+    font-size: 1.2rem;
+  }
+  .encurso .exam__timeline {
+    width: 100%;
+    padding: 1rem 0 1rem 1rem;
+    background-color: #eeeff3;
+  }
+  .encurso .exam__timeline .barra {
+    width: 100%;
+  }
+  .encurso .exam__movil {
+    margin-top: 0;
+  }
+  .encurso__titulo {
+    margin-top: 2rem;
+    font-size: 2.5rem;
+  }
+  .encurso__temas__titulo {
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .encurso__video__player .video-js {
+    height: 230px;
+  }
+  .encurso__footer__link {
+    display: block;
+    margin-top: 4rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  .encurso__temas {
+    margin-top: 0;
+    padding-left: 0;
+  }
+  .encurso .advertencia {
+    margin-bottom: 0;
+  }
+  .encurso__capitulo {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .encurso__capitulo__titulo {
+    font-size: 1.2rem;
+  }
+  .encurso__capitulo__contenido__titulo {
+    font-size: 1.2rem;
+  }
+  .encurso__capitulo__contenido__texto {
+    font-size: 1rem;
+  }
+  .encurso .quiz__botones .btn {
+    margin-bottom: 1rem;
+  }
+  .shadowred {
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
   }
 }

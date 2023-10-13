@@ -26,12 +26,27 @@
 </div>
 
 <!--contenido-->
-<div class="encurso">
+<div class="encurso todocursos">
 <div class="container">
 	<div class="row justify-content-between">
 
+            @mobile
+            <div class="col-md-4 col-12">
+                <ul class="nav__usuario">
+                    <li class="nav__usuario__list">
+                        <a href="/user" class="nav__usuario__list__item ">My profile</a>
+                    </li>
+                    <li class="nav__usuario__list">
+                        <a href="/user/my-courses" class="nav__usuario__list__item ">My courses</a>
+                    </li>
+                </ul>
+            </div>
+            @endmobile
+
+
 			  <div class="col-md-8 mb-5">
 
+                @desktop
                 <div class="exam__exito">
                     <div class="exam__exito__titulo">
                         CONGRATULATIONS!<br>
@@ -114,6 +129,58 @@
                         </div>
 
                 </div>
+                @enddesktop
+
+                @mobile
+
+                <div class="exam__exito">
+
+                    <div class="exam__exito__contenido">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="/storage/{{$curso->banner}}" class="img-fluid">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="exam__exito__contenido__titulo">
+                                    {{$curso->titulo}}
+                                </div>
+                                <div class="exam__exito__contenido__subtitulo">
+                                    {{$curso->responsable}}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="exam__timeline">
+                    <div class="barra">
+                        <div class="box"></div><span>100% COMPLETE</span>
+                    </div>
+                </div>
+
+                <div class="exam__exito exam__movil">
+
+                    <div class="exam__exito__titulo">
+                        CONGRATULATIONS!<br>
+                        You´ve passes the course
+                        <span class="subtitulo"> Your certificate is ready. We appreciate you using our courses.</span>
+                    </div>
+
+                </div>
+
+                <div class="exam__blue">
+                    <div class="row justify-content-between">
+
+                        <div class="col-md-5 text-end">
+                            <a href="/learn/certificade/{{$curso->id}}/{{$user_course->id}}" class="btn btn__red btn__descarga">Download certificate</a>
+                        </div>
+                    </div>
+                </div>
+
+                @endmobile
 
 			  </div>
 

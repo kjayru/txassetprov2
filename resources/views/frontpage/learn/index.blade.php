@@ -33,13 +33,28 @@
 			  <div class="col-md-8 mb-5">
 						<div class="encurso__titulo">{{@$curso->titulo}}</div>
 						<div class="encurso__subtitulo">A course with {{@$curso->responsable}}</div>
-						<div class="encurso__intro">
+
+                        @mobile
+                        <div class="encurso__temas__titulo">
+                            You have {{UserCourse::dayleft($user_course_id)}} days left to finish the course
+                        </div>
+                        @endmobile
+
+
+
 							@if($content!=null)
+                                @desktop
+                                <div class="encurso__intro">
 								   {{$content->titulo}}
+                                </div>
+                                @enddesktop
+
 							@else
+                            <div class="encurso__intro">
 								Question about the chapter
+                            </div>
 							@endif
-						</div>
+
 
 					@if($content!=null)
 						<input type="hidden" name="user_course_id" value="{{$user_course_id}}">
@@ -84,10 +99,11 @@
 
 			  <div class="col-md-4">
 						<div class="encurso__temas">
+                                @desktop
 								  <div class="encurso__temas__titulo">
 										You have {{UserCourse::dayleft($user_course_id)}} days left to finish the course
 								  </div>
-
+                                @enddesktop
 
 								  @include('layouts.frontend.cursos.menucurso')
 

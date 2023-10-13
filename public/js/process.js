@@ -981,3 +981,22 @@ $(".btn__restart__course").on('click',function(e){
     })
 
 });
+
+$(".navbar-toggler2").on('click',function(e){
+    e.preventDefault();
+
+    $("#navpeson").addClass("show-slide");
+    $(".navbar-toggler2").hide();
+    $("header").stop().animate({"height":"0"},200);
+    $(".btnquote").animate({"opacity":"0"},200);
+  });
+
+
+  $(".navbar-toggler-close").on('click',function(e){
+    e.preventDefault();
+    $("#navpeson").removeClass('show-slide');
+    $("header").stop().animate({"height":"66px"},200,function(){
+        $(".navbar-toggler2").show();
+        $(".btnquote").animate({"opacity":"1"},200);
+    });
+  });

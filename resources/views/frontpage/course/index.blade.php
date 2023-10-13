@@ -14,43 +14,45 @@
 						<li><span>></span><a href="#" class="breadcrum__link active">OC Pepper Spray/Conflict Resolution</a></li>
 					</ul>
 				</div>
-			</div>	   
+			</div>
 		</div>
 	</div>
-   
+
 </div>
 
 <!--contenido-->
 <div class="encurso">
 <div class="container">
 	<div class="row justify-content-between">
-		
+
 			  <div class="col-md-8 mb-5">
 						<div class="encurso__titulo">{{@$curso->titulo}}</div>
 						<div class="encurso__subtitulo">{{@$curso->subtitulo}}</div>
-						<div class="encurso__intro">
+						@desktop
+                        <div class="encurso__intro">
 								  1. {{$content->titulo}}
 						</div>
-						
+                        @enddesktop
+
 						<div class="encurso__video">
 								  <div class="encurso__video__titulo">
 											Video introduction
 								  </div>
 								  <div class="encurso__video__player">
-									
-										
+
+
 
 										<video
 											id="my-player"
 											class="video-js"
 											controls
 											preload="auto"
-											
+
 											poster="MY_VIDEO_POSTER.jpg"
 											data-setup="{}"
 										>
 											<source src="/storage/{{@$content->video}}" type="video/mp4" />
-											
+
 											<p class="vjs-no-js">
 											To view this video please enable JavaScript, and consider upgrading to a
 											web browser that
@@ -64,15 +66,17 @@
 						</div>
 
 						<div class="encurso__capitulo">
+                            @mobile
 								  <div class="encurso__capitulo__titulo">
 											{{$content->titulo}}
 								  </div>
+                            @endmobile
 								  <div class="encurso__capitulo__contenido">
 											<div class="encurso__capitulo__contenido__titulo">
 													  Chapter reading
 											</div>
 											<div class="encurso__capitulo__contenido__texto">
-													 		{!!@$content->contenido!!}									
+													 		{!!@$content->contenido!!}
 											</div>
 								  </div>
 						</div>
@@ -97,7 +101,7 @@
 						</div>
 					@endif
 			  </div>
-  
+
 			  <div class="col-md-3">
 						<div class="encurso__temas">
 								  <div class="encurso__temas__titulo">
@@ -105,24 +109,24 @@
 								  </div>
 								  <ul class="encurso__temas__lista">
 									@if(isset($contenidos))
-									
+
 									@foreach($contenidos as $cont)
-									 
+
 											<li class="encurso__temas__lista__item {{UserCourse::capitulo($curso->id,$cont['capitulo_id'])?"active":""}}"><span>1</span>
 												<a href="#">{{@$cont['capitulo_titulo']}}</a>
-												
+
 													  <ul class="encurso__temas__lista__item__sublista active">
 														@foreach($cont['contenidos'] as $c)
 																<li class="encurso__temas__lista__item__sublista__item {{UserCourse::contenido($curso->id,$cont['capitulo_id'],$c['id'])?"finalizado":""}}">
-																		 <a href="/course/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/{{$c['slug']}}"> {{@$c['titulo']}}</a> 
+																		 <a href="/course/{{$cont['curso_slug']}}/{{$cont['capitulo_slug']}}/{{$c['slug']}}"> {{@$c['titulo']}}</a>
 																</li>
-														
-														@endforeach	
+
+														@endforeach
 													  </ul>
 											</li>
 									@endforeach
 									@endif
-											
+
 								  </ul>
 						</div>
 			  </div>

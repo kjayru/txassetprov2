@@ -38,14 +38,24 @@
                                       <a class="nav-link outinlink" href="/blog">Blog</a>
                                   </li>
                                   <li class="nav-item acuta">
-                                      <a class="nav-link inclass backred" href="/contact" data-section="contact">Get a Quote</a>
+                                      <a class="nav-link inclass backred shadowred" href="/contact" data-section="contact">Get a Quote</a>
                                   </li>
 
                                   <li class="nav-item flotante-right">
                                       <a class="nav-link outclass" href="https://www.guardtek.net/#!/authentication/signin" target="_blank">Client login</a>
                                   </li>
                               </ul>
-                              
+
+                              <ul class=" lista__redes flex-container space-between">
+                                <li>
+                                  <a href="https://www.facebook.com/tapsecurit/" class="header__face" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                </li><li>
+                                  <a href="https://www.instagram.com/tapsecurity/?hl=es-la" class="header__face" target="_blank"><i class="fab fa-instagram"></i></a>
+                                </li><li>
+                                  <a href="https://www.youtube.com/channel/UC72n6tJvyxseA49zLw5D2sA" class="header__face" target="_blank"><i class="fab fa-youtube"></i></a>
+                                </li>
+                              </ul>
+
                           </div>
                       </nav>
                   </div>
