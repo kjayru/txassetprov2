@@ -91,6 +91,16 @@
                                         Approved
                                     </div>
                                     @endif
+
+                                    @if($curso->aprobado==1  && $curso->caducado==1 && $curso->finalizado==1)
+                                    {{-- curso aprobado --}}
+                                    <a href="/learn/exam/{{$curso->id}}/congratulation" class="item__link">Go to result</a>
+                                    <div class="course__aprobado">
+                                        Approved
+                                    </div>
+                                    @endif
+
+
                                     @if($curso->aprobado==0 && $curso->caducado==1  && $curso->finalizado==1)
                                     {{-- curso caducado --}}
                                     <a href="/learn/exam/{{$curso->id}}/expired" class="item__link">Go to result</a>
