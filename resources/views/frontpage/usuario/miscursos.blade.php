@@ -68,7 +68,7 @@
                                     {{-- curso fallido --}}
 
                                     {{-- verificar numero de intentos --}}
-                                    @if($curso->intentos <3)
+                                    @if($curso->intentos <=3)
 
                                     <a href="/learn/{{$curso->id}}/{{$curso->course->slug}}" class="item__link">  Go to course</a>
 
