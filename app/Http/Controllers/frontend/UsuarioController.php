@@ -63,7 +63,7 @@ class UsuarioController extends Controller
             $dias_disponibles = UserCourse::dayleft($curso->id);
 
             if($dias_disponibles<=0){
-                print_r($dias_disponibles);
+
                 UserCourse::procesoCaducado($curso->id);
             }
        }
