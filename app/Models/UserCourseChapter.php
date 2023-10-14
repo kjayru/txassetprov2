@@ -79,6 +79,8 @@ class UserCourseChapter extends Model
     }
 
     public static function userQuiz($user_course_id,$chapter_id){
+
+
               $activo = false;
               $contenidosCompletados=0;
         // if(UserCourseChapter::where('user_course_id',$user_course_id)->where('chapter_id',$chapter_id)->where('quiz_result',1)->count()>0){

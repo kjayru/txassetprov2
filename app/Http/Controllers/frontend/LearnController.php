@@ -441,7 +441,8 @@ class LearnController extends Controller
 
         $porcentaje = round($correctas*100/$numeroPreguntas ,2);
 
-        if($correctas ==$numeroPreguntas &&  $porcentaje >75){
+        if($completado &&  $porcentaje > 75){
+
         $registro = UserCourseChapter::where('user_course_id',$request->user_course_id)->where('chapter_id',$request->chapter_id)->first();
             $registro->quiz_result= 1;
             $registro->save();
