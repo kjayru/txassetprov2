@@ -286,3 +286,9 @@ Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderC
 
 /*Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
 ->name('ckfinder_browser');*/
+
+Route::get('/mailable', function () {
+    $invoice = App\Models\User::find(1);
+
+    return new App\Mail\Sign();
+});
