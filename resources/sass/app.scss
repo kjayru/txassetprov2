@@ -232,6 +232,8 @@ footer {
                               }
                     }
                     &__contenido{
+                         &__card{
+                            padding-bottom:1rem;
                               .card{
                                         box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.16);
                                         background:$blanco;
@@ -356,6 +358,7 @@ footer {
                                 }
                               }
                             }
+                         }
                     }
                 &__boton{
                     padding-left:2rem;
@@ -3214,6 +3217,10 @@ progress{
                 .menu__carrito{
                     position: absolute;
                     right: 0;
+                    margin: 0;
+                        div:first-child{
+                            padding:0;
+                        }
                     .cart{
                         ul {
                             background: #e01f26;

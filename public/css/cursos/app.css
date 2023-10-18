@@ -10999,7 +10999,10 @@ footer .little {
   top: -52px;
   margin-left: -51px;
 }
-.cursos .beneficios__contenido .card {
+.cursos .beneficios__contenido__card {
+  padding-bottom: 1rem;
+}
+.cursos .beneficios__contenido__card .card {
   box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.16);
   background: #fff;
   padding: 1rem;
@@ -11009,14 +11012,14 @@ footer .little {
   border-radius: 0;
   border: 0;
 }
-.cursos .beneficios__contenido .card .flexibility {
+.cursos .beneficios__contenido__card .card .flexibility {
   position: relative;
   margin-top: 170px;
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
   color: #031059;
 }
-.cursos .beneficios__contenido .card .flexibility:after {
+.cursos .beneficios__contenido__card .card .flexibility:after {
   content: "";
   background: url("/images/ben1.svg") no-repeat center center;
   width: 100px;
@@ -11026,7 +11029,7 @@ footer .little {
   transform: translate(-50%, -23%);
   left: 50%;
 }
-.cursos .beneficios__contenido .card .flexibility:before {
+.cursos .beneficios__contenido__card .card .flexibility:before {
   content: "";
   background: #e01f26;
   height: 1px;
@@ -11036,14 +11039,14 @@ footer .little {
   left: 50%;
   top: -155px;
 }
-.cursos .beneficios__contenido .card .learning {
+.cursos .beneficios__contenido__card .card .learning {
   position: relative;
   margin-top: 170px;
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
   color: #031059;
 }
-.cursos .beneficios__contenido .card .learning:after {
+.cursos .beneficios__contenido__card .card .learning:after {
   content: "";
   background: url("/images/ben2.svg") no-repeat center center;
   width: 100px;
@@ -11053,7 +11056,7 @@ footer .little {
   transform: translate(-50%, -23%);
   left: 50%;
 }
-.cursos .beneficios__contenido .card .learning:before {
+.cursos .beneficios__contenido__card .card .learning:before {
   content: "";
   background: #e01f26;
   height: 1px;
@@ -11063,14 +11066,14 @@ footer .little {
   left: 50%;
   top: -155px;
 }
-.cursos .beneficios__contenido .card .front {
+.cursos .beneficios__contenido__card .card .front {
   position: relative;
   margin-top: 170px;
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
   color: #031059;
 }
-.cursos .beneficios__contenido .card .front:after {
+.cursos .beneficios__contenido__card .card .front:after {
   content: "";
   background: url("/images/ben3.svg") no-repeat center center;
   width: 100px;
@@ -11080,7 +11083,7 @@ footer .little {
   transform: translate(-50%, -23%);
   left: 50%;
 }
-.cursos .beneficios__contenido .card .front:before {
+.cursos .beneficios__contenido__card .card .front:before {
   content: "";
   background: #e01f26;
   height: 1px;
@@ -11090,14 +11093,14 @@ footer .little {
   left: 50%;
   top: -155px;
 }
-.cursos .beneficios__contenido .card .certificate {
+.cursos .beneficios__contenido__card .card .certificate {
   position: relative;
   margin-top: 170px;
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
   color: #031059;
 }
-.cursos .beneficios__contenido .card .certificate:after {
+.cursos .beneficios__contenido__card .card .certificate:after {
   content: "";
   background: url("/images/ben4.svg") no-repeat center center;
   width: 100px;
@@ -11107,7 +11110,7 @@ footer .little {
   transform: translate(-50%, -23%);
   left: 50%;
 }
-.cursos .beneficios__contenido .card .certificate:before {
+.cursos .beneficios__contenido__card .card .certificate:before {
   content: "";
   background: #e01f26;
   height: 1px;
@@ -11117,7 +11120,7 @@ footer .little {
   left: 50%;
   top: -155px;
 }
-.cursos .beneficios__contenido .card-container p {
+.cursos .beneficios__contenido__card .card-container p {
   padding-top: 0.5rem;
 }
 .cursos .beneficios__boton {
@@ -13694,6 +13697,10 @@ progress {
   .cursos #contenido #banner .menu__carrito {
     position: absolute;
     right: 0;
+    margin: 0;
+  }
+  .cursos #contenido #banner .menu__carrito div:first-child {
+    padding: 0;
   }
   .cursos #contenido #banner .menu__carrito .cart ul {
     background: #e01f26;

@@ -74,7 +74,7 @@
               <div class="container">
                 <div class="row justify-content-center">
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-12 beneficios__contenido__card">
                       <div class="card">
                         <div class="card-container">
                           <h3 class="flexibility">Flexibility</h3>
@@ -83,7 +83,7 @@
                       </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-12 beneficios__contenido__card">
                       <div class="card">
                         <div class="card-container">
                           <h3 class="learning">Learning with experts</h3>
@@ -92,7 +92,7 @@
                       </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-12 beneficios__contenido__card">
                       <div class="card">
                         <div class="card-container">
                           <h3 class="front">Front row</h3>
@@ -101,7 +101,7 @@
                       </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-12 beneficios__contenido__card">
                       <div class="card">
                         <div class="card-container">
                           <h3 class="certificate">Certificate</h3>
