@@ -14107,6 +14107,7 @@ progress {
     padding-right: 3rem !important;
   }
   .grilla__cursos__card__contenido .post__link {
+    text-align: center;
     padding-left: 4rem;
     padding-right: 1.5rem;
     display: block !important;
