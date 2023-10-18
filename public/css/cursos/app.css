@@ -13830,8 +13830,8 @@ progress {
   }
   .cursos .banner__titulo {
     font-size: 3rem;
-    margin-bottom: 6rem;
-    margin-top: -3rem;
+    margin-bottom: 5rem;
+    margin-top: 0rem;
   }
   .cursos .breadcrum {
     display: none;
@@ -14105,5 +14105,10 @@ progress {
   .learn__bloque .learn__link {
     padding-left: 3rem !important;
     padding-right: 3rem !important;
+  }
+  .grilla__cursos__card__contenido .post__link {
+    padding-left: 4rem;
+    padding-right: 1.5rem;
+    display: block !important;
   }
 }

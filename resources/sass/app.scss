@@ -3382,8 +3382,8 @@ progress{
         .banner{
             &__titulo{
                 font-size: 3rem;
-                margin-bottom: 6rem;
-                margin-top: -3rem;
+                margin-bottom: 5rem;
+                margin-top: 0rem;
             }
 
         }
@@ -3756,6 +3756,20 @@ progress{
             .learn__link{
                 padding-left:3rem !important;
                 padding-right:3rem !important;
+            }
+        }
+    }
+    .grilla{
+        &__cursos{
+            &__card{
+                &__contenido{
+                    .post__link{
+
+                        padding-left: 4rem;
+                        padding-right: 1.5rem;
+                        display: block !important;
+                    }
+                }
             }
         }
     }
