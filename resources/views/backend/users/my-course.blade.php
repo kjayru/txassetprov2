@@ -58,7 +58,7 @@
                         <th>Result</th>
                         <th>Certificated</th>
 
-                        <th></th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -71,16 +71,15 @@
                             <td>{{ @$course->created_at  }}</td>
 
                             <td>
-
-
-
                                 @if($course->aprobado==1 && $course->caducado==0)
-                                {{@$course->updated_at}}
-                            @elseif($course->caducado==1 && $course->aprobado==0)
-                            {{@$course->updated_at}}
-                            @elseif($course->reiniciado==1 && $course->parent_id!=null && $course->aprobado==0)
-                            {{@$course->updated_at}}
-                            @endif
+                                    {{@$course->updated_at}}
+                                @elseif($course->caducado==1 && $course->aprobado==0)
+                                    {{@$course->updated_at}}
+                                 @elseif($course->intentos>0 && $course->aprobado==0)
+                                    {{@$course->updated_at}}
+                                @elseif($course->reiniciado==1 && $course->parent_id!=null && $course->aprobado==0)
+                                    {{@$course->updated_at}}
+                                @endif
                             </td>
                             <td>
                                 @if($course->aprobado==1 && $course->caducado==0)
@@ -89,6 +88,8 @@
                                     Expired
                                 @elseif($course->reiniciado==1 && $course->parent_id!=null && $course->aprobado==0)
                                     Failed
+                                @elseif($course->intentos>0 && $course->aprobado==0)
+                                    Failed
                                 @endif
                             </td>
                             <td>
@@ -96,7 +97,7 @@
                                 <a href="/admin/users/courses/certified/{{$course->course->id}}/{{$course->id}}/{{$user_id}}" target="_blank" class="btn btn-primary">View</a>
                                 @endif
                             </td>
-                            </td>
+
                         </tr>
                         @endforeach
                         @else

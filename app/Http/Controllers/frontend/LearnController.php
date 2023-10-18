@@ -27,6 +27,7 @@ use App\Models\QuizQuestionOption;
 use App\Models\Profile;
 use App\Models\Exam;
 use App\Http\Controllers\Traits\CourseMenuTrait;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use App\Mail\Aprobado;
@@ -848,9 +849,11 @@ class LearnController extends Controller
             //     $usercourse->intentos = 1;
             // }
 
+            $user_email = $usercourse->user->email;
+
             $data = ['nombre'=>$usercourse->user->name,'titulo'=>$usercourse->course->titulo,'responsable'=>$usercourse->course->responsable,'user_course_id'=>$request->user_course_id,'course_id'=>$usercourse->course->id];
 
-            Mail::to(env('MAIL_CONTACT'))->send(new Aprobado($data));
+            Mail::to($user_email)->send(new Aprobado($data));
 
             $usercourse->save();
         }else{
@@ -863,12 +866,13 @@ class LearnController extends Controller
             $usercourse->save();
 
 
+            $user_email = $usercourse->user->email;
 
             if($usercourse->intentos == 3){
             //enviar mail
                 $data = ['nombre'=>$usercourse->user->name,'titulo'=>$usercourse->course->titulo,'responsable'=>$usercourse->course->responsable,'user_course_id'=>$request->user_course_id,'course_id'=>$usercourse->course->id];
 
-                Mail::to(env('MAIL_CONTACT'))->send(new Rechazado($data));
+                Mail::to($user_email)->send(new Rechazado($user_email));
 
             }
         }
