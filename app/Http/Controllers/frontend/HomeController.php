@@ -44,8 +44,8 @@ use App\Mail\Form8850;
 use App\Mail\Contact as Contacto;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Crypt;
+use App\Mail\Bienvenido;
 class HomeController extends Controller
 {
     /**
@@ -963,6 +963,17 @@ class HomeController extends Controller
 
         Auth::login($user);
 
+        $cursos = Course::orderBy('id','desc')->take(3)->get();
+        $data = [
+            'nombre'=>$user->name,
+            'cursos'=>$cursos,
+        ];
+
+
+
+        Mail::to($user->email)->send(new Bienvenido($data));
+        //mail bienvenido
+
 
         return response()->json(['rpta'=>'ok','mensaje'=>' Account created successfully']);
     }
@@ -1007,4 +1018,15 @@ class HomeController extends Controller
 
         return view('frontpage.cart.success',['ids'=>$course]);
     }
+
+    public function enroll($cadena){
+
+        $user_id = Crypt::decryptString($cadena);
+
+
+
+        $user = UserSign::where('user_id',$user_id)->first();
+        return view('frontpage.usuario.sign',['user'=>$user]);
+    }
+
 }

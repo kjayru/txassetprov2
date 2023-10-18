@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Sign extends Mailable
+class Aprobado extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,18 +30,14 @@ class Sign extends Mailable
      */
     public function build()
     {
-
-
         $address = 'support@txassetpro.com';
         $subject = 'Sign Enroll';
         $name = 'Support TAP';
 
-
         return $this->from($address, $name)
                     ->replyTo($address, $name)
                     ->subject($subject)
-                    ->markdown('mail.firma')
+                    ->markdown('mail.aprobado')
                     ->with($this->data);
-
     }
 }

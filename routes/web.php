@@ -223,6 +223,7 @@ Route::post('/async/course-content',[Course::class,'cursoContent']);
 Route::get('/cart-estado',[Home::class,'estadoCarrito']);
 
 Route::post('/verify-mycourse',[Home::class,'verifyMycourse']);
+Route::get('/enroll/{code}',[Home::class,'enroll']);
 
 Route::get('/test',[Home::class,'test']);
 
@@ -290,5 +291,5 @@ Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderC
 Route::get('/mailable', function () {
     $invoice = App\Models\User::find(1);
 
-    return new App\Mail\Sign();
+    return new App\Mail\Aprobado();
 });

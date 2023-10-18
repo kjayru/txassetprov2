@@ -29,6 +29,8 @@ use App\Models\Exam;
 use App\Http\Controllers\Traits\CourseMenuTrait;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use App\Mail\Aprobado;
+use App\Mail\Rechazado;
 
 class LearnController extends Controller
 {
@@ -408,6 +410,7 @@ class LearnController extends Controller
         }
 
 
+
         $ucqo = new UserCourseChapterQuiz();
         $ucqo->chapter_quiz_id = $request->quizid;
         $ucqo->user_course_chapter_id = $request->user_course_chapter_id;
@@ -415,6 +418,7 @@ class LearnController extends Controller
         $ucqo->quiz_question_option_id = $request->optionid;
         $ucqo->result = $respuesta;
         $ucqo->timequiz = $request->tiempo;
+
         $ucqo->save();
 
 
@@ -442,12 +446,14 @@ class LearnController extends Controller
         $porcentaje = round($correctas*100/$numeroPreguntas ,2);
 
         if($completado &&  $porcentaje > 75){
-
-        $registro = UserCourseChapter::where('user_course_id',$request->user_course_id)->where('chapter_id',$request->chapter_id)->first();
+            $registro = UserCourseChapter::where('user_course_id',$request->user_course_id)->where('chapter_id',$request->chapter_id)->first();
             $registro->quiz_result= 1;
             $registro->save();
-
         }
+
+
+
+
 
         return response()->json(['rpta'=>'ok','completado'=>$completado,'np'=>$numeroPreguntas,'nc'=>$total]);
 
@@ -842,6 +848,9 @@ class LearnController extends Controller
             //     $usercourse->intentos = 1;
             // }
 
+            $data = ['nombre'=>$usercourse->user->name,'titulo'=>$usercourse->course->titulo,'responsable'=>$usercourse->course->responsable,'user_course_id'=>$request->user_course_id,'course_id'=>$usercourse->course->id];
+
+            Mail::to(env('MAIL_CONTACT'))->send(new Aprobado($data));
 
             $usercourse->save();
         }else{
@@ -852,6 +861,16 @@ class LearnController extends Controller
             //     $usercourse->intentos = 1;
             // }
             $usercourse->save();
+
+
+
+            if($usercourse->intentos == 3){
+            //enviar mail
+                $data = ['nombre'=>$usercourse->user->name,'titulo'=>$usercourse->course->titulo,'responsable'=>$usercourse->course->responsable,'user_course_id'=>$request->user_course_id,'course_id'=>$usercourse->course->id];
+
+                Mail::to(env('MAIL_CONTACT'))->send(new Rechazado($data));
+
+            }
         }
 
         return response()->json(['rpta'=>'ok','status'=>'200','completo'=>true]);

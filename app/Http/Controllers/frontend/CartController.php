@@ -17,12 +17,13 @@ use App\Models\Order;
 use App\Models\UserCourse;
 use App\Models\CourseOrder;
 use App\Models\UserSign;
-
+use App\Mail\Sign;
 use App\Models\Stripe as SP;
-
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Order as Orden;
 use App\Mail\Notificacion;
+use App\Mail\Compra;
 
 
 class CartController extends Controller
@@ -48,27 +49,9 @@ class CartController extends Controller
         $user_id = Auth::id();
         $user = User::find($user_id);
 
-        $perfil = UserSign::where('user_id',$user_id)->count();
-        if($perfil == 0){
-            $firma =new UserSign();
-            $firma->firma = $request->dataURL;
-            $firma->email = $request->email;
-            $firma->legalname = $request->legalname;
-            $firma->user_id = $user_id;
-
-            $firma->fullname = $request->fullname;
-            $firma->initial = $request->initial;
-            $firma->save();
-        }else{
-            return false;
-        }
-
-
-
         $carrito=null;
-
-             $carrito = Session::get('cart');
-
+        $titulo_curso = null;
+        $carrito = Session::get('cart');
 
         $contador = (count($carrito->items));
 
@@ -79,9 +62,48 @@ class CartController extends Controller
             foreach($carrito->items as $curso){
                 $titulo= $curso['curso']->titulo;
                 $resumen=$curso['curso']->resumen;
+                $titulo_curso = $curso['curso']->titulo;
             }
 
         }
+
+
+
+
+        $perfil = UserSign::where('user_id',$user_id)->count();
+        $code = Carbon::now()->timestamp;
+
+        if($perfil == 0){
+            $firma =new UserSign();
+            $firma->firma = $request->dataURL;
+            $firma->email = $request->email;
+            $firma->legalname = $request->legalname;
+            $firma->user_id = $user_id;
+
+            $firma->fullname = $request->fullname;
+            $firma->initial = $request->initial;
+            $firma->code = $code;
+            $firma->save();
+
+            //sendmail
+            $seguridad = Crypt::encryptString($user_id);
+
+
+            $data = ["seguridad"=>$seguridad,'name'=>$user->name,'titulo'=>$titulo_curso,'code'=>$code];
+
+
+            Mail::to($user->email)->send(new Sign($data));
+
+        }else{
+            return false;
+        }
+
+
+
+
+
+
+
 
         //Stripe
 
@@ -157,6 +179,7 @@ class CartController extends Controller
         $carrito = Session::get('cart');
 
         $curso = null;
+        $cursoid=null;
 
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         try {
@@ -182,6 +205,8 @@ class CartController extends Controller
             if(empty($api_error) && $intent){
                 if($intent->status == 'succeeded'){
 
+
+
                     $order_id = Carbon::now()->timestamp;
 
                     $iname = $user->name;
@@ -206,7 +231,7 @@ class CartController extends Controller
                     $order->order_id = $order_id;
                     $order->save();
 
-                    $cursoid=null;
+
                     foreach($carrito->items as $item){
                         $curso = new UserCourse();
                         $curso->user_id = $user_id;
@@ -220,6 +245,11 @@ class CartController extends Controller
                 }
             }
         }
+
+        $curso = Course::find($cursoid);
+        $data = ['nombre' => $user->name,'curso'=>$curso];
+
+        Mail::to(env("MAIL_CONTACT"))->send(new Compra($data));
 
        Session::forget('cart');
 
