@@ -65,15 +65,15 @@
                             {{-- comprabar que sus intentos sean menor a 3 --}}
                             @if($numero_intentos <3)
 							<div class="row justify-content-center">
-								<div class="col-12 col-sm-4">
+								<div class="col-12 col-sm-4 pb-2">
                                     <a href="#" class="btn btn__gray btn__question__exam"   data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">View Questions</a></div>
-								<div class="col-12 col-sm-4">
+								<div class="col-12 col-sm-4 pb-2">
                                     @if($porcentaje < 75)
                                     <a href="#" class="btn btn__gray btn__restart__exam" data-usercourseexamid="{{@$tomo_examen->id}}" data-cursoid="{{$curso->id}}" data-examid="{{$examen->id}}" data-usercourseid="{{@$user_course_id}}">Restart exam</a></div>
                                     @else
                                     <a href="#" class="btn btn__gray btn__restart__exam disabled" >Restart exam</a></div>
                                     @endif
-								<div class="col-12 col-sm-4">
+								<div class="col-12 col-sm-4 pb-2">
 									@if($porcentaje > 75)
 
 									<a href="/learn/exam/{{$user_course_id}}/congratulation" class="btn btn__red btn__continue">Continue</a>
@@ -86,7 +86,7 @@
                             {{-- supero los 3 intentos  --}}
 
                             <div class="row justify-content-end">
-								<div class="col-12 col-sm-4">
+								<div class="col-12 col-sm-4 pb-2">
 
                                     @if(@$numero_intentos==3 && $estado_curso==0 && $reinicios==0)
 									<a href="#" class="btn btn__red btn__restart__course" data-usercourseid="{{$user_course_id}}"  data-cursoid="{{@$curso->id}}" data-userid="{{@$user_id}}">Restart Course</a>
