@@ -13984,6 +13984,9 @@ progress {
     padding-right: 1rem;
     padding-top: 0.5rem;
   }
+  .todocursos__card__body_table {
+    font-size: 14px;
+  }
   .todocursos__card__body_table tbody tr td.titulo {
     width: 40%;
   }
@@ -14111,5 +14114,18 @@ progress {
     padding-left: 4rem;
     padding-right: 1.5rem;
     display: block !important;
+  }
+  .cart__body {
+    padding: 2rem 2rem;
+  }
+  .gracias__box {
+    padding: 35px 30px 4rem;
+  }
+  .todocursos .canva {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .todocursos__card__body__item__estado .item__link {
+    width: 45%;
   }
 }

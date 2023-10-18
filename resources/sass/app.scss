@@ -2962,6 +2962,7 @@ progress{
 
 
 
+
 @media(max-width:780px){
     .cursos{
         header {
@@ -3596,6 +3597,7 @@ progress{
                 padding-right:1rem;
                 padding-top:0.5rem;
                 &_table{
+                    font-size:14px;
                     tbody{
                         tr{
                             td.titulo{
@@ -3774,6 +3776,32 @@ progress{
         }
     }
 
+    .cart__body{
+        padding:2rem 2rem;
+    }
+    .gracias{
+        &__box{
+            padding: 35px 30px 4rem;
+        }
+    }
+    .todocursos{
+        .canva{
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        &__card{
+            &__body{
+                &__item{
+                    &__estado{
+                        .item__link{
+                            width:45%;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
 
 
