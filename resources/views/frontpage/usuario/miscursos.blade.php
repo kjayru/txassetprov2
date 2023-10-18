@@ -68,19 +68,20 @@
                                     {{-- curso fallido --}}
 
                                     {{-- verificar numero de intentos --}}
-                                    @if($curso->intentos <=3)
+                                        @if($curso->intentos <=3 && $curso->intentos<0)
 
-                                    <a href="/learn/{{$curso->id}}/{{$curso->course->slug}}" class="item__link">  Go to course</a>
+                                        <a href="/learn/{{$curso->id}}/{{$curso->course->slug}}" class="item__link">  Go to course</a>
 
-                                    @else
+                                        <div class="course__desaprobado">
+                                            Failed
+                                        </div>
+                                        @else
 
-                                    <a href="/learn/exam/{{$curso->id}}/fail" class="item__link">Go to course</a>
+                                        <a href="/learn/exam/{{$curso->id}}/fail" class="item__link">Go to course</a>
 
-                                    @endif
+                                        @endif
 
-                                    <div class="course__desaprobado">
-                                        Failed
-                                    </div>
+
 
 
                                     @endif
