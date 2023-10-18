@@ -2959,6 +2959,19 @@ progress{
         position: relative;
     }
 }
+
+@media(max-width:520px){
+    .learn{
+        &__bloque{
+            .learn__link{
+                padding-left:3rem;
+                padding-right:3rem;
+            }
+        }
+    }
+
+}
+
 @media(max-width:780px){
     .cursos{
         header {
@@ -3747,14 +3760,4 @@ progress{
     }
 }
 
-@media(max-width:520px){
-    .learn{
-        &__bloque{
-            .learn__link{
-                padding-left:3rem;
-                padding-right:3rem;
-            }
-        }
-    }
 
-}
