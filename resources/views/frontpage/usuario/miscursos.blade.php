@@ -84,6 +84,9 @@
 
                                         <a href="/learn/exam/{{$curso->id}}/fail" class="item__link">Go to course</a>
 
+                                        <div class="course__desaprobado">
+                                            Failed
+                                        </div>
                                         @endif
 
 
