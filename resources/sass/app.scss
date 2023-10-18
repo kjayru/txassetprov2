@@ -3801,6 +3801,15 @@ progress{
             }
         }
     }
+    .encurso{
+        &__audio{
+            &__timeline{
+                .timelinebox{
+                    width:86%;
+                }
+            }
+        }
+    }
 }
 
 

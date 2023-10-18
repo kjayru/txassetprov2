@@ -14128,4 +14128,7 @@ progress {
   .todocursos__card__body__item__estado .item__link {
     width: 45%;
   }
+  .encurso__audio__timeline .timelinebox {
+    width: 86%;
+  }
 }
