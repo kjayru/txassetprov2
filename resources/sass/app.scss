@@ -3746,3 +3746,15 @@ progress{
         box-shadow: 0 10px 40px 0 rgba(224, 31, 38, 0.6);
     }
 }
+
+@media(max-width:520px){
+    .learn{
+        &__bloque{
+            .learn__link{
+                padding-left:3rem;
+                padding-right:3rem;
+            }
+        }
+    }
+
+}
