@@ -226,6 +226,7 @@ Route::post('/verify-mycourse',[Home::class,'verifyMycourse']);
 Route::get('/enroll/{code}',[Home::class,'enroll']);
 
 Route::get('/test',[Home::class,'test']);
+Route::get('/certificade/{id}/{user_course_id}',[Home::class,'certificado']);
 
 Route::group(['prefix' => 'cart'],function(){
     Route::get('/',[Home::class,'carrito']);

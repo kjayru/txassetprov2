@@ -851,7 +851,14 @@ class LearnController extends Controller
 
             $user_email = $usercourse->user->email;
 
-            $data = ['nombre'=>$usercourse->user->name,'titulo'=>$usercourse->course->titulo,'responsable'=>$usercourse->course->responsable,'user_course_id'=>$request->user_course_id,'course_id'=>$usercourse->course->id];
+            $data = [
+                'nombre'=>$usercourse->user->name,
+                'titulo'=>$usercourse->course->titulo,
+                'responsable'=>$usercourse->course->responsable,
+                'user_course_id'=>$request->user_course_id,
+                'course_id'=>$usercourse->course->id,
+                'banner'=>$usercourse->course->banner
+            ];
 
             Mail::to($user_email)->send(new Aprobado($data));
 
@@ -870,9 +877,16 @@ class LearnController extends Controller
 
             if($usercourse->intentos == 3){
             //enviar mail
-                $data = ['nombre'=>$usercourse->user->name,'titulo'=>$usercourse->course->titulo,'responsable'=>$usercourse->course->responsable,'user_course_id'=>$request->user_course_id,'course_id'=>$usercourse->course->id];
+                $data = [
+                    'nombre'=>$usercourse->user->name,
+                    'titulo'=>$usercourse->course->titulo,
+                    'responsable'=>$usercourse->course->responsable,
+                    'user_course_id'=>$request->user_course_id,
+                    'course_id'=>$usercourse->course->id,
+                    'banner'=>$usercourse->course->banner
+                ];
 
-                Mail::to($user_email)->send(new Rechazado($user_email));
+                Mail::to($user_email)->send(new Rechazado($data));
 
             }
         }

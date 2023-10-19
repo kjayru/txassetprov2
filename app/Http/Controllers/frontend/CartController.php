@@ -170,103 +170,7 @@ class CartController extends Controller
     }
 
 
-    public function success($seskey){
 
-        $user_id = Auth::id();
-        $user = User::where('id',$user_id)->first();
-
-        $ev = SP::where('txn_id',$seskey)->first();
-        $carrito = Session::get('cart');
-
-        $curso = null;
-        $cursoid=null;
-
-        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-        try {
-            $checkout_session = \Stripe\Checkout\Session::retrieve($seskey);
-        } catch (Exception $e) {
-           $api_error = $e->getMessage();
-        }
-
-        if(empty($api_error)&& $checkout_session){
-            try {
-                $intent = \Stripe\PaymentIntent::retrieve($checkout_session->payment_intent);
-            } catch (\Stripe\Exception\ApiErrorException $e) {
-                $api_error = $e->getMessafe();
-            }
-
-            try {
-                $customer = \Stripe\Customer::retrieve($checkout_session->customer);
-            } catch (\Stripe\Exception\ApiErrorException $e) {
-                $api_error = $e->getMessafe();
-            }
-
-
-            if(empty($api_error) && $intent){
-                if($intent->status == 'succeeded'){
-
-
-
-                    $order_id = Carbon::now()->timestamp;
-
-                    $iname = $user->name;
-                    $email = $customer->email;
-                    $transactionID = $intent->id;
-                    $paidAmount = $intent->amount;
-                    $paidAmount = ($paidAmount/100);
-                    $paidCurrency = $intent->currency;
-                    $paymentStatus = $intent->status;
-
-                    $order = new CourseOrder();
-                    $order->name = $iname;
-                    $order->email = $email;
-                    $order->course = serialize($carrito);
-                    $order->price = $carrito->total;
-                    $order->amount = $carrito->total;
-                    $order->currency = "usd";
-                    $order->txn_id = $transactionID;
-                    $order->payment_status = $paymentStatus;
-                    $order->checkout_session_id = $seskey;
-                    $order->user_id = $user_id;
-                    $order->order_id = $order_id;
-                    $order->save();
-
-
-                    foreach($carrito->items as $item){
-                        $curso = new UserCourse();
-                        $curso->user_id = $user_id;
-                        $curso->course_id = $item['curso']->id;
-                        $curso->fecha_inicio = date("Y-m-d");
-                        $curso->dias_activo = $item['curso']->tiempovalido;
-                        $curso->save();
-
-                        $cursoid = $item['curso']->id;
-                    }
-                }
-            }
-        }
-
-        $curso = Course::find($cursoid);
-        $data = ['nombre' => $user->name,'curso'=>$curso];
-
-        Mail::to(env("MAIL_CONTACT"))->send(new Compra($data));
-
-       Session::forget('cart');
-
-        //send email
-
-
-
-         // $data = ["html" => $product->title];
-         //Mail::to($user->email)->send(new Orden($data));
-
-
-         // Mail::to(env("MAIL_CONTACT"))->send(new Notificacion());
-       $course = Course::find($cursoid);
-      // $course = Course::find(3);
-
-         return view('frontpage.cart.success',['course'=>$course,'user_course'=>$curso]);
-     }
 
      public function cancel(Request $request){
 
@@ -372,6 +276,104 @@ class CartController extends Controller
 
        return response()->json([ 'id' => $session['id']]);
 
+     }
+
+     public function success($seskey){
+
+        $user_id = Auth::id();
+        $user = User::where('id',$user_id)->first();
+
+        $ev = SP::where('txn_id',$seskey)->first();
+        $carrito = Session::get('cart');
+
+        $curso = null;
+        $cursoid=null;
+
+        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        try {
+            $checkout_session = \Stripe\Checkout\Session::retrieve($seskey);
+        } catch (Exception $e) {
+           $api_error = $e->getMessage();
+        }
+
+        if(empty($api_error)&& $checkout_session){
+            try {
+                $intent = \Stripe\PaymentIntent::retrieve($checkout_session->payment_intent);
+            } catch (\Stripe\Exception\ApiErrorException $e) {
+                $api_error = $e->getMessafe();
+            }
+
+            try {
+                $customer = \Stripe\Customer::retrieve($checkout_session->customer);
+            } catch (\Stripe\Exception\ApiErrorException $e) {
+                $api_error = $e->getMessafe();
+            }
+
+
+            if(empty($api_error) && $intent){
+                if($intent->status == 'succeeded'){
+
+
+
+                    $order_id = Carbon::now()->timestamp;
+
+                    $iname = $user->name;
+                    $email = $customer->email;
+                    $transactionID = $intent->id;
+                    $paidAmount = $intent->amount;
+                    $paidAmount = ($paidAmount/100);
+                    $paidCurrency = $intent->currency;
+                    $paymentStatus = $intent->status;
+
+                    $order = new CourseOrder();
+                    $order->name = $iname;
+                    $order->email = $email;
+                    $order->course = serialize($carrito);
+                    $order->price = $carrito->total;
+                    $order->amount = $carrito->total;
+                    $order->currency = "usd";
+                    $order->txn_id = $transactionID;
+                    $order->payment_status = $paymentStatus;
+                    $order->checkout_session_id = $seskey;
+                    $order->user_id = $user_id;
+                    $order->order_id = $order_id;
+                    $order->save();
+
+
+                    foreach($carrito->items as $item){
+                        $curso = new UserCourse();
+                        $curso->user_id = $user_id;
+                        $curso->course_id = $item['curso']->id;
+                        $curso->fecha_inicio = date("Y-m-d");
+                        $curso->dias_activo = $item['curso']->tiempovalido;
+                        $curso->save();
+
+                        $cursoid = $item['curso']->id;
+                    }
+                }
+            }
+        }
+        $user_course_id = $curso->id;
+        $curso = Course::find($cursoid);
+        $data = ['nombre' => $user->name,'curso'=>$curso];
+
+        Mail::to(env("MAIL_CONTACT"))->send(new Compra($data));
+
+       Session::forget('cart');
+
+        //send email
+
+
+
+         // $data = ["html" => $product->title];
+         //Mail::to($user->email)->send(new Orden($data));
+
+
+         // Mail::to(env("MAIL_CONTACT"))->send(new Notificacion());
+       $course = Course::find($cursoid);
+      // $course = Course::find(3);
+
+         return view('frontpage.cart.success',['course'=>$course,'user_course'=>$curso,'user_course_id'=>$user_course_id]);
      }
 
      public function test(){

@@ -1022,11 +1022,31 @@ class HomeController extends Controller
     public function enroll($cadena){
 
         $user_id = Crypt::decryptString($cadena);
-
-
-
         $user = UserSign::where('user_id',$user_id)->first();
         return view('frontpage.usuario.sign',['user'=>$user]);
+    }
+
+    public function certificado($id,$user_course_id){
+        $curso = Course::find($id);
+
+
+        $user_course = UserCourse::find($user_course_id);
+        $user = $user_course->user;
+
+        $pdf = PDF::loadView('pdf.index', ['curso'=>$curso, 'user'=>$user,'user_course'=>$user_course ])->setOptions([
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true,
+            'dpi' =>137,
+
+        ]);
+
+    $pdf->setPaper('a4', 'landscape')->render();
+
+    return $pdf->stream();
+   // return $pdf->setPaper('a4', 'landscape')->dpi()stream('certificate'.uniqid().'.pdf');
+    //$output =  $pdf->output('employment.pdf');
+
+       // return view('pdf.index',['curso'=>$curso,'user'=>$user]);
     }
 
 }

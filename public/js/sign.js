@@ -22,18 +22,18 @@ var signaturePad = new SignaturePad(canvas, {
 function download(dataURL, filename) {
           var blob = dataURLToBlob(dataURL);
           var url = window.URL.createObjectURL(blob);
-        
+
           var a = document.createElement("a");
           a.style = "display: none";
           a.href = url;
           a.download = filename;
-        
+
           document.body.appendChild(a);
           a.click();
-        
+
           window.URL.revokeObjectURL(url);
         }
-        
+
         // One could simply use Canvas#toBlob method instead, but it's just to show
         // that it can be done using result of SignaturePad#toDataURL.
         function dataURLToBlob(dataURL) {
@@ -43,63 +43,71 @@ function download(dataURL, filename) {
           var raw = window.atob(parts[1]);
           var rawLength = raw.length;
           var uInt8Array = new Uint8Array(rawLength);
-        
+
           for (var i = 0; i < rawLength; ++i) {
             uInt8Array[i] = raw.charCodeAt(i);
           }
-        
+
           return new Blob([uInt8Array], { type: contentType });
         }
-      
 
-        
+
+
         var responseContainer = document.getElementById('paymentResponse');
-       
+
         btnClick.addEventListener('click',function(event){
           event.preventDefault();
           $(".error__entexto").html("");
           var legalname = document.querySelector("[name='legalname']").value;
           var email = document.querySelector('[name="email"]').value;
           var fullname = document.querySelector('[name="fullname"]').value;
+          var fullname2 = document.querySelector('[name="fullname2"]').value;
           var initial = document.querySelector('[name="initial"]').value;
 
           if(fullname==""){
-          
+
             $(".error__entexto").html("Complete fullname");
             window.scrollTo({ top: 0, behavior: 'smooth' });
             return false;
           }
           if(initial==""){
-           
+
             $(".error__entexto").html("Complete Inital");
             window.scrollTo({ top: 0, behavior: 'smooth' });
             return false;
           }
+          if(fullname2==""){
+
+            $(".error__entexto").html("Complete fullname acknowledgment");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return false;
+          }
+
           if(legalname==""){
-           
+
             $(".legal-name").html("Complete legal name");
             return false;
           }
           if(email==""){
-         
+
             $(".legal-email").html("Complete email");
             return false;
           }
-        
-          
+
+
           if (signaturePad.isEmpty()) {
-         
+
           $(".sign-error").html("Please provide a signature");
-          
+
           return false;
           } else {
           var dataURL = signaturePad.toDataURL('image/svg+xml');
-          
+
           }
 
               const sendata = {'_token':token,'_method':'POST',legalname:legalname,email:email,dataURL:dataURL,fullname:fullname,initial:initial};
               console.log(sendata);
-            
+
 
           fetch('/cart/sign-register',{
             method:'POST',
@@ -126,9 +134,9 @@ function download(dataURL, filename) {
           .catch(function(error) {
             console.error('Error:', error);
           });
-          
+
         });
-      
+
         $("#fullname").on('focus',function(){
           $(".error__entexto").html("");
         })
@@ -150,4 +158,3 @@ function download(dataURL, filename) {
           e.preventDefault();
           signaturePad.clear();
         });
-        

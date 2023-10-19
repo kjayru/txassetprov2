@@ -31,7 +31,7 @@ class Aprobado extends Mailable
     public function build()
     {
         $address = 'support@txassetpro.com';
-        $subject = 'Sign Enroll';
+        $subject = 'Congratulations';
         $name = 'Support TAP';
 
         return $this->from($address, $name)
