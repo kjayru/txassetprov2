@@ -14,8 +14,8 @@
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="/admin/courses">Courses</a></li>
 
-             
-             
+
+
 
               <li class="breadcrumb-item "><a href="/admin/chapters/{{$question->chapter_id}}">Chapters</a></li>
               <li class="breadcrumb-item "><a href="/admin/chapterequiz/{{$question->chapter_id}}">Evaluations</a></li>
@@ -35,7 +35,7 @@
     <div class="col-md-12">
         <!-- general form elements -->
         <div class="card card-primary">
-         
+
 
 
           <form role="form" action="{{ route('chapterequiz.update',$question->id) }}" method="POST" enctype="multipart/form-data">
@@ -83,8 +83,9 @@
 <script>
 $(function() {
         CKEDITOR.replace( description, {   height: 300 });
-        CKEDITOR.config.allowedContent = true;
+        CKEDITOR.config.allowedContent = false;
         CKEDITOR.config.contentsCss = '/css/app.css';
+        CKEDITOR.config.ForcePasteAsPlainText = true;
 })
 </script>
 

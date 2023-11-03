@@ -60,11 +60,11 @@ class CourseController extends Controller
             $course->video = $video;
         }
 
-       
+
         $course->resumen = $request->excerpt;
         $course->contenido = $request->description;
         $course->precio = $request->price;
-        
+
         $course->disponible = $request->available;
         $course->capitulos = $request->chapters;
         $course->audio = $request->audio;
@@ -73,7 +73,7 @@ class CourseController extends Controller
         $course->responsable = $request->responsable;
         $course->tiempovalido = $request->access;
 
-       
+
 
         $course->save();
 
@@ -128,7 +128,7 @@ class CourseController extends Controller
             $video = $request->file('video')->store('video');
             $course->video = $video;
         }
-        
+
         $course->save();
 
 
@@ -144,7 +144,7 @@ class CourseController extends Controller
      */
     public function destroy(Request $request)
     {
-       
+
         Course::find($request->id)->delete();
 
         return redirect()->route('courses.index')
@@ -158,11 +158,15 @@ class CourseController extends Controller
     }
 
     public function setCourseExam(Request $request){
-       
-        $ec = new ExamCourse();
-        $ec->course_id = $request->course_id;
-        $ec->exam_id = $request->exam;
-        $ec->save();
+
+        ExamCourse::where('course_id',$request->course_id)->delete();
+        $ec =  ExamCourse::create([
+            'course_id'=>$request->course_id,
+            'exam_id'=>$request->exam
+        ]);
+        // $ec->course_id = ;
+        // $ec->exam_id = $request->exam;
+        // $ec->save();
 
         return redirect()->route('courses.index')
         ->with('info','Exam Asign');

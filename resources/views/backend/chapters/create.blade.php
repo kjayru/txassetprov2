@@ -87,13 +87,11 @@
 
 $(function () {
 
- /* CKEDITOR.replace( '.contenidos', {
-    height: 700
-} );*/
 
         CKEDITOR.replace( description, {   height: 300 });
-        CKEDITOR.config.allowedContent = true;
+        CKEDITOR.config.allowedContent = false;
         CKEDITOR.config.contentsCss = '/css/app.css';
+        CKEDITOR.config.ForcePasteAsPlainText = true;
 
 
 

@@ -51,7 +51,7 @@
                 @include('backend.content.form.index')
 
               </div>
-            
+
               <div class="card-footer">
                 <a href="{{ route('chaptercontent.show',['content'=>$content->chapter->id]) }}" class="btn btn-danger">Cancelar</a>
                 <button type="submit" class="btn btn-info pull-right">Guardar</button>
@@ -86,13 +86,10 @@
 <script>
 $(function() {
   var editor =   CKEDITOR.replace( description, {   height: 300 });
-        CKEDITOR.config.allowedContent = true;
-        CKEDITOR.config.contentsCss = '/css/app.css';
 
-        editor.on( 'required', function( evt ) {
-            editor.showNotification( 'This field is required.', 'warning' );
-            evt.cancel();
-        });
+        CKEDITOR.config.allowedContent = false;
+        CKEDITOR.config.contentsCss = '/css/app.css';
+        CKEDITOR.config.ForcePasteAsPlainText = true;
 })
 </script>
 

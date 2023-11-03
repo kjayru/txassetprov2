@@ -33,7 +33,7 @@
         <div class="card card-primary">
 
 
- 
+
             @if(session('info'))
                 <div class="container">
                     <div class="row">
@@ -92,13 +92,9 @@ $(function () {
 } );*/
 
       var editor =   CKEDITOR.replace( description, {   height: 300 });
-        CKEDITOR.config.allowedContent = true;
+      CKEDITOR.config.allowedContent = false;
         CKEDITOR.config.contentsCss = '/css/app.css';
-
-        editor.on( 'required', function( evt ) {
-            editor.showNotification( 'This field is required.', 'warning' );
-            evt.cancel();
-        });
+        CKEDITOR.config.ForcePasteAsPlainText = true;
 
 })
 

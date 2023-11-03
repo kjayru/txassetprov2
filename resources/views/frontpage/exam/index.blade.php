@@ -121,23 +121,22 @@
 
                             @foreach($examen->examquestions as $key => $question)
 
-                                <div class="card__question" style="display:{{$key==0?'block':'none'}}">
-                                    {{$key+1}}.  {{$question->question}}
-                                    <input type="hidden" name="quiz_id" value="{{$question->id}}">
-                                    <div class="card__question__opciones">
+                                    <div class="card__question" style="display:{{$key==0?'block':'none'}}">
+                                        {{$key+1}}.  {{$question->question}}
+                                        <input type="hidden" name="quiz_id" value="{{$question->id}}">
+                                        <div class="card__question__opciones">
 
-                                        @foreach($question->examquestionoptions as $option)
-                                            <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="respuesta" value="{{$option->id}}" id="respuesta">
-                                            <label class="form-check-label" for="respuesta">
-                                                {{$option->opcion}}
-                                            </label>
-                                            </div>
-                                        @endforeach
+                                            @foreach($question->examquestionoptions as $option)
+                                                <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="respuesta" value="{{$option->id}}" id="respuesta">
+                                                <label class="form-check-label" for="respuesta">
+                                                    {{$option->opcion}}
+                                                </label>
+                                                </div>
+                                            @endforeach
 
-
-                                </div>
-                                <a href="#" data-quizid="{{$question->id}}" class="btn btn-default btn__exam">Next</a>
+                                    </div>
+                                    <a href="#" data-quizid="{{$question->id}}" class="btn btn-default btn__exam">Next</a>
                                 </div>
 
                             @endforeach
