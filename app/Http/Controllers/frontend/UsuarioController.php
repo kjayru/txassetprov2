@@ -145,6 +145,7 @@ class UsuarioController extends Controller
          $profile->firstname = $request->name;
          $profile->middlename = $request->middle;
          $profile->lastname = $request->lastname;
+         $profile->social_number = $request->socialnumber;
 
          $profile->save();
 

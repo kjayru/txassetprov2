@@ -59,6 +59,11 @@
                             <td class="titulo"><strong>Last name</strong>  </td>
                             <td><input type="text" name="lastname" id="lastname" class="form-control" value="{{@$user->profile->lastname}}"></td>
                         </tr>
+
+                        <tr>
+                            <td class="titulo"><strong>Social Security number</strong>  </td>
+                            <td><input type="text" name="socialnumber" id="socialnumber" class="form-control" value="{{@$user->profile->socialnumber}}"></td>
+                        </tr>
                     </table>
 
 					<div class="card__footer">

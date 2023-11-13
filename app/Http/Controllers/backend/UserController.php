@@ -95,7 +95,7 @@ class UserController extends Controller
         $profile->shootingshotgun =$request->shootingshotgun;
         $profile->shotgungauce =$request->shotgungauce;
         $profile->shotgunrental =$request->shotgunrental;
-
+        $profile->social_number = $request->socialnumber;
         $profile->save();
 
         $user = User::where('id',$profile->user_id)->first();

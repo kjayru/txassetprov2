@@ -56,6 +56,11 @@
                             <td class="titulo"><strong>Last name</strong>  </td>
                             <td>{{@$user->profile->lastname}}</td>
                         </tr>
+
+                        <tr>
+                            <td class="titulo"><strong>Social Security number</strong>  </td>
+                            <td>{{@$user->profile->social_number}}</td>
+                        </tr>
                     </table>
 
 					<div class="card__footer">
