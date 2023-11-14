@@ -62,7 +62,7 @@
 
                         <tr>
                             <td class="titulo"><strong>Social Security number</strong>  </td>
-                            <td><input type="text" name="socialnumber" id="socialnumber" class="form-control" value="{{@$user->profile->socialnumber}}"></td>
+                            <td><input type="text" name="socialnumber" id="socialnumber" class="form-control" value="{{@$user->profile->social_number}}"></td>
                         </tr>
                     </table>
 
