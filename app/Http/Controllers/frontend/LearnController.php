@@ -462,6 +462,7 @@ class LearnController extends Controller
 
 
     public function resetChapter(Request $request){
+
         $user_id = Auth::id();
         UserCourseChapterQuiz::where('user_course_chapter_id',$request->user_course_chapter_id)->delete();
         return response()->json(['rtpa'=>'ok']);
