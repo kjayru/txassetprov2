@@ -177,10 +177,16 @@ try {
 
   var player = videojs('my-player');
   var options = {};
+  //player.enterFullWindow();
+
   var player = videojs('my-player', options, function onPlayerReady() {
-
-
+    //this.controls(false);
     this.play();
+
+    this.on("play", function () {
+        isPaused = isHidden = false
+        this.controlBar.hide()
+     });
 
     this.on('ended', function() {
 
@@ -210,8 +216,8 @@ try {
           $(".encurso__footer__link").removeClass("disabled");
         }
       })
-
     });
+
   });
 
 } catch (error) {
