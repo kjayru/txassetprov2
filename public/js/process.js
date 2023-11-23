@@ -193,7 +193,14 @@ try {
 
     this.on('ended', function() {
         this.exitFullWindow();
-        window.scrollTo(0, document.body.scrollHeight);
+
+
+        scrollTo = $('.encurso__footer__link');
+
+        var $container = $("html,body");
+        var $scrollTo = $('.saveIcon');
+        $container.animate({scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop(), scrollLeft: 0},300);
+
       //registro de capitulo completado
       const token = $('meta[name="csrf-token"]').attr('content');
       let usercourseid = $("input[name='user_course_id']").val();
