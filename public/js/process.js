@@ -197,7 +197,7 @@ try {
 
 
         $('html, body').animate({
-            scrollTop: $("#learn__footer").offset().top - 100
+            scrollTop: $("#learn__footer").offset().top - 200
         }, 360);
 
       //registro de capitulo completado
