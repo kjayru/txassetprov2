@@ -176,7 +176,9 @@ try {
 
 
   var player = videojs('my-player');
-  var options = {};
+  var options = {
+
+  };
   //player.enterFullWindow();
 
   var player = videojs('my-player', options, function onPlayerReady() {
