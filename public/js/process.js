@@ -194,11 +194,9 @@ try {
     this.on('ended', function() {
         this.exitFullWindow();
 
-
-
-
-        const element = document.getElementsByClassName("encurso__footer__link");
-        element.scrollIntoView();
+        var $container = $("html,body");
+        var $scrollTo = $('.encurso__footer__link');
+        $container.animate({scrollTop: $scrollTo.offset().top, scrollLeft: 0},300);
 
       //registro de capitulo completado
       const token = $('meta[name="csrf-token"]').attr('content');
