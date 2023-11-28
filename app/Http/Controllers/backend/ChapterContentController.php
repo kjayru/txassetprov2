@@ -19,7 +19,7 @@ class ChapterContentController extends Controller
         $contents = Chaptercontent::where('chapter_id',$id)->get();
         $chapter = Chapter::find($id);
         $course_id = $chapter->course_id;
-      
+
         return view("backend.content.index",['contents'=>$contents,'course_id'=>$course_id,'chapter_id'=>$id]);
     }
 
@@ -27,7 +27,7 @@ class ChapterContentController extends Controller
     public function show($id)
     {
         $contents = Chaptercontent::where('chapter_id',$id)->get();
-        
+
         $chapter = Chapter::find($id);
         $course_id = $chapter->course_id;
 
@@ -41,8 +41,8 @@ class ChapterContentController extends Controller
     public function create($id)
     {
         $chapter = Chapter::find($id);
-       
-       
+
+
         return view('backend.content.create',['id'=>$id,'chapter'=>$chapter]);
     }
 
@@ -55,12 +55,12 @@ class ChapterContentController extends Controller
     public function store(Request $request)
     {
 
-       
+
 
          $validated = $request->validate([
             'title' => 'required',
             'video' => 'file|required',
-            
+
 
         ]);
 
@@ -71,6 +71,11 @@ class ChapterContentController extends Controller
         if($request->hasFile('video')) {
             $video = $request->file('video')->store('video');
             $content->video = $video;
+        }
+
+        if($request->hasFile('poster')) {
+            $poster = $request->file('poster')->store('poster');
+            $content->poster = $poster;
         }
 
         if($request->hasFile('audio')) {
@@ -103,7 +108,7 @@ class ChapterContentController extends Controller
         $chapters = Chapter::where('course_id',$course->id)->orderBy('id','desc')->get();
 
         $chapter = $content->chapter;
-       
+
         return view('backend.content.edit',['content'=>$content,'chapters'=>$chapters,'chapter'=>$chapter]);
     }
 
@@ -125,6 +130,10 @@ class ChapterContentController extends Controller
         if($request->hasFile('video')) {
             $video = $request->file('video')->store('video');
             $content->video = $video;
+        }
+        if($request->hasFile('poster')) {
+            $poster = $request->file('poster')->store('poster');
+            $content->poster = $poster;
         }
 
         if($request->hasFile('audio')) {
