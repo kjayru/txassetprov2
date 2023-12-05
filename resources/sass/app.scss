@@ -2964,6 +2964,9 @@ progress{
 
 
 @media(max-width:780px){
+    video::-webkit-media-controls-overlay-play-button {
+        display: none;
+        }
     .cursos{
         header {
             // div:first-child{
@@ -3752,7 +3755,11 @@ progress{
     }
 }
 
+
 @media(max-width:520px){
+    video::-webkit-media-controls-overlay-play-button {
+        display: none;
+    }
     .learn{
         &__bloque{
             .learn__link{
