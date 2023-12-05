@@ -8,7 +8,7 @@
               class="video-js"
               controls
               preload="auto"
-
+              webkit-playsinline playsinline
               poster="/storage/{{@$content->poster}}"
               data-setup="{}"
           >
