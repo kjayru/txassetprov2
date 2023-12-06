@@ -20,10 +20,17 @@ use Carbon\Carbon;
     background-size: contain;
 }
 
+        .certi_curso{
+            font-size: 2rem;
+            font-weight: bold;
+            padding-top: 7rem;
+            display: block;
+            text-align: center;
+        }
         .certi_nombre{
             font-size: 2rem;
             font-weight: bold;
-            padding-top: 13rem;
+            padding-top: 3.5rem;
             display: block;
             text-align: center;
         }
@@ -35,12 +42,16 @@ use Carbon\Carbon;
             text-align: left;
             padding-left: 20rem;
         }
+
     </style>
 </head>
 <body>
 
 <div class="contenedor">
     <div class="contenido">
+        <div class="certi_curso">
+            {{@$user_course->course->titulo}}
+        </div>
         <div class="certi_nombre">
             {{@$user->profile->firstname}} {{@$user->profile->lastname}}  {{substr(@$user->profile->social_number, -6)}}
         </div>
