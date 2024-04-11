@@ -90,7 +90,7 @@
                                                          </div>
                                                   </div>
 
-                                                  @foreach($curso->chapters as $k => $chapter)
+                                                  @foreach($curso->chapters->sortBy('order') as $k => $chapter)
                                                   <div class="row justify-content-between interlineado">
                                                             <div class="col-md-7">
                                                                       <span>{{$k+1}}</span>  {{$chapter->title}}
