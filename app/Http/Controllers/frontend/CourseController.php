@@ -72,7 +72,7 @@ class CourseController extends Controller
        $menulat=null;
 
         //chapter crear order en tabla
-       $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','desc')->get();
+       $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','asc')->get();
 
 
 
