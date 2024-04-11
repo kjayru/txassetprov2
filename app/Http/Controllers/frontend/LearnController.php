@@ -81,7 +81,7 @@ class LearnController extends Controller
         }
 
 
-        $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','desc')->get();
+        $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','asc')->get();
         $chapter = Chapter::where('course_id',$curso->id)->first();
         //obtenemos el contenido del primer  capitulo
         $content = Chaptercontent::where('chapter_id',$capitulos[0]->id)->first();
@@ -209,7 +209,7 @@ class LearnController extends Controller
 
 
         //chapter crear order en tabla
-        $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','desc')->get();
+        $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','asc')->get();
 
 
 
@@ -290,7 +290,7 @@ class LearnController extends Controller
         }
 
         //chapter crear order en tabla
-        $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','desc')->get();
+        $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','asc')->get();
 
 
 
@@ -521,7 +521,7 @@ class LearnController extends Controller
     }
 
 
-    $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','desc')->get();
+    $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','asc')->get();
     //obtenemos el contenido del primer  capitulo
     $content = Chaptercontent::where('chapter_id',$capitulos[0]->id)->first();
 
@@ -599,7 +599,7 @@ class LearnController extends Controller
         $curso = $userCourse->course;
 
         //chapter crear order en tabla
-        $capitulos = Chapter::where('course_id',$userCourse->course->id)->orderBy('order','desc')->get();
+        $capitulos = Chapter::where('course_id',$userCourse->course->id)->orderBy('order','asc')->get();
        foreach($capitulos as $cap){
         $menucont=null;
         $quiz=false;
@@ -642,7 +642,7 @@ class LearnController extends Controller
 
 
         //chapter crear order en tabla
-        $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','desc')->get();
+        $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','asc')->get();
 
 
 
@@ -706,7 +706,7 @@ class LearnController extends Controller
 
 
         //chapter crear order en tabla
-        $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','desc')->get();
+        $capitulos = Chapter::where('course_id',$curso->id)->orderBy('order','asc')->get();
 
 
 
