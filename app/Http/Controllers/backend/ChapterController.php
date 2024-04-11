@@ -16,9 +16,9 @@ class ChapterController extends Controller
    }
     public function index($course)
     {
-       
+
         $chapters = Chapter::where('course_id',$course)->get();
-       
+
         return view("backend.chapters.index",['chapters'=>$chapters,'course_id'=>$course]);
     }
 
@@ -58,15 +58,8 @@ class ChapterController extends Controller
         $chapter->audio = $request->audio;
         $chapter->reading = $request->reading;
         $chapter->quiz = $request->quiz;
+        $chapter->order = $request->order;
         $chapter->save();
-        
-        // if(isset($request->quiz_id)){
-        // $chapquiz = new ChapterQuiz();
-        // $chapquiz->chapter_id = $chapter->id;
-        // $chapquiz->quiz_id = $request->quiz_id;
-
-        // $chapquiz->save();
-        // }
 
 
         return redirect('/admin/chapters/'.$request->parent_id)
@@ -99,7 +92,7 @@ class ChapterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $chapter = Chapter::find($id);
 
         $chapter->title = $request->title;
@@ -109,15 +102,9 @@ class ChapterController extends Controller
         $chapter->audio = $request->audio;
         $chapter->reading = $request->reading;
         $chapter->quiz = $request->quiz;
+        $chapter->order = $request->order;
         $chapter->save();
 
-        // ChapterQuiz::where('chapter_id',$chapter->id)->where('quiz_id',$request->quiz_id)->first();
-        // if(isset($request->quiz_id)){
-        //     $chapquiz = new ChapterQuiz();
-        //     $chapquiz->chapter_id = $chapter->id;
-        //     $chapquiz->quiz_id = $request->quiz_id;
-        //     $chapquiz->save();
-        // }
 
         return redirect('/admin/chapters/'.$request->parent_id)
         ->with('info','Chapter updated');

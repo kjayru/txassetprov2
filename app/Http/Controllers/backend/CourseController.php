@@ -47,6 +47,14 @@ class CourseController extends Controller
 
 
 
+        $validated = $request->validate([
+            'titulo' => 'required',
+            'contenido' => 'required',
+            'banner' => 'required',
+            'video' => 'required',
+
+        ]);
+
         $course = new Course();
         $course->titulo = $request->title;
         $course->slug = Str::slug($request->title, '-');

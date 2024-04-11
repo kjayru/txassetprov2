@@ -3755,6 +3755,9 @@ progress{
     }
 }
 
+.encurso__video .plyr__controls{
+    display: none;
+}
 
 @media(max-width:520px){
     video::-webkit-media-controls-overlay-play-button {

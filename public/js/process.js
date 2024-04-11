@@ -172,63 +172,135 @@ $("#password__login").focus(function() {
   $(".login__alerta").hide();
 });
 
+
 try {
 
 
-  var player = videojs('my-player');
-  var options = {
 
-  };
+    // const player = new Plyr('#my-homevideo', {captions: {active: true}});
+    // window.player = player;
+
+    const player2 = new Plyr('#my-video');
+    //window.player2 = player2;
+    player2.play();
+
+
+    player2.on('ready', (event) => {
+        const instance = event.detail.plyr;
+
+      });
+
+      player2.on('play', event => {
+        const instance = event.detail.plyr;
+
+        instance.fullscreen.toggle;
+        instance.pause=false;
+
+      });
+      player2.on('ended', event => {
+
+        const instance = event.detail.plyr;
+
+        player2.fullscreen.exit();
+
+            $('html, body').animate({
+                scrollTop: $("#learn__footer").offset().top - 200
+            }, 360);
+
+        //registro de capitulo completado
+        const token = $('meta[name="csrf-token"]').attr('content');
+        let usercourseid = $("input[name='user_course_id']").val();
+        let usercoursechapterid = $("input[name='user_course_chapter_id']").val();
+        let usercoursechaptercontentid= $("input[name='user_course_chapter_content_id']").val();
+
+
+        let sendata = {
+            '_token':token,
+            '_method':'post',
+            'usercourseid':usercourseid,
+            'usercoursechapterid':usercoursechapterid,
+            'usercoursechaptercontentid':usercoursechaptercontentid
+        };
+
+        $.ajax({
+            url:'/user/set-chapter',
+            type:'POST',
+            dataType:'json',
+            data:sendata,
+            success:function(response){
+            console.log(response);
+            $(".encurso__footer__link").removeClass("disabled");
+            }
+        })
+
+
+
+      });
+
+  //var player = videojs('my-player');
+//   var player2 = videojs('my-homevideo');
+//   var options = {
+
+//   };
   //player.enterFullWindow();
 
-  var player = videojs('my-player', options, function onPlayerReady() {
-    //this.controls(false);
-    this.play();
+//   var player = videojs('my-player', function onPlayerReady() {
 
-    this.on("play", function () {
-        isPaused = isHidden = false
-        this.controlBar.hide();
-        this.enterFullWindow();
-     });
+//     this.play();
 
-    this.on('ended', function() {
-        this.exitFullWindow();
+//     this.on("play", function () {
+//         alert("corriendo");
+//         isPaused = isHidden = false
+//         this.controlBar.hide();
+//         this.enterFullWindow();
+//      });
+
+//     this.on('ended', function() {
+//         this.exitFullWindow();
 
 
 
-        $('html, body').animate({
-            scrollTop: $("#learn__footer").offset().top - 200
-        }, 360);
+//         $('html, body').animate({
+//             scrollTop: $("#learn__footer").offset().top - 200
+//         }, 360);
 
-      //registro de capitulo completado
-      const token = $('meta[name="csrf-token"]').attr('content');
-      let usercourseid = $("input[name='user_course_id']").val();
-      let usercoursechapterid = $("input[name='user_course_chapter_id']").val();
-      let usercoursechaptercontentid= $("input[name='user_course_chapter_content_id']").val();
+//       //registro de capitulo completado
+//       const token = $('meta[name="csrf-token"]').attr('content');
+//       let usercourseid = $("input[name='user_course_id']").val();
+//       let usercoursechapterid = $("input[name='user_course_chapter_id']").val();
+//       let usercoursechaptercontentid= $("input[name='user_course_chapter_content_id']").val();
 
-      //alert(usercourseid+' '+usercoursechapterid+' '+usercoursechaptercontentid);
+//       //alert(usercourseid+' '+usercoursechapterid+' '+usercoursechaptercontentid);
 
-      let sendata = {
-        '_token':token,
-        '_method':'post',
-        'usercourseid':usercourseid,
-        'usercoursechapterid':usercoursechapterid,
-        'usercoursechaptercontentid':usercoursechaptercontentid
-      };
+//       let sendata = {
+//         '_token':token,
+//         '_method':'post',
+//         'usercourseid':usercourseid,
+//         'usercoursechapterid':usercoursechapterid,
+//         'usercoursechaptercontentid':usercoursechaptercontentid
+//       };
 
-      $.ajax({
-        url:'/user/set-chapter',
-        type:'POST',
-        dataType:'json',
-        data:sendata,
-        success:function(response){
-          console.log(response);
-          $(".encurso__footer__link").removeClass("disabled");
-        }
-      })
-    });
+//       $.ajax({
+//         url:'/user/set-chapter',
+//         type:'POST',
+//         dataType:'json',
+//         data:sendata,
+//         success:function(response){
+//           console.log(response);
+//           $(".encurso__footer__link").removeClass("disabled");
+//         }
+//       })
+//     });
 
-  });
+//   });
+
+
+//   var player2 = videojs('my-homevideo', options, function onPlayerReady() {
+//     //this.controls(false);
+//     this.play();
+
+//    });
+//    console.log(player2);
 
 } catch (error) {
   console.log("no inicializado");

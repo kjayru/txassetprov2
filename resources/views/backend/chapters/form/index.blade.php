@@ -11,7 +11,7 @@
         <select name="quiz_id" id="quiz_id" class="custom-select">
             <option value="">Seleccione</option>
             @foreach ($quizes as $quiz )
-            <option value="{{$quiz->id}}">{{$quiz->title}}</option> 
+            <option value="{{$quiz->id}}">{{$quiz->title}}</option>
             @endforeach
         </select>
     </div> --}}
@@ -20,7 +20,7 @@
         <input type="checkbox" name="video"  value="1" class="form-check-input" id="video" {{ @$chapter->video==1?"checked":""}}>
         <label class="form-check-label" for="video">Video</label>
       </div>
-    
+
       <div class="form-check">
         <input type="checkbox" name="audio" value="1"  class="form-check-input" id="audio"  {{ @$chapter->audio==1?"checked":""}}>
         <label class="form-check-label" for="audio">Audio</label>
@@ -35,6 +35,11 @@
       <div class="form-check">
         <input type="checkbox" name="quiz" value="1"  class="form-check-input" id="quiz"  {{ @$chapter->quiz==1?"checked":""}}>
         <label class="form-check-label" for="quiz">Questions about the chapter</label>
+      </div>
+
+      <div class="form-control">
+        <label for="order">Order</label>
+        <input type="text" name="order" id="order" value={{@$chapter->order}}>
       </div>
 
 
