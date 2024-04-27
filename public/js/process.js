@@ -194,7 +194,7 @@ try {
         const instance = event.detail.plyr;
 
         instance.fullscreen.toggle;
-        instance.pause=false;
+       // instance.pause=false;
 
       });
       player2.on('ended', event => {

@@ -2964,9 +2964,9 @@ progress{
 
 
 @media(max-width:780px){
-    video::-webkit-media-controls-overlay-play-button {
-        display: none;
-        }
+    // video::-webkit-media-controls-overlay-play-button {
+    //     display: none;
+    //     }
     .cursos{
         header {
             // div:first-child{
@@ -3755,9 +3755,9 @@ progress{
     }
 }
 
-.encurso__video .plyr__controls{
-    display: none;
-}
+// .encurso__video .plyr__controls{
+//     display: none;
+// }
 
 @media(max-width:520px){
     video::-webkit-media-controls-overlay-play-button {
