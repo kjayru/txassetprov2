@@ -78,11 +78,11 @@
 
 
 <script>
-/*$(function() {
+$(function() {
         CKEDITOR.replace( description, {   height: 300 });
         CKEDITOR.config.allowedContent = true;
         CKEDITOR.config.contentsCss = '/css/app.css';
-})*/
+})
 </script>
 
 @endsection
