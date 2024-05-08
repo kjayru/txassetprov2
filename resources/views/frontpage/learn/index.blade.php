@@ -69,6 +69,7 @@
 							@include('layouts.backend.partials.curso.audio')
 						@endif
 
+
 						@if($url_next_quiz!=null)
 							<div class="encurso__footer" id="learn__footer">
 
