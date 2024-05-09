@@ -36,4 +36,39 @@ class Chapter extends Model
 
         return $capitulos;
     }
+
+    public static function indices($arreglo,$chapter_id){
+
+        foreach($arreglo as $row){
+            if($row['chapter_id']==$chapter_id){
+
+               return $row['order'];
+            }
+        }
+    }
+
+    public static function proximo($arreglo,$chapter_id){
+
+
+        $ordenActual =0;
+        foreach($arreglo as $row){
+            if($row['chapter_id']==$chapter_id){
+
+              $ordenActual = $row['order'];
+            }
+        }
+
+        if($ordenActual !=0){
+            $indice = $ordenActual+1;
+
+
+            foreach($arreglo as $row){
+                if($row['order']==$indice){
+                    return $row['chapter_id'];
+                }
+            }
+        }
+
+        return 0;
+    }
 }

@@ -240,7 +240,8 @@ class LearnController extends Controller
 
         //armado de contenido siguiente
 
-        $sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$chapter->id)->orderBy('id')->first();
+        //$sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$chapter->id)->orderBy('id')->first();
+        $sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$chapter->id)->orderBy('order','desc')->first();
         if(isset($sig)){
 
             $url_next = $id."/".$sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
@@ -362,10 +363,51 @@ class LearnController extends Controller
             $registro->save();
         }
 
-        if( Chaptercontent::where('chapter_id','>',$chapter->id)->orderBy('id')->count()>0){
-            $sig = Chaptercontent::where('chapter_id','>',$chapter->id)->orderBy('id')->first();
+
+    //obtengo total de capitulos
+        $numeroCapitulos = $capitulos = Chapter::where('course_id',$curso->id)->count();
+        $indiceCapitulos = $capitulos = Chapter::where('course_id',$curso->id)->get();
+        $contador=1;
+        $capituloActual = Chaptercontent::where('chapter_id',$chapter->id)->first();
+        $capitulosId=[];
+        $capitulosIdOrder=[];
+    //obtengo id de capitulos
+        foreach($indiceCapitulos as $nc){
+            $indice = ['chapter_id'=>$nc->id, 'order'=>$nc->order];
+            array_push($capitulosId,$indice);
+        }
+
+
+        //obtenemos indice del orden
+        // foreach($capitulosId as $cid){
+        //     $ccontent = Chaptercontent::where('chapter_id',$cid)->first();
+        //     $capitulosIdOrder[]=['chapter_id'=>$cid, 'order'=>$ccontent->order];
+
+        // }
+
+
+
+        $keys = array_column($capitulosId, 'order');
+        array_multisort($keys, SORT_ASC, $capitulosId);
+
+
+
+
+            $coleccion = collect($capitulosId);
+
+           $chapterOrderNow = Chapter::indices($coleccion,$chapter->id);
+           $chapterNextId = Chapter::proximo($coleccion,$chapter->id);
+
+
+
+        if( $capituloActual->order < $numeroCapitulos){
+
+            $sig = Chaptercontent::where('chapter_id',$chapterNextId)->orderBy('order','asc')->first();
+
+
             if($sig->chapter->course->slug == $slug){
             $url_next = $user_course_id."/".$sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
+
             }else{
                 $fin_curso=true;
             }
