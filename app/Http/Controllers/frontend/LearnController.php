@@ -239,9 +239,18 @@ class LearnController extends Controller
 
 
         //armado de contenido siguiente
-
+        $ordenSiguiente = 0;
         //$sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$chapter->id)->orderBy('id')->first();
-        $sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$chapter->id)->orderBy('order','desc')->first();
+       $contenidoActual = Chaptercontent::where('id',$content->id)->where('chapter_id',$chapter->id)->first();
+       $ordenActual = $contenidoActual->order;
+
+        $ordenSiguiente = $ordenActual+1;
+
+       $sig = Chaptercontent::where('chapter_id',$chapter->id)->where('order',$ordenSiguiente)->first();
+
+
+
+        //$sig = Chaptercontent::where('id','>',$content->id)->where('chapter_id',$chapter->id)->orderBy('order','desc')->first();
         if(isset($sig)){
 
             $url_next = $id."/".$sig->chapter->course->slug."/".$sig->chapter->slug."/".$sig->slug;
@@ -377,30 +386,18 @@ class LearnController extends Controller
             array_push($capitulosId,$indice);
         }
 
-
-        //obtenemos indice del orden
-        // foreach($capitulosId as $cid){
-        //     $ccontent = Chaptercontent::where('chapter_id',$cid)->first();
-        //     $capitulosIdOrder[]=['chapter_id'=>$cid, 'order'=>$ccontent->order];
-
-        // }
-
-
-
         $keys = array_column($capitulosId, 'order');
         array_multisort($keys, SORT_ASC, $capitulosId);
 
+        $coleccion = collect($capitulosId);
 
-
-
-            $coleccion = collect($capitulosId);
-
-           $chapterOrderNow = Chapter::indices($coleccion,$chapter->id);
-           $chapterNextId = Chapter::proximo($coleccion,$chapter->id);
+        $chapterOrderNow = Chapter::indices($coleccion,$chapter->id);
+        $chapterNextId = Chapter::proximo($coleccion,$chapter->id);
 
 
 
         if( $capituloActual->order < $numeroCapitulos){
+
 
             $sig = Chaptercontent::where('chapter_id',$chapterNextId)->orderBy('order','asc')->first();
 
