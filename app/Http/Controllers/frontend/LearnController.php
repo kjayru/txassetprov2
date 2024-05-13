@@ -394,9 +394,9 @@ class LearnController extends Controller
         $chapterOrderNow = Chapter::indices($coleccion,$chapter->id);
         $chapterNextId = Chapter::proximo($coleccion,$chapter->id);
 
+        if( $chapterNextId!=0){
 
-
-        if( $capituloActual->order < $numeroCapitulos){
+        if( $capituloActual->order <= $numeroCapitulos){
 
 
             $sig = Chaptercontent::where('chapter_id',$chapterNextId)->orderBy('order','asc')->first();
@@ -411,6 +411,9 @@ class LearnController extends Controller
         }else{
             $fin_curso=true;
         }
+      }else{
+        $fin_curso=true;
+      }
 
 
 
