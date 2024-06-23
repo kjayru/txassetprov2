@@ -49,4 +49,16 @@ class Course extends Model
     public function examcourse(){
         return $this->hasOne(ExamCourse::class);
     }
+
+    public static function getcourse($item){
+
+       // unserialize($item)->items[7]['curso']->titulo
+      $comp =  unserialize($item);
+      $key = array_keys($comp->items);
+      $course_id = $key[0];
+
+      $curso = $comp->items[$course_id]['curso'];
+
+      return $curso;
+    }
 }

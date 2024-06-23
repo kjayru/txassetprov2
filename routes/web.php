@@ -19,6 +19,7 @@ use App\Http\Controllers\backend\ChapterController;
 use App\Http\Controllers\backend\ChapterContentController;
 use App\Http\Controllers\backend\ChapterEvaluationController;
 use App\Http\Controllers\backend\ExamController;
+use App\Http\Controllers\backend\CouponController;
 use App\Http\Controllers\frontend\CourseController as Course;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\LearnController;
@@ -161,8 +162,6 @@ Route::group(['prefix' => 'admin'],function(){
     Route::delete('chapterequiz/{quiz}',[ChapterEvaluationController::class,'destroy'])->name('chapterequiz.destroy');
     Route::get('chapterequiz/{quiz}/edit',[ChapterEvaluationController::class,'edit'])->name('chapterequiz.edit');
 
-
-
     //examenes
     Route::get('exams',[ExamController::class,'index'])->name('exam.index');
     Route::get('exams/create',[ExamController::class,'create'])->name('exam.create');
@@ -177,7 +176,18 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('exams/options/{opt}/{quest}/edit',[ExamController::class,'optionEdit'])->name('option.edit');
     Route::put('exams/options/{opt}/{quest}',[ExamController::class,'optionUpdate'])->name('option.update');
     Route::delete('exams/options/{opt}/delete',[ExamController::class,'optionDestroy'])->name('option.destroy');
+
+    Route::get('coupon',[CouponController::class,'index'])->name('cupon.index');
+    Route::get('coupon/create',[CouponController::class,'create'])->name('cupon.create');
+    Route::post('coupon/store',[CouponController::class,'store'])->name('cupon.store');
+    Route::put('coupon/{cupon}',[CouponController::class,'update'])->name('cupon.update');
+    Route::delete('coupon/{cupon}',[CouponController::class,'destroy'])->name('cupon.destroy');
+    Route::get('coupon/{cupon}/edit',[CouponController::class,'edit'])->name('cupon.edit');
+
+
 });
+
+
 
 Route::get('/', [Home::class,'index'])->name('front.home');
 Route::get('/about-us', [Home::class,'aboutus'])->name('front.about');
@@ -244,7 +254,7 @@ Route::group(['prefix' => 'cart'],function(){
     Route::get('/success/{session_id}', [CartController::class,'success']);
     Route::get('/cancel', [CartController::class,'cancel']);
 
-
+    Route::post('/aplicarcupon',[Home::class,'aplicarCupon']);
 });
 
 Route::group(['prefix'=>'learn'],function(){

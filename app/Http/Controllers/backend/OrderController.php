@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\CourseOrder;
 
 class OrderController extends Controller
 {
@@ -18,7 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderBy('id','desc')->get();
+        $orders = CourseOrder::orderBy('id','desc')->get();
         return view('backend.orders.index',['orders'=>$orders]);
     }
 
@@ -27,7 +28,7 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $order = Order::find($id);
+        $order = CourseOrder::find($id);
         return view('backend.orders.show',['order'=>$order]);
     }
 

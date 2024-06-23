@@ -29,6 +29,7 @@ use App\Models\Profile;
 use App\Models\UserSign;
 use App\Models\User;
 use App\Models\UserCourse;
+use App\Models\Coupon;
 use Session;
 use Carbon\Carbon;
 //use PDF;
@@ -887,6 +888,8 @@ class HomeController extends Controller
         if(Auth::id()){
             $user_id = Auth::id();
         }
+       
+       
 
         return view('frontpage.cart.index',['cart'=>$carrito,'user_id'=>$user_id]);
     }
@@ -1040,13 +1043,33 @@ class HomeController extends Controller
 
         ]);
 
-    $pdf->setPaper('a4', 'landscape')->render();
+        $pdf->setPaper('a4', 'landscape')->render();
 
-    return $pdf->stream();
-   // return $pdf->setPaper('a4', 'landscape')->dpi()stream('certificate'.uniqid().'.pdf');
-    //$output =  $pdf->output('employment.pdf');
-
-       // return view('pdf.index',['curso'=>$curso,'user'=>$user]);
+        return $pdf->stream();
+   
     }
 
+
+    public function aplicarCupon(Request $request ){
+
+       
+        $carrito = Session::get('cart');
+
+        
+        $request->session()->put('cupon', $request->cupon);
+    
+        $result = Coupon::where('cupon',$request->cupon)->first();
+
+        $monto_cupon = $result->monto_descuento;
+
+        
+        $descuento = $carrito->total*$monto_cupon/100;
+
+       
+        $nuevo_precio = $carrito->total - $descuento;
+
+        
+        return response()->json(['rpta'=>'ok','precio'=>$nuevo_precio]);
+
+    }
 }

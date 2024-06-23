@@ -1,3 +1,6 @@
+@php
+use App\Models\Course;
+@endphp
 @extends('layouts.backend.app')
 @section('content')
 
@@ -108,11 +111,11 @@
                         <tbody>
                         <tr>
                           <td>1</td>
-                          <td>{{ $order->item_name}}</td>
+                          <td>{{ Course::getcourse($order->course)->titulo}}</td>
 
 
-                          <td>{{ $order->item_price_currency}}</td>
-                          <td>{{ $order->item_price}}</td>
+                          <td>USD</td>
+                          <td>$ {{Course::getcourse($order->course)->precio}}</td>
                         </tr>
 
                         </tbody>
@@ -139,7 +142,7 @@
 
                           <tr>
                             <th>Total:</th>
-                            <td>${{ $order->paid_amount }}</td>
+                            <td>${{ $order->price }}</td>
                           </tr>
                         </tbody></table>
                       </div>

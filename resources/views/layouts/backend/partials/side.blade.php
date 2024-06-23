@@ -232,6 +232,17 @@
             </ul>
           </li>
 
+          <li class="nav-item has-treeview ">
+            <a href="/admin/coupon" class="nav-link {{{ (Request::is('admin/coupon*') ? 'active' : '') }}}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                COUPON
+
+              </p>
+            </a>
+
+          </li>
+
 
         </ul>
       </nav>

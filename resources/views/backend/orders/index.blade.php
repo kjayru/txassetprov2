@@ -1,3 +1,6 @@
+@php
+use App\Models\Course;
+@endphp
 @extends('layouts.backend.app')
 @section('content')
 
@@ -50,11 +53,13 @@
                     <thead>
                     <tr>
                         <th>Order Nº</th>
+                        <th>Order ID</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Producto</th>
                         <th>Price</th>
                         <th>Transaction</th>
+                        <th>Coupon</th>
                         <th>Date</th>
                         <th></th>
                     </tr>
@@ -64,11 +69,13 @@
                         @foreach($orders as $key => $item)
                         <tr>
                             <td>{{ $item->id }}</td>
+                            <td>{{$item->order_id}}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
-                            <td>{{ $item->item_name }}</td>
-                            <td>{{ $item->item_price }}</td>
+                            <td>{{ Course::getcourse($item->course)->titulo}}</td>
+                            <td>${{ $item->price}}</td>
                             <td>{{ $item->txn_id }}</td>
+                            <td>{{ @$item->cupon." - ".@$item->cupon_mount."%"}}</td>
                             <td>{{ $item->created_at}}</td>
                             <td>
                                 <a href="/admin/orders/{{$item->id}}" class="btn btn-sm btn-success legitRipple" data-tooltip="Edit" data-delay="500" data-hasqtip="0" aria-describedby="qtip-0">

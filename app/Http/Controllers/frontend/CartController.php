@@ -17,6 +17,7 @@ use App\Models\Order;
 use App\Models\UserCourse;
 use App\Models\CourseOrder;
 use App\Models\UserSign;
+use App\Models\Coupon;
 use App\Mail\Sign;
 use App\Models\Stripe as SP;
 use Illuminate\Support\Facades\Crypt;
@@ -101,9 +102,17 @@ class CartController extends Controller
 
 
 
+        //aplica cupon 
+        if(session()->get('cupon')){
 
+            $cupon=session()->get('cupon');
+            $result = Coupon::where('cupon',$cupon)->first();
+            $monto_cupon = $result->monto_descuento;
+            $descuento = $carrito->total*$monto_cupon/100;
+            $nuevo_precio = $carrito->total - $descuento;
 
-
+            $carrito->total = $nuevo_precio;
+        }
 
         //Stripe
 
@@ -179,7 +188,7 @@ class CartController extends Controller
 
 
      public function process(Request $request){
-
+        
         $user_id = Auth::id();
 
        $verificacion= UserSign::where('user_id',$user_id)->count();
@@ -210,6 +219,19 @@ class CartController extends Controller
 
         }
         $order_id = Carbon::now()->timestamp;
+
+        //aplicar cupon
+
+        if(session()->get('cupon')){
+
+            $cupon=session()->get('cupon');
+            $result = Coupon::where('cupon',$cupon)->first();
+            $monto_cupon = $result->monto_descuento;
+            $descuento = $carrito->total*$monto_cupon/100;
+            $nuevo_precio = $carrito->total - $descuento;
+
+            $carrito->total = $nuevo_precio;
+        }
 
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
@@ -313,8 +335,26 @@ class CartController extends Controller
             if(empty($api_error) && $intent){
                 if($intent->status == 'succeeded'){
 
+                    $coupon = null;
+                    $montofinal = null;
+                    $nuevo_precio = null;
+                    // if(session()->get('cupon')){
 
+                    //     $cupon=session()->get('cupon');
 
+                    //     $result = Coupon::where('cupon',$cupon)->first();
+
+                    //     $monto_cupon = $result->monto_descuento;
+
+                    //     $descuento = $carrito->total*$monto_cupon/100;
+
+                    //     $nuevo_precio = $carrito->total - $descuento;
+            
+                    //     $coupon = $result->cupon;
+                    //     $montofinal = $result->monto_descuento;
+                    // }
+                    
+                    // dd($monto_cupon." - ".$carrito->total." - ".$descuento);
                     $order_id = Carbon::now()->timestamp;
 
                     $iname = $user->name;
@@ -329,14 +369,18 @@ class CartController extends Controller
                     $order->name = $iname;
                     $order->email = $email;
                     $order->course = serialize($carrito);
-                    $order->price = $carrito->total;
-                    $order->amount = $carrito->total;
+                   
+                        $order->price = $carrito->total;
+                        $order->amount = $carrito->total;
+                    
                     $order->currency = "usd";
                     $order->txn_id = $transactionID;
                     $order->payment_status = $paymentStatus;
                     $order->checkout_session_id = $seskey;
                     $order->user_id = $user_id;
                     $order->order_id = $order_id;
+                    $order->cupon = $coupon;
+                    $order->cupon_mount = $montofinal;
                     $order->save();
 
 
@@ -360,6 +404,7 @@ class CartController extends Controller
         Mail::to(env("MAIL_CONTACT"))->send(new Compra($data));
 
        Session::forget('cart');
+       Session::forget('cupon');
 
         //send email
 
