@@ -106,7 +106,7 @@ class CartController extends Controller
         if(session()->get('cupon')){
 
             $cupon=session()->get('cupon');
-            $result = Coupon::where('cupon',$cupon)->first();
+            $result = Coupon::where('cupon',$cupon)->where('estado','1')->first();
             $monto_cupon = $result->monto_descuento;
             $descuento = $carrito->total*$monto_cupon/100;
             $nuevo_precio = $carrito->total - $descuento;
@@ -225,7 +225,7 @@ class CartController extends Controller
         if(session()->get('cupon')){
 
             $cupon=session()->get('cupon');
-            $result = Coupon::where('cupon',$cupon)->first();
+            $result = Coupon::where('cupon',$cupon)->where('estado','1')->first();
             $monto_cupon = $result->monto_descuento;
             $descuento = $carrito->total*$monto_cupon/100;
             $nuevo_precio = $carrito->total - $descuento;
