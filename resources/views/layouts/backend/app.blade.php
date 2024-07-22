@@ -15,6 +15,7 @@
 
   <!-- Theme style -->
   <link rel="stylesheet" href="/backend/dist/css/adminlte.css?v={{ uniqid()}}">
+  <link rel="stylesheet" href="/backend/css/main.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="/backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 

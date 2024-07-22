@@ -80,7 +80,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-  <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+  <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js?v=1"></script>
 
 
 <script>

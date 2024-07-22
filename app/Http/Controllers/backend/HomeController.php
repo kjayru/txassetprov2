@@ -34,5 +34,9 @@ class HomeController extends Controller
         return view('backend.dashboard');
     }
 
+    public function browse(){
+      return view('backend.browse');
+    }
+
 
 }

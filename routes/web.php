@@ -184,7 +184,7 @@ Route::group(['prefix' => 'admin'],function(){
     Route::delete('coupon/{cupon}',[CouponController::class,'destroy'])->name('cupon.destroy');
     Route::get('coupon/{cupon}/edit',[CouponController::class,'edit'])->name('cupon.edit');
 
-
+    route::get('browse',[HomeController::class,'browse']);
 });
 
 
@@ -296,8 +296,8 @@ Route::group(['prefix'=>'user'],function(){
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
 ->name('ckfinder_connector');
 
-/*Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
-->name('ckfinder_browser');*/
+Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
+->name('ckfinder_browser');
 
 Route::get('/mailable', function () {
     $invoice = App\Models\User::find(1);
