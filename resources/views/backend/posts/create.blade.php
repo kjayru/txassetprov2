@@ -92,10 +92,12 @@ $(function () {
     height: 700
 } );*/
 
-       CKEDITOR.replace( description, {   height: 300 });
+      var editor =  CKEDITOR.replace( description, {   height: 300 });
         CKEDITOR.config.allowedContent = true;
         CKEDITOR.config.contentsCss = '/css/app.css';
 
+        CKFinder.setupCKEditor( editor );
+        
 
 
 
