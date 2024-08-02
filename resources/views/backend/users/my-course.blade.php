@@ -93,7 +93,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if($course->aprobado==1 && $course->caducado==0)
+                                @if($course->aprobado==1)
                                 <a href="/admin/users/courses/certified/{{$course->course->id}}/{{$course->id}}/{{$user_id}}" target="_blank" class="btn btn-primary">View</a>
                                 @endif
                             </td>
