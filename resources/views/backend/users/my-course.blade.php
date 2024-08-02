@@ -71,7 +71,7 @@
                             <td>{{ @$course->created_at  }}</td>
 
                             <td>
-                                @if($course->aprobado==1 && $course->caducado==0)
+                                @if($course->aprobado==1 )
                                     {{@$course->updated_at}}
                                 @elseif($course->caducado==1 && $course->aprobado==0)
                                     {{@$course->updated_at}}
@@ -82,7 +82,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if($course->aprobado==1 && $course->caducado==0)
+                                @if($course->aprobado==1 )
                                     Approved
                                 @elseif($course->caducado==1 && $course->aprobado==0)
                                     Expired
