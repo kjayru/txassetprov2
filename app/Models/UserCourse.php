@@ -269,4 +269,12 @@ class UserCourse extends Model
         return true;
     }
 
+
+    public static function getPorcentaje($id){
+        $porcentaje = 0;
+        //user_course_id
+        //user_course_exam  -- user_course_exam_id
+        //user_course_exam_result
+        return $porcentaje;
+    }
 }

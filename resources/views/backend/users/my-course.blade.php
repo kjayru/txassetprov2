@@ -1,6 +1,8 @@
 @extends('layouts.backend.app')
 @section('content')
-
+@php
+  use App\Models\UserCourse;
+@endphp
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -56,6 +58,8 @@
                         <th>Initial date</th>
                         <th>Finish date</th>
                         <th>Result</th>
+                        <th>Porcent</th>
+                        <th>Detail exam</th>
                         <th>Certificated</th>
 
 
@@ -92,6 +96,10 @@
                                     Failed
                                 @endif
                             </td>
+
+                            <td>{{UserCourse::getPorcentaje($course->id)}} - {{$course->id}}</td>
+                            <td><a href="#" class="btn btn-xs btn__detail">Detail</a></td>
+
                             <td>
                                 @if($course->aprobado==1)
                                 <a href="/admin/users/courses/certified/{{$course->course->id}}/{{$course->id}}/{{$user_id}}" target="_blank" class="btn btn-primary">View</a>
