@@ -58,8 +58,8 @@
                         <th>Initial date</th>
                         <th>Finish date</th>
                         <th>Result</th>
-                        <th>Porcent</th>
-                        <th>Detail exam</th>
+                        {{-- <th>Porcent</th>
+                        <th>Detail exam</th> --}}
                         <th>Certificated</th>
 
 
@@ -97,8 +97,8 @@
                                 @endif
                             </td>
 
-                            <td>{{UserCourse::getPorcentaje($course->id)}} - {{$course->id}}</td>
-                            <td><a href="#" class="btn btn-xs btn__detail">Detail</a></td>
+                            {{-- <td>{{UserCourse::getPorcentaje($course->id)}} - {{$course->id}}</td>
+                            <td><a href="#" class="btn btn-xs btn__detail">Detail</a></td> --}}
 
                             <td>
                                 @if($course->aprobado==1)
