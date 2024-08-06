@@ -370,8 +370,8 @@ class CartController extends Controller
                     $order->email = $email;
                     $order->course = serialize($carrito);
                    
-                        $order->price = $carrito->total;
-                        $order->amount = $carrito->total;
+                        $order->price = @$carrito->total;
+                        $order->amount = @$carrito->total;
                     
                     $order->currency = "usd";
                     $order->txn_id = $transactionID;
