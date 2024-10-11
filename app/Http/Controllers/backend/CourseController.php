@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\Course;
 use App\Models\Exam;
 use App\Models\ExamCourse;
+use App\Models\Certification;
 
 class CourseController extends Controller
 {
@@ -23,6 +24,8 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::orderBy('id','desc')->get();
+
+
         return view('backend.courses.index',['courses'=>$courses]);
     }
 
@@ -33,7 +36,10 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('backend.courses.create');
+        $certificados = Certification::all();
+        $certication_id = 0;
+
+        return view('backend.courses.create',['certificados'=>$certificados,'certification_id'=>$certication_id]);
     }
 
     /**
@@ -81,7 +87,7 @@ class CourseController extends Controller
         $course->responsable = $request->responsable;
         $course->tiempovalido = $request->access;
 
-
+        $course->certification_id = $request->certification_id;
 
         $course->save();
 
@@ -101,7 +107,11 @@ class CourseController extends Controller
 
         $course = Course::where('id',$id)->first();
 
-        return view('backend.courses.edit',['course'=>$course]);
+       $certication_id = $course->certification->id;
+
+       $certificados = Certification::all();
+
+        return view('backend.courses.edit',['course'=>$course,'certificados'=>$certificados,'certification_id'=>$certication_id]);
     }
 
     /**
@@ -113,6 +123,7 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
+
 
         $course =  Course::find($id);
         $course->titulo = $request->title;
@@ -127,6 +138,7 @@ class CourseController extends Controller
         $course->language = $request->language;
         $course->responsable = $request->responsable;
         $course->tiempovalido = $request->access;
+        $course->certification_id = $request->certification_id;
 
         if($request->hasFile('banner')) {
             $banner = $request->file('banner')->store('banner');

@@ -47,6 +47,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Mail\Bienvenido;
+use Illuminate\Support\Facades\Http;
+
 class HomeController extends Controller
 {
     /**
@@ -95,335 +97,371 @@ class HomeController extends Controller
 
     public function employementThank(Request $request)
     {
-        $messages =[
-            'required' => 'Complete recaptcha validator',
-        ];
-        /*$validator = Validator::make($request->all(), [
-            'g-recaptcha-response' => 'required',
-        ],$messages);
-        */
-        $validated = $request->validate([
-            'g-recaptcha-response' => 'required',
-            //'firstname' => 'required',
-        ],$messages);
+
+        // $messages =[
+        //     'required' => 'Complete recaptcha validator',
+        // ];
+        // /*$validator = Validator::make($request->all(), [
+        //     'g-recaptcha-response' => 'required',
+        // ],$messages);
+        // */
+        // $validated = $request->validate([
+        //     'g-recaptcha-response' => 'required',
+        //     //'firstname' => 'required',
+        // ],$messages);
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify',[
+            'secret'=>env('CAPTCHA_SECRET'),
+            'response'=>$request->get('g-recaptcha-response'),
+        ])->object();
 
 
-        //dd($validator);
-        //validadores
-
-        $inf = new Information();
-
-        $inf->lastname = $request->lastname;
-        $inf->firstname = $request->firstname;
-        $inf->mi = $request->mi;
-        $inf->date = $request->date;
-        $inf->address = $request->address;
-        $inf->apartment = $request->apartment;
-        $inf->city = $request->city;
-        $inf->state = $request->state;
-        $inf->zipcode = $request->zipcode;
-        $inf->phone = $request->phone;
-        $inf->email = $request->email;
-        $inf->birthday = $request->birthday;
-        $inf->socialnumber = $request->socialnumber;
-        $inf->placebirth = $request->placebirth;
-        $inf->appliedpay = $request->appliedpay;
-        $inf->whichshift = $request->whichshift;
 
         $wichday = [
-            "monday" => $request->monday,
-            "tuesday" => $request->tuesday,
-            "wenesday" => $request->wenesday,
-            "thursday" => $request->thursday,
-            "friday" => $request->friday,
-            "saturday" => $request->saturday,
-            "sunday" => $request->sunday
+            'sunday' => '',
+            'monday' => '',
+            'tuesday' => '',
+            'wednesday' => '',
+            'thursday' => '',
+            'friday' => '',
+            'saturday' => ''
         ];
-        $inf->whichday = serialize($wichday);
+        //dd($validator);
+            //validadores
+        if($response->success && $response->score >= 0.7){
+            $inf = new Information();
 
-        $inf->citizen = $request->citizen;
-        $inf->authorized = $request->authorized;
-        $inf->worked = $request->worked;
-
-        $inf->when = $request->when;
-
-        $inf->convicted = $request->convicted;
-        $inf->explain1 = $request->explain1;
-        $inf->indictment = $request->indictment;
-        $inf->explain2 = $request->explain2;
-        $inf->save();
-
-        $edu = new Education();
-
-        $edu->graduatehigh = $request->graduatehigh;
-        $edu->hightschool = $request->hightschool;
-        $edu->highfrom = $request->highfrom;
-        $edu->hightto = $request->hightto;
-        $edu->graduatecollage = $request->graduatecollage;
-        $edu->collaganame = $request->collaganame;
-        $edu->collagefrom = $request->collagefrom;
-        $edu->collageto = $request->collageto;
-        $edu->activecard = $request->activecard;
-        $edu->officer = $request->officer;
-        $edu->firearm = $request->firearm;
-        $edu->holster = $request->holster;
-        $edu->others = $request->others;
-        $edu->information_id = $inf->id;
-        $edu->save();
+            $inf->lastname = $request->lastname;
+            $inf->firstname = $request->firstname;
+            $inf->mi = $request->mi;
+            $inf->date = $request->date;
+            $inf->address = $request->address;
+            $inf->apartment = $request->apartment;
+            $inf->city = $request->city;
+            $inf->state = $request->state;
+            $inf->zipcode = $request->zipcode;
+            $inf->phone = $request->phone;
+            $inf->email = $request->email;
+            $inf->birthday = $request->birthday;
+            $inf->socialnumber = $request->socialnumber;
+            $inf->placebirth = $request->placebirth;
+            $inf->appliedpay = $request->appliedpay;
+            $inf->whichshift = $request->whichshift;
 
 
 
-
-
-        for($i = 0; $i<count($request->fullname);$i++){
-            $ref = new Reference();
-            $ref->fullname = $request->fullname[$i];
-            $ref->relationship = $request->relationship[$i];
-            $ref->companyref = $request->companyref[$i];
-            $ref->phoneref = $request->phoneref[$i];
-            $ref->addressreference = $request->addressreference[$i];
-            $ref->information_id = $inf->id;
-            $ref->save();
-        }
-
-
-
-       // dd($request->company);
-        //dd($request['references']);
-        if($request->companyprev !=null){
-            $k=1;
-            for($j = 0; $j<count($request->companyprev);$j++){
-                if($request->companyprev[$j]!=null){
-                $emp = new Employment();
-                $refname = "references".$k;
-
-                $emp->company = $request->companyprev[$j];
-                $emp->phoneemp = $request->phoneemp[$j];
-                $emp->addressempl = $request->addressempl[$j];
-                $emp->supervisor = $request->supervisor[$j];
-                $emp->jobtitle = $request->jobtitle[$j];
-                $emp->starting = $request->starting[$j];
-                $emp->ending = $request->ending[$j];
-                $emp->from = $request->from[$j];
-                $emp->to = $request->to[$j];
-                $emp->reason = $request->reason[$j];
-                $emp->references = $request[$refname];
-                $emp->information_id = $inf->id;
-                $emp->save();
+            foreach ($request->days as $day) {
+                switch ($day) {
+                    case '1':
+                        $wichday['sunday'] = 1;
+                        break;
+                    case '2':
+                        $wichday['monday'] = 2;
+                        break;
+                    case '3':
+                        $wichday['tuesday'] = 3;
+                        break;
+                    case '4':
+                        $wichday['wednesday'] = 4;
+                        break;
+                    case '5':
+                        $wichday['thursday'] = 5;
+                        break;
+                    case '6':
+                        $wichday['friday'] = 6;
+                        break;
+                    case '7':
+                        $wichday['saturday'] = 7;
+                        break;
                 }
-                $k++;
-
-            }
-        }
-
-        $military = new Military();
-
-        $military->branch = $request->branch;
-        $military->from = $request->tomilitary;
-        $military->to = $request->frommilitary;
-        $military->rank = $request->rank;
-        $military->type = $request->type;
-        $military->explain = $request->explain;
-        $military->information_id = $inf->id;
-        $military->save();
-
-        $discla = new Disclaimer();
-
-        $discla->signature = $request->signature;
-
-        $discla->datedisclamer = $request->datedisclamer;
-        $discla->information_id = $inf->id;
-        $discla->save();
-
-
-        if ($request->hasFile('fileid')) {
-
-            foreach($request->file('fileid') as $fil)
-            {
-
-                $file = Storage::putFile('applied', $fil);
-                $archivo = new Archivo();
-                $archivo->file = $file;
-                $archivo->disclaimer_id = $discla->id;
-                $archivo->save();
             }
 
-        }
 
+            $inf->whichday = serialize($wichday);
 
-        $htmlcode ='<table cellspacing="0" cellpadding="0" border="0" width="100%" >
-                        <tr>
-                           <td width="24"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
-                           <td>
-                              <table cellspacing="0" cellpadding="0" border="0" width="100%">
-                                 <tr>
-                                    <td height="55"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
-                                 </tr>
-                                 <tr>
-                                    <td class="heading-editable"  style="font-size: 23px; color:#031059; text-transform: uppercase; text-align: center;font-family:family=Bebas+Neue; font-weight: 500; line-height: 1.7;"> <h1>FORM EMPLOYMENT </h1></td>
-                                 </tr>
-                                 <tr>
-                                    <td height="25"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
-                                 </tr>
-                                 <tr>
-                                    <td class="editable" style="font-size: 18px; line-height: 2; color:#031059; text-align: center ;font-family: ubuntu,Arial,Helvetica,sans-serif;">';
+            $inf->citizen = $request->citizen;
+            $inf->authorized = $request->authorized;
+            $inf->worked = $request->worked;
 
+            $inf->when = $request->when;
 
-                                    $htmlcode.="Applicant information is attached to this email";
+            $inf->convicted = $request->convicted;
+            $inf->explain1 = $request->explain1;
+            $inf->indictment = $request->indictment;
+            $inf->explain2 = $request->explain2;
+            $inf->save();
 
-                                  /*  $htmlcode.="<h3>APPLICANT INFORMATION</h3><br>";
+            $edu = new Education();
 
-                                    $htmlcode.= 'LASTNAME: '.$request->lastname.'<BR>';
-                                    $htmlcode.= 'FIRSTNAME: '.$request->firstname.'<BR>';
-                                    $htmlcode.= 'M.I.: '.$request->mi.'<BR>';
-                                    $htmlcode.= 'DATE: '.$request->date.'<BR>';
-                                    $htmlcode.= 'ADDRESS: ' .$request->address.'<BR>';
-                                    $htmlcode.= 'APARTAMENT: '.$request->apartment.'<BR>';
-                                    $htmlcode.= 'CITY: '.$request->city.'<BR>';
-                                    $htmlcode.= 'STATE: '.$request->state.'<BR>';
-                                    $htmlcode.= 'ZIPCODE:' .$request->zipcode.'<BR>';
-                                    $htmlcode.= 'PHONE: '.$request->phone.'<BR>';
-                                    $htmlcode.= 'EMAIL: '.$request->email.'<BR>';
-                                    $htmlcode.= 'DATE OF BIRTH: '.$request->birthday.'<BR>';
-                                    $htmlcode.= 'SOCIAL SECURITY NO.: '.$request->socialnumber.'<BR>';
-                                    $htmlcode.= 'PLACE OF BIRTH:'.$request->placebirth.'<BR>';
-                                    $htmlcode.= 'POSITION APPLIED FOR AND DESIRED PAY: '.$request->appliedpay.'<BR>';
-                                    $htmlcode.= 'WHICH SHIFT ARE YOU APPLYING FOR?: '.$request->whichshift.'<BR>';
-
-                                    $htmlcode.= 'WHICH DAYS ARE YOU AVAILABLE? :';
-                                    if($request->monday){
-                                    $htmlcode.= "monday<BR>";
-                                    }
-                                     if($request->tuesday){
-
-                                    $htmlcode.= "tuesday<BR>";
-
-                                     }
-                                     if($request->wenesday){
-                                    $htmlcode.= "wenesday<BR>";
-                                     }
-                                     if($request->thursday){
-                                    $htmlcode.= "thursday<BR>";
-                                     }
-                                     if($request->friday){
-                                    $htmlcode.= "friday<BR>";
-                                     }
-                                     if($request->saturday){
-                                    $htmlcode.= "saturday<BR>";
-                                     }
-                                     if($request->sunday){
-                                    $htmlcode.= "sunday<BR>";
-                                     }
-
-
-
-                                    $htmlcode.= 'ARE YOU A CITIZEN OF THE UNITED STATES?: '.$request->citizen.'<BR>';
-                                    $htmlcode.= 'IF NO, ARE YOU AUTHORIZED TO WORK IN THE U.S.?: '.$request->authorized.'<BR>';
-                                    $htmlcode.= 'HAVE YOU EVER WORKED FOR THIS COMPANY?: '.$request->worked.'<BR>';
-
-                                    $htmlcode.= 'IF YES, WHEN?: '.$request->when.'<BR>';
-
-                                    $htmlcode.= 'HAVE YOU EVER BEEN CONVICTED OF A FELONY?: '.$request->convicted.'<BR>';
-                                    $htmlcode.= 'IF YES, EXPLAIN: '.$request->explain1.'<BR>';
-                                    $htmlcode.= 'ARE YOU CURRENTLY UNDER INDICTMENT FOR A CRIME?: '.$request->indictment.'<BR>';
-                                    $htmlcode.= 'IF YES, EXPLAIN: '.$request->explain2.'<BR><BR>';
-
-                                    $htmlcode.="<h3>EDUCATION AND TRAINING</h3><br>";
-
-                                    $htmlcode.= 'DID YOU GRADUATE HIGH SCHOOL?: '.$request->graduatehigh.'<BR>';
-                                    $htmlcode.= 'HIGH SCHOOL NAME: '.$request->hightschool.'<BR>';
-                                    $htmlcode.= 'FROM: '.$request->highfrom.'<BR>';
-                                    $htmlcode.= 'TO: '.$request->hightto.'<BR>';
-                                    $htmlcode.= 'DID YOU GRADUATE COLLEGE?: '.$request->graduatecollage.'<BR>';
-                                    $htmlcode.= 'COLLAGE NAME: '.$request->collaganame.'<BR>';
-                                    $htmlcode.= 'FROM: '.$request->collagefrom.'<BR>';
-                                    $htmlcode.= 'TO: '.$request->collageto.'<BR>';
-                                    $htmlcode.= 'DO YOU HAVE AN ACTIVE SECURITY REGISTRATION CARD?: '.$request->activecard.'<BR>';
-                                    $htmlcode.= 'IF YES, WHAT LEVEL SECURITY OFFICER ARE YOU?: '.$request->officer.'<BR>';
-                                    $htmlcode.= 'IF LEVEL 3, DO YOU CURRENTLY HAVE A FIREARM?: '.$request->firearm.'<BR>';
-                                    $htmlcode.= 'IF YES, WHAT LEVEL HOLSTER ARE YOU CURRENTLY USING?: '.$request->holster.'<BR>';
-                                    $htmlcode.= 'ANY OTHER CERTIFICATIONS: '.$request->others.'<BR><BR>';
+            $edu->graduatehigh = $request->graduatehigh;
+            $edu->hightschool = $request->hightschool;
+            $edu->highfrom = $request->highfrom;
+            $edu->hightto = $request->hightto;
+            $edu->graduatecollage = $request->graduatecollage;
+            $edu->collaganame = $request->collaganame;
+            $edu->collagefrom = $request->collagefrom;
+            $edu->collageto = $request->collageto;
+            $edu->activecard = $request->activecard;
+            $edu->officer = $request->officer;
+            $edu->firearm = $request->firearm;
+            $edu->holster = $request->holster;
+            $edu->others = $request->others;
+            $edu->information_id = $inf->id;
+            $edu->save();
 
 
 
 
-                                    $htmlcode.="<h3>REFERENCES</h3><br>";
+
+            for($i = 0; $i<count($request->fullname);$i++){
+                $ref = new Reference();
+                $ref->fullname = $request->fullname[$i];
+                $ref->relationship = $request->relationship[$i];
+                $ref->companyref = $request->companyref[$i];
+                $ref->phoneref = $request->phoneref[$i];
+                $ref->addressreference = $request->addressreference[$i];
+                $ref->information_id = $inf->id;
+                $ref->save();
+            }
 
 
-                                    for($i = 0; $i<count($request->fullname);$i++){
 
-                                        if($request->fullname[$i]!=""){
-                                            $htmlcode.= 'FULL NAME: '.$request->fullname[$i]."<br>";
-                                            $htmlcode.= 'RELATIONSHIP: '.$request->relationship[$i]."<br>";
-                                            $htmlcode.= 'COMPANY: '.$request->companyref[$i]."<br>";
-                                            $htmlcode.= 'PHONE: '.$request->phoneref[$i]."<br>";
-                                            $htmlcode.= 'ADDRESS: '.$request->addressreference[$i]."<br>";
+        // dd($request->company);
+            //dd($request['references']);
+            if($request->companyprev !=null){
+                $k=1;
+                for($j = 0; $j<count($request->companyprev);$j++){
+                    if($request->companyprev[$j]!=null){
+                    $emp = new Employment();
+                    $refname = "references".$k;
+
+                    $emp->company = $request->companyprev[$j];
+                    $emp->phoneemp = $request->phoneemp[$j];
+                    $emp->addressempl = $request->addressempl[$j];
+                    $emp->supervisor = $request->supervisor[$j];
+                    $emp->jobtitle = $request->jobtitle[$j];
+                    $emp->starting = $request->starting[$j];
+                    $emp->ending = $request->ending[$j];
+                    $emp->from = $request->from[$j];
+                    $emp->to = $request->to[$j];
+                    $emp->reason = $request->reason[$j];
+                    $emp->references = $request[$refname];
+                    $emp->information_id = $inf->id;
+                    $emp->save();
+                    }
+                    $k++;
+
+                }
+            }
+
+            $military = new Military();
+
+            $military->branch = $request->branch;
+            $military->from = $request->tomilitary;
+            $military->to = $request->frommilitary;
+            $military->rank = $request->rank;
+            $military->type = $request->type;
+            $military->explain = $request->explain;
+            $military->information_id = $inf->id;
+            $military->save();
+
+            $discla = new Disclaimer();
+
+            $discla->signature = $request->signature;
+
+            $discla->datedisclamer = $request->datedisclamer;
+            $discla->information_id = $inf->id;
+            $discla->save();
+
+
+            if ($request->hasFile('fileid')) {
+
+                foreach($request->file('fileid') as $fil)
+                {
+
+                    $file = Storage::putFile('applied', $fil);
+                    $archivo = new Archivo();
+                    $archivo->file = $file;
+                    $archivo->disclaimer_id = $discla->id;
+                    $archivo->save();
+                }
+
+            }
+
+
+            $htmlcode ='<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                            <tr>
+                            <td width="24"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
+                            <td>
+                                <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tr>
+                                        <td height="55"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="heading-editable"  style="font-size: 23px; color:#031059; text-transform: uppercase; text-align: center;font-family:family=Bebas+Neue; font-weight: 500; line-height: 1.7;"> <h1>FORM EMPLOYMENT </h1></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="25"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="editable" style="font-size: 18px; line-height: 2; color:#031059; text-align: center ;font-family: ubuntu,Arial,Helvetica,sans-serif;">';
+
+
+                                        $htmlcode.="Applicant information is attached to this email";
+
+                                    /*  $htmlcode.="<h3>APPLICANT INFORMATION</h3><br>";
+
+                                        $htmlcode.= 'LASTNAME: '.$request->lastname.'<BR>';
+                                        $htmlcode.= 'FIRSTNAME: '.$request->firstname.'<BR>';
+                                        $htmlcode.= 'M.I.: '.$request->mi.'<BR>';
+                                        $htmlcode.= 'DATE: '.$request->date.'<BR>';
+                                        $htmlcode.= 'ADDRESS: ' .$request->address.'<BR>';
+                                        $htmlcode.= 'APARTAMENT: '.$request->apartment.'<BR>';
+                                        $htmlcode.= 'CITY: '.$request->city.'<BR>';
+                                        $htmlcode.= 'STATE: '.$request->state.'<BR>';
+                                        $htmlcode.= 'ZIPCODE:' .$request->zipcode.'<BR>';
+                                        $htmlcode.= 'PHONE: '.$request->phone.'<BR>';
+                                        $htmlcode.= 'EMAIL: '.$request->email.'<BR>';
+                                        $htmlcode.= 'DATE OF BIRTH: '.$request->birthday.'<BR>';
+                                        $htmlcode.= 'SOCIAL SECURITY NO.: '.$request->socialnumber.'<BR>';
+                                        $htmlcode.= 'PLACE OF BIRTH:'.$request->placebirth.'<BR>';
+                                        $htmlcode.= 'POSITION APPLIED FOR AND DESIRED PAY: '.$request->appliedpay.'<BR>';
+                                        $htmlcode.= 'WHICH SHIFT ARE YOU APPLYING FOR?: '.$request->whichshift.'<BR>';
+
+                                        $htmlcode.= 'WHICH DAYS ARE YOU AVAILABLE? :';
+                                        if($request->monday){
+                                        $htmlcode.= "monday<BR>";
                                         }
-                                    }
-                                    if($request->companyprev !=null){
-                                        $htmlcode.="<br><h3>PREVIOUS EMPLOYMENT</h3><br>";
+                                        if($request->tuesday){
 
-                                        $k=1;
-                                        for($j = 0; $j<count($request->companyprev);$j++){
+                                        $htmlcode.= "tuesday<BR>";
 
-                                            if($request->companyprev[$j]!=""){
-                                            $htmlcode.= 'COMPANY: '.$request->companyprev[$j]."<br>";
-                                            $htmlcode.= 'PHONE: '.$request->phoneemp[$j]."<br>";
-                                            $htmlcode.= 'ADDRESS: '.$request->addressempl[$j]."<br>";
-                                            $htmlcode.= 'SUPERVISOR: '.$request->supervisor[$j]."<br>";
-                                            $htmlcode.= 'JOB TITLE: '.$request->jobtitle[$j]."<br>";
-                                            $htmlcode.= 'STARTING SALARY: '.$request->starting[$j]."<br>";
-                                            $htmlcode.= 'ENDING SALARY: '.$request->ending[$j]."<br>";
-                                            $htmlcode.= 'FROM: '.$request->from[$j]."<br>";
-                                            $htmlcode.= 'TO: '.$request->to[$j]."<br>";
-                                            $htmlcode.= 'REASON FOR LEAVING: '.$request->reason[$j]."<br>";
-                                            $htmlcode.= 'MAY WE CONTACT YOUR PREVIOUS SUPERVISOR FOR A REFERENCE?: '."references".$k."<br>";
+                                        }
+                                        if($request->wenesday){
+                                        $htmlcode.= "wenesday<BR>";
+                                        }
+                                        if($request->thursday){
+                                        $htmlcode.= "thursday<BR>";
+                                        }
+                                        if($request->friday){
+                                        $htmlcode.= "friday<BR>";
+                                        }
+                                        if($request->saturday){
+                                        $htmlcode.= "saturday<BR>";
+                                        }
+                                        if($request->sunday){
+                                        $htmlcode.= "sunday<BR>";
+                                        }
+
+
+
+                                        $htmlcode.= 'ARE YOU A CITIZEN OF THE UNITED STATES?: '.$request->citizen.'<BR>';
+                                        $htmlcode.= 'IF NO, ARE YOU AUTHORIZED TO WORK IN THE U.S.?: '.$request->authorized.'<BR>';
+                                        $htmlcode.= 'HAVE YOU EVER WORKED FOR THIS COMPANY?: '.$request->worked.'<BR>';
+
+                                        $htmlcode.= 'IF YES, WHEN?: '.$request->when.'<BR>';
+
+                                        $htmlcode.= 'HAVE YOU EVER BEEN CONVICTED OF A FELONY?: '.$request->convicted.'<BR>';
+                                        $htmlcode.= 'IF YES, EXPLAIN: '.$request->explain1.'<BR>';
+                                        $htmlcode.= 'ARE YOU CURRENTLY UNDER INDICTMENT FOR A CRIME?: '.$request->indictment.'<BR>';
+                                        $htmlcode.= 'IF YES, EXPLAIN: '.$request->explain2.'<BR><BR>';
+
+                                        $htmlcode.="<h3>EDUCATION AND TRAINING</h3><br>";
+
+                                        $htmlcode.= 'DID YOU GRADUATE HIGH SCHOOL?: '.$request->graduatehigh.'<BR>';
+                                        $htmlcode.= 'HIGH SCHOOL NAME: '.$request->hightschool.'<BR>';
+                                        $htmlcode.= 'FROM: '.$request->highfrom.'<BR>';
+                                        $htmlcode.= 'TO: '.$request->hightto.'<BR>';
+                                        $htmlcode.= 'DID YOU GRADUATE COLLEGE?: '.$request->graduatecollage.'<BR>';
+                                        $htmlcode.= 'COLLAGE NAME: '.$request->collaganame.'<BR>';
+                                        $htmlcode.= 'FROM: '.$request->collagefrom.'<BR>';
+                                        $htmlcode.= 'TO: '.$request->collageto.'<BR>';
+                                        $htmlcode.= 'DO YOU HAVE AN ACTIVE SECURITY REGISTRATION CARD?: '.$request->activecard.'<BR>';
+                                        $htmlcode.= 'IF YES, WHAT LEVEL SECURITY OFFICER ARE YOU?: '.$request->officer.'<BR>';
+                                        $htmlcode.= 'IF LEVEL 3, DO YOU CURRENTLY HAVE A FIREARM?: '.$request->firearm.'<BR>';
+                                        $htmlcode.= 'IF YES, WHAT LEVEL HOLSTER ARE YOU CURRENTLY USING?: '.$request->holster.'<BR>';
+                                        $htmlcode.= 'ANY OTHER CERTIFICATIONS: '.$request->others.'<BR><BR>';
+
+
+
+
+                                        $htmlcode.="<h3>REFERENCES</h3><br>";
+
+
+                                        for($i = 0; $i<count($request->fullname);$i++){
+
+                                            if($request->fullname[$i]!=""){
+                                                $htmlcode.= 'FULL NAME: '.$request->fullname[$i]."<br>";
+                                                $htmlcode.= 'RELATIONSHIP: '.$request->relationship[$i]."<br>";
+                                                $htmlcode.= 'COMPANY: '.$request->companyref[$i]."<br>";
+                                                $htmlcode.= 'PHONE: '.$request->phoneref[$i]."<br>";
+                                                $htmlcode.= 'ADDRESS: '.$request->addressreference[$i]."<br>";
                                             }
-                                            $k++;
                                         }
-                                    }
+                                        if($request->companyprev !=null){
+                                            $htmlcode.="<br><h3>PREVIOUS EMPLOYMENT</h3><br>";
 
-                                    $htmlcode.="<h3>MILITARY SERVICE</h3><br>";
+                                            $k=1;
+                                            for($j = 0; $j<count($request->companyprev);$j++){
 
-                                    $htmlcode.= 'BRANCH: '.$request->branch."<br>";
-                                    $htmlcode.= 'TO: '.$request->tomilitary."<br>";
-                                    $htmlcode.= 'FROM: '.$request->frommilitary."<br>";
-                                    $htmlcode.= 'RANK AT DISCHARGE: '.$request->rank."<br>";
-                                    $htmlcode.= 'TYPE OF DISCHARGE: '.$request->type."<br>";
-                                    $htmlcode.= 'IF OTHER THAN HONORABLE, EXPLAIN: '.$request->explain."<br><br>";
+                                                if($request->companyprev[$j]!=""){
+                                                $htmlcode.= 'COMPANY: '.$request->companyprev[$j]."<br>";
+                                                $htmlcode.= 'PHONE: '.$request->phoneemp[$j]."<br>";
+                                                $htmlcode.= 'ADDRESS: '.$request->addressempl[$j]."<br>";
+                                                $htmlcode.= 'SUPERVISOR: '.$request->supervisor[$j]."<br>";
+                                                $htmlcode.= 'JOB TITLE: '.$request->jobtitle[$j]."<br>";
+                                                $htmlcode.= 'STARTING SALARY: '.$request->starting[$j]."<br>";
+                                                $htmlcode.= 'ENDING SALARY: '.$request->ending[$j]."<br>";
+                                                $htmlcode.= 'FROM: '.$request->from[$j]."<br>";
+                                                $htmlcode.= 'TO: '.$request->to[$j]."<br>";
+                                                $htmlcode.= 'REASON FOR LEAVING: '.$request->reason[$j]."<br>";
+                                                $htmlcode.= 'MAY WE CONTACT YOUR PREVIOUS SUPERVISOR FOR A REFERENCE?: '."references".$k."<br>";
+                                                }
+                                                $k++;
+                                            }
+                                        }
 
+                                        $htmlcode.="<h3>MILITARY SERVICE</h3><br>";
 
-                                    $htmlcode.="<h3>DISCLAIMER AND SIGNATURE</h3><br>";
-
-
-                                    $htmlcode.= 'NAME: '.$request->signature."<br>";
-
-                                    if ($request->hasFile('fileid')) {
-                                        $htmlcode.= 'ATTACH ID:<a href="'.env("APP_URL").'/storage/'.$file.'" target="_blank">Descargar file</a><br>';
-                                    }
-
-                                    $htmlcode.= 'DATE: '.$request->datedisclamer."<br>";*/
-
-                                  $htmlcode.='</td>
-                                 </tr>
-                                 <tr>
-                                    <td height="80"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
-                                 </tr>
-                              </table>
-                           </td>
-                           <td width="24"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
-                        </tr>
-                     </table>';
-
-            $id =  $inf->id;
-            $data = ["html"=>$htmlcode,"inf_id"=>$id];
+                                        $htmlcode.= 'BRANCH: '.$request->branch."<br>";
+                                        $htmlcode.= 'TO: '.$request->tomilitary."<br>";
+                                        $htmlcode.= 'FROM: '.$request->frommilitary."<br>";
+                                        $htmlcode.= 'RANK AT DISCHARGE: '.$request->rank."<br>";
+                                        $htmlcode.= 'TYPE OF DISCHARGE: '.$request->type."<br>";
+                                        $htmlcode.= 'IF OTHER THAN HONORABLE, EXPLAIN: '.$request->explain."<br><br>";
 
 
-
-            Mail::to(env('MAIL_CONTACT'))->send(new Empleo($data));
-
+                                        $htmlcode.="<h3>DISCLAIMER AND SIGNATURE</h3><br>";
 
 
+                                        $htmlcode.= 'NAME: '.$request->signature."<br>";
+
+                                        if ($request->hasFile('fileid')) {
+                                            $htmlcode.= 'ATTACH ID:<a href="'.env("APP_URL").'/storage/'.$file.'" target="_blank">Descargar file</a><br>';
+                                        }
+
+                                        $htmlcode.= 'DATE: '.$request->datedisclamer."<br>";*/
+
+                                    $htmlcode.='</td>
+                                    </tr>
+                                    <tr>
+                                        <td height="80"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="24"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
+                            </tr>
+                        </table>';
+
+                $id =  $inf->id;
+                $data = ["html"=>$htmlcode,"inf_id"=>$id];
+
+
+
+                Mail::to(env('MAIL_CONTACT'))->send(new Empleo($data));
+
+
+        }
 
         return view('frontpage.gracias');
     }
@@ -646,82 +684,88 @@ class HomeController extends Controller
 
     public function formThank(Request $request){
 
-        $messages =[
-            'required' => 'Complete recaptcha validator',
-        ];
+        // $messages =[
+        //     'required' => 'Complete recaptcha validator',
+        // ];
 
-        $validator = Validator::make($request->all(), [
-            'g-recaptcha-response' => 'required',
-        ],$messages);
+        // $validator = Validator::make($request->all(), [
+        //     'g-recaptcha-response' => 'required',
+        // ],$messages);
 
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify',[
+            'secret'=>env('CAPTCHA_SECRET'),
+            'response'=>$request->get('g-recaptcha-response'),
+        ])->object();
 
-         $form = new Form();
+        if($response->success && $response->score >= 0.7){
 
-         $form->yourname = $request->yourname;
-         $form->socialnumber = $request->socialnumber;
-         $form->address = $request->address;
-         $form->citystate = $request->citystate;
-         $form->country = $request->country;
-         $form->telephone = $request->telephone;
-         $form->birthday = $request->birthday;
-         $form->condicional = serialize($request->condicional);
-         $form->save();
+            $form = new Form();
 
-
-        $htmlcode =' <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="wrapper-section-one" style=" font-family:family=Bebas+Neue;background: #ffffff;" bgcolor="#ffffff">
-                  <tr>
-                     <td>
-                        <table cellspacing="0" cellpadding="0" border="0" width="100%" >
-                           <tr>
-                              <td width="24"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
-                              <td>
-                                 <table cellspacing="0" cellpadding="0" border="0" width="100%">
-                                    <tr>
-                                       <td height="55"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
-                                    </tr>
-                                    <tr>
-                                       <td class="heading-editable"  style="font-size: 23px; color:#031059; text-transform: uppercase; text-align: center;font-family:family=Bebas+Neue; font-weight: 500; line-height: 1.7;">';
-
-                                        $htmlcode.='<h1>  FORM 8850</h1>';
+            $form->yourname = $request->yourname;
+            $form->socialnumber = $request->socialnumber;
+            $form->address = $request->address;
+            $form->citystate = $request->citystate;
+            $form->country = $request->country;
+            $form->telephone = $request->telephone;
+            $form->birthday = $request->birthday;
+            $form->condicional = serialize($request->condicional);
+            $form->save();
 
 
+            $htmlcode =' <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="wrapper-section-one" style=" font-family:family=Bebas+Neue;background: #ffffff;" bgcolor="#ffffff">
+                    <tr>
+                        <td>
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                            <tr>
+                                <td width="24"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
+                                <td>
+                                    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                        <tr>
+                                        <td height="55"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
+                                        </tr>
+                                        <tr>
+                                        <td class="heading-editable"  style="font-size: 23px; color:#031059; text-transform: uppercase; text-align: center;font-family:family=Bebas+Neue; font-weight: 500; line-height: 1.7;">';
 
-                                       $htmlcode.=' </td>
-                                    </tr>
-                                    <tr>
-                                       <td height="25"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
-                                    </tr>
-                                    <tr>
-                                       <td class="editable" style="font-size: 12px; line-height: 2; color:#031059; text-align: LEFT;font-family: ubuntu,Arial,Helvetica,sans-serif;">';
-
-                                       $htmlcode.=' <p>Attach file FORM 8850<p>';
-
-
-                                     $htmlcode.='</td>
-                                    </tr>
-                                    <tr>
-                                       <td height="80"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
-                                    </tr>
-                                 </table>
-                              </td>
-                              <td width="24"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
-                           </tr>
-                        </table>
-                     </td>
-                  </tr>
-               </table>
-              ';
+                                            $htmlcode.='<h1>  FORM 8850</h1>';
 
 
 
-        $id =  $form->id;
-        $data = ["html"=>$htmlcode,"form_id"=>$id];
+                                        $htmlcode.=' </td>
+                                        </tr>
+                                        <tr>
+                                        <td height="25"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
+                                        </tr>
+                                        <tr>
+                                        <td class="editable" style="font-size: 12px; line-height: 2; color:#031059; text-align: LEFT;font-family: ubuntu,Arial,Helvetica,sans-serif;">';
+
+                                        $htmlcode.=' <p>Attach file FORM 8850<p>';
+
+
+                                        $htmlcode.='</td>
+                                        </tr>
+                                        <tr>
+                                        <td height="80"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="24"><img src="images/blank.gif" width="1" height="1" alt=""/></td>
+                            </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                ';
 
 
 
-        Mail::to(env('MAIL_CONTACT'))->send(new Form8850($data));
+            $id =  $form->id;
+            $data = ["html"=>$htmlcode,"form_id"=>$id];
 
 
+
+            Mail::to(env('MAIL_CONTACT'))->send(new Form8850($data));
+
+        }
          return view('frontpage.graciasform');
 
 
@@ -888,8 +932,8 @@ class HomeController extends Controller
         if(Auth::id()){
             $user_id = Auth::id();
         }
-       
-       
+
+
 
         return view('frontpage.cart.index',['cart'=>$carrito,'user_id'=>$user_id]);
     }
@@ -1046,29 +1090,29 @@ class HomeController extends Controller
         $pdf->setPaper('a4', 'landscape')->render();
 
         return $pdf->stream();
-   
+
     }
 
 
     public function aplicarCupon(Request $request ){
 
-       
+
         $carrito = Session::get('cart');
 
-        
+
         $request->session()->put('cupon', $request->cupon);
-    
+
         $result = Coupon::where('cupon',$cupon)->where('estado','1')->first();
 
         $monto_cupon = $result->monto_descuento;
 
-        
+
         $descuento = $carrito->total*$monto_cupon/100;
 
-       
+
         $nuevo_precio = $carrito->total - $descuento;
 
-        
+
         return response()->json(['rpta'=>'ok','precio'=>$nuevo_precio]);
 
     }

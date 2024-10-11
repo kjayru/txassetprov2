@@ -18,7 +18,7 @@
         <span class="help-block">{{ $errors->first('responsable') }}</span>
     </div>
 
-   
+
     <div class="form-group @if($errors->first('price')) has-error @endif">
         <label for="price" class="control-label">Price</label>
         <input type="text"  name="price" class="form-control" value="{{ @$course->precio}}" id="price" placeholder="Price" required>
@@ -57,10 +57,10 @@
     <div class="form-group">
         <label for="video" class="col-sm-2 control-label">Video</label>
             <div class="thumbnail">
-               
+
                 <video controls="false" style="width:100px;">
                     <source src="/storage/{{ @$course->video}}" type="video/mp4">
-                   
+
                     Your browser does not support the video tag.
                   </video>
                 <a href="javascript:void(0)" class="btn-mod btn btn-xs btn-primary">Modify</a>
@@ -87,7 +87,7 @@
         </select>
     </div>
 
-    
+
 
     <div class="form-group">
         <label for="nivel">Level</label>
@@ -121,6 +121,18 @@
         <input type="number" name="access" id="access" value="{{@$course->tiempovalido}}" placeholder="Access" class="form-control">
     </div>
 
+    <div class="form-group">
+        <label for="cartification_id">Certificate</label>
+        <select name="certification_id" id="cartification_id" class="custom-select" required>
+            <option value="">Selected</option>
+
+
+            @foreach($certificados as $cert)
+            <option value="{{$cert->id}}" {{$cert->id == $certification_id?"selected":""}}>{{$cert->name}}</option>
+            @endforeach
+        </select>
+    </div>
+
 
     <div class="form-group @if($errors->first('excerpt')) has-error @endif">
         <label for="excerpt" class="control-label">Excerpt </label>
@@ -136,7 +148,7 @@
 
 
 
-    
+
 
 
 

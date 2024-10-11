@@ -993,6 +993,16 @@ a.nav-link.inclass.shadowred {
     color:white;
 }
 
+label#whichshift-error {
+    position: absolute;
+    width: 100%;
+    top: 26px;
+}
+label.error {
+    color: red;
+    font-size: 10px;
+}
+
 input[type=checkbox] {
     cursor: pointer;
  }
@@ -1010,7 +1020,7 @@ input[type=checkbox]:checked:after {
     background-color: #E01F26;
     position: absolute;
     height: 14px;
-    top: 5px;
+    top: 0;
     width: 14px;
     border-radius: 2px;
 }
@@ -1535,7 +1545,7 @@ li.lista__item {
     position: absolute;
     left: -3px;
     bottom: -2px;
-   
+
 }
 .card__industry{
     border:0 solid #707070;
@@ -1559,7 +1569,7 @@ li.lista__item {
 }
 
 #industries__content .btn-quote {
-   
+
     padding-left: 3rem;
     padding-right: 3rem;
     font-weight: bold;
@@ -1699,7 +1709,7 @@ section#training {
 }
 
 #business .video__bussiness{
-       
+
     background: url('/images/imagen-video-presentacion-02.jpg') no-repeat center center;
     background-size:cover !important;
     height:100vh;
@@ -1710,7 +1720,7 @@ section#training {
     height:100vh;
 }
 .error__entexto {
-   
+
     font-size: 15px;
     padding-bottom: 10px;
 }
@@ -2286,17 +2296,17 @@ section#training {
         border: 0;
         border-radius: 12px;
     }
-    
+
 
     /*#video1{
-       
+
         background: url(/images/Imagen-video-training.jpg) no-repeat center center;
         background-size:cover !important;
         height:180px;
     }*/
 
     #business .video__bussiness{
-       
+
         background: url('/images/imagen-video-presentacion-02.jpg') no-repeat center center;
         background-size:cover !important;
         height:180px;
@@ -2377,7 +2387,7 @@ section#training {
         padding-bottom: 1rem;
     }
     .industry__banner .titulo__industria {
-        
+
         margin-top: 4rem;
         margin-bottom: 5rem;
     }
@@ -2486,36 +2496,36 @@ section#training {
     list-style: none;
     display: flex;
   }
-  
-  .flex-start { 
-    justify-content: flex-start; 
+
+  .flex-start {
+    justify-content: flex-start;
   }
-  
-  .flex-end { 
-    justify-content: flex-end; 
-  }  
-  
-  
-  .center { 
-    justify-content: center; 
-  }  
- 
-  
-  .space-between { 
-    justify-content: space-between; 
-  }  
-  
-  
-  .space-around { 
-    justify-content: space-around; 
+
+  .flex-end {
+    justify-content: flex-end;
   }
-  
-  
-  .space-evenly { 
-    justify-content: space-evenly; 
+
+
+  .center {
+    justify-content: center;
   }
- 
-  
+
+
+  .space-between {
+    justify-content: space-between;
+  }
+
+
+  .space-around {
+    justify-content: space-around;
+  }
+
+
+  .space-evenly {
+    justify-content: space-evenly;
+  }
+
+
   .flex-item {
     padding: 5px;
     width: 60px;
@@ -2523,7 +2533,6 @@ section#training {
     margin: 5px;
     line-height: 50px;
   }
-  
-  
-  
-  
+
+
+

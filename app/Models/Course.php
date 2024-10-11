@@ -50,6 +50,10 @@ class Course extends Model
         return $this->hasOne(ExamCourse::class);
     }
 
+    public function certification(){
+        return $this->belongsTo(Certification::class);
+    }
+
     public static function getcourse($item){
 
        // unserialize($item)->items[7]['curso']->titulo

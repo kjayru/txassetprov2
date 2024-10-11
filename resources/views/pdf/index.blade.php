@@ -14,6 +14,7 @@ use Carbon\Carbon;
             padding:0;
         }
         .contenedor{
+
     width:100%;
     height:1000px;
     background:url('{{env('APP_URL')}}/images/Certificado-generico-02.png') no-repeat center center;

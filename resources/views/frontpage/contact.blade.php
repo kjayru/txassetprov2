@@ -50,7 +50,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-12">
 
-                        <form action="{{route('front.contactgracias')}}" method="POST" enctype="multipart/form-data">
+                        <form id="form__contact" action="{{route('front.contactgracias')}}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                                 <div class="row justify-content-center">
@@ -113,15 +113,17 @@
 
                                     </div>
 
-                                    <div class="col-md-12">
-                                        <div class="text-center recap @error('g-recaptcha-response') is-invalid @enderror" autofocus>
-                                            <div class="g-recaptcha" data-sitekey="6LcOpMUZAAAAAGIG8SjEzAET7tYCq5RrjX_2Hhcz"></div>
-                                        </div>
-                                    </div>
+
+
 
                                     <div class="col-md-4 text-center">
                                         <input type="hidden" name="origen" value="contact">
-                                        <button type="submit" class="btn btn-danger btn-medium">Submit</button>
+
+
+                                        <button type="submit"
+                                        data-sitekey="6Lcp-V0qAAAAAK-IZoSfefYdRjT4Gbdn47XJkD7d"
+                                        data-callback='onFormContact'
+                                        data-action='submit' class="g-recaptcha btn btn-danger btn-medium">Submit</button>
                                     </div>
 
                                 </div>

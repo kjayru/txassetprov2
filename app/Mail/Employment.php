@@ -64,8 +64,8 @@ class Employment extends Mailable
        if($dias['tuesday']!=null){
         $semana[] = "Tuesday";
      }
-     if($dias['wenesday']!=null){
-        $semana[] = "wenesday";
+     if($dias['wednesday']!=null){
+        $semana[] = "Wednesday";
      }
      if($dias['thursday']!=null){
         $semana[] = "Thursday";

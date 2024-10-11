@@ -27,6 +27,9 @@
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE_ci_FYTJgZaOx8izqrMxwObPpQwOUnk&callback=initMap">  </script>
     @endif
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/additional-methods.min.js"></script>
     <script src="/js/main.js?v={{uniqid()}}"></script>
     <script src="//cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 

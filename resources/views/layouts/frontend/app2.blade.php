@@ -3,11 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta name="description" content="TAP Security omits these behaviors by providing reliable and professional services, integrated with innovative technologies to keep us moving, accountable, and our clients informed." />
 
     <link rel="canonical" href="https//wwww.txassetpro.com" />
-
     <!-- Facebook  -->
     <meta property="fb:admins" content="100002348994943" />
     <meta property="fb:app_id" content="2613846985498810" />
@@ -17,14 +15,12 @@
     <meta property="og:url" content="https://www.txassetpro.com" />
     <meta property="og:image" content="https://www.txassetpro.com/images/imagen-video-presentacion-02.jpg" />
     <meta property="og:description" content="TAP Security omits these behaviors by providing reliable and professional services, integrated with innovative technologies to keep us moving, accountable, and our clients informed." />
-
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="https://www.txassetpro.com" />
     <meta name="twitter:title" content="TAP Securiy" />
     <meta name="twitter:description" content="TAP Security omits these behaviors by providing reliable and professional services, integrated with innovative technologies to keep us moving, accountable, and our clients informed." />
     <meta name="twitter:image" content="https://www.txassetpro.com/images/imagen-video-presentacion-02.jpg">
-
 
     <!-- favico-->
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
@@ -91,6 +87,7 @@
   gtag('config', 'AW-679147291');
 </script>
 
+<script src="https://www.google.com/recaptcha/enterprise.js?render=6Lcp-V0qAAAAAK-IZoSfefYdRjT4Gbdn47XJkD7d"></script>
 </head>
 <body>
 <header>

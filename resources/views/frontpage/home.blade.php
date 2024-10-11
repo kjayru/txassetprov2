@@ -404,7 +404,7 @@
                                 <li class="logoimagen" data-aos="zoom-in"><img src="/images/Logos-clientes-sre.jpeg" ></li>
                                 <li class="logoimagen" data-aos="zoom-in"><img src="/images/Cliente-maruchan.png"  ></li>
                             </ul>
-                           
+
                         </div>-->
 
                        <!-- <div class="row justify-content-center">
@@ -485,7 +485,7 @@
                                     <div class="card__titulo">
                                         {{strtoupper($post['titulo'])}}
                                     </div>
-                                    
+
                                 </a>
                             </div>
                         </div>
@@ -519,20 +519,20 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ route('front.contactgracias') }}" method="POST">
+                            <form id="form_home" action="{{ route('front.contactgracias') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="name">Name</label>
+                                    <label for="name">Name *</label>
                                     <input type="text" name="name" class="form-control" placeholder="Name" id="name"
                                         required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">Email *</label>
                                     <input type="email" name="email" class="form-control" placeholder="Email" id="email"
                                         required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Message</label>
+                                    <label for="name">Message *</label>
                                     <textarea name="message" class="form-control" placeholder="Message" id="message"
                                         required></textarea>
                                 </div>
@@ -542,11 +542,13 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
 
-                                <div class="text-center recap @error('g-recaptcha-response') is-invalid @enderror">
-                                    <div class="g-recaptcha" data-sitekey="6LcOpMUZAAAAAGIG8SjEzAET7tYCq5RrjX_2Hhcz">
-                                    </div>
-                                </div>
-                                <input type="submit" class="btn btn-danger btn-extralarge" value="SEND">
+
+
+
+                                <button type="submit"
+                                        data-sitekey="6Lcp-V0qAAAAAK-IZoSfefYdRjT4Gbdn47XJkD7d"
+                                        data-callback='onFormHome'
+                                        data-action='submit' class="g-recaptcha btn btn btn-danger btn-extralarge">SEND</button>
                             </form>
                         </div>
                     </div>

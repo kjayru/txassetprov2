@@ -3,7 +3,7 @@ var player2;
 var playerTraining;
 
 try {
-    
+
 
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('videoPres', {
@@ -33,7 +33,7 @@ try {
 
     });
 
-    
+
     }
 
 } catch (error) {
@@ -68,9 +68,9 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
     });
 
     try {
-        $('.parallaxie').parallaxie(); 
+        $('.parallaxie').parallaxie();
     } catch (error) {
-       console.log("no inicializado"); 
+       console.log("no inicializado");
     }
 
 }
@@ -173,7 +173,7 @@ $(function() {
             console.log(playerTraining);
             playerTraining.playVideo();
         });
-    
+
         $(".stopvideo3").on('click',function(e){
             e.preventDefault();
             playerTraining.stopVideo();
@@ -253,6 +253,101 @@ $("#fileid").fileinput({
 }
 
 
+
+
+
+    // const btnEmployment = document.getElementById("form-employment");
+    // btnEmployment.addEventListener('click',(e)=>{
+    //     grecaptcha.enterprise.ready(async () => {
+    //         const token = await grecaptcha.enterprise.execute('6LcKnVwqAAAAAK_b4UEI30V2GEoYqeh2_pdQwPQW', {action: 'LOGIN'});
+    //       });
+    // })
+
+    // $.validator.addMethod("atLeastOneChecked", function(value, element) {
+    //     return $('.week:checked').length > 0;
+    // }, "Please select at least one day.");
+
+    var validator = $( "#form-employment" ).validate({
+        rules: {
+            'days[]': {
+                required: true,
+                minlength: 1
+            }
+        },
+        messages: {
+            'days[]': {
+                required: "Please select at least one day."
+            }
+        },
+        errorPlacement: function(error, element) {
+            if (element.attr("name") == "days[]") {
+                error.insertAfter("#days-error");
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        highlight: function(element, errorClass, validClass) {
+            if (element.name == "days[]") {
+                $("#days-error").show();
+            } else {
+                $(element).addClass(errorClass).removeClass(validClass);
+            }
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            if (element.name == "days[]") {
+                $("#days-error").hide();
+            } else {
+                $(element).removeClass(errorClass).addClass(validClass);
+            }
+        }
+    });
+
+
+// $(".btn-employment-submit").on('click',function(e){
+//     e.preventDefault();
+//     if(validator.form()){
+//                alert("enviado")
+//             }else{
+//              alert("complete los campos");
+//             }
+// });
+
+    function onSubmit(token){
+        if(validator.form()){
+            document.getElementById("form-employment").submit();
+        }else{
+         alert("complete los campos");
+        }
+    }
+
+    var validatorForm = $("#form-form8850").validate();
+    function onForm8850(token){
+        if(validatorForm.form()){
+            document.getElementById("form-form8850").submit();
+        }else{
+            alert("complete los campos");
+        }
+    }
+
+    var validateHome = $("#form_home").validate();
+    function onFormHome(token){
+        if(validateHome.form()){
+            document.getElementById("form_home").submit();
+        }else{
+            alert("complete los campos");
+        }
+    }
+
+
+
+    var validateContact = $("#form__contact").validate();
+    function onFormContact(token){
+        if(validateContact.form()){
+            document.getElementById("form__contact").submit();
+        }else{
+            alert("complete los campos");
+        }
+    }
 
 
 
