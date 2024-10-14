@@ -53,8 +53,9 @@ class ApplicantController extends Controller
        if($dias['tuesday']!=null){
         $semana[] = "Tuesday";
      }
-     if($dias['wenesday']!=null){
-        $semana[] = "wenesday";
+
+     if(@$dias['wednesday']!=null || @$dias['wenesday']!=null){
+        $semana[] = "wednesday";
      }
      if($dias['thursday']!=null){
         $semana[] = "Thursday";
