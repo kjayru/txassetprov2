@@ -1102,7 +1102,7 @@ class HomeController extends Controller
 
         $request->session()->put('cupon', $request->cupon);
 
-        $result = Coupon::where('cupon',$cupon)->where('estado','1')->first();
+        $result = Coupon::where('cupon',$request->cupon)->where('estado','1')->first();
 
         $monto_cupon = $result->monto_descuento;
 
