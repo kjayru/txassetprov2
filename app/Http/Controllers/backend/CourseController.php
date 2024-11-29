@@ -53,13 +53,13 @@ class CourseController extends Controller
 
 
 
-        $validated = $request->validate([
-            'titulo' => 'required',
-            'contenido' => 'required',
-            'banner' => 'required',
-            'video' => 'required',
+        // $validated = $request->validate([
+        //     'titulo' => 'required',
+        //     'contenido' => 'required',
+        //     'banner' => 'required',
+        //     'video' => 'required',
 
-        ]);
+        // ]);
 
         $course = new Course();
         $course->titulo = $request->title;
