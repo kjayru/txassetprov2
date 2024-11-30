@@ -50,7 +50,7 @@
                 <div class="exam__exito">
                     <div class="exam__exito__titulo">
                         CONGRATULATIONS!<br>
-                        You´ve passes the course
+                        You´ve passed the course
                         <span class="subtitulo"> Your certificate is ready. We appreciate you using our courses.</span>
                     </div>
                     <div class="exam__exito__contenido">
@@ -165,7 +165,7 @@
 
                     <div class="exam__exito__titulo">
                         CONGRATULATIONS!<br>
-                        You´ve passes the course
+                        You´ve passed the course
                         <span class="subtitulo"> Your certificate is ready. We appreciate you using our courses.</span>
                     </div>
 

@@ -38,7 +38,7 @@
 
 						</div>
                         <div class="encurso__texto__exam">
-                            <p>You have reached the testing phase. In this step you will not be able to close the window because you will lose the test. Verify that your internet connection is active</p>
+                            <p>You have reached the testing phase. In this step you will not be able to close the window because you will lose the test. Verify that your internet connection is active.</p>
                             <p>The next exam will test your knowledge of the material you have taken. You have 2 hours to complete this exam. You can use the notes you have taken during the lesson. You cannot use the Internet or anyone else to complete this exam.
                             </p>
                             <p>You have 3 attempts to pass this exam before you have to retake the entire course. The pass is 75%.</p>
