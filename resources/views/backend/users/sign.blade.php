@@ -115,7 +115,7 @@
                     (b)	The request must state the basis for the person’s potential ineligibility.
                     </p>
                 <h3>ACKNOWLEDGMENT:</h3>
-                <p>I <strong>{{$user->fullname}}</strong> confirm that I have been made aware of and fully understand
+                <p>I <strong>{{@$user->fullname}}</strong> confirm that I have been made aware of and fully understand
                     all the information listed above and have been informed that by taking this training course I am not guaranteed that the licensing agency will grant my license. <br><br>
 
                     The information below was provided to me;<br>
