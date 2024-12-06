@@ -10,6 +10,35 @@
     {{-- <link href="/vendor/videojs/video-js.css" rel="stylesheet" /> --}}
     <link rel="stylesheet" href="https://unpkg.com/plyr@3.7.8/dist/plyr.css">
     <link rel="stylesheet" href="/css/cursos/app.css?v={{uniqid()}}">
+
+    <style>
+
+.videocurso .modal-dialog {
+            max-width: 80%;
+            max-height: 60vh;
+            margin: 1.75rem auto;
+        }
+        .videocurso .modal-content {
+            background: transparent;
+            border: none;
+            height: 100%;
+        }
+         .videocurso .embed-responsive-16by9 {
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            position: relative;
+            display: block;
+            width: 100%;
+        }
+        .videocurso .embed-responsive-16by9 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
     <main class="cursos">

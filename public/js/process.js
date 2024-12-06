@@ -1,3 +1,54 @@
+var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        var playerReady = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                videoId: 'cb7qnKjWEpA',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            playerReady = true;
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                $('#videoModal').modal('hide');
+            }
+        }
+
+
+            // Cuando se hace clic en el enlace, se abre el modal y se reproduce el video si el reproductor está listo
+            $('.video__player__link').on('click', function(event) {
+                event.preventDefault();
+                $('#videoModal').modal('show');
+                $('#videoModal').on('shown.bs.modal', function () {
+                    if (playerReady && player && typeof player.playVideo === 'function') {
+                        player.playVideo();
+                    }
+                });
+            });
+
+            // Cuando se cierra el modal, se detiene el video
+            $('#videoModal').on('hide.bs.modal', function () {
+                if (playerReady && player && typeof player.stopVideo === 'function') {
+                    player.stopVideo();
+                }
+            });
+
+
 $(".detalle__costo__boton__link").on('click',function(e){
     e.preventDefault();
     let id = $(this).data('id');
@@ -1094,7 +1145,7 @@ $(".navbar-toggler2").on('click',function(e){
     e.preventDefault();
     let cupon = $(".cart__body__cupon__form__input").val();
 
-    
+
     let token = $("meta[name=csrf-token]").attr("content");
 
     $.ajax({

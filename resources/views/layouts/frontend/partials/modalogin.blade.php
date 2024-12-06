@@ -53,7 +53,7 @@
   <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <form id="frm_login" method="POST">
+        <form id="frm_register" method="POST">
         <div class="modal-header">
           <h5 class="modal-title" id="loginModalLongTitle">Register</h5>
 
