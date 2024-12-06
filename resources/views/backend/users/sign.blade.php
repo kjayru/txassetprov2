@@ -52,7 +52,7 @@
 
                                                 understand that the online course “Level II Non-Commissioned Officer Training Course” I am enrolling in is <strong>non-refundable</strong> and the cost of the course is $45.00.
                                                 I am aware that no security agencies are guaranteed or obligated to hire me solely by me taking this course and that this course does not license me as a security officer.
-                                                I understand that I am taking the above course in order to increase my knowledge in the field of security and only grants me a Certification of Completion. <strong>{{$user->initial}}</strong></p>
+                                                I understand that I am taking the above course in order to increase my knowledge in the field of security and only grants me a Certification of Completion. <strong>{{@$user->initial}}</strong></p>
 
                                                 <h3 class="pb-3">Notification of Eligibility:</h3>
                                             <p>Please review Rule 35.4’s list of disqualifying offenses and the related periods of ineligibility which is attached and available on the department’s website at htttp://www.dps.textas.gov/rsd/psb/index.htm (click on the link to Administrative Code) prior to class enrollment or payment. You also have a right to request from the department a criminal history evaluation letter under Occupations Code Section 53.102.” The Private Security Act (Occ. Code Chapter 1702) and Administrative Rule 35.4 (37 Tex. Admin. Code 1), a criminal conviction may disqualify you from a registration, commission, or license under the Act.</p>
@@ -136,14 +136,14 @@
                                         <div class="firma__body__form">
                                             <div class="form">
                                                 <div class="form-group">
-                                                    <strong>{{$user->legalname}}</strong><br>
-                                                        <strong>{{$user->email}}</strong>
+                                                    <strong>{{@$user->legalname}}</strong><br>
+                                                        <strong>{{@$user->email}}</strong>
                                                 </div>
                                             </div>
                                             <div class="firma__body__form__sign mb-5">
                                                 <div>
                                                     <div class="signature-pad--body">
-                                                    <img src="{{$user->firma}}"  class="img-fluid">
+                                                    <img src="{{@$user->firma}}"  class="img-fluid">
                                                     </div>
 
                                                 </div>
