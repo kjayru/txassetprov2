@@ -1077,10 +1077,10 @@ class HomeController extends Controller
         // $curso = Course::find($id);
         // $user_course = UserCourse::find($user_course_id);
         // $user = $user_course->user;
-
+        $datosUser = UserCourse::where('id',$user_course_id)->where('course_id',$id)->first();
         $curso = Course::find($id);
-        $user_id = Auth::id();
-        $user = User::find($user_id);
+
+        $user = User::find($datosUser->user_id);
         $user_course = UserCourse::find($user_course_id);
         $certificado = $curso->certification->image;
 

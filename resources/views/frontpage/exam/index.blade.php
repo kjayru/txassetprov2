@@ -37,22 +37,31 @@
 								FINAL EXAM
 
 						</div>
-                        <div class="encurso__texto__exam">
-                            <p>You have reached the testing phase. In this step you will not be able to close the window because you will lose the test. Verify that your internet connection is active.</p>
-                            <p>The next exam will test your knowledge of the material you have taken. You have 2 hours to complete this exam. You can use the notes you have taken during the lesson. You cannot use the Internet or anyone else to complete this exam.
-                            </p>
-                            <p>You have 3 attempts to pass this exam before you have to retake the entire course. The pass is 75%.</p>
-                            <p>By continuing, you understand and accept the aforementioned instructions.</p>
 
-							{!! @$examen->description!!}
-                        </div>
 				@if(!isset($tomo_examen) || $completo_examen==0)
+
+                    <div class="encurso__texto__exam">
+                        <p>You have reached the testing phase. In this step you will not be able to close the window because you will lose the test. Verify that your internet connection is active.</p>
+                        <p>The next exam will test your knowledge of the material you have taken. You have 2 hours to complete this exam. You can use the notes you have taken during the lesson. You cannot use the Internet or anyone else to complete this exam.
+                        </p>
+                        <p>You have 3 attempts to pass this exam before you have to retake the entire course. The pass is 75%.</p>
+                        <p>By continuing, you understand and accept the aforementioned instructions.</p>
+
+                        {!! @$examen->description!!}
+                    </div>
 
 						<div class="quiz__inicio">
 							<a href="#" class="btn btn__red btn__examen btn__inline">Final Exam</a>
 						</div>
 
 				@else
+
+                    <div class="encurso__texto__exam">
+                        <p>You have completed the exam. Check your score: if you achieved a passing percentage, you will receive the certificate in your email inbox.</p>
+
+
+                    </div>
+
 					<div class="quiz__resultado">
 						<div class="quiz__resultado__titulo">Result</div>
 						<div class="quiz__resultado__sub">{{$total_correctas}} of {{$total_preguntas}} questions answered correctly</div>

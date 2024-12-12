@@ -1,5 +1,6 @@
 @php
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +37,7 @@ use Carbon\Carbon;
             font-weight: bold;
             top: 15rem;
             display: block;
-            left:6.5rem;
+            left:1.5rem;
             position: absolute;
         }
         .certi_nombre2{
@@ -44,7 +45,7 @@ use Carbon\Carbon;
             font-weight: bold;
             top: 15rem;
             display: block;
-            left:19rem;
+            left:14.5rem;
             position: absolute;
         }
         .certi_nombre3{
@@ -52,7 +53,7 @@ use Carbon\Carbon;
             font-weight: bold;
             top: 15rem;
             display: block;
-            right:5rem;
+            left:28.5rem;
             position: absolute;
         }
 
@@ -170,7 +171,7 @@ use Carbon\Carbon;
             {{ucfirst(@$user->profile->firstname)}}
         </div>
         <div class="certi_nombre3">
-            {{ucfirst(@$user->profile->middlename)}}
+            {{ucfirst(Str::substr(@$user->profile->middlename,0,1))}}
         </div>
         <div class="certi_licence">
             {{substr(@$user->profile->social_number, -4)}}
