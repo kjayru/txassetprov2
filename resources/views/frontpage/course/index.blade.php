@@ -48,7 +48,7 @@
 											controls
 											preload="auto"
                                             vjs-fluid
-											poster="MY_VIDEO_POSTER.jpg"
+											poster="/storage/{{@$content->banner}}"
 											data-setup="{}"
 										>
 											<source src="/storage/{{@$content->video}}"  type="video/mp4" />

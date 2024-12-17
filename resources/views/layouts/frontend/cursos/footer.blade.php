@@ -5,7 +5,7 @@
                       <p> admin@txassetpro.com<br>
                           Tel: (210) 399-1116</p>
                       <p>
-                          11503 Jones Maltsberger Rd, Ste 1101<br>
+                          11503 Jones Maltsberger Rd, Ste 1158<br>
                           San Antonio, TX 78216</p>
                       <p>
                           2022 All Rights Reserved for Texas Asset
@@ -32,4 +32,3 @@
               </div>
           </div>
       </footer>
-      

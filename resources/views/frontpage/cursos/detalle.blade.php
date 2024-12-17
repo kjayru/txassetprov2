@@ -52,6 +52,7 @@
                                                     class="video-js"
                                                     controls
                                                     preload="auto"
+                                                    poster="/storage/{{@$curso->banner}}"
                                                  >
                                                     <source src="/storage/{{@$curso->video}}" type="video/mp4" />
 
@@ -124,7 +125,7 @@
 
 
 
-                                             <video id="my-homevideo" class="video-js" controls preload="auto" poster="MY_VIDEO_POSTER.jpg" data-setup="{}" >
+                                             <video id="my-homevideo" class="video-js" controls preload="auto" poster="/storage/{{@$curso->banner}}" data-setup="{}" >
                                                 <source src="/storage/{{@$curso->video}}" type="video/mp4" />
 
                                                 <p class="vjs-no-js">
