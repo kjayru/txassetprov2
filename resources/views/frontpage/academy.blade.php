@@ -11,7 +11,7 @@
                 <div class="row banner">
                     <div class="col-md-3 d-none d-sm-block">
                         <div class="logo">
-                            <img src="/images/Logo-TAP.png" alt="" class="img-fluid">
+                            <img src="/images/TAP-Academy-Logo-CURSOS.png" alt="" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -118,11 +118,11 @@
                             {
                             url: '/training-calendar/{{ $evt->slug }}',
                             title: '',
-                        
+
                             start: '{{ $evt->start_date }}',
                             color:"#ffffff",
                             textColor: '#ffffff'
-                        
+
                             },
                         @endforeach
                     ],
@@ -159,7 +159,7 @@
                             {
                             url: '/training-calendar/{{ $evt->slug }}',
                             title: '{{ $evt->title }}',
-                        
+
                             start: '{{ $evt->start_date }}',
                             color: '#e01f26',
                             textColor: '#ffffff',

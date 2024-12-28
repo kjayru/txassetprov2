@@ -21,7 +21,7 @@
                   <div class="banner__home d-flex align-items-center">
                   <div class="col-md-2">
                       <div class="logo">
-                          <img src="/images/Logo-TAP.png" alt="" class="img-fluid">
+                          <img src="/images/TAP-Academy-Logo-CURSOS.png" alt="" class="img-fluid">
                       </div>
                   </div>
                   <div class="col-md-4">
@@ -157,7 +157,7 @@
                             </div>
 
                             <div class="col-md-6 col-sm-6 col-lg-6 col-12">
-                             <img src="/images/banner-training-sinfondo.png" class="img-fluid">
+                             <img src="/images/banner-training-nuevo-logo-mobile.png" class="img-fluid">
                             </div>
                   </div>
 

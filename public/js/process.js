@@ -226,7 +226,7 @@ $("#password__login").focus(function() {
 
 try {
 
-
+    const playermob = new Plyr('#my-homevideo_mobile');
 
     // const player = new Plyr('#my-homevideo', {captions: {active: true}});
     // window.player = player;
