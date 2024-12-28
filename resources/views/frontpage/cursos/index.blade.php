@@ -51,7 +51,14 @@
               <div class="row justify-content-center">
                 <div class="col-md-7">
                   <div class="video__player">
-                     <a href="#" class="video__player__link"></a>
+                    <video id="video__curso" class="plyr" controls preload="auto" poster="/images/video2024.jpeg">
+                        <source src="/video/TAPfinalized7.mp4" type="video/mp4" />
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a
+                            web browser that
+                            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                        </p>
+                    </video>
                   </div>
                 </div>
               </div>
