@@ -3537,6 +3537,11 @@ progress{
             }
         }
     }
+    .cursos .video__player {
+        height: auto !important;
+        margin-bottom: 6rem;
+        position: relative;
+    }
     .firma{
         &__body{
             &__contenido{
