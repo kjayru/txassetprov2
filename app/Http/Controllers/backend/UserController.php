@@ -180,12 +180,6 @@ class UserController extends Controller
 
         return $pdf->stream();
 
-
-    ]);
-
-    $pdf->setPaper('a4', 'landscape')->render();
-
-    return $pdf->stream();
    // return $pdf->setPaper('a4', 'landscape')->dpi()stream('certificate'.uniqid().'.pdf');
     //$output =  $pdf->output('employment.pdf');
 
