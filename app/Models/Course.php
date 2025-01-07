@@ -54,15 +54,28 @@ class Course extends Model
         return $this->belongsTo(Certification::class);
     }
 
-    public static function getcourse($item){
+    public static function getcourse($item) {
+        if (empty($item)) {
+            return '';
+        }
 
-       // unserialize($item)->items[7]['curso']->titulo
-      $comp =  unserialize($item);
-      $key = array_keys($comp->items);
-      $course_id = $key[0];
+        $comp = unserialize($item);
+        if (!isset($comp->items) || empty($comp->items)) {
+            return '';
+        }
 
-      $curso = $comp->items[$course_id]['curso'];
+        $key = array_keys($comp->items);
+        if (empty($key)) {
+            return '';
+        }
 
-      return $curso;
+        $course_id = $key[0];
+        if (!isset($comp->items[$course_id]['curso'])) {
+            return '';
+        }
+
+        $curso = $comp->items[$course_id]['curso'];
+
+        return $curso;
     }
 }
