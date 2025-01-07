@@ -140,10 +140,46 @@ class UserController extends Controller
 
 
 
-    $pdf = PDF::loadView('pdf.index', ['curso'=>$curso, 'user'=>$user,'user_course'=>$user_course ])->setOptions([
-        'isHtml5ParserEnabled' => true,
-        'isRemoteEnabled' => true,
-        'dpi' =>137,
+    // $pdf = PDF::loadView('pdf.index', ['curso'=>$curso, 'user'=>$user,'user_course'=>$user_course ])->setOptions([
+    //     'isHtml5ParserEnabled' => true,
+    //     'isRemoteEnabled' => true,
+    //     'dpi' =>137,
+
+        if($curso->certification_id==1){
+            $pdf = PDF::loadView('pdf.certificado1', ['curso'=>$curso, 'user'=>$user,'user_course'=>$user_course,'certificado'=>$certificado ])->setOptions([
+                'isHtml5ParserEnabled' => true,
+                'isRemoteEnabled' => true,
+                'dpi' =>180,
+            ]);
+        }
+
+        if($curso->certification_id==2){
+            $pdf = PDF::loadView('pdf.certificado2', ['curso'=>$curso, 'user'=>$user,'user_course'=>$user_course,'certificado'=>$certificado ])->setOptions([
+                'isHtml5ParserEnabled' => true,
+                'isRemoteEnabled' => true,
+                'dpi' =>180,
+            ]);
+        }
+
+        if($curso->certification_id==3){
+            $pdf = PDF::loadView('pdf.certificado3', ['curso'=>$curso, 'user'=>$user,'user_course'=>$user_course,'certificado'=>$certificado ])->setOptions([
+                'isHtml5ParserEnabled' => true,
+                'isRemoteEnabled' => true,
+                'dpi' =>180,
+            ]);
+        }
+
+        if($curso->certification_id==4){
+            $pdf = PDF::loadView('pdf.certificado4', ['curso'=>$curso, 'user'=>$user,'user_course'=>$user_course,'certificado'=>$certificado ])->setOptions([
+                'isHtml5ParserEnabled' => true,
+                'isRemoteEnabled' => true,
+                'dpi' =>180,
+            ]);
+        }
+        $pdf->setPaper('a4')->render();
+
+        return $pdf->stream();
+
 
     ]);
 

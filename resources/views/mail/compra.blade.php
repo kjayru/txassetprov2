@@ -185,7 +185,7 @@
                                                                 <p style="color:#031059; text-align:center; padding-bottom:1rem; font-weight:bold; font-size:20px; line-height:20px;">{{$curso->titulo}}<br>
                                                                     <span style="font-size:14px;">{{$curso->responsable}}</span>
                                                                 </p>
-                                                            <img src="{{env('APP_URL')}}/images/curso1.png" style="width:80%; margin:0 auto; display:block">
+                                                            <img src="{{env('APP_URL')}}/storage/{{$curso->banner}}" style="width:80%; margin:0 auto; display:block">
 
                                                             <p style="font-size:35px; font-weight:bold; text-align:center; padding-top:30px;"> ${{$curso->precio}} <span style="font-size:20px;">USD</span></p>
                                                             </th>
