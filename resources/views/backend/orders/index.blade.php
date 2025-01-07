@@ -72,7 +72,17 @@ use App\Models\Course;
                             <td>{{$item->order_id}}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
-                            <td>{{ Course::getcourse($item->course)->titulo}}</td>
+                            <td>
+                                @php
+                                    $course = Course::getcourse($item->course);
+                                @endphp
+                                @if (is_object($course) && property_exists($course, 'titulo'))
+                                    {{ $course->titulo }}
+                                @else
+                                    <!-- Manejar el caso cuando no hay curso -->
+                                    No disponible
+                                @endif
+                            </td>
                             <td>${{ $item->price}}</td>
                             <td>{{ $item->txn_id }}</td>
                             <td>{{ @$item->cupon." - ".@$item->cupon_mount."%"}}</td>
