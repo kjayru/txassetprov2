@@ -136,7 +136,7 @@ class UserController extends Controller
 
         $user = User::find($user_id);
         $user_course = UserCourse::find($user_course_id);
-
+        $certificado = $curso->certification->image;
 
 
 
