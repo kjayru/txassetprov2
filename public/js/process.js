@@ -1,3 +1,6 @@
+// const { method } = require("lodash");
+
+
 var tag = document.createElement('script');
 
       tag.src = "https://www.youtube.com/iframe_api";
@@ -537,11 +540,101 @@ $(".btn__quiz").on('click',function(e){
         padre.next('.card__question').show();
 
         if(response.completado==true){
+
           $(".quiz__preguntas").hide();
           $(".quiz__resultados").show();
           $(".quiz__botones").show();
+         var htm = "";
+          //endpoint resultados
+            $.ajax({
+                url:'/get-quiz-result/'+ucc,
+                method:'GET',
+                dataType:'json',
+                success:function(response){
+                    let htm='';
 
-          window.location.reload();
+
+                        htm=` <div class="quiz__resultados__titulo">Result</div>
+                            <div class="quiz__resultados__respuesta">
+                                ${response.nc} of ${response.np} question answer correctly
+                            </div>
+                            <div class="quiz__resultados__barra">
+                                <div class="barra__roja" style="width:${response.porcentaje}%"></div>
+                            </div>
+                            <div class="quiz__resultados__tiempo">
+                                your time: <span>${response.tiempo}</span>
+                            </div>
+                            <input type="hidden" name="tiempoquiz" id="tiempoquiz">`;
+
+                            $(".quiz__resultados").html(htm).show();
+                            $(".preg_correctas").html(response.nc);
+                            $(".preg_porcentaje").html(response.porcentaje);
+
+                            $.ajax({
+                                url:`/quiz-questions/${response.user_id}/${response.course_id}/${response.chapter_id}`,
+                                method:'GET',
+                                dataType:'json',
+                                success:function(idata){
+                                    console.log(idata);
+                                    let itm = "";
+
+
+                                        $.each(idata, function(i, e) {
+                                            itm += `<div class="card__question">
+                                                        1. ${e.question}
+                                                        <div class="card__question__opciones">`;
+
+
+                                                        $.each(e.options, function(x, y) {
+                                                            let checked = "";
+                                                            let borderColor = "";
+                                                            let clases = "";
+
+                                                            // Condición 1: options[i].estado = 1 y options[i].user_selections.result = 1
+                                                            if (y.estado === 1 && y.user_selections.length > 0 && y.user_selections[0].result === 1) {
+                                                                checked = "checked";
+                                                                borderColor = "border: 2px solid green;";
+                                                                clases = "acierto resultuser resulcorrect";
+                                                            }
+                                                            // Condición 2: options[i].user_selections.result = 0
+                                                            else if (y.user_selections.length > 0 && y.user_selections[0].result === 0) {
+                                                                checked = "checked";
+                                                                borderColor = "border: 2px solid red;";
+                                                                clases ="noacierto resultuser";
+                                                            }
+                                                            // Condición 3: options[i].estado = 1 pero no tiene user_selections
+                                                            else if (y.estado === 1 && y.user_selections.length === 0) {
+                                                                borderColor = "border: 2px solid yellow;";
+                                                                clases = "noacierto resulcorrect";
+                                                            }
+
+                                                            itm += `<div class="form-check ${clases}">
+                                                                        <label class="form-check-label" for="respuesta${y.id}">
+                                                                            ${y.option}
+                                                                            <input class="form-check-input" type="radio" name="respuesta${e.id}" value="${y.id}" ${checked}>
+                                                                        </label>
+                                                                    </div>`;
+                                                        });
+
+                                            itm += `</div></div>`;
+                                        });
+
+
+
+                                    $(".quiz__desarrollado").html(itm);
+                                }
+                              });
+
+                    if(response.aprobado===true){
+
+                        window.location.reload();
+                    }
+                }
+
+            })
+          //enpoint preguntas con respuesta correctas y de usuario
+
+
           clearInterval(refreshIntervalId);
         }
 
@@ -570,7 +663,7 @@ $(".btn__restart").on('click',function(e){
     data:sendata,
     success:function(response){
 
-      window.location.reload();
+     window.location.reload();
 
     }
   })
@@ -579,131 +672,198 @@ $(".btn__restart").on('click',function(e){
 
 
 
-$(".btn__examen").on('click',function(e){
-  e.preventDefault();
+// $(".btn__examen").on('click',function(e){
+//   e.preventDefault();
 
-  $(".quiz__timelapse").show();
-  $(".quiz__preguntas").show();
-  $(".quiz__inicio").hide();
+//   $(".quiz__timelapse").show();
+//   $(".quiz__preguntas").show();
+//   $(".quiz__inicio").hide();
 
-  const SPAN_HOURS = document.getElementById('hora');
-  const SPAN_MINUTES = document.getElementById('minuto');
-  const SPAN_SECONDS = document.getElementById('segundo');
+//   const SPAN_HOURS = document.getElementById('hora');
+//   const SPAN_MINUTES = document.getElementById('minuto');
+//   const SPAN_SECONDS = document.getElementById('segundo');
 
-  const MILLISECONDS_OF_A_SECOND = 1000;
-  const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
-  const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
+//   const MILLISECONDS_OF_A_SECOND = 1000;
+//   const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
+//   const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
 
-  var segundo=60;
-  var minuto=59;
-  var hora = 1;
+//   var segundo=60;
+//   var minuto=59;
+//   var hora = 1;
 
-// var segundo=60;
-// var minuto=1;
-// var hora = 0;
+//   var contador = 0;
+//   var porcentaje=0;
+//   var total = 7200;
+//   function updateCountdown() {
 
-  var contador = 0;
-  var porcentaje=0;
-  var total = 7200;
-  function updateCountdown() {
+//     SPAN_HOURS.textContent= hora;
+//       contador +=1;
+//        segundo -= 1;
 
-    SPAN_HOURS.textContent= hora;
-      contador +=1;
-       segundo -= 1;
-
-       if(segundo==0){
-        minuto-=1;
-        segundo=60;
-       }
+//        if(segundo==0){
+//         minuto-=1;
+//         segundo=60;
+//        }
 
 
 
-      if(segundo==60){
-          SPAN_SECONDS.textContent = '00';
-      }else{
-            if(segundo<10){
-              SPAN_SECONDS.textContent = "0"+segundo;
-            }else{
+//       if(segundo==60){
+//           SPAN_SECONDS.textContent = '00';
+//       }else{
+//             if(segundo<10){
+//               SPAN_SECONDS.textContent = "0"+segundo;
+//             }else{
 
-              SPAN_SECONDS.textContent = segundo;
-            }
+//               SPAN_SECONDS.textContent = segundo;
+//             }
 
-      }
+//       }
 
-       if(minuto==60){
+//        if(minuto==60){
 
-        SPAN_MINUTES.textContent = '00';
-       }else{
+//         SPAN_MINUTES.textContent = '00';
+//        }else{
 
-        if(minuto<10){
+//         if(minuto<10){
 
-            SPAN_MINUTES.textContent = "0"+minuto;
-            // if(minuto==0){
-            //   SPAN_MINUTES.textContent = "00";
+//             SPAN_MINUTES.textContent = "0"+minuto;
 
-            // }
 
-        }else{
+//         }else{
 
-        SPAN_MINUTES.textContent = minuto;
+//         SPAN_MINUTES.textContent = minuto;
 
+//         }
+//        }
+
+//        if(hora>0 && minuto ==0 ){
+
+//          hora -=1;
+//          minuto=59;
+//          SPAN_HOURS.textContent = hora;
+//        }
+
+
+//        if(hora==0 && minuto == 0 &&  segundo==1){
+
+
+//           clearInterval(refreshIntervalId);
+//           let user_course_id = $("#user_course_id").val();
+//           let exam_id = $("#exam_id").val();
+//           let tiempo = $("#tiempo").val();
+
+
+//           let quizid = $(this).data('quizid');
+
+//           let chapter_id =  $('input[name="chapter_id"]').val();
+//           const token = $('meta[name="csrf-token"]').attr('content');
+
+//           let sendata = {'_token':token,'_method':'POST',quizid:quizid,'evento':"excedio",'chapter_id':chapter_id,'exam_id':exam_id,'tiempo':tiempo,'user_course_id':user_course_id};
+
+//           $.ajax({
+//             url:"/learn/set-exam",
+//             type:"POST",
+//             dataType:'json',
+//             data:sendata,
+//             success:function(response){
+
+//               window.location.reload();
+
+
+//             }
+//           })
+
+
+//        }
+
+//       $("#tiempo").val(hora+":"+minuto+":"+segundo);
+
+//      porcentaje = (100*contador)/total;
+//      document.querySelector(".quiz__timelapse__bar").style.width= parseFloat(porcentaje).toFixed(2)+"%";
+//   }
+//   updateCountdown();
+//   var refreshIntervalId = setInterval(updateCountdown, MILLISECONDS_OF_A_SECOND);
+// })
+
+$(".btn__examen").on('click', function (e) {
+    e.preventDefault();
+
+    $(".quiz__timelapse").show();
+    $(".quiz__preguntas").show();
+    $(".quiz__inicio").hide();
+
+    // Definir variables
+    const SPAN_HOURS = document.getElementById('hora');
+    const SPAN_MINUTES = document.getElementById('minuto');
+    const SPAN_SECONDS = document.getElementById('segundo');
+    const MILLISECONDS_OF_A_SECOND = 1000;
+    const TOTAL_TIME = 7200; // 2 horas en segundos
+    let segundosRestantes = TOTAL_TIME; // Total en segundos
+
+    // Función de actualización de cuenta regresiva
+    function updateCountdown() {
+        // Calcular horas, minutos y segundos
+        let horas = Math.floor(segundosRestantes / 3600);
+        let minutos = Math.floor((segundosRestantes % 3600) / 60);
+        let segundos = segundosRestantes % 60;
+
+        // Mostrar el tiempo en el DOM
+        SPAN_HOURS.textContent = horas.toString().padStart(2, '0');
+        SPAN_MINUTES.textContent = minutos.toString().padStart(2, '0');
+        SPAN_SECONDS.textContent = segundos.toString().padStart(2, '0');
+
+        // Actualizar el input hidden #tiempo con el tiempo actual
+        $("#tiempo").val(`${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`);
+
+        // Actualizar la barra de progreso
+        let porcentaje = (100 * (TOTAL_TIME - segundosRestantes)) / TOTAL_TIME;
+        document.querySelector(".quiz__timelapse__bar").style.width = porcentaje.toFixed(2) + "%";
+
+        // Cuando el tiempo llegue a cero
+        if (segundosRestantes <= 0) {
+            clearInterval(refreshIntervalId);
+            handleTimeUp();
         }
-       }
 
-       if(hora>0 && minuto ==0 ){
+        // Decrementar el tiempo restante
+        segundosRestantes--;
+    }
 
-         hora -=1;
-         minuto=59;
-         SPAN_HOURS.textContent = hora;
-       }
+    // Llamada al final de la cuenta regresiva
+    function handleTimeUp() {
+        let user_course_id = $("#user_course_id").val();
+        let exam_id = $("#exam_id").val();
+        let tiempo = $("#tiempo").val(); // Ahora sí tendrá el valor correcto
+        let quizid = $(".btn__examen").data('quizid'); // Se toma desde el botón
+        let chapter_id = $('input[name="chapter_id"]').val();
+        const token = $('meta[name="csrf-token"]').attr('content');
 
+        let sendata = {
+            '_token': token,
+            '_method': 'POST',
+            'quizid': quizid,
+            'evento': "excedio",
+            'chapter_id': chapter_id,
+            'exam_id': exam_id,
+            'tiempo': tiempo,
+            'user_course_id': user_course_id
+        };
 
-       if(hora==0 && minuto == 0 &&  segundo==1){
-
-
-          clearInterval(refreshIntervalId);
-          let user_course_id = $("#user_course_id").val();
-          let exam_id = $("#exam_id").val();
-          let tiempo = $("#tiempo").val();
-
-
-          let quizid = $(this).data('quizid');
-          // let input = $(this).parent().children('.card__question__opciones').find('input[name="respuesta"]:checked').val();
-          // let padre =  $(this).parent();
-          let chapter_id =  $('input[name="chapter_id"]').val();
-          const token = $('meta[name="csrf-token"]').attr('content');
-
-          let sendata = {'_token':token,'_method':'POST',quizid:quizid,'evento':"excedio",'chapter_id':chapter_id,'exam_id':exam_id,'tiempo':tiempo,'user_course_id':user_course_id};
-
-          $.ajax({
-            url:"/learn/set-exam",
-            type:"POST",
-            dataType:'json',
-            data:sendata,
-            success:function(response){
-
-              window.location.reload();
-
-
+        $.ajax({
+            url: "/learn/set-exam",
+            type: "POST",
+            dataType: 'json',
+            data: sendata,
+            success: function (response) {
+                window.location.reload();
             }
-          })
+        });
+    }
 
-
-       }
-
-      // 7200segundos =100%
-
-      $("#tiempo").val(hora+":"+minuto+":"+segundo);
-
-     //porcentaje= Math.round((total*100)/contador);
-     porcentaje = (100*contador)/total;
-
-     //console.log(contador+" "+parseFloat(porcentaje).toFixed(2));
-     document.querySelector(".quiz__timelapse__bar").style.width= parseFloat(porcentaje).toFixed(2)+"%";
-  }
-  updateCountdown();
-  var refreshIntervalId = setInterval(updateCountdown, MILLISECONDS_OF_A_SECOND);
-})
+    // Iniciar la cuenta regresiva
+    updateCountdown();
+    var refreshIntervalId = setInterval(updateCountdown, MILLISECONDS_OF_A_SECOND);
+});
 
 
 var urlpath = window.location.href;
@@ -790,9 +950,6 @@ if(urlpath.indexOf('quiz')!="-1"){
   updateCountdown2();
   var refreshIntervalId = setInterval(updateCountdown2, MILLISECONDS_OF_A_SECOND);
 }
-
-
-
 
 
 $(".btn__exam").on('click',function(e){

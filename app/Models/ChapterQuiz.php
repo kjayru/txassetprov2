@@ -15,6 +15,11 @@ class ChapterQuiz extends Model
         return $this->hasMany(ChapterQuizOption::class);
     }
 
+    public function options()
+    {
+        return $this->hasMany(ChapterQuizOption::class, 'chapter_quiz_id');
+    }
+
     public static function getAnswer($id){
 
        $result = null;

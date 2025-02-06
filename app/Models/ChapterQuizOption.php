@@ -11,16 +11,20 @@ class ChapterQuizOption extends Model
     public function chapterquiz(){
         return $this->belongsTo(ChapterQuiz::class);
     }
+    public function userSelections()
+    {
+        return $this->hasMany(UserCourseChapterQuiz::class, 'quiz_question_option_id');
+    }
 
     public static function getResult($id){
-       
+
         $answer = ChapterQuizOption::where('id',$id)->where('estado',1)->first();
 
         //dd($answer->id);
        if(isset($answer)){
         return true;
        }
-       
+
        return false;
 
     }
@@ -28,14 +32,14 @@ class ChapterQuizOption extends Model
     public static function isCorrect($id){
         //resultado usuario
         $resultUser = chapterQuizOption::where('id',$id)->first();
-        
+
         if($resultUser->estado==1){
             return true;
         }
         return false;
         // $resultOption = ChapterQuizOption::where('id',$id)->where('estado',1)->first();
         // //se compara
-       
+
         // if(isset($resultUser->id)){
         //    if(isset($resultOption->id)){
         //         if($resultUser->chapter_question_option_id==$resultOption->id){
@@ -45,7 +49,7 @@ class ChapterQuizOption extends Model
         //         }
         //     }else{
         //         return false;
-        //     }            
+        //     }
         // }
         // return false;
 

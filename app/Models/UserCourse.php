@@ -20,6 +20,10 @@ class UserCourse extends Model
     public function userCourseChapters(){
         return $this->hasMany(UserCourseChapter::class);
     }
+    public function chapters()
+    {
+        return $this->hasMany(UserCourseChapter::class, 'user_course_id');
+    }
 
 
     public static function capitulo($user_course_id,$chapter_id){

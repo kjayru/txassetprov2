@@ -239,6 +239,8 @@ Route::get('/test',[Home::class,'test']);
 Route::get('/certificade/{id}/{user_course_id}',[Home::class,'certificado']);
 Route::get('/template/{id}/{user_course_id}',[LearnController::class,'template']);
 
+Route::get('get-quiz-result/{id}',[Home::class,'calculoQuiz']);
+Route::get('quiz-questions/{userId}/{courseId}/{chapterId}',[Home::class,'quizQuestions']);
 Route::group(['prefix' => 'cart'],function(){
     Route::get('/',[Home::class,'carrito']);
     Route::post('/process',[Home::class,'process']);
@@ -277,6 +279,8 @@ Route::group(['prefix'=>'learn'],function(){
     Route::get('/{idcourseid}/{slug}/{chapter}',[LearnController::class,'chapter']);
     Route::get('/{idcourseid}/{slug}/{chapter}/quiz/{id}',[LearnController::class,'cursoChapterContentQuiz']);
     Route::get('/{idcourseid}/{slug}/{chapter}/{content}',[LearnController::class,'cursoChapterContent']);
+
+
 });
 
 Route::group(['prefix'=>'user'],function(){

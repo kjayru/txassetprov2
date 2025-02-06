@@ -30,6 +30,13 @@ use App\Models\UserSign;
 use App\Models\User;
 use App\Models\UserCourse;
 use App\Models\Coupon;
+use App\Models\UserCourseChapterQuiz;
+use App\Models\UserCourseChapter;
+use App\Models\ChapterQuiz;
+use App\Models\Chapter;
+use App\Models\Chaptercontent;
+use App\Http\Controllers\Traits\CourseMenuTrait;
+
 use Session;
 use Carbon\Carbon;
 //use PDF;
@@ -51,6 +58,7 @@ use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
+    use CourseMenuTrait;
     /**
      * Display a listing of the resource.
      *
@@ -1156,5 +1164,89 @@ class HomeController extends Controller
 
         return response()->json(['rpta'=>'ok','precio'=>$nuevo_precio]);
 
+    }
+
+
+     //enpoint resultados quiz %
+     public function calculoQuiz($user_course_chapter_id){
+        $datosregistro = UserCourseChapter::find($user_course_chapter_id);
+        $total=0;
+        $completado = false;
+        $aprobado = false;
+        $url_next = null;
+        $fin_curso = false;
+        $examen = null;
+
+        //obtenemos el numero de preguntas
+        $chapter_id = $datosregistro->chapter_id;
+        $user_id = $datosregistro->userCourse->user_id;
+        $course_id = $datosregistro->userCourse->course_id;
+
+        $numeroPreguntas = ChapterQuiz::where('chapter_id',$datosregistro->chapter_id)->count();
+
+        $preguntas = ChapterQuiz::where('chapter_id',$datosregistro->chapter_id)->get();
+        $curso = Course::find($course_id);
+
+        foreach($preguntas as $preg){
+
+            $numerContestadas = UserCourseChapterQuiz::where('user_course_chapter_id',$user_course_chapter_id)->where('chapter_quiz_id',$preg->id)->count();
+            $total += $numerContestadas;
+        }
+
+        if($numeroPreguntas  == $total){
+            $completado = true;
+        }
+
+        $correctas = UserCourseChapterQuiz::where('user_course_chapter_id',$user_course_chapter_id)->where('result',1)->count();
+
+        $porcentaje = round($correctas*100/$numeroPreguntas ,2);
+
+        if($completado &&  $porcentaje > 75){
+            $registro = UserCourseChapter::where('user_course_id',$datosregistro->user_course_id)->where('chapter_id',$datosregistro->chapter_id)->first();
+            $registro->quiz_result= 1;
+            $registro->save();
+            $aprobado = true;
+        }
+        //obtener tiempo:
+       // Obtener tiempo:
+            $uccq = UserCourseChapterQuiz::where('user_course_chapter_id', $user_course_chapter_id)
+            ->orderBy('id', 'desc')
+            ->first();
+
+            if ($uccq) {
+            $tiempo = $uccq->timequiz;
+            } else {
+            $tiempo = 0; // O cualquier valor predeterminado que desees
+            }
+
+        return response()->json(['rpta'=>'ok','completado'=>$completado,'np'=>$numeroPreguntas,'nc'=>$correctas,'porcentaje'=>$porcentaje,'tiempo'=>$tiempo,'chapter_id'=>$chapter_id,'user_id'=>$user_id,'course_id'=>$course_id,  'aprobado' => $aprobado]);
+    }
+
+    //endpoint preguntas respuestas
+
+    public function quizQuestions($userId, $courseId, $chapterId)
+    {
+        $userCourse = UserCourse::where('user_id', $userId)
+                                ->where('course_id', $courseId)
+                                ->first();
+
+        if (!$userCourse) {
+            return response()->json(['error' => 'User course not found'], 404);
+        }
+
+        $userCourseChapter = $userCourse->chapters()
+                                        ->where('chapter_id', $chapterId)
+                                        ->first();
+
+        if (!$userCourseChapter) {
+            return response()->json(['error' => 'User course chapter not found'], 404);
+        }
+
+        $questions = ChapterQuiz::with(['options', 'options.userSelections' => function ($query) use ($userCourseChapter) {
+            $query->where('user_course_chapter_id', $userCourseChapter->id)
+                  ->select('quiz_question_option_id', 'result');
+        }])->where('chapter_id', $chapterId)->get();
+
+        return response()->json($questions);
     }
 }

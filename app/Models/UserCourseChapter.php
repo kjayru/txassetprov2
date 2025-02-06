@@ -18,6 +18,11 @@ class UserCourseChapter extends Model
         return $this->hasMany(UserCourseChapterQuiz::class);
     }
 
+    public function quizzes()
+    {
+        return $this->hasMany(UserCourseChapterQuiz::class, 'user_course_chapter_id');
+    }
+
     public static function completeChapter($user_id,$course_id,$user_course_id){
         $courseChapter=0;
          $conteo_contenido = 0;
