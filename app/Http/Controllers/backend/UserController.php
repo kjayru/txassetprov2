@@ -12,6 +12,7 @@ use App\Models\Profile;
 use App\Models\Course;
 use Carbon\Carbon;
 use App\Models\UserSign;
+use Illuminate\Support\Facades\DB;
 
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
@@ -27,16 +28,9 @@ class UserController extends Controller
      */
     public function index()
     {
-       // $users = User::orderBy('id','desc')->get();
 
-        // $total_usuarios = User::with('roles')->get()->filter(
-        //     fn ($user) => $user->roles->where('name', 'usuario')->toArray()
-        // )->count();
-
-        //$roles = Role::all()->pluck('name');
         $usuarios = User::role('usuario')->get();
 
-       // $users = $role->users;
         return view('backend.users.index',['users'=>$usuarios]);
     }
 
@@ -127,6 +121,8 @@ class UserController extends Controller
          $cursos = UserCourse::where('user_id',$id)->get();
 
 
+
+       // dd($stats);
          return view('backend.users.my-course',['cursos'=>$cursos,'user_id'=>$id]);
      }
 
@@ -189,8 +185,9 @@ class UserController extends Controller
     public function enroll($id){
 
         $user = UserSign::where('user_id',$id)->first();
-
         return view('backend.users.sign',['user'=>$user]);
     }
+
+
 
 }

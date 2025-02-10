@@ -350,5 +350,3 @@ $("#fileid").fileinput({
     }
 
 
-
-

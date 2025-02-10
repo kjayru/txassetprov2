@@ -55,6 +55,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Mail\Bienvenido;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -1248,5 +1249,48 @@ class HomeController extends Controller
         }])->where('chapter_id', $chapterId)->get();
 
         return response()->json($questions);
+    }
+
+
+    public function resultUser($exam_id, $user_id){
+        $examId = $exam_id; // ID del examen
+        $userId = $user_id; // ID del usuario
+
+        $questions = \DB::table('exam_questions')
+    ->where('exam_questions.exam_id', $examId)
+    ->select('exam_questions.id as question_id', 'exam_questions.question')
+    ->get()
+    ->map(function ($question) use ($userId, $examId) {
+        $options = \DB::table('exam_question_options')
+            ->where('exam_question_options.exam_question_id', $question->question_id)
+            ->leftJoin('user_course_exam_results', function ($join) use ($userId, $examId) {
+                $join->on('exam_question_options.id', '=', 'user_course_exam_results.exam_question_option_id')
+                    ->whereIn('user_course_exam_results.user_course_exam_id', function ($query) use ($userId, $examId) {
+                        $query->select('user_course_exams.id')
+                            ->from('user_course_exams')
+                            ->where('user_course_exams.exam_id', $examId)
+                            ->whereIn('user_course_exams.user_course_id', function ($subquery) use ($userId) {
+                                $subquery->select('user_courses.id')
+                                    ->from('user_courses')
+                                    ->where('user_courses.user_id', $userId);
+                            });
+                    });
+            })
+            ->select(
+                'exam_question_options.id as option_id',
+                'exam_question_options.opcion',
+                'exam_question_options.resultado as correct_answer',
+                \DB::raw('COALESCE(user_course_exam_results.result, NULL) as user_answer')
+            )
+            ->get();
+
+        return [
+            'question_id' => $question->question_id,
+            'question' => $question->question,
+            'options' => $options
+        ];
+    });
+
+    return response()->json($questions);
     }
 }

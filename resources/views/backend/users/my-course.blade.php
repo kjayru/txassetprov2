@@ -58,8 +58,8 @@
                         <th>Initial date</th>
                         <th>Finish date</th>
                         <th>Result</th>
-                        {{-- <th>Porcent</th>
-                        <th>Detail exam</th> --}}
+                        <th>Porcent</th>
+                        <th>Detail exam</th>
                         <th>Certificated</th>
 
 
@@ -68,6 +68,7 @@
                     <tbody>
                         @if(isset($cursos))
                         @foreach($cursos as $k => $course)
+
                         <tr>
                             <td>{{ $k+1 }}</td>
                             <td>{{$course->id}}</td>
@@ -97,12 +98,14 @@
                                 @endif
                             </td>
 
-                            {{-- <td>{{UserCourse::getPorcentaje($course->id)}} - {{$course->id}}</td>
-                            <td><a href="#" class="btn btn-xs btn__detail">Detail</a></td> --}}
+                           <td>{{UserCourse::porcentajes($course->course_id,$user_id)->porcentaje_correcto}}%<br>
+                            {{UserCourse::porcentajes($course->course_id,$user_id)->respuestas_correctas}} corrects
+                           </td>
+                            <td><a href="#" class="btn btn-xs btn-danger btn__detail" data-userid="{{$user_id}}"  data-examid="{{UserCourse::exam($course->course_id)}}" data-toggle="modal" data-target="#resultModal">Detail</a></td>
 
                             <td>
                                 @if($course->aprobado==1)
-                                <a href="/admin/users/courses/certified/{{$course->course->id}}/{{$course->id}}/{{$user_id}}" target="_blank" class="btn btn-primary">View</a>
+                                <a href="/admin/users/courses/certified/{{$course->course->id}}/{{$course->id}}/{{$user_id}}" target="_blank" class="btn  btn-primary">View</a>
                                 @endif
                             </td>
 
@@ -164,7 +167,29 @@
               <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
+        </div>
 
+
+        <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="resultModalLabel">Exam results</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="exam__result">
+
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+              </div>
+            </div>
         </div>
 
 @endsection

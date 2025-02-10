@@ -241,6 +241,8 @@ Route::get('/template/{id}/{user_course_id}',[LearnController::class,'template']
 
 Route::get('get-quiz-result/{id}',[Home::class,'calculoQuiz']);
 Route::get('quiz-questions/{userId}/{courseId}/{chapterId}',[Home::class,'quizQuestions']);
+Route::get('result-exam/{exam_id}/{user_id}',[Home::class,'resultUser']);
+
 Route::group(['prefix' => 'cart'],function(){
     Route::get('/',[Home::class,'carrito']);
     Route::post('/process',[Home::class,'process']);
@@ -297,6 +299,8 @@ Route::group(['prefix'=>'user'],function(){
    route::get('/exist-profile',[UsuarioController::class,'userProfile']);
 
    Route::post('/course-again',[UsuarioController::class,'courseAgain'])->name('course.again');
+
+
 });
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
 ->name('ckfinder_connector');

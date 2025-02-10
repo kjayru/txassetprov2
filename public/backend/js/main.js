@@ -7,7 +7,7 @@
 //         height: "600px",
 //     });
 //     CKEDITOR.config.allowedContent = true;
-  
+
 //     CKFinder.config({ connectorPath: "/ckfinder/connector" });
 //     CKFinder.setupCKEditor(newCKEdit, "/");
 
@@ -63,7 +63,7 @@ $(function() {
                         <label for="option${items+1}" class="control-label">Option</label>
                         <input type="text" name="option[]" id="option${items+1}" class="form-control " required>
                     </div>
-                   
+
                     <div class="form-check col-md-3">
                     <input type="radio" name="result" id="result${items+1}" class="form-check form-check-inline check__respuesta" value="${items+1}">
                     <label class="form-check-label" for="result${items+1}">Result</label>
@@ -87,7 +87,7 @@ $(function() {
 
 
 $(".btn__getcourses").on('click',function(e){
-   
+
     let id= $(this).data('id');
     let exam_id = $(this).data('examid');
 
@@ -102,7 +102,7 @@ $(".btn__getcourses").on('click',function(e){
         $.each(response,function(i,e){
             htm+=`<option value="${e.id}" ${exam_id==e.id?'selected':''}> ${e.title}</option>`;
         })
-        
+
         $("#course-selector").html(htm);
         $("#course_id").val(id);
       }
@@ -121,4 +121,36 @@ $("#frm-question").validate({
         "option[]": "Debe escoger un sector obligatoriamente.",
         "result[]": "marque una respuesta."
       },
+});
+
+$(".btn__detail").on('click', function(e) {
+    e.preventDefault();
+    let userid = $(this).data("userid");
+    let examid = $(this).data("examid");
+
+    $.ajax({
+        url: `/result-exam/${examid}/${userid}`,
+        type: 'GET',
+        success: function(response) {
+            let htm = "";
+            console.log(response);
+
+            $.each(response, function(i, e) {
+                htm += `<div class="question"><div class="question-title">${e.question}</div>`;
+                $.each(e.options, function(x, y) {
+                    if (y.correct_answer === 1 && y.user_answer === 1) {
+                        htm += `<div class="option selected">${y.opcion}</div>`;
+                    } else if (y.correct_answer === 1 && y.user_answer === null) {
+                        htm += `<div class="option selectedcorrect">${y.opcion}</div>`;
+                    } else if (y.correct_answer === 0 && y.user_answer === 1) {
+                        htm += `<div class="option not-selected">${y.opcion}</div>`;
+                    } else {
+                        htm += `<div class="option">${y.opcion}</div>`;
+                    }
+                });
+                htm += `</div>`;
+            });
+            $(".exam__result").html(htm);
+        }
+    });
 });

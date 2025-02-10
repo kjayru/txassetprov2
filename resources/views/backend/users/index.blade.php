@@ -52,11 +52,9 @@
                         <th></th>
                         <th>Name</th>
                         <th>Birthday</th>
-
                         <th>SSN</th>
                         <th>License</th>
                         <th>Zip code</th>
-
                         <th>Courses</th>
                         <th>Enroll</th>
                         <th>Date</th>
@@ -85,7 +83,7 @@
                                 <a href="#" data-id="{{ $user->id }}" data-toggle="modal" data-target="#delobjeto" class="btn btn-sm btn-danger btn-object-delete"><i class="far fa-trash-alt"></i></a>
                             </td>
 
-                            
+
                         </tr>
                         @endforeach
                         @else

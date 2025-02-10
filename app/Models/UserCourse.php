@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 class UserCourse extends Model
 {
     use HasFactory;
@@ -23,6 +24,39 @@ class UserCourse extends Model
     public function chapters()
     {
         return $this->hasMany(UserCourseChapter::class, 'user_course_id');
+    }
+
+    public static function porcentajes($course_id, $user_id) {
+        $uc = UserCourse::where('course_id', $course_id)->where('user_id', $user_id)->first();
+        if (!$uc) {
+            return (object) ['total_respuestas' => 0, 'respuestas_correctas' => 0, 'porcentaje_correcto' => 0];
+        }
+
+        $exam = ExamCourse::where('course_id', $course_id)->first();
+        if (!$exam) {
+            return (object) ['total_respuestas' => 0, 'respuestas_correctas' => 0, 'porcentaje_correcto' => 0];
+        }
+
+        $ucer = UserCourseExam::where('user_course_id', $uc->id)->where('exam_id', $exam->exam_id)->first();
+        if (!$ucer) {
+            return (object) ['total_respuestas' => 0, 'respuestas_correctas' => 0, 'porcentaje_correcto' => 0];
+        }
+
+        $stats = DB::table('user_course_exam_results')
+            ->where('user_course_exam_id', $ucer->id)
+            ->selectRaw('COUNT(*) AS total_respuestas')
+            ->selectRaw('SUM(CASE WHEN result = 1 THEN 1 ELSE 0 END) AS respuestas_correctas')
+            ->selectRaw('ROUND((SUM(CASE WHEN result = 1 THEN 1 ELSE 0 END) * 100.0) / COUNT(*), 2) AS porcentaje_correcto')
+            ->first();
+
+        return $stats ?: (object) ['total_respuestas' => 0, 'respuestas_correctas' => 0, 'porcentaje_correcto' => 0];
+    }
+
+
+    public static function exam($course_id){
+
+        $exam = ExamCourse::where('course_id',$course_id)->first();
+        return $exam->exam_id;
     }
 
 
