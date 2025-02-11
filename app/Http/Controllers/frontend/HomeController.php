@@ -1280,7 +1280,7 @@ class HomeController extends Controller
                 'exam_question_options.id as option_id',
                 'exam_question_options.opcion',
                 'exam_question_options.resultado as correct_answer',
-                \DB::raw('COALESCE(user_course_exam_results.result, NULL) as user_answer')
+                \DB::raw('CASE WHEN user_course_exam_results.exam_question_option_id IS NOT NULL THEN 1 ELSE NULL END as user_answer')
             )
             ->get();
 
