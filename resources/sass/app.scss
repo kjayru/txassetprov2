@@ -2451,6 +2451,38 @@ footer {
         color:$rojo;
         font-size:0.7rem;
     }
+    .modal{
+        &-header{
+            .titulo{
+
+            }
+        }
+        &-body{
+            .btn__reset{
+                font-size: 0.7rem;
+                text-decoration: underline;
+                color: #212529;
+                display: block;
+                text-align: right;
+                &:hover{
+                    text-decoration: none;
+
+                }
+            }
+        }
+        &-footers{
+            flex: 1 1 auto;
+            padding: var(--bs-modal-padding);
+            position: relative;
+
+            .btn__registro{
+                color:#212529;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
 }
 .video-js{
     width:100%;
