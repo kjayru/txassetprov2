@@ -628,7 +628,9 @@ class LearnController extends Controller
                 $fin_curso = true;
             }
 
+
             $examen = $curso->examcourse->exam ?? null;
+
 
             return view('frontpage.learn.index', [
                 'examen' => $examen,
@@ -791,9 +793,12 @@ class LearnController extends Controller
         $sidelad = $this->getContent($capitulos,$curso);
         $exam = Exam::find($id);
         //reinicio de examen
-        $registroExamen = UserCourseExam::where('exam_id',$id)->where('user_course_id',$userCourse->id)->first();
-        if($registroExamen->intento == null && $registroExamen->resultado == 0 && $registroExamen->complete == null){
-            UserCourseExamResult::where('user_course_exam_id',$registroExamen->id)->delete();
+
+            $registroExamen = UserCourseExam::where('exam_id',$id)->where('user_course_id',$userCourse->id)->first();
+            if ($registroExamen) {
+            if($registroExamen->intento == null && $registroExamen->resultado == 0 && $registroExamen->complete == null){
+                UserCourseExamResult::where('user_course_exam_id',$registroExamen->id)->delete();
+            }
         }
 
         //comprobar si tomo examen
