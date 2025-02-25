@@ -1322,3 +1322,21 @@ $(".navbar-toggler2").on('click',function(e){
       }
     })
 });
+
+$(".cart__body__cupon__form__input").on('focus',function(){
+    //verificar si esta sesionado
+    $.ajax({
+        url: "/user/is-authenticated",
+        method: "GET",
+        dataType: "json",
+        success: function (response) {
+            if (!response.authenticated) {
+                alert("Debes iniciar sesión para usar cupones.");
+                $("#loginModal").modal('show');
+            }
+        },
+        error: function (data) {
+           $("#loginModal").modal('show');
+        },
+    });
+})

@@ -300,6 +300,7 @@ Route::group(['prefix'=>'user'],function(){
 
    Route::post('/course-again',[UsuarioController::class,'courseAgain'])->name('course.again');
 
+   Route::get('/is-authenticated',[UsuarioController::class,'isAuthenticated']);
 
 });
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')

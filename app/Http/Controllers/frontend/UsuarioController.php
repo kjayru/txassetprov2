@@ -288,8 +288,15 @@ class UsuarioController extends Controller
          foreach($capitulos as $cap){
             UserChapterQuiz::where('user_id',$request->user_id)->where('chapter_id',$cap->id)->delete();
          }
+     }
 
-
+     public function isAuthenticated()
+     {
+         if (Auth::check()) {
+             return response()->json(['authenticated' => true, 'user' => Auth::user()]);
+         }
+ 
+         return response()->json(['authenticated' => false]);
      }
 }
 

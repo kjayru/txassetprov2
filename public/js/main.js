@@ -349,4 +349,3 @@ $("#fileid").fileinput({
         }
     }
 
-
