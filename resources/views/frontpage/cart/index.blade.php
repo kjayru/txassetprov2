@@ -60,7 +60,7 @@
                                                       </div>
 
                                                       <div class="col-md-2 text-right">
-                                                          <div class="cart__body__grilla__precio"> ${{$item['precio']}} <span>USD</span> </div>
+                                                          <div class="cart__body__grilla__precio"> ${{number_format($item['precio'],2)}} <span>USD</span> </div>
 
                                                           <a href="#" data-id="{{$item['id']}}" class="cart__body__grilla__delete d-none d-sm-block"><i class="fa fa-times" aria-hidden="true"></i></a>
 
@@ -74,7 +74,7 @@
                                       <div class="cart__body__foot">
                                           <div class="row justify-content-end">
                                               <div class="col-md-4 col-12 text-right">
-                                                  <div class="cart__body__foot__total">Total ${{@$cart->total}} USD</div>
+                                                  <div class="cart__body__foot__total">Total ${{Number_format(@$cart->total,2)}} USD</div>
                                                   <a href="/cart/sign" class="cart__body__foot__link" data-id="{{@$item['id']}}" data-user="{{@$user_id}}">Proceed to checkout</a>
                                               </div>
                                           </div>
