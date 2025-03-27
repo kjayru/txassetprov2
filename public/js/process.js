@@ -1364,3 +1364,35 @@ $(".cart__body__cupon__form__input").on('focus',function(){
         },
     });
 })
+
+$(document).ready(function() {
+  $('.btn__save__profile').on('click', function(e) {
+      e.preventDefault(); // Evita el envío tradicional del formulario
+
+      var form = $('#frm-profile__dash')[0];
+    debugger
+      // Comprueba si el formulario es válido usando la validación HTML5
+      if (!form.checkValidity()) {
+          // Si no es válido, forzamos la visualización de los mensajes de validación
+          $('<input type="submit">').hide().appendTo(form).click().remove();
+          return false;
+      }
+      debugger
+      // Si el formulario es válido, enviamos la información mediante AJAX
+      $.ajax({
+          url: '/user/user-profile-save', // Asegúrate de que esta ruta esté definida en tus rutas de Laravel
+          type: 'POST',
+          data: $('#frm-profile__dash').serialize(),
+          success: function(response) {
+              // Aquí puedes manejar la respuesta exitosa, por ejemplo, mostrar un mensaje al usuario
+            
+              $("#modalPerfil").modal("hide");
+             window.location.reload();
+          },
+          error: function(xhr, status, error) {
+              // Manejo de errores, muestra el mensaje de error correspondiente
+              alert('Error al actualizar el perfil: ' + error);
+          }
+      });
+  });
+});

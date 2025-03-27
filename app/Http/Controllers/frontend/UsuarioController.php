@@ -215,55 +215,60 @@ class UsuarioController extends Controller
       return view('frontpage.usuario.profile',['user'=>$user]);
      }
 
-     public function userSaveProfile(Request $request){
+     public function userSaveProfile(Request $request)
+{
+    $user_id = Auth::id();
+    $user = User::find($user_id);
+    $user->name = $request->firstname;
+    $user->save();
 
+    // Buscar el profile existente para el usuario
+    $profile = Profile::where('user_id', $user->id)->first();
 
-       $user_id = Auth::id();
-       $user = User::find($user_id);
-       $user->name = $request->firstname;
-       $user->save();
+    if (!$profile) {
+        // Si no existe, se crea uno nuevo y se asigna el user_id
+        $profile = new Profile();
+        $profile->user_id = $user->id;
+    }
 
-       $profile = new Profile();
-       $profile->user_id = $user->id;
-       $profile->firstname = $request->firstname;
-       $profile->lastname = $request->lastname;
-       $profile->middlename = $request->middlename;
-       $profile->gender =$request->gender;
-       $profile->birthday =$request->birthday;
-       $profile->ssn =$request->ssn;
-       $profile->address1 =$request->address1;
-       $profile->address2 =$request->address2;
-       $profile->city =$request->city;
-       $profile->state =$request->state;
-       $profile->zipcode =$request->zipcode;
-       $profile->drivernumber =$request->drivernumber;
-       $profile->driverstate =$request->driverstate;
-       $profile->phone =$request->phone;
-       $profile->email =$request->email;
-       $profile->organization =$request->organization;
-       $profile->emergencycontact =$request->emergencycontact;
-       $profile->emergencyphone =$request->emergencyphone;
-       $profile->relationship =$request->relationship;
-       $profile->handguncaliber =$request->handguncaliber;
-       $profile->handguntype =$request->handguntype;
-       $profile->handgunrental =$request->handgunrental;
-       $profile->shootingshotgun =$request->shootingshotgun;
-       $profile->shotgungauce =$request->shotgungauce;
-       $profile->shotgunrental =$request->shotgunrental;
+    // Asignar/actualizar los campos del profile
+    $profile->user = $request->user;
+    $profile->firstname = $request->firstname;
+    $profile->lastname = $request->lastname;
+    $profile->middlename = $request->middlename;
+    $profile->gender = $request->gender;
+    $profile->birthday = $request->birthday;
+    $profile->ssn = $request->ssn;
+    $profile->address1 = $request->address1;
+    $profile->address2 = $request->address2;
+    $profile->city = $request->city;
+    $profile->state = $request->state;
+    $profile->zipcode = $request->zipcode;
+    $profile->drivernumber = $request->drivernumber;
+    $profile->driverstate = $request->driverstate;
+    $profile->phone = $request->phone;
+    $profile->email = $request->email;
+    $profile->organization = $request->organization;
+    $profile->emergencycontact = $request->emergencycontact;
+    $profile->emergencyphone = $request->emergencyphone;
+    $profile->relationship = $request->relationship;
+    $profile->handguncaliber = $request->handguncaliber;
+    $profile->handguntype = $request->handguntype;
+    $profile->handgunrental = $request->handgunrental;
+    $profile->shootingshotgun = $request->shootingshotgun;
+    $profile->shotgungauce = $request->shotgungauce;
+    $profile->shotgunrental = $request->shotgunrental;
+    $profile->social_number = $request->social_number;
 
-       $profile->save();
+    $profile->save();
 
+    // Envío de correos (comentado)
+    $dato = ['message' => "Register", 'name'=> $request->firstname];
+    // Mail::to($correo)->send(new Register($dato));
+    // Mail::to(env('MAIL_CONTACT'))->send(new DatosUser($data));
 
-       //mail user
-       $dato = ['message' => "Register",'name'=> $request->firstname];
-       //Mail::to($correo)->send(new Register($dato));
-
-       //mail admin datos de usuario
-       //Mail::to(env('MAIL_CONTACT'))->send(new DatosUser($data));
-
-       return redirect()->route('user.index')->with('info','User profile Updated, thanks');
-
-     }
+    return redirect()->route('user.index')->with('info', 'User profile Updated, thanks');
+}
 
 
      public function courseAgain(Request $request){

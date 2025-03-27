@@ -200,8 +200,8 @@
 
                             <div class="col-md-12">
                                 <div class="form-group mb-4">
-                                <label for="socialnumber">Social Security number*</label>
-                                <input id="socialnumber" type="text" class="form-control @error('socialnumber') is-invalid @enderror" name="socialnumber" value="{{ old('socialnumber') }}" required>
+                                <label for="social_number">Social Security number*</label>
+                                <input id="social_number" type="text" class="form-control @error('socia_lnumber') is-invalid @enderror" name="social_number" value="{{ old('social_number') }}" required>
 
                                 @error('socialnumber')
                                     <span class="invalid-feedback" role="alert">
