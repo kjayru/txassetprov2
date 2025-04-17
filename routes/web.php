@@ -213,6 +213,8 @@ Route::get('/emailtemplate',[Home::class,'emailtemplate']);
 Route::get('/form8850', [Home::class,'form8850'])->name('front.form8850');
 Route::get('/setpdfcss',[Home::class,'setpdfcss'])->name('front.pdfcss');
 
+Route::post('/webhook/stripe', [Home::class,'handleWebhook']);
+
 
 Route::get('/industry/{slug}',[Home::class,'industryCard']);
 Route::get('/industry/{cat}/{slug}',[Home::class,'industryDetail']);

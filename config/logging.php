@@ -113,6 +113,11 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        'stripe_webhooks' => [
+            'driver' => 'single',
+            'path'   => storage_path('logs/stripe-webhook.log'),
+            'level'  => 'info',
+        ],
     ],
 
 ];

@@ -29,6 +29,7 @@ use App\Models\Profile;
 use App\Models\UserSign;
 use App\Models\User;
 use App\Models\UserCourse;
+use App\Models\CourseOrder;
 use App\Models\Coupon;
 use App\Models\UserCourseChapterQuiz;
 use App\Models\UserCourseChapter;
@@ -36,7 +37,7 @@ use App\Models\ChapterQuiz;
 use App\Models\Chapter;
 use App\Models\Chaptercontent;
 use App\Http\Controllers\Traits\CourseMenuTrait;
-
+use App\Mail\Compra;
 use Session;
 use Carbon\Carbon;
 //use PDF;
@@ -56,6 +57,9 @@ use Illuminate\Support\Facades\Crypt;
 use App\Mail\Bienvenido;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Stripe\Webhook;
+
 
 class HomeController extends Controller
 {
@@ -1292,5 +1296,70 @@ class HomeController extends Controller
     });
 
     return response()->json($questions);
+    }
+
+    public function handleWebhook(Request $request)
+    {
+    
+        Log::channel('stripe_webhooks')->info('¡Webhook hit!'); 
+        $payload = $request->getContent();
+        $sig_header = $request->header('Stripe-Signature');
+        $endpointSecret = env('STRIPE_WEBHOOK_SECRET');
+
+        Log::channel('stripe_webhooks')->info('📥 Stripe Webhook received', [
+            'payload'    => $payload,
+            'signature'  => $sig_header,
+            'timestamp'  => now()->toDateTimeString(),
+        ]);
+
+        try {
+            $event = \Stripe\Webhook::constructEvent($payload, $sig_header, $endpointSecret);
+        } catch(\UnexpectedValueException $e) {
+            // Payload no válido
+            return response()->json(['error' => 'Invalid payload'], 400);
+        } catch(\Stripe\Exception\SignatureVerificationException $e) {
+            // Firma no válida
+            return response()->json(['error' => 'Invalid signature'], 400);
+        }
+
+        Log::channel('stripe_webhooks')->info('✅ Stripe Webhook event parsed', [
+            'id'    => $event->id,
+            'type'  => $event->type,
+            'data'  => $event->data->object->toArray(),
+        ]);
+    
+
+        if ($event->type === 'checkout.session.completed') {
+            $session = $event->data->object;
+
+            // Buscar la orden utilizando el checkout_session_id
+            $order = CourseOrder::where('checkout_session_id', $session->id)->first();
+            if ($order) {
+                // Actualizar el estado a "succeeded"
+                $order->payment_status = 'succeeded';
+                $order->txn_id = $session->payment_intent;
+                $order->save();
+
+                // Lógica complementaria, por ejemplo, asignar cursos
+                $carrito = unserialize($order->course);
+                foreach ($carrito->items as $item) {
+                    $userCourse = new UserCourse();
+                    $userCourse->user_id = $order->user_id;
+                    $userCourse->course_id = $item['curso']->id;
+                    $userCourse->fecha_inicio = date("Y-m-d");
+                    $userCourse->dias_activo = $item['curso']->tiempovalido;
+                    $userCourse->save();
+                }
+
+                // Enviar correo de confirmación
+                $user = User::find($order->user_id);
+                // Obtén la info del curso o cualquier dato relevante
+                $course = Course::find($item['curso']->id);
+                $data = ['nombre' => $user->name, 'curso' => $course];
+               // Mail::to($user->email)->send(new Compra($data));
+            }
+        }
+        // Se pueden manejar otros tipos de eventos (p.ej., payment_intent.succeeded)
+        return response()->json(['status' => 'success']);
     }
 }
