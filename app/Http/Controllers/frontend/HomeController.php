@@ -1351,6 +1351,9 @@ class HomeController extends Controller
                     $userCourse->save();
                 }
 
+                Log::channel('stripe_webhooks')->info('✅ Stripe procesado usercourse', [
+                    'id'    => $userCourse->id,
+                ]);
                 // Enviar correo de confirmación
                 $user = User::find($order->user_id);
                 // Obtén la info del curso o cualquier dato relevante

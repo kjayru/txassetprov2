@@ -29,6 +29,7 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = CourseOrder::find($id);
+     
         return view('backend.orders.show',['order'=>$order]);
     }
 

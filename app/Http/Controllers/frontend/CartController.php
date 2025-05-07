@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Order as Orden;
 use App\Mail\Notificacion;
 use App\Mail\Compra;
+use Illuminate\Support\Facades\Log;
 
 
 class CartController extends Controller
@@ -312,6 +313,10 @@ class CartController extends Controller
         $user = User::where('id',$user_id)->first();
         $verificacion = UserSign::where('user_id', $user_id)->count();
 
+        Log::channel('stripe_webhooks')->info('Inicio proceso', [
+            'user_id'    => $user_id,
+        ]);
+
         if ($verificacion == 0) {
             return response()->json(['firmado' => false]);
         }
@@ -371,7 +376,16 @@ class CartController extends Controller
             ]);
         } catch(Exception $e) {
             $api_error = $e->getMessage();
+            Log::channel('stripe_webhooks')->info('prueba logica', [
+                'api_error'    => $api_error,
+                'sessionStripe' => $sessionStripe
+            ]);
         }
+
+        Log::channel('stripe_webhooks')->info('prueba logica', [
+            'api_error'    => empty($api_error),
+            'sessionStripe' => $sessionStripe
+        ]);
 
         if (empty($api_error) && $sessionStripe) {
             // REGISTRO INICIAL DE LA ORDEN EN ESTADO "PENDIENTE"
@@ -410,6 +424,11 @@ class CartController extends Controller
             }
             $order->save();
 
+            Log::channel('stripe_webhooks')->info('prueba logica', [
+                'carrito'    => serialize($carrito),
+                'order' => $order
+            ]);
+
             // Guardar información de seguimiento extra, si la usas en otra tabla
             // $st = new SP;
             // $st->txn_id = $sessionStripe['id'];
@@ -417,6 +436,7 @@ class CartController extends Controller
             // $st->event_id =  Carbon::now();
             // $st->save();
 
+         
             $response = [
                 'status' => 1,
                 'message' => 'Checkout session created successfully!',
@@ -427,6 +447,10 @@ class CartController extends Controller
                 'status' => 0,
                 'error' => ['message' => 'Checkout session creation failed! ' . $api_error],
             ];
+            Log::channel('stripe_webhooks')->info('prueba logica', [
+                'error'    => "error",
+                'response' => $response
+            ]);
         }
 
         return response()->json([ 'id' => $sessionStripe['id'] ]);
