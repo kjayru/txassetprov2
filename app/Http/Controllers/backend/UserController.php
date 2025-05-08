@@ -30,6 +30,15 @@ class UserController extends Controller
     {
 
         $usuarios = User::role('usuario')->get();
+        return view('backend.users.registrados',['users'=>$usuarios]);
+    }
+
+    public function cursando()
+    {
+
+        $usuarios = User::role('usuario')
+        ->whereHas('userCourses') 
+        ->get();
 
         return view('backend.users.index',['users'=>$usuarios]);
     }
@@ -118,11 +127,8 @@ class UserController extends Controller
 
 
      public function myCourses($id){
-         $cursos = UserCourse::where('user_id',$id)->get();
-
-
-
-       // dd($stats);
+        $cursos = UserCourse::where('user_id',$id)->get();
+      
          return view('backend.users.my-course',['cursos'=>$cursos,'user_id'=>$id]);
      }
 

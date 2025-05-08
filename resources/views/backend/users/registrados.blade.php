@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>User who is taking or has taken course(s)</h1>
+            <h1>Users who have records</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-              <li class="breadcrumb-item active">User </li>
+              <li class="breadcrumb-item active">User Registers</li>
             </ol>
           </div>
         </div>
@@ -55,9 +55,7 @@
                         <th>SSN</th>
                         <th>License</th>
                         <th>Zip code</th>
-                        <th>Courses</th>
-                        <th>Enroll</th>
-                        <th>Completed courses</th>
+                       
                         <th>Date</th>
                         <th></th>
 
@@ -75,11 +73,7 @@
                             <td>{{ @$user->profile->drivernumber }}</td>
                             <td>{{ @$user->profile->zipcode }}</td>
 
-                            <td><a href="/admin/users/courses/{{$user->id}}" class="btn btn-xs btn-warning btn__cursos">Courses</a></td>
-                            <td><a href="/admin/users/enroll/{{$user->id}}" class="btn btn-xs btn-warning btn__cursos">Enrollment</a></td>
-                            <td>
-                              {{ $user->cursos_finalizados_count }}
-                            </td>
+                           
                             <td>{{@$user->profile->created_at}}</td>
                             <td>
                                 <a href="/admin/users/{{$user->id}}/edit" class="btn btn-sm btn-warning legitRipple" data-tooltip="Edit" data-delay="500" data-hasqtip="0" aria-describedby="qtip-0">

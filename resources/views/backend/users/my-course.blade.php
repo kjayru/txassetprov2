@@ -72,7 +72,7 @@
                         <tr>
                             <td>{{ $k+1 }}</td>
                             <td>{{$course->id}}</td>
-                            <td>{{ $course->course->titulo}} </td>
+                            <td>{{ @$course->course->titulo}} </td>
                             <td>{{ @$course->created_at  }}</td>
 
                             <td>

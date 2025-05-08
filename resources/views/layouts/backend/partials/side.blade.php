@@ -204,7 +204,13 @@
                 <li class="nav-item">
                   <a href="/admin/users" class="nav-link  {{{ (Request::is('admin/users') ? 'active' : '') }}}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>User</p>
+                    <p>Users taking</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/admin/users/only-register" class="nav-link  {{{ (Request::is('admin/users/only-register') ? 'active' : '') }}}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>registered users only</p>
                   </a>
                 </li>
               </ul>

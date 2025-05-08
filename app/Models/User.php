@@ -62,5 +62,9 @@ class User extends Authenticatable
     public function usercourses(){
         return $this->hasMany(UserCourse::class);
     }
+    public function getCursosFinalizadosCountAttribute()
+    {
+        return $this->userCourses()->where('finalizado', 1)->count();
+    }
 
 }

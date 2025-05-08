@@ -50,7 +50,8 @@ Route::group(['prefix' => 'admin'],function(){
 
     //users
 
-    Route::get('users',[UserController::class,'index'])->name('adminuser.index');
+    Route::get('users',[UserController::class,'cursando'])->name('adminuser.index');
+    Route::get('users/only-register',[UserController::class,'index'])->name('adminuser.register');
 
     Route::get('users/enroll/{id}',[UserController::class,'enroll'])->name('adminuser.enroll');
     Route::get('users/courses/{id}',[UserController::class,'myCourses'])->name('adminuser.courses');

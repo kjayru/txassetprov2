@@ -53,12 +53,12 @@ class UserCourse extends Model
     }
 
 
-    public static function exam($course_id){
-
-        $exam = ExamCourse::where('course_id',$course_id)->first();
-        return $exam->exam_id;
+    public static function exam($course_id)
+    {
+        $exam = ExamCourse::where('course_id', $course_id)->first();
+    
+        return $exam ? $exam->exam_id : false;
     }
-
 
     public static function capitulo($user_course_id,$chapter_id){
         $courseChapter = UserCourseChapter::where('chapter_id',$chapter_id)->where('user_course_id',$user_course_id)->first();
