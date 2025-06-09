@@ -207,6 +207,7 @@ class CartController extends Controller
 
 public function signRegister(Request $request)
 {
+    dd("aqui1");
     /* ───────────────────────────────────
      * 1. Validaciones básicas
      * ─────────────────────────────────── */
@@ -283,7 +284,7 @@ public function signRegister(Request $request)
     $quantity           = max(1, (int) $carrito->cantidad);
     $total_amount       = $unit_amount_cents * $quantity;
 
-    dd($precioConDescuento);
+ 
     if ($total_amount < 50) { // Stripe ≥ 0.50 USD
         return response()->json([
             'status' => 0,
@@ -482,6 +483,7 @@ public function signRegister(Request $request)
 
     public function process(Request $request)
     {
+        dd("aqui 2");
         $user_id = Auth::id();
         $user = User::where('id',$user_id)->first();
         $verificacion = UserSign::where('user_id', $user_id)->count();
