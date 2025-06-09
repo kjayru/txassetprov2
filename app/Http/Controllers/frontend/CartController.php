@@ -46,163 +46,319 @@ class CartController extends Controller
         return view('frontpage.cart.firma');
     }
 
-    public function signRegister(Request $request){
+    // public function signRegister(Request $request){
 
-        $user_id = Auth::id();
-        $user = User::find($user_id);
+    //     $user_id = Auth::id();
+    //     $user = User::find($user_id);
 
-        $carrito=null;
-        $titulo_curso = null;
-        $carrito = Session::get('cart');
+    //     $carrito=null;
+    //     $titulo_curso = null;
+    //     $carrito = Session::get('cart');
 
-        $contador = (count($carrito->items));
+    //     $contador = (count($carrito->items));
 
-        if($contador>1){
-            $titulo="Varios cursos";
-            $resumen="";
-        }else{
-            foreach($carrito->items as $curso){
-                $titulo= $curso['curso']->titulo;
-                $resumen=$curso['curso']->resumen;
-                $titulo_curso = $curso['curso']->titulo;
-            }
+    //     if($contador>1){
+    //         $titulo="Varios cursos";
+    //         $resumen="";
+    //     }else{
+    //         foreach($carrito->items as $curso){
+    //             $titulo= $curso['curso']->titulo;
+    //             $resumen=$curso['curso']->resumen;
+    //             $titulo_curso = $curso['curso']->titulo;
+    //         }
 
-        }
-
-
+    //     }
 
 
-        $perfil = UserSign::where('user_id',$user_id)->count();
-        $code = Carbon::now()->timestamp;
-
-        if($perfil == 0){
-            $firma =new UserSign();
-            $firma->firma = $request->dataURL;
-            $firma->email = $request->email;
-            $firma->legalname = $request->legalname;
-            $firma->user_id = $user_id;
-
-            $firma->fullname = $request->fullname;
-            $firma->initial = $request->initial;
-            $firma->code = $code;
-            $firma->save();
-
-            //sendmail
-            $seguridad = Crypt::encryptString($user_id);
 
 
-            $data = ["seguridad"=>$seguridad,'name'=>$user->name,'titulo'=>$titulo_curso,'code'=>$code];
+    //     $perfil = UserSign::where('user_id',$user_id)->count();
+    //     $code = Carbon::now()->timestamp;
+
+    //     if($perfil == 0){
+    //         $firma =new UserSign();
+    //         $firma->firma = $request->dataURL;
+    //         $firma->email = $request->email;
+    //         $firma->legalname = $request->legalname;
+    //         $firma->user_id = $user_id;
+
+    //         $firma->fullname = $request->fullname;
+    //         $firma->initial = $request->initial;
+    //         $firma->code = $code;
+    //         $firma->save();
+
+    //         //sendmail
+    //         $seguridad = Crypt::encryptString($user_id);
 
 
-            Mail::to($user->email)->send(new Sign($data));
-
-        }else{
-            return false;
-        }
+    //         $data = ["seguridad"=>$seguridad,'name'=>$user->name,'titulo'=>$titulo_curso,'code'=>$code];
 
 
-        $unit_amount_cents = (int) round($carrito->total * 100); // valor original
-        $quantity = max(1, intval($carrito->cantidad)); // nunca 0
+    //         Mail::to($user->email)->send(new Sign($data));
+
+    //     }else{
+    //         return false;
+    //     }
 
 
-        //aplica cupon 
-        if (session()->get('cupon')) {
-            $cupon = session()->get('cupon');
-            $result = Coupon::where('cupon', $cupon)->where('estado', '1')->first();
+    //     $unit_amount_cents = (int) round($carrito->total * 100); // valor original
+    //     $quantity = max(1, intval($carrito->cantidad)); // nunca 0
+
+
+    //     //aplica cupon 
+    //     if (session()->get('cupon')) {
+    //         $cupon = session()->get('cupon');
+    //         $result = Coupon::where('cupon', $cupon)->where('estado', '1')->first();
         
-            if ($result) {
-                $descuento = $unit_amount_cents * $result->monto_descuento / 100;
-                $unit_amount_cents = (int) round($unit_amount_cents - $descuento);
-            }
-        }
+    //         if ($result) {
+    //             $descuento = $unit_amount_cents * $result->monto_descuento / 100;
+    //             $unit_amount_cents = (int) round($unit_amount_cents - $descuento);
+    //         }
+    //     }
 
-        $total_amount = $unit_amount_cents * $quantity;
+    //     $total_amount = $unit_amount_cents * $quantity;
 
-        if ($total_amount < 50) {
-            return response()->json([
-                'status' => 0,
-                'error' => ['message' => 'El monto total a pagar debe ser al menos $0.50 USD después del cupón.']
-            ]);
-        }
+    //     if ($total_amount < 50) {
+    //         return response()->json([
+    //             'status' => 0,
+    //             'error' => ['message' => 'El monto total a pagar debe ser al menos $0.50 USD después del cupón.']
+    //         ]);
+    //     }
 
-        //Stripe
+    //     //Stripe
 
-        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+    //     Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
-        $response = array(
-            'status' => 0,
-            'error' => array(
-                'message' => 'invalid Request!'
-            )
-            );
+    //     $response = array(
+    //         'status' => 0,
+    //         'error' => array(
+    //             'message' => 'invalid Request!'
+    //         )
+    //         );
 
-            $order_id = Carbon::now()->timestamp;
+    //         $order_id = Carbon::now()->timestamp;
 
-       if(empty($request->checkoutSession)){
-           try{
+    //    if(empty($request->checkoutSession)){
+    //        try{
               
 
-               $session = \Stripe\Checkout\Session::create([
-                'payment_method_types' => ['card'],
-                'line_items' => [[
-                    'price_data' => [
-                        'product_data' => [
-                            'name' => $titulo,
-                            'metadata' => ['pro_id' => $order_id]
-                        ],
-                        'unit_amount' => $unit_amount_cents,
-                        'currency' => 'usd',
-                    ],
-                    'quantity' => $quantity,
-                    'description' => $resumen,
-                ]],
-                'mode' => 'payment',
-                'success_url' => env('HOST_URL') . '/cart/success/{CHECKOUT_SESSION_ID}',
-                'cancel_url' => env('HOST_URL') . '/cart/cancel',
-            ]);
+    //            $session = \Stripe\Checkout\Session::create([
+    //             'payment_method_types' => ['card'],
+    //             'line_items' => [[
+    //                 'price_data' => [
+    //                     'product_data' => [
+    //                         'name' => $titulo,
+    //                         'metadata' => ['pro_id' => $order_id]
+    //                     ],
+    //                     'unit_amount' => $unit_amount_cents,
+    //                     'currency' => 'usd',
+    //                 ],
+    //                 'quantity' => $quantity,
+    //                 'description' => $resumen,
+    //             ]],
+    //             'mode' => 'payment',
+    //             'success_url' => env('HOST_URL') . '/cart/success/{CHECKOUT_SESSION_ID}',
+    //             'cancel_url' => env('HOST_URL') . '/cart/cancel',
+    //         ]);
 
-            CourseOrder::create([
-                'user_id' => $user_id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'course' => serialize($carrito),
-                'price' => number_format($carrito->total, 2, '.', ''),
-                'order_id' => $order_id,
-                'currency' => 'usd',
-                'amount' => number_format($total_amount / 100, 2, '.', ''), // en dólares
-                'txn_id' => null, // se actualizará en el webhook
-                'checkout_session_id' => $session->id,
-                'payment_status' => 'pending',
-                'cupon' => $cupon ?? null,
-                'cupon_mount' => isset($descuento) ? number_format($descuento / 100, 2, '.', '') : null,
-            ]);
+    //         CourseOrder::create([
+    //             'user_id' => $user_id,
+    //             'name' => $user->name,
+    //             'email' => $user->email,
+    //             'course' => serialize($carrito),
+    //             'price' => number_format($carrito->total, 2, '.', ''),
+    //             'order_id' => $order_id,
+    //             'currency' => 'usd',
+    //             'amount' => number_format($total_amount / 100, 2, '.', ''), // en dólares
+    //             'txn_id' => null, // se actualizará en el webhook
+    //             'checkout_session_id' => $session->id,
+    //             'payment_status' => 'pending',
+    //             'cupon' => $cupon ?? null,
+    //             'cupon_mount' => isset($descuento) ? number_format($descuento / 100, 2, '.', '') : null,
+    //         ]);
 
-           }catch(Exception $e){
-               $api_error = $e->getMessage();
-           };
+    //        }catch(Exception $e){
+    //            $api_error = $e->getMessage();
+    //        };
 
-           if(empty($api_error) && $session){
+    //        if(empty($api_error) && $session){
 
-            $response = array(
-                'status' => 1,
-                'message' => 'Checkout session created successfull!',
-                'sessionId' => $session['id']
-            );
+    //         $response = array(
+    //             'status' => 1,
+    //             'message' => 'Checkout session created successfull!',
+    //             'sessionId' => $session['id']
+    //         );
 
-           }else{
-            $response = array(
-                'status' => 0,
-                'error' => array(
-                    'message' => 'checkout session creation failed! '.$api_error
-                ),
-            );
-           };
-       }
+    //        }else{
+    //         $response = array(
+    //             'status' => 0,
+    //             'error' => array(
+    //                 'message' => 'checkout session creation failed! '.$api_error
+    //             ),
+    //         );
+    //        };
+    //    }
 
-       return response()->json([ 'id' => $session['id']]);
+    //    return response()->json([ 'id' => $session['id']]);
 
 
+    // }
+
+
+public function signRegister(Request $request)
+{
+    /* ───────────────────────────────────
+     * 1. Validaciones básicas
+     * ─────────────────────────────────── */
+    $user_id = Auth::id();
+    if (!$user_id) {
+        return response()->json([
+            'status' => 0,
+            'error'  => ['message' => 'Usuario no autenticado']
+        ]);
     }
+
+    $user = User::findOrFail($user_id);
+
+    $carrito = Session::get('cart');
+    if (!$carrito || empty($carrito->items)) {
+        return response()->json([
+            'status' => 0,
+            'error'  => ['message' => 'Carrito vacío']
+        ]);
+    }
+
+    /* ───────────────────────────────────
+     * 2. Datos del/los curso(s) en el carrito
+     * ─────────────────────────────────── */
+    $titulo   = 'Varios cursos';
+    $resumen  = '';
+    $titulo_curso = null;
+
+    if (count($carrito->items) === 1) {
+        $firstItem   = reset($carrito->items);
+        $titulo      = $firstItem['curso']->titulo;
+        $resumen     = $firstItem['curso']->resumen;
+        $titulo_curso = $firstItem['curso']->titulo;
+    }
+
+    /* ───────────────────────────────────
+     * 3. Registro de firma del usuario
+     * ─────────────────────────────────── */
+    $perfil     = UserSign::where('user_id', $user_id)->count();
+    $timestamp  = Carbon::now()->timestamp;
+
+    if ($perfil === 0) {
+        $firma               = new UserSign();
+        $firma->firma        = $request->dataURL;
+        $firma->email        = $request->email;
+        $firma->legalname    = $request->legalname;
+        $firma->user_id      = $user_id;
+        $firma->fullname     = $request->fullname;
+        $firma->initial      = $request->initial;
+        $firma->code         = $timestamp;
+        $firma->save();
+
+        // Enviar correo de confirmación de firma
+        $tokenSeguridad = Crypt::encryptString($user_id);
+        $dataMail       = [
+            'seguridad' => $tokenSeguridad,
+            'name'      => $user->name,
+            'titulo'    => $titulo_curso,
+            'code'      => $timestamp
+        ];
+        Mail::to($user->email)->send(new Sign($dataMail));
+    } else {
+        return response()->json([
+            'status' => 0,
+            'error'  => ['message' => 'La firma ya fue registrada anteriormente']
+        ]);
+    }
+
+    /* ───────────────────────────────────
+     * 4. Cálculo del importe (con descuento si existe)
+     * ─────────────────────────────────── */
+    $precioConDescuento = $carrito->total_con_descuento ?? $carrito->total;
+    $unit_amount_cents  = (int) round($precioConDescuento * 100);
+    $quantity           = max(1, (int) $carrito->cantidad);
+    $total_amount       = $unit_amount_cents * $quantity;
+
+    if ($total_amount < 50) { // Stripe ≥ 0.50 USD
+        return response()->json([
+            'status' => 0,
+            'error'  => ['message' => 'El monto total a pagar debe ser al menos $0.50 USD después del cupón.']
+        ]);
+    }
+
+    /* ───────────────────────────────────
+     * 5. Creación de la sesión de Checkout en Stripe
+     * ─────────────────────────────────── */
+    Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+    $order_id   = Carbon::now()->timestamp;
+    $session    = null;
+    $api_error  = null;
+
+    try {
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'product_data' => [
+                        'name'     => $titulo,
+                        'metadata' => ['pro_id' => $order_id],
+                    ],
+                    'unit_amount' => $unit_amount_cents,
+                    'currency'    => 'usd',
+                ],
+                'quantity'    => $quantity,
+                'description' => $resumen,
+            ]],
+            'mode'         => 'payment',
+            'success_url'  => env('HOST_URL') . '/cart/success/{CHECKOUT_SESSION_ID}',
+            'cancel_url'   => env('HOST_URL') . '/cart/cancel',
+        ]);
+    } catch (Exception $e) {
+        $api_error = $e->getMessage();
+    }
+
+    if (!$session) {
+        return response()->json([
+            'status' => 0,
+            'error'  => ['message' => 'Error al crear la sesión de pago: ' . $api_error]
+        ]);
+    }
+
+    /* ───────────────────────────────────
+     * 6. Guardar la orden preliminar en base de datos
+     * ─────────────────────────────────── */
+    $montoDescuento = $carrito->total - $precioConDescuento;
+
+    CourseOrder::create([
+        'user_id'            => $user_id,
+        'name'               => $user->name,
+        'email'              => $user->email,
+        'course'             => serialize($carrito),
+        'price'              => number_format($carrito->total, 2, '.', ''),               // precio original
+        'order_id'           => $order_id,
+        'currency'           => 'usd',
+        'amount'             => number_format($precioConDescuento, 2, '.', ''),           // precio final con descuento
+        'txn_id'             => null,                                                    // se actualizará en el webhook
+        'checkout_session_id'=> $session->id,
+        'payment_status'     => 'pending',
+        'cupon'              => $carrito->cupon ?? null,
+        'cupon_mount'        => $montoDescuento > 0 ? number_format($montoDescuento, 2, '.', '') : null,
+    ]);
+
+    /* ───────────────────────────────────
+     * 7. Respuesta al frontend
+     * ─────────────────────────────────── */
+    return response()->json([
+        'status'    => 1,
+        'message'   => 'Checkout session creada exitosamente',
+        'sessionId' => $session->id
+    ]);
+}
+
 
      public function cancel(Request $request){
 
