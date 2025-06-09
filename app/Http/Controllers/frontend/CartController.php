@@ -207,7 +207,7 @@ class CartController extends Controller
 
 public function signRegister(Request $request)
 {
-    dd("aqui1");
+
     /* ───────────────────────────────────
      * 1. Validaciones básicas
      * ─────────────────────────────────── */
@@ -481,27 +481,166 @@ public function signRegister(Request $request)
 
     //  }
 
+    // public function process(Request $request)
+    // {
+    
+    //     $user_id = Auth::id();
+    //     $user = User::where('id',$user_id)->first();
+    //     $verificacion = UserSign::where('user_id', $user_id)->count();
+
+    //     Log::channel('stripe_webhooks')->info('Inicio proceso', [
+    //         'user_id'    => $user_id,
+    //     ]);
+
+    //     if ($verificacion == 0) {
+    //         return response()->json(['firmado' => false]);
+    //     }
+
+    //     // Recupera el carrito de la sesión
+    //     $carrito = Session::get('cart');
+
+    //     // Verificación y armado del título y resumen de cursos
+    //     $contador = count($carrito->items);
+    //     if ($contador > 1) {
+    //         $titulo = "Varios cursos";
+    //         $resumen = "";
+    //     } else {
+    //         foreach ($carrito->items as $curso) {
+    //             $titulo = $curso['curso']->titulo;
+    //             $resumen = $curso['curso']->resumen;
+    //         }
+    //     }
+        
+    //     // Asignar un identificador para la orden
+    //     $order_id = Carbon::now()->timestamp;
+
+    //     // Aplicar cupón si existe
+    //     if (session()->get('cupon')) {
+    //         $cupon = session()->get('cupon');
+    //         $result = Coupon::where('cupon', $cupon)->where('estado', '1')->first();
+    //         $monto_cupon = $result->monto_descuento;
+    //         $descuento = $carrito->total * $monto_cupon / 100;
+    //         $nuevo_precio = $carrito->total - $descuento;
+    //         $carrito->total = $nuevo_precio;
+    //     }
+
+    //     // Configura Stripe
+    //     Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+    //     try {
+    //         $sessionStripe = \Stripe\Checkout\Session::create([
+    //             'payment_method_types' => ['card'],
+    //             'line_items' => [[
+    //                 'price_data' => [
+    //                     'product_data' => [
+    //                         'name' => $titulo,
+    //                         'metadata' => [
+    //                             'pro_id' => $order_id
+    //                         ]
+    //                     ],
+    //                     // Convierte a entero en centavos y redondea
+    //                     'unit_amount' => (int) round($carrito->total * 100),
+    //                     'currency' => 'usd',
+    //                 ],
+    //                 'quantity' => $carrito->cantidad,
+    //                 'description' => $resumen,
+    //             ]],
+    //             'mode' => 'payment',
+    //             'success_url' => env('HOST_URL') . '/cart/success/{CHECKOUT_SESSION_ID}',
+    //             'cancel_url' => env('HOST_URL') . '/cart/cancel',
+    //         ]);
+    //     } catch(Exception $e) {
+    //         $api_error = $e->getMessage();
+    //         Log::channel('stripe_webhooks')->info('prueba logica', [
+    //             'api_error'    => $api_error,
+    //             'sessionStripe' => $sessionStripe
+    //         ]);
+    //     }
+
+    //     Log::channel('stripe_webhooks')->info('prueba logica', [
+    //         'api_error'    => empty($api_error),
+    //         'sessionStripe' => $sessionStripe
+    //     ]);
+
+    //     if (empty($api_error) && $sessionStripe) {
+       
+
+          
+    //         $iname = $user->name;
+    //         $email = $user->email;
+
+    //         $order = new CourseOrder();
+    //         $order->name = $iname;
+    //         $order->email = $email;
+    //         $order->course = serialize($carrito);
+            
+    //             $order->price = $carrito->total;
+    //             $order->amount = $carrito->total;
+               
+    //         $order->currency = "usd";
+           
+    //         $order->payment_status = 'pending';
+    //         $order->checkout_session_id = $sessionStripe['id'];
+    //         $order->user_id = $user_id;
+    //         $order->order_id = $order_id;
+    //         if (session()->get('cupon')) {
+    //         $order->cupon = $cupon;
+    //         $order->cupon_mount = $nuevo_precio;
+    //         }
+    //         $order->save();
+
+    //         Log::channel('stripe_webhooks')->info('prueba logica', [
+    //             'carrito'    => serialize($carrito),
+    //             'order' => $order
+    //         ]);
+
+        
+
+         
+    //         $response = [
+    //             'status' => 1,
+    //             'message' => 'Checkout session created successfully!',
+    //             'sessionId' => $sessionStripe['id']
+    //         ];
+    //     } else {
+    //         $response = [
+    //             'status' => 0,
+    //             'error' => ['message' => 'Checkout session creation failed! ' . $api_error],
+    //         ];
+    //         Log::channel('stripe_webhooks')->info('prueba logica', [
+    //             'error'    => "error",
+    //             'response' => $response
+    //         ]);
+    //     }
+
+    //     return response()->json([ 'id' => $sessionStripe['id'] ]);
+    // }
+
     public function process(Request $request)
     {
-        dd("aqui 2");
         $user_id = Auth::id();
-        $user = User::where('id',$user_id)->first();
+        $user = User::findOrFail($user_id);
         $verificacion = UserSign::where('user_id', $user_id)->count();
 
         Log::channel('stripe_webhooks')->info('Inicio proceso', [
-            'user_id'    => $user_id,
+            'user_id' => $user_id,
         ]);
 
         if ($verificacion == 0) {
             return response()->json(['firmado' => false]);
         }
 
-        // Recupera el carrito de la sesión
         $carrito = Session::get('cart');
 
-        // Verificación y armado del título y resumen de cursos
-        $contador = count($carrito->items);
-        if ($contador > 1) {
+        if (!$carrito || empty($carrito->items)) {
+            return response()->json([
+                'status' => 0,
+                'error' => ['message' => 'Carrito vacío']
+            ]);
+        }
+
+        // Armar título y resumen
+        if (count($carrito->items) > 1) {
             $titulo = "Varios cursos";
             $resumen = "";
         } else {
@@ -510,22 +649,26 @@ public function signRegister(Request $request)
                 $resumen = $curso['curso']->resumen;
             }
         }
-        
-        // Asignar un identificador para la orden
+
+        // Asignar identificador único para la orden
         $order_id = Carbon::now()->timestamp;
 
-        // Aplicar cupón si existe
-        if (session()->get('cupon')) {
-            $cupon = session()->get('cupon');
-            $result = Coupon::where('cupon', $cupon)->where('estado', '1')->first();
-            $monto_cupon = $result->monto_descuento;
-            $descuento = $carrito->total * $monto_cupon / 100;
-            $nuevo_precio = $carrito->total - $descuento;
-            $carrito->total = $nuevo_precio;
+        // Obtener monto con descuento si aplica
+        $precioConDescuento = $carrito->total_con_descuento ?? $carrito->total;
+        $unit_amount_cents = (int) round($precioConDescuento * 100);
+        $quantity = max(1, (int) $carrito->cantidad);
+        $total_amount = $unit_amount_cents * $quantity;
+
+        if ($total_amount < 50) {
+            return response()->json([
+                'status' => 0,
+                'error' => ['message' => 'El monto total a pagar debe ser al menos $0.50 USD después del cupón.']
+            ]);
         }
 
-        // Configura Stripe
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        $sessionStripe = null;
+        $api_error = null;
 
         try {
             $sessionStripe = \Stripe\Checkout\Session::create([
@@ -534,87 +677,63 @@ public function signRegister(Request $request)
                     'price_data' => [
                         'product_data' => [
                             'name' => $titulo,
-                            'metadata' => [
-                                'pro_id' => $order_id
-                            ]
+                            'metadata' => ['pro_id' => $order_id]
                         ],
-                        // Convierte a entero en centavos y redondea
-                        'unit_amount' => (int) round($carrito->total * 100),
+                        'unit_amount' => $unit_amount_cents,
                         'currency' => 'usd',
                     ],
-                    'quantity' => $carrito->cantidad,
+                    'quantity' => $quantity,
                     'description' => $resumen,
                 ]],
                 'mode' => 'payment',
                 'success_url' => env('HOST_URL') . '/cart/success/{CHECKOUT_SESSION_ID}',
                 'cancel_url' => env('HOST_URL') . '/cart/cancel',
             ]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $api_error = $e->getMessage();
-            Log::channel('stripe_webhooks')->info('prueba logica', [
-                'api_error'    => $api_error,
-                'sessionStripe' => $sessionStripe
+            Log::channel('stripe_webhooks')->error('Stripe error', [
+                'error' => $api_error
             ]);
         }
 
-        Log::channel('stripe_webhooks')->info('prueba logica', [
-            'api_error'    => empty($api_error),
-            'sessionStripe' => $sessionStripe
+        if (!$sessionStripe) {
+            return response()->json([
+                'status' => 0,
+                'error' => ['message' => 'Fallo al crear sesión de pago: ' . $api_error]
+            ]);
+        }
+
+        // Calcular monto de descuento
+        $montoDescuento = $carrito->total - $precioConDescuento;
+
+        // Guardar orden
+        $order = new CourseOrder();
+        $order->name = $user->name;
+        $order->email = $user->email;
+        $order->course = serialize($carrito);
+        $order->price = number_format($carrito->total, 2, '.', ''); // original
+        $order->amount = number_format($precioConDescuento, 2, '.', ''); // con descuento
+        $order->currency = "usd";
+        $order->payment_status = 'pending';
+        $order->checkout_session_id = $sessionStripe['id'];
+        $order->user_id = $user_id;
+        $order->order_id = $order_id;
+        $order->cupon = $carrito->cupon ?? null;
+        $order->cupon_mount = $montoDescuento > 0 ? number_format($montoDescuento, 2, '.', '') : null;
+        $order->save();
+
+        Log::channel('stripe_webhooks')->info('Orden guardada', [
+            'order_id' => $order->id,
+            'user_id' => $user_id
         ]);
 
-        if (empty($api_error) && $sessionStripe) {
-       
-
-          
-            $iname = $user->name;
-            $email = $user->email;
-
-            $order = new CourseOrder();
-            $order->name = $iname;
-            $order->email = $email;
-            $order->course = serialize($carrito);
-            
-                $order->price = $carrito->total;
-                $order->amount = $carrito->total;
-               
-            $order->currency = "usd";
-           
-            $order->payment_status = 'pending';
-            $order->checkout_session_id = $sessionStripe['id'];
-            $order->user_id = $user_id;
-            $order->order_id = $order_id;
-            if (session()->get('cupon')) {
-            $order->cupon = $cupon;
-            $order->cupon_mount = $nuevo_precio;
-            }
-            $order->save();
-
-            Log::channel('stripe_webhooks')->info('prueba logica', [
-                'carrito'    => serialize($carrito),
-                'order' => $order
-            ]);
-
-        
-
-         
-            $response = [
-                'status' => 1,
-                'message' => 'Checkout session created successfully!',
-                'sessionId' => $sessionStripe['id']
-            ];
-        } else {
-            $response = [
-                'status' => 0,
-                'error' => ['message' => 'Checkout session creation failed! ' . $api_error],
-            ];
-            Log::channel('stripe_webhooks')->info('prueba logica', [
-                'error'    => "error",
-                'response' => $response
-            ]);
-        }
-
-        return response()->json([ 'id' => $sessionStripe['id'] ]);
+        return response()->json([
+            'status' => 1,
+            'message' => 'Checkout session created successfully!',
+            'sessionId' => $sessionStripe['id']
+        ]);
     }
+
 
 
     //  public function success($seskey){
