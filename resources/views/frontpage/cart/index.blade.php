@@ -79,7 +79,7 @@
                                       <div class="cart__body__foot">
                                           <div class="row justify-content-end">
                                               <div class="col-md-4 col-12 text-right">
-                                                  <div class="cart__body__foot__total">Total ${{Number_format(@$cart->total,2)}} USD</div>
+                                                  <div class="cart__body__foot__total">Total ${{ number_format(@$cart->total_con_descuento ?? @$cart->total, 2) }} USD</div>
                                                   <a href="/cart/sign" class="cart__body__foot__link" data-id="{{@$item['id']}}" data-user="{{@$user_id}}">Proceed to checkout</a>
                                               </div>
                                           </div>

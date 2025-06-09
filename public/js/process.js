@@ -1323,28 +1323,55 @@ $(".navbar-toggler2").on('click',function(e){
 //       }
 //     })
 // });
+// $(".cart__body__cupon__form__boton").on('click', function(e) {
+//   e.preventDefault();
+//   let cupon = $(".cart__body__cupon__form__input").val();
+//   let token = $("meta[name=csrf-token]").attr("content");
+
+//   $.ajax({
+//       url: '/cart/aplicarcupon',
+//       type: 'POST',
+//       dataType: 'json',
+//       data: ({'_token': token, '_method': 'POST', cupon: cupon}),
+//       success: function(response) {
+//           if (response.rpta == "ok") {
+//               // Redondear a dos decimales
+//               let precioRedondeado = parseFloat(response.precio).toFixed(2);
+
+//               $(".cart__body__foot__total").html(`Total $${precioRedondeado} USD`);
+//               $(".cart__body__grilla__precio").html(` $${precioRedondeado} <span>USD<span>`);
+//           } else {
+//               $(".texto__error").html("¡Cupón no válido!");
+//               $("#errorModal").modal('show');
+//           }
+//       }
+//   });
+// });
+
 $(".cart__body__cupon__form__boton").on('click', function(e) {
   e.preventDefault();
   let cupon = $(".cart__body__cupon__form__input").val();
   let token = $("meta[name=csrf-token]").attr("content");
 
   $.ajax({
-      url: '/cart/aplicarcupon',
-      type: 'POST',
-      dataType: 'json',
-      data: ({'_token': token, '_method': 'POST', cupon: cupon}),
-      success: function(response) {
-          if (response.rpta == "ok") {
-              // Redondear a dos decimales
-              let precioRedondeado = parseFloat(response.precio).toFixed(2);
-
-              $(".cart__body__foot__total").html(`Total $${precioRedondeado} USD`);
-              $(".cart__body__grilla__precio").html(` $${precioRedondeado} <span>USD<span>`);
-          } else {
-              $(".texto__error").html("¡Cupón no válido!");
-              $("#errorModal").modal('show');
-          }
+    url: '/cart/aplicarcupon',
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      '_token': token,
+      '_method': 'POST',
+      cupon: cupon
+    },
+    success: function(response) {
+      if (response.rpta === "ok") {
+        let precioRedondeado = parseFloat(response.precio).toFixed(2);
+        $(".cart__body__foot__total").html(`Total $${precioRedondeado} USD`);
+        $(".cart__body__grilla__precio").html(` $${precioRedondeado} <span>USD<span>`);
+      } else {
+        $(".texto__error").html(response.mensaje || "¡Cupón no válido!");
+        $("#errorModal").modal('show');
       }
+    }
   });
 });
 

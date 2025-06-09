@@ -1174,27 +1174,35 @@ class HomeController extends Controller
     }
 
 
-    public function aplicarCupon(Request $request ){
-
-
+    public function aplicarCupon(Request $request)
+    {
         $carrito = Session::get('cart');
 
+        if (!$carrito) {
+            return response()->json(['rpta' => 'error', 'mensaje' => 'Carrito vacío']);
+        }
 
-        $request->session()->put('cupon', $request->cupon);
+        $cupon = Coupon::where('cupon', $request->cupon)->where('estado', '1')->first();
 
-        $result = Coupon::where('cupon',$request->cupon)->where('estado','1')->first();
+        if (!$cupon) {
+            return response()->json(['rpta' => 'error', 'mensaje' => 'Cupón inválido']);
+        }
 
-        $monto_cupon = $result->monto_descuento;
+        // Verificar si el cupón ya fue aplicado
+        if ($carrito->cupon && $carrito->cupon === $cupon->cupon) {
+            return response()->json(['rpta' => 'error', 'mensaje' => 'Cupón ya aplicado anteriormente']);
+        }
 
+        // Aplicar el cupón
+        $carrito->aplicarCupon($cupon->cupon, $cupon->monto_descuento);
 
-        $descuento = $carrito->total*$monto_cupon/100;
+        // Actualizar la sesión
+        Session::put('cart', $carrito);
 
-
-        $nuevo_precio = $carrito->total - $descuento;
-
-
-        return response()->json(['rpta'=>'ok','precio'=>$nuevo_precio]);
-
+        return response()->json([
+            'rpta' => 'ok',
+            'precio' => $carrito->total_con_descuento
+        ]);
     }
 
 
