@@ -283,6 +283,7 @@ public function signRegister(Request $request)
     $quantity           = max(1, (int) $carrito->cantidad);
     $total_amount       = $unit_amount_cents * $quantity;
 
+    dd($precioConDescuento);
     if ($total_amount < 50) { // Stripe ≥ 0.50 USD
         return response()->json([
             'status' => 0,
