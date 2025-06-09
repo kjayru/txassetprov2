@@ -730,7 +730,7 @@ public function signRegister(Request $request)
         return response()->json([
             'status' => 1,
             'message' => 'Checkout session created successfully!',
-            'sessionId' => $sessionStripe['id']
+            'id' => $sessionStripe['id']
         ]);
     }
 
