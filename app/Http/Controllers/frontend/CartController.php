@@ -161,6 +161,22 @@ class CartController extends Controller
                 'cancel_url' => env('HOST_URL') . '/cart/cancel',
             ]);
 
+            CourseOrder::create([
+                'user_id' => $user_id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'course' => serialize($carrito),
+                'price' => number_format($carrito->total, 2, '.', ''),
+                'order_id' => $order_id,
+                'currency' => 'usd',
+                'amount' => number_format($total_amount / 100, 2, '.', ''), // en dólares
+                'txn_id' => null, // se actualizará en el webhook
+                'checkout_session_id' => $session->id,
+                'payment_status' => 'pending',
+                'cupon' => $cupon ?? null,
+                'cupon_mount' => isset($descuento) ? number_format($descuento / 100, 2, '.', '') : null,
+            ]);
+
            }catch(Exception $e){
                $api_error = $e->getMessage();
            };
@@ -388,17 +404,7 @@ class CartController extends Controller
         ]);
 
         if (empty($api_error) && $sessionStripe) {
-            // REGISTRO INICIAL DE LA ORDEN EN ESTADO "PENDIENTE"
-            // $order = new CourseOrder();
-            // $order->user_id = $user_id;
-            // $order->checkout_session_id = $sessionStripe['id'];
-            // $order->price = $carrito->total;
-            // $order->amount = $carrito->total;
-            // $order->payment_status = 'pending';
-            // $order->order_id = $order_id; // o cualquier otro identificador que uses
-            // // Incluye otros campos necesarios, por ejemplo, la serialización del carrito si es relevante
-            // $order->course = serialize($carrito);
-            // $order->save();
+       
 
           
             $iname = $user->name;
@@ -429,12 +435,7 @@ class CartController extends Controller
                 'order' => $order
             ]);
 
-            // Guardar información de seguimiento extra, si la usas en otra tabla
-            // $st = new SP;
-            // $st->txn_id = $sessionStripe['id'];
-            // $st->user_id = $user_id;
-            // $st->event_id =  Carbon::now();
-            // $st->save();
+        
 
          
             $response = [
