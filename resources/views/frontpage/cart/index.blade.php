@@ -35,6 +35,11 @@
                                                   </div>
                                         </div>
                                       <div class="cart__body__grilla">
+                                        @if(isset($cupon_aplicado))
+                                        <div class="alert alert-success">
+                                            coupon applied: <strong>{{ $cupon_aplicado }}</strong>
+                                        </div>
+                                    @endif
 
                                         @if($cart!=null)
                                               @foreach($cart->items as $item)

@@ -1319,6 +1319,7 @@ $(".navbar-toggler2").on('click',function(e){
 //           $(".texto__error").html("Cupon no valid!!")
 //           $("#errorModal").modal('show');
 //          }
+
 //       }
 //     })
 // });

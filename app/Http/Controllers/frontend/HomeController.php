@@ -934,22 +934,48 @@ class HomeController extends Controller
 
     }
 
-    public function carrito(){
+    // public function carrito(){
 
-        $carrito=null;
-        if (Session::get('cart')) {
-            $carrito = Session::get('cart');
+    //     $carrito=null;
+    //     if (Session::get('cart')) {
+    //         $carrito = Session::get('cart');
 
+    //     }
+    //     $user_id = null;
+    //     if(Auth::id()){
+    //         $user_id = Auth::id();
+    //     }
+
+    //     return view('frontpage.cart.index',['cart'=>$carrito,'user_id'=>$user_id]);
+    // }
+
+    public function carrito()
+{
+    $carrito = null;
+    $user_id = Auth::id();
+
+    if (Session::has('cart')) {
+        $carrito = Session::get('cart');
+
+        // Verifica si hay un cupón aplicado
+        if (Session::has('cupon')) {
+            $cupon = Session::get('cupon');
+            $cuponValido = Coupon::where('cupon', $cupon)->where('estado', '1')->first();
+
+            if ($cuponValido) {
+                $monto_cupon = $cuponValido->monto_descuento;
+                $descuento = $carrito->total * $monto_cupon / 100;
+                $carrito->total = $carrito->total - $descuento;
+            }
         }
-        $user_id = null;
-        if(Auth::id()){
-            $user_id = Auth::id();
-        }
-
-
-
-        return view('frontpage.cart.index',['cart'=>$carrito,'user_id'=>$user_id]);
     }
+
+    return view('frontpage.cart.index', [
+        'cart' => $carrito,
+        'user_id' => $user_id,
+        'cupon_aplicado' => Session::get('cupon')
+    ]);
+}
 
     public function process(Request $request){
 
