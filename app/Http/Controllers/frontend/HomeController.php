@@ -1179,18 +1179,18 @@ class HomeController extends Controller
         $carrito = Session::get('cart');
 
         if (!$carrito) {
-            return response()->json(['rpta' => 'error', 'mensaje' => 'Carrito vacío']);
+            return response()->json(['rpta' => 'error', 'mensaje' => 'empty cart']);
         }
 
         $cupon = Coupon::where('cupon', $request->cupon)->where('estado', '1')->first();
 
         if (!$cupon) {
-            return response()->json(['rpta' => 'error', 'mensaje' => 'Cupón inválido']);
+            return response()->json(['rpta' => 'error', 'mensaje' => 'Invalid coupon']);
         }
 
         // Verificar si el cupón ya fue aplicado
         if ($carrito->cupon && $carrito->cupon === $cupon->cupon) {
-            return response()->json(['rpta' => 'error', 'mensaje' => 'Cupón ya aplicado anteriormente']);
+            return response()->json(['rpta' => 'error', 'mensaje' => 'Coupon already applied previously']);
         }
 
         // Aplicar el cupón

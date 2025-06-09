@@ -43,6 +43,14 @@
 
                                         @if($cart!=null)
                                               @foreach($cart->items as $item)
+                                               @php
+                                                  $precioOriginal = $item['precio'];
+                                                  $precioFinal = $precioOriginal;
+
+                                                  if (isset($cart->cupon) && $cart->monto_descuento > 0) {
+                                                      $precioFinal = $precioOriginal - ($precioOriginal * $cart->monto_descuento / 100);
+                                                  }
+                                              @endphp
 
                                                   <div class="row justify-content-between cart__body__grilla__item">
                                                     <a href="#" data-id="{{$item['id']}}" class="cart__body__grilla__delete d-block d-sm-none"><i class="fa fa-times" aria-hidden="true"></i></a>
@@ -65,7 +73,10 @@
                                                       </div>
 
                                                       <div class="col-md-2 text-right">
-                                                          <div class="cart__body__grilla__precio"> ${{number_format($item['precio'],2)}} <span>USD</span> </div>
+                                                         <div class="cart__body__grilla__precio">
+                                                              ${{ number_format($precioFinal, 2) }} <span>USD</span>
+                                                          </div>
+                                                       
 
                                                           <a href="#" data-id="{{$item['id']}}" class="cart__body__grilla__delete d-none d-sm-block"><i class="fa fa-times" aria-hidden="true"></i></a>
 
