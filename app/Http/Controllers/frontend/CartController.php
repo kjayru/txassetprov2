@@ -317,7 +317,7 @@ public function signRegister(Request $request)
             ]],
             'mode'         => 'payment',
             'success_url'  => env('HOST_URL') . '/cart/success/{CHECKOUT_SESSION_ID}',
-            'cancel_url'   => env('HOST_URL') . '/cart/cancel',
+            'cancel_url' => env('HOST_URL') . '/cart/cancel?session_id={CHECKOUT_SESSION_ID}',
         ]);
     } catch (Exception $e) {
         $api_error = $e->getMessage();
@@ -362,7 +362,20 @@ public function signRegister(Request $request)
 }
 
 
-     public function cancel(Request $request){
+   public function cancel(Request $request)
+    {
+        $session_id = $request->get('session_id');
+
+        if ($session_id) {
+            // Buscar y eliminar la orden con estado pending asociada a esta sesión
+            $orden = CourseOrder::where('checkout_session_id', $session_id)
+                                ->where('payment_status', 'pending')
+                                ->first();
+
+            if ($orden) {
+                $orden->delete();
+            }
+        }
 
         return view('frontpage.cart.cancel');
     }
@@ -687,7 +700,8 @@ public function signRegister(Request $request)
                 ]],
                 'mode' => 'payment',
                 'success_url' => env('HOST_URL') . '/cart/success/{CHECKOUT_SESSION_ID}',
-                'cancel_url' => env('HOST_URL') . '/cart/cancel',
+               'cancel_url' => env('HOST_URL') . '/cart/cancel?session_id={CHECKOUT_SESSION_ID}',
+               
             ]);
         } catch (Exception $e) {
             $api_error = $e->getMessage();

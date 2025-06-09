@@ -1332,9 +1332,8 @@ class HomeController extends Controller
     return response()->json($questions);
     }
 
-    public function handleWebhook(Request $request)
+   public function handleWebhook(Request $request)
     {
-    
         Log::channel('stripe_webhooks')->info('¡Webhook hit!'); 
         $payload = $request->getContent();
         $sig_header = $request->header('Stripe-Signature');
@@ -1349,10 +1348,8 @@ class HomeController extends Controller
         try {
             $event = \Stripe\Webhook::constructEvent($payload, $sig_header, $endpointSecret);
         } catch(\UnexpectedValueException $e) {
-            // Payload no válido
             return response()->json(['error' => 'Invalid payload'], 400);
         } catch(\Stripe\Exception\SignatureVerificationException $e) {
-            // Firma no válida
             return response()->json(['error' => 'Invalid signature'], 400);
         }
 
@@ -1361,42 +1358,61 @@ class HomeController extends Controller
             'type'  => $event->type,
             'data'  => $event->data->object->toArray(),
         ]);
-    
 
-        if ($event->type === 'checkout.session.completed') {
-            $session = $event->data->object;
+        switch ($event->type) {
+            case 'checkout.session.completed':
+                $session = $event->data->object;
 
-            // Buscar la orden utilizando el checkout_session_id
-            $order = CourseOrder::where('checkout_session_id', $session->id)->first();
-            if ($order) {
-                // Actualizar el estado a "succeeded"
-                $order->payment_status = 'succeeded';
-                $order->txn_id = $session->payment_intent;
-                $order->save();
+                $order = CourseOrder::where('checkout_session_id', $session->id)->first();
+                if ($order) {
+                    $order->payment_status = 'succeeded';
+                    $order->txn_id = $session->payment_intent;
+                    $order->save();
 
-                // Lógica complementaria, por ejemplo, asignar cursos
-                $carrito = unserialize($order->course);
-                foreach ($carrito->items as $item) {
-                    $userCourse = new UserCourse();
-                    $userCourse->user_id = $order->user_id;
-                    $userCourse->course_id = $item['curso']->id;
-                    $userCourse->fecha_inicio = date("Y-m-d");
-                    $userCourse->dias_activo = $item['curso']->tiempovalido;
-                    $userCourse->save();
+                    $carrito = unserialize($order->course);
+                    foreach ($carrito->items as $item) {
+                        $userCourse = new UserCourse();
+                        $userCourse->user_id = $order->user_id;
+                        $userCourse->course_id = $item['curso']->id;
+                        $userCourse->fecha_inicio = date("Y-m-d");
+                        $userCourse->dias_activo = $item['curso']->tiempovalido;
+                        $userCourse->save();
+                    }
+
+                    Log::channel('stripe_webhooks')->info('✅ Stripe procesado usercourse', [
+                        'id' => $userCourse->id,
+                    ]);
+
+                    $user = User::find($order->user_id);
+                    $course = Course::find($item['curso']->id);
+                    $data = ['nombre' => $user->name, 'curso' => $course];
+                    //Mail::to($user->email)->send(new Compra($data));
                 }
+                break;
 
-                Log::channel('stripe_webhooks')->info('✅ Stripe procesado usercourse', [
-                    'id'    => $userCourse->id,
-                ]);
-                // Enviar correo de confirmación
-                $user = User::find($order->user_id);
-                // Obtén la info del curso o cualquier dato relevante
-                $course = Course::find($item['curso']->id);
-                $data = ['nombre' => $user->name, 'curso' => $course];
-               // Mail::to($user->email)->send(new Compra($data));
-            }
+            case 'checkout.session.expired':
+                $session = $event->data->object;
+
+                $order = CourseOrder::where('checkout_session_id', $session->id)
+                                    ->where('payment_status', 'pending')
+                                    ->first();
+
+                if ($order) {
+                    Log::channel('stripe_webhooks')->info('🗑️ Eliminando orden expirada', [
+                        'order_id' => $order->id,
+                        'session_id' => $session->id
+                    ]);
+
+                    $order->delete();
+                } else {
+                    Log::channel('stripe_webhooks')->info('⚠️ Orden expirada no encontrada o ya procesada', [
+                        'session_id' => $session->id
+                    ]);
+                }
+                break;
         }
-        // Se pueden manejar otros tipos de eventos (p.ej., payment_intent.succeeded)
+
         return response()->json(['status' => 'success']);
     }
+
 }
