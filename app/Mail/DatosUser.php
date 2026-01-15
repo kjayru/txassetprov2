@@ -35,7 +35,7 @@ class DatosUser extends Mailable
 
 
         ///
-        $address = 'support@txassetpro.com';
+        $address = env('MAIL_FROM_ADDRESS', 'support@tap-security.com');
         $subject = 'Register user';
         $name = 'Support TAP';
 

@@ -30,7 +30,7 @@ class Compra extends Mailable
      */
     public function build()
     {
-        $address = 'support@txassetpro.com';
+        $address = env('MAIL_FROM_ADDRESS', 'support@tap-security.com');
         $subject = 'Congratulations';
         $name = 'Support TAP';
 

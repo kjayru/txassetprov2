@@ -28,7 +28,7 @@ class Notificacion extends Mailable
      */
     public function build()
     {
-        $address = 'support@txassetpro.com';
+        $address = env('MAIL_FROM_ADDRESS', 'support@tap-security.com');
         $subject = 'Purchase made';
         $name = 'Support TAP';
 

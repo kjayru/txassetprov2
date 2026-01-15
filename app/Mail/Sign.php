@@ -32,7 +32,7 @@ class Sign extends Mailable
     {
 
 
-        $address = 'support@txassetpro.com';
+        $address = env('MAIL_FROM_ADDRESS', 'support@tap-security.com');
         $subject = 'Sign Enroll';
         $name = 'Support TAP';
 

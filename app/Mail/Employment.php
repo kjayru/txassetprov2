@@ -40,7 +40,7 @@ class Employment extends Mailable
     {
 
 
-        $address = 'support@txassetpro.com';
+        $address = env('MAIL_FROM_ADDRESS', 'support@tap-security.com');
         $subject = 'Employment user register';
         $name = 'Support TAP';
 
