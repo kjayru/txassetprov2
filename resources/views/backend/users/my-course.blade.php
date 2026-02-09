@@ -88,13 +88,15 @@
                             </td>
                             <td>
                                 @if($course->aprobado==1 )
-                                    Approved
+                                    <span class="badge badge-success">Approved</span>
                                 @elseif($course->caducado==1 && $course->aprobado==0)
-                                    Expired
+                                    <span class="badge badge-warning">Expired</span>
                                 @elseif($course->reiniciado==1 && $course->parent_id!=null && $course->aprobado==0)
-                                    Failed
+                                    <span class="badge badge-danger">Failed</span>
                                 @elseif($course->intentos>0 && $course->aprobado==0)
-                                    Failed
+                                    <span class="badge badge-danger">Failed</span>
+                                @else
+                                    <span class="badge badge-info">In Progress</span>
                                 @endif
                             </td>
 
@@ -105,7 +107,11 @@
 
                             <td>
                                 @if($course->aprobado==1)
-                                <a href="/admin/users/courses/certified/{{$course->course->id}}/{{$course->id}}/{{$user_id}}" target="_blank" class="btn  btn-primary">View</a>
+                                <a href="/admin/users/courses/certified/{{$course->course->id}}/{{$course->id}}/{{$user_id}}" target="_blank" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-certificate"></i> View Certificate
+                                </a>
+                                @else
+                                    <span class="text-muted">Not available</span>
                                 @endif
                             </td>
 

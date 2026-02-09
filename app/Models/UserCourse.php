@@ -42,8 +42,13 @@ class UserCourse extends Model
             return (object) ['total_respuestas' => 0, 'respuestas_correctas' => 0, 'porcentaje_correcto' => 0];
         }
 
+        // Obtiene el último intento (el número más alto)
+        $ultimo_intento = $ucer->intentos > 0 ? $ucer->intentos : 1;
+
+        // Cuenta solo las respuestas del último intento usando attempt_number
         $stats = DB::table('user_course_exam_results')
             ->where('user_course_exam_id', $ucer->id)
+            ->where('attempt_number', $ultimo_intento)
             ->selectRaw('COUNT(*) AS total_respuestas')
             ->selectRaw('SUM(CASE WHEN result = 1 THEN 1 ELSE 0 END) AS respuestas_correctas')
             ->selectRaw('ROUND((SUM(CASE WHEN result = 1 THEN 1 ELSE 0 END) * 100.0) / COUNT(*), 2) AS porcentaje_correcto')
@@ -300,6 +305,14 @@ class UserCourse extends Model
     public static function procesoCaducado($id){
 
         $uc = UserCourse::find($id);
+        
+        // Si el usuario ya aprobó, NO marcamos como caducado
+        // La certificación es permanente una vez aprobada
+        if($uc->aprobado == 1){
+            return true;
+        }
+        
+        // Solo aplicar caducidad a cursos NO aprobados
         $uc->caducado = 1;
         $uc->finalizado = 1;
         $uc->save();

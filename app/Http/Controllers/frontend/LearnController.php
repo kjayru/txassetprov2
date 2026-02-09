@@ -21,6 +21,7 @@ use App\Models\ExamQuestionOption;
 use App\Models\UserCourseExamResult;
 use App\Models\UserCourseExam;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Quiz;
 use App\Models\QuizQuestion;
 use App\Models\QuizQuestionOption;
@@ -1084,6 +1085,10 @@ class LearnController extends Controller
 
         $findresult = ExamQuestionOption::find($request->optionid);
        $regoption->result = $findresult->resultado;
+       
+       // Asignar número de intento actual desde user_course_exams.intentos
+       $regoption->attempt_number = $registro->intentos;
+       
        $regoption->save();
 
 
@@ -1097,7 +1102,13 @@ class LearnController extends Controller
         $actualizar->save();
 
         $tomo_examen = UserCourseExam::where('exam_id',$request->exam_id)->where('user_course_id',$request->user_course_id)->first();
-        $total_correctas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)->where('result','1')->count();
+        
+        // Cuenta solo las respuestas del último intento usando attempt_number
+        $total_correctas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)
+            ->where('attempt_number', $actualizar->intentos) // Solo el intento actual
+            ->where('result', 1)
+            ->count();
+            
         $porcentaje = round($total_correctas*100/$total_preguntas ,2);
 
 
@@ -1111,9 +1122,16 @@ class LearnController extends Controller
         if($porcentaje>=75){
             $usercourse = UserCourse::where('id',$request->user_course_id)->first();
             $usercourse->aprobado = 1;
+            $usercourse->finalizado = 1;
             // if($intentos ==3){
             //     $usercourse->intentos = 1;
             // }
+            
+            // Guardar INMEDIATAMENTE para prevenir sobrescritura
+            $usercourse->save();
+            
+            // Log para debugging
+            \Log::info("Usuario aprobado - UserCourse ID: {$request->user_course_id}, Porcentaje: {$porcentaje}%");
 
             $user_email = $usercourse->user->email;
 
@@ -1127,8 +1145,6 @@ class LearnController extends Controller
             ];
 
             Mail::to($user_email)->send(new Aprobado($data));
-
-            $usercourse->save();
         }else{
             $usercourse = UserCourse::where('id',$request->user_course_id)->first();
             $usercourse->aprobado = 0;

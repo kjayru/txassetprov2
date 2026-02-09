@@ -46,7 +46,7 @@
 
 
 
-                <table id="example2" class="table table-bordered table-hover">
+                <table id="users-table" class="table table-bordered table-hover">
                     <thead>
                     <tr>
                         <th></th>
@@ -149,4 +149,32 @@
 
         </div>
 
+@endsection
+
+@section('scripts')
+<script>
+$(function() {
+    $('#users-table').DataTable({
+        "responsive": true,
+        "lengthChange": true,
+        "autoWidth": false,
+        "order": [[9, 'desc']], // Ordenar por fecha descendente
+        "pageLength": 25,
+        "language": {
+            "search": "Search:",
+            "lengthMenu": "Show _MENU_ entries",
+            "info": "Showing _START_ to _END_ of _TOTAL_ users",
+            "infoEmpty": "Showing 0 to 0 of 0 users",
+            "infoFiltered": "(filtered from _MAX_ total users)",
+            "paginate": {
+                "first": "First",
+                "last": "Last",
+                "next": "Next",
+                "previous": "Previous"
+            }
+        },
+        "buttons": ["copy", "csv", "excel", "pdf", "print"]
+    });
+});
+</script>
 @endsection

@@ -60,11 +60,14 @@ class UsuarioController extends Controller
 
 
        foreach($cursos as $curso){
-            $dias_disponibles = UserCourse::dayleft($curso->id);
+            // Solo procesamos caducidad si el usuario NO ha aprobado
+            // Los cursos aprobados mantienen su certificación permanentemente
+            if($curso->aprobado == 0){
+                $dias_disponibles = UserCourse::dayleft($curso->id);
 
-            if($dias_disponibles<=0){
-
-                UserCourse::procesoCaducado($curso->id);
+                if($dias_disponibles<=0){
+                    UserCourse::procesoCaducado($curso->id);
+                }
             }
        }
 
