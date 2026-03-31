@@ -32,8 +32,8 @@
                     <div class="nav-submenu__col">
                         <span class="nav-submenu__category">Services</span>
                         <ul class="nav-submenu__list">
-                            <li><a href="/#why-us">Why Us</a></li>
-                            <li><a href="/#service">Security Services</a></li>
+                            <li><a href="/#service">Why Us</a></li>
+                            <li><a href="/#service2">Security Services</a></li>
                         </ul>
                     </div>
                     <div class="nav-submenu__col">
