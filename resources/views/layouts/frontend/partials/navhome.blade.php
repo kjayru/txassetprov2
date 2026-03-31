@@ -22,16 +22,70 @@
           <a class="nav-link outinlink internav link-about" data-route="about" href="#about">About us</a>
         </li>
 
-        <li class="nav-item  ">
-            <a class="nav-link outinlink internav link-service" data-route="service" href="#service">Services</a>
+        <li class="nav-item has-submenu">
+            <a class="nav-link outinlink internav link-service" data-route="service" href="#service">Services <i class="fas fa-chevron-down submenu-arrow"></i></a>
+            <button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Toggle Services menu">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="nav-submenu">
+                <div class="nav-submenu__inner">
+                    <div class="nav-submenu__col">
+                        <span class="nav-submenu__category">Services</span>
+                        <ul class="nav-submenu__list">
+                            <li><a href="/#why-us">Why Us</a></li>
+                            <li><a href="/#service">Security Services</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-submenu__col">
+                        <span class="nav-submenu__category">Industries We Serve</span>
+                        <ul class="nav-submenu__list">
+                            <li><a href="/industry/commercial-security">Commercial Security</a></li>
+                            <li><a href="/industry/diplomatic-mission">Diplomatic Mission</a></li>
+                            <li><a href="/industry/hospitality-security">Hospitality Security</a></li>
+                            <li><a href="/industry/industrial-security">Industrial Security</a></li>
+                            <li><a href="/industry/medical-security">Medical Security</a></li>
+                            <li><a href="/industry/residential-security">Residential Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
           </li>
 
-          <li class="nav-item   {{{ (Request::is('employment') ? 'activo' : '') }}}">
-            <a class="nav-link outinlink" href="/employment">Employment</a>
+          <li class="nav-item has-submenu   {{{ (Request::is('employment') ? 'activo' : '') }}}">
+            <a class="nav-link outinlink" href="/employment">Employment <i class="fas fa-chevron-down submenu-arrow"></i></a>
+            <button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Toggle Employment menu">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="nav-submenu">
+                <div class="nav-submenu__inner">
+                    <div class="nav-submenu__col">
+                        <span class="nav-submenu__category">Employment</span>
+                        <ul class="nav-submenu__list">
+                            <li><a href="/employment">Apply Form</a></li>
+                            <li><a href="/form8850">Form 8850</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
           </li>
 
-          <li class="nav-item  {{{ (Request::is('training-academy') ? 'activo' : '') }}}">
-            <a class="nav-link outinlink" href="/training-academy">Training academy</a>
+          <li class="nav-item has-submenu  {{{ (Request::is('training-academy') ? 'activo' : '') }}}">
+            <a class="nav-link outinlink" href="/training-academy">Training academy <i class="fas fa-chevron-down submenu-arrow"></i></a>
+            <button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Toggle Training Academy menu">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="nav-submenu">
+                <div class="nav-submenu__inner">
+                    <div class="nav-submenu__col">
+                        <span class="nav-submenu__category">Training Academy</span>
+                        <ul class="nav-submenu__list">
+                            <li><a href="https://tastecooking.com/features/" target="_blank" rel="noopener">Watch Video</a></li>
+                            <li><a href="/courses">Online Courses</a></li>
+                            <li><a href="/training-calendar">In-Person Training</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
           </li>
 
           <li class="nav-item {{{ (Request::is('blog*') ? 'activo' : '') }}}">

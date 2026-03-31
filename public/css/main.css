@@ -2535,4 +2535,257 @@ section#training {
   }
 
 
+/* ═══════════════════════════════════════════════
+   SUBMENÚ DESPLEGABLE
+   El li crea el contexto de posición.
+   El panel flota directamente bajo el item.
+   Un ::before invisible elimina el "gap" de cierre.
+════════════════════════════════════════════════ */
+
+/* 1. El header nunca recorta el dropdown */
+header,
+header .container-fluid,
+header .row,
+header nav.navbar,
+header .navbar-collapse,
+header .navbar-nav {
+    overflow: visible !important;
+}
+
+/* 2. El navbar es el contexto de posición del panel (mega-menu full-width) */
+nav.navbar {
+    position: relative !important;
+}
+li.has-submenu {
+    position: static !important;
+}
+
+/* 3. Flecha giratoria */
+.submenu-arrow {
+    font-size: 9px;
+    display: inline-block;
+    margin-left: 4px;
+    vertical-align: middle;
+    transition: transform 0.22s ease;
+}
+li.has-submenu:hover .submenu-arrow {
+    transform: rotate(180deg);
+}
+
+/* 4. Panel: oculto por defecto — full-width mega-menu */
+.nav-submenu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    transform: translateY(6px);
+    padding: 28px 0;
+    background: #071d5b;
+    border-top: 2px solid #e01f26;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease,
+                transform 0.2s ease,
+                visibility 0.2s;
+    z-index: 9999;
+    white-space: nowrap;
+}
+
+/* Puente invisible: cubre el hueco entre el nav-link
+   y el panel para que el cursor no "escape" */
+.nav-submenu::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+}
+
+/* 5. Mostrar: clase .is-hover gestionada por JS (con delay para cubrir el gap) */
+li.has-submenu.is-hover > .nav-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* 6. Contenido del panel — centrado dentro del ancho completo */
+.nav-submenu__inner {
+    display: flex;
+    gap: 44px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+.nav-submenu__col {
+    min-width: 145px;
+}
+.nav-submenu__category {
+    display: block;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+.nav-submenu__list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.nav-submenu__list li {
+    list-style: none !important;
+    margin-bottom: 12px;
+}
+.nav-submenu__list li:last-child {
+    margin-bottom: 0;
+}
+.nav-submenu__list li a {
+    display: inline !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+    text-decoration: none !important;
+    font-size: 13.5px;
+    font-weight: 400;
+    position: relative;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: none !important;
+    transition: color 0.15s ease;
+}
+.nav-submenu__list li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: width 0.2s ease;
+}
+.nav-submenu__list li a:hover {
+    color: #fff !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: none !important;
+}
+.nav-submenu__list li a:hover::after {
+    width: 100%;
+}
+
+/* 7. Botón toggle: oculto en desktop */
+.submenu-toggle {
+    display: none !important;
+}
+
+
+/* ═══════════════════════════════════════════════
+   SUBMENÚ MÓVIL – ACORDEÓN (max-width: 780px)
+════════════════════════════════════════════════ */
+@media (max-width: 780px) {
+
+    /* El li mantiene position relative para el botón */
+    li.has-submenu {
+        position: relative !important;
+    }
+
+    /* El nav-link deja espacio para el botón toggle */
+    li.has-submenu > .nav-link {
+        padding-right: 52px !important;
+    }
+
+    /* En móvil .is-hover nunca se agrega (el toggler usa .is-open),
+       así que no hay dropdown por hover — no es necesario cancelarlo */
+
+    /* El panel pasa a ser un acordeón inline */
+    .has-submenu > .nav-submenu {
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        box-shadow: none !important;
+        border-top: none !important;
+        border-left: 3px solid #e01f26;
+        opacity: 0 !important;
+        visibility: visible !important;
+        pointer-events: none !important;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease,
+                    opacity 0.3s ease,
+                    padding 0.35s ease;
+        padding: 0 !important;
+        white-space: normal;
+        margin: 0 0 4px 0;
+        z-index: auto;
+    }
+
+    /* Cancelar el ::before puente */
+    .has-submenu > .nav-submenu::before {
+        display: none;
+    }
+
+    /* Estado abierto vía JS (.is-open en el li) */
+    .has-submenu.is-open > .nav-submenu {
+        max-height: 700px !important;
+        opacity: 1 !important;
+        padding: 12px 0 16px 16px !important;
+        pointer-events: auto !important;
+    }
+
+    .has-submenu.is-open > .nav-submenu .nav-submenu__inner {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .has-submenu.is-open .submenu-arrow {
+        transform: rotate(180deg) !important;
+    }
+
+    /* Botón toggle visible en móvil */
+    .submenu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 53px;
+        width: 46px;
+        background: none;
+        border: none;
+        color: #e01f26;
+        cursor: pointer;
+        padding: 0;
+        z-index: 10;
+    }
+    .submenu-toggle i {
+        font-size: 11px;
+        transition: transform 0.25s ease;
+        pointer-events: none;
+    }
+    .has-submenu.is-open .submenu-toggle i {
+        transform: rotate(180deg);
+    }
+
+    /* Estilos de links dentro del acordeón */
+    .has-submenu > .nav-submenu .nav-submenu__list li a {
+        display: block !important;
+        padding: 4px 0 !important;
+    }
+    .has-submenu > .nav-submenu .nav-submenu__list li a::after,
+    .has-submenu > .nav-submenu .nav-submenu__list li a::before {
+        display: none !important;
+    }
+}
+
 

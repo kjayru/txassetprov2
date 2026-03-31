@@ -199,6 +199,38 @@ $(function() {
             });
           });
 
+          // Submenú acordeón para móvil
+          $(".submenu-toggle").on('click', function(e) {
+            e.stopPropagation();
+            var $parent = $(this).closest('.has-submenu');
+            var isOpen = $parent.hasClass('is-open');
+            $('.has-submenu.is-open').not($parent).removeClass('is-open')
+                .find('.submenu-toggle').attr('aria-expanded', 'false');
+            $parent.toggleClass('is-open', !isOpen);
+            $(this).attr('aria-expanded', String(!isOpen));
+          });
+
+          // Submenú desktop – hover con delay para cubrir el gap entre el li y el panel
+          $('.has-submenu').on('mouseenter', function() {
+            var $li = $(this);
+            clearTimeout($li.data('hideTimeout'));
+            $li.addClass('is-hover');
+          }).on('mouseleave', function() {
+            var $li = $(this);
+            $li.data('hideTimeout', setTimeout(function() {
+              $li.removeClass('is-hover');
+            }, 180));
+          });
+
+          $('.nav-submenu').on('mouseenter', function() {
+            clearTimeout($(this).closest('.has-submenu').data('hideTimeout'));
+          }).on('mouseleave', function() {
+            var $li = $(this).closest('.has-submenu');
+            $li.data('hideTimeout', setTimeout(function() {
+              $li.removeClass('is-hover');
+            }, 180));
+          });
+
 });
 
 

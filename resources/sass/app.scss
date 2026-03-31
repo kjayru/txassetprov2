@@ -94,6 +94,100 @@ header{
                     padding-left: 0.5rem;
                 }
       }
+
+/* ── Submenú desplegable (desktop) ── */
+.has-submenu {
+    position: relative;
+
+    &:hover > .nav-submenu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    &:hover .submenu-arrow {
+        transform: rotate(180deg);
+    }
+
+    .nav-link .submenu-arrow {
+        font-size: 9px;
+        display: inline-block;
+        margin-left: 4px;
+        vertical-align: middle;
+        transition: transform 0.2s ease;
+    }
+}
+
+.nav-submenu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    background: $azulbarra;
+    min-width: 200px;
+    padding: 22px 26px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    border-top: 2px solid $rojo;
+    z-index: 1000;
+    white-space: nowrap;
+
+    &__inner {
+        display: flex;
+        gap: 36px;
+    }
+
+    &__col {
+        min-width: 140px;
+    }
+
+    &__category {
+        display: block;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.45);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 14px;
+        font-weight: 600;
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 10px;
+
+            a {
+                color: $blanco;
+                text-decoration: none;
+                font-size: 13px;
+                position: relative;
+                padding-bottom: 2px;
+                transition: opacity 0.2s ease;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -1px;
+                    left: 0;
+                    width: 0;
+                    height: 1px;
+                    background: $blanco;
+                    transition: width 0.2s ease;
+                }
+
+                &:hover::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.submenu-toggle { display: none; }
 }
 
 footer {
@@ -3223,6 +3317,87 @@ progress{
                             }
                         }
 
+                        /* ── Submenú acordeón (móvil) ── */
+                        .has-submenu {
+                            position: relative;
+
+                            > .nav-link {
+                                padding-right: 50px !important;
+                            }
+
+                            &.is-open {
+                                .submenu-toggle i {
+                                    transform: rotate(180deg);
+                                }
+                                > .nav-submenu {
+                                    max-height: 600px;
+                                    opacity: 1;
+                                    padding: 10px 0 14px 14px;
+                                }
+                            }
+
+                            > .nav-submenu {
+                                position: static;
+                                transform: none;
+                                background: rgba(255, 255, 255, 0.04);
+                                opacity: 0;
+                                visibility: visible;
+                                max-height: 0;
+                                overflow: hidden;
+                                transition: max-height 0.35s ease, opacity 0.35s ease, padding 0.35s ease;
+                                padding: 0;
+                                border-top: none;
+                                border-left: 2px solid $rojo;
+                                white-space: normal;
+                                margin-bottom: 5px;
+
+                                .nav-submenu__inner {
+                                    flex-direction: column;
+                                    gap: 10px;
+                                }
+
+                                .nav-submenu__category {
+                                    margin-bottom: 8px;
+                                    font-size: 10px;
+                                }
+
+                                .nav-submenu__list {
+                                    li {
+                                        margin-bottom: 8px;
+
+                                        a::after {
+                                            display: none;
+                                        }
+
+                                        a::before {
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .submenu-toggle {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            height: 53px;
+                            width: 46px;
+                            background: none;
+                            border: none;
+                            color: $rojo;
+                            cursor: pointer;
+                            padding: 0;
+                            z-index: 10;
+
+                            i {
+                                font-size: 11px;
+                                transition: transform 0.25s ease;
+                            }
+                        }
 
                     }
                     .lista__redes{
