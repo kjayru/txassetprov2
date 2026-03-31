@@ -56,7 +56,7 @@
                                 <div class="opp-card__body">
                                     <h4 class="opp-card__title">Industries</h4>
                                     <p class="opp-card__text">Discover all the industries we serve.</p>
-                                    <a href="/#service2" class="btn opp-btn opp-btn--outline">EXPLORE</a>
+                                    <a href="/#industry" class="btn opp-btn opp-btn--outline">EXPLORE</a>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                 <div class="opp-card__body">
                                     <h4 class="opp-card__title">Online courses</h4>
                                     <p class="opp-card__text">Comprehensive resources with engaging modules, tutorials, and practical exercises, we make sure you're ready to handle real-world challenges.</p>
-                                    <a href="/training-academy" class="btn opp-btn opp-btn--outline">EXPLORE COURSES</a>
+                                    <a href="/courses" class="btn opp-btn opp-btn--outline">EXPLORE COURSES</a>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                                 <div class="opp-card__body">
                                     <h4 class="opp-card__title">In-person training</h4>
                                     <p class="opp-card__text">We equip critical skills for armed security work—delivered through live instruction and range qualification.</p>
-                                    <a href="/training-academy" class="btn opp-btn opp-btn--outline">SCHEDULE</a>
+                                    <a href="/training-calendar" class="btn opp-btn opp-btn--outline">SCHEDULE</a>
                                 </div>
                             </div>
                         </div>
