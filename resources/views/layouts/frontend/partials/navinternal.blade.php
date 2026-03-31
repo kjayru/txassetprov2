@@ -79,7 +79,7 @@
                     <div class="nav-submenu__col">
                         <span class="nav-submenu__category">Training Academy</span>
                         <ul class="nav-submenu__list">
-                            <li><a href="https://tastecooking.com/features/" target="_blank" rel="noopener">Watch Video</a></li>
+                            <li><a href="/training-academy"  rel="noopener">Watch Video</a></li>
                             <li><a href="/courses">Online Courses</a></li>
                             <li><a href="/training-calendar">In-Person Training</a></li>
                         </ul>
