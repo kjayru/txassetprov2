@@ -2788,4 +2788,179 @@ li.has-submenu.is-hover > .nav-submenu {
     }
 }
 
+/* ============================================================
+   Opportunities in Security Start Here
+   ============================================================ */
+#section-opportunities {
+    background: #ffffff;
+}
+
+.opportunities-block {
+    padding: 80px 0 90px;
+}
+
+.opportunities-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #031059;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.opportunities-divider {
+    border: none;
+    border-top: 2px solid #e01f26;
+    width: 100%;
+    margin: 0 auto 20px;
+    opacity: 1;
+}
+
+.opportunities-subtitle {
+    font-size: 1rem;
+    color: #555973;
+    margin-bottom: 0;
+}
+
+/* Card */
+.opp-card {
+    background: #ffffff;
+    border: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.opp-card__img {
+    overflow: hidden;
+    border-radius: 6px 6px 0 0;
+}
+
+.opp-card__img img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.opp-card:hover .opp-card__img img {
+    transform: scale(1.04);
+}
+
+.opp-card__body {
+    padding: 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.opp-card__title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #031059;
+    margin-bottom: 10px;
+}
+
+.opp-card__text {
+    font-size: 0.9rem;
+    color: #555973;
+    flex: 1;
+    margin-bottom: 18px;
+    line-height: 1.55;
+}
+
+/* Buttons */
+.opp-btn {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 9px 22px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.opp-btn--outline {
+    background: transparent;
+    color: #031059;
+    border: 1.5px solid #031059;
+}
+
+.opp-btn--outline:hover {
+    background: #031059;
+    color: #ffffff;
+}
+
+/* Opportunities — mobile */
+@media (max-width: 767.98px) {
+    .opportunities-block {
+        padding: 52px 0 60px;
+    }
+
+    .opportunities-title {
+        font-size: 1.85rem;
+    }
+
+    .opportunities-subtitle {
+        font-size: 0.95rem;
+    }
+
+    /* Stack cards with generous vertical gap */
+    #section-opportunities .row.gx-4.gy-4 > [class*='col-'] {
+        margin-bottom: 0;
+    }
+
+    #section-opportunities .row.gx-4.gy-4 > [class*='col-'] + [class*='col-'] {
+        margin-top: 2.5rem;
+    }
+
+    .opp-card__img {
+        border-radius: 8px;
+    }
+
+    .opp-card__img img {
+        height: 210px;
+        border-radius: 8px;
+    }
+
+    .opp-card__body {
+        padding: 16px 4px 32px;
+    }
+
+    .opp-card__title {
+        font-size: 1.15rem;
+    }
+
+    .opp-card__text {
+        font-size: 0.88rem;
+        margin-bottom: 14px;
+    }
+
+    .opp-btn {
+        font-size: 0.8rem;
+        padding: 9px 20px;
+    }
+}
+
+.opp-btn--red {
+    background: #e01f26;
+    color: #ffffff;
+    border: 1.5px solid #e01f26;
+}
+
+.opp-btn--red:hover {
+    background: #b81920;
+    border-color: #b81920;
+    color: #ffffff;
+}
+
+
+
 

@@ -33,6 +33,82 @@
 
             </div>
         </section>
+
+        {{-- ===== Opportunities in Security Start Here ===== --}}
+        <section id="section-opportunities">
+            <div class="opportunities-block">
+                <div class="container">
+                    <div class="row justify-content-center text-center mb-5">
+                        <div class="col-md-8">
+                            <h2 class="opportunities-title">Opportunities in<br>Security Start Here</h2>
+                            <hr class="opportunities-divider">
+                            <p class="opportunities-subtitle">Explore industries, employment, and professional training.</p>
+                        </div>
+                    </div>
+                    <div class="row gx-4 gy-4 justify-content-center">
+
+                        {{-- Industries --}}
+                        <div class="col-md-3 col-sm-6 col-12">
+                            <div class="opp-card">
+                                <div class="opp-card__img">
+                                    <img src="/images/opp-industries.png" alt="Industries" class="img-fluid w-100">
+                                </div>
+                                <div class="opp-card__body">
+                                    <h4 class="opp-card__title">Industries</h4>
+                                    <p class="opp-card__text">Discover all the industries we serve.</p>
+                                    <a href="/#service2" class="btn opp-btn opp-btn--outline">EXPLORE</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Employment --}}
+                        <div class="col-md-3 col-sm-6 col-12">
+                            <div class="opp-card">
+                                <div class="opp-card__img">
+                                    <img src="/images/opp-employment.png" alt="Employment" class="img-fluid w-100">
+                                </div>
+                                <div class="opp-card__body">
+                                    <h4 class="opp-card__title">Employment</h4>
+                                    <p class="opp-card__text">We are a fast growing business and always accepting applications.</p>
+                                    <a href="/employment" class="btn opp-btn opp-btn--red">APPLY NOW</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Online courses --}}
+                        <div class="col-md-3 col-sm-6 col-12">
+                            <div class="opp-card">
+                                <div class="opp-card__img">
+                                    <img src="/images/opp-courses.png" alt="Online courses" class="img-fluid w-100">
+                                </div>
+                                <div class="opp-card__body">
+                                    <h4 class="opp-card__title">Online courses</h4>
+                                    <p class="opp-card__text">Comprehensive resources with engaging modules, tutorials, and practical exercises, we make sure you're ready to handle real-world challenges.</p>
+                                    <a href="/training-academy" class="btn opp-btn opp-btn--outline">EXPLORE COURSES</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- In-person training --}}
+                        <div class="col-md-3 col-sm-6 col-12">
+                            <div class="opp-card">
+                                <div class="opp-card__img">
+                                    <img src="/images/opp-training.png" alt="In-person training" class="img-fluid w-100">
+                                </div>
+                                <div class="opp-card__body">
+                                    <h4 class="opp-card__title">In-person training</h4>
+                                    <p class="opp-card__text">We equip critical skills for armed security work—delivered through live instruction and range qualification.</p>
+                                    <a href="/training-academy" class="btn opp-btn opp-btn--outline">SCHEDULE</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{-- ===== /Opportunities ===== --}}
+
         <section id="section2">
             <div id="about" class="separador">
                 <div class="container">
