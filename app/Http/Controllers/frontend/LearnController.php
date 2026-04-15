@@ -131,6 +131,39 @@ class LearnController extends Controller
         return redirect()->route('usuario.outcome',['resultado'=>1,'course'=>$userCourse->id]);
        }
 
+       // Redirigir al usuario al punto donde debe continuar el curso
+       foreach ($capitulos as $capitulo) {
+           $userChapter = UserCourseChapter::where('user_course_id', $userCourse->id)
+                                           ->where('chapter_id', $capitulo->id)
+                                           ->first();
+
+           $contenidos = Chaptercontent::where('chapter_id', $capitulo->id)->orderBy('order', 'asc')->get();
+
+           foreach ($contenidos as $contenido) {
+               $visitado = $userChapter && UserCourseChapterContent::where('user_course_chapter_id', $userChapter->id)
+                                                                   ->where('content_id', $contenido->id)
+                                                                   ->exists();
+               if (!$visitado) {
+                   return redirect("/learn/{$userCourse->id}/{$curso->slug}/{$capitulo->slug}/{$contenido->slug}");
+               }
+           }
+
+           // Todos los contenidos del capítulo visitados, verificar quiz
+           if ($capitulo->chapterquiz) {
+               $quizAprobado = $userChapter && UserCourseChapter::where('id', $userChapter->id)
+                                                                ->where('quiz_result', 1)
+                                                                ->exists();
+               if (!$quizAprobado) {
+                   return redirect("/learn/{$userCourse->id}/{$curso->slug}/{$capitulo->slug}/quiz/{$capitulo->chapterquiz->id}");
+               }
+           }
+       }
+
+       // Todos los capítulos y quizzes completados → redirigir al examen final
+       if (isset($examen)) {
+           return redirect("/learn/exam/{$curso->slug}/{$examen->id}");
+       }
+
        $content_slug=null;
 
 
@@ -797,10 +830,14 @@ class LearnController extends Controller
 
             $registroExamen = UserCourseExam::where('exam_id',$id)->where('user_course_id',$userCourse->id)->first();
             if ($registroExamen) {
-            if($registroExamen->intento == null && $registroExamen->resultado == 0 && $registroExamen->complete == null){
-                UserCourseExamResult::where('user_course_exam_id',$registroExamen->id)->delete();
+                // Limpiar respuestas parciales del intento en curso al recargar la página
+                if ($registroExamen->complete != 1) {
+                    $intentoEnCurso = ($registroExamen->intentos ?? 0) + 1;
+                    UserCourseExamResult::where('user_course_exam_id', $registroExamen->id)
+                                        ->where('attempt_number', $intentoEnCurso)
+                                        ->delete();
+                }
             }
-        }
 
         //comprobar si tomo examen
         if(UserCourseExam::where('exam_id',$id)->where('user_course_id',$userCourse->id)->count()>0){
@@ -810,9 +847,12 @@ class LearnController extends Controller
 
 
             $total_preguntas = ExamQuestion::where('exam_id',$id)->count();
-            $total_respondidas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)->count();
-            $total_correctas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)->where('result','1')->count();
-            $porcentaje = round($total_correctas*100/$total_preguntas ,2);
+            $ultimo_intento = max(1, $tomo_examen->intentos ?? 1);
+            $total_respondidas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)
+                                    ->where('attempt_number', $ultimo_intento)->count();
+            $total_correctas = UserCourseExamResult::where('user_course_exam_id', $tomo_examen->id)
+                                    ->where('attempt_number', $ultimo_intento)->where('result', '1')->count();
+            $porcentaje = $total_preguntas > 0 ? round($total_correctas * 100 / $total_preguntas, 2) : 0;
             $completo_examen = $tomo_examen->complete;
             $numero_intentos = $comprobar->intentos;
             $estado_curso = $comprobar->aprobado;
@@ -851,7 +891,9 @@ class LearnController extends Controller
             'numero_veces_curso' => $numeroVecesCurso,
             'estado_curso'=>$estado_curso,
             'reinicios' => $reinicios,
-            'tiempo_examen'=>$tiempo_examen
+            'tiempo_examen'=>$tiempo_examen,
+            'duracion_segundos' => $exam->duration * 60,
+            'tiempo_restante_raw' => (isset($tomo_examen) && $tomo_examen->complete != 1) ? $tomo_examen->tiempo : null,
         ]);
 
     }
@@ -1077,23 +1119,31 @@ class LearnController extends Controller
 
       }
 
-      $regoption = new UserCourseExamResult();
-      $regoption->user_course_exam_id = $registro->id;
-      $regoption->exam_question_id = $request->quizid;
-      //buscamos resultado correcto
-      $regoption->exam_question_option_id = $request->optionid;
+      // Número de intento actual: intentos completados hasta ahora + 1
+      $intentoActual = ($registro->intentos ?? 0) + 1;
 
-        $findresult = ExamQuestionOption::find($request->optionid);
-       $regoption->result = $findresult->resultado;
-       
-       // Asignar número de intento actual desde user_course_exams.intentos
-       $regoption->attempt_number = $registro->intentos;
-       
-       $regoption->save();
+      // Validar que la opción enviada pertenece a la pregunta indicada
+      $findresult = ExamQuestionOption::where('id', $request->optionid)
+                                      ->where('exam_question_id', $request->quizid)
+                                      ->first();
+      if (!$findresult) {
+          return response()->json(['rpta' => 'error', 'status' => '422', 'mensaje' => 'Opción inválida'], 422);
+      }
+
+      $regoption = new UserCourseExamResult();
+      $regoption->user_course_exam_id     = $registro->id;
+      $regoption->exam_question_id        = $request->quizid;
+      $regoption->exam_question_option_id = $request->optionid;
+      $regoption->result                  = $findresult->resultado;
+      // attempt_number correcto: intento en curso (no el completado)
+      $regoption->attempt_number          = $intentoActual;
+      $regoption->save();
 
 
        $total_preguntas = ExamQuestion::where('exam_id',$request->exam_id)->count();
-       $total_respondidas = UserCourseExamResult::where('user_course_exam_id',$registro->id)->count();
+       // Contar solo respuestas del intento actual (no acumular intentos anteriores)
+       $total_respondidas = UserCourseExamResult::where('user_course_exam_id',$registro->id)
+                                                ->where('attempt_number', $intentoActual)->count();
 
        if($total_preguntas == $total_respondidas){
         $actualizar =  UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->first();
@@ -1183,18 +1233,24 @@ class LearnController extends Controller
 
     public function resetExam(Request $request){
         $uce = UserCourseExam::where('user_course_id',$request->user_course_id)->where('exam_id',$request->exam_id)->first();
-       // $uce->intentos = $uce->intentos+1;
         $uce->complete = 0;
         $uce->save();
 
-        UserCourseExamResult::where('user_course_exam_id',$request->user_course_exam_id)->delete();
+        // Solo borrar respuestas del próximo intento (parciales si el usuario ya empezó y volvió a resetear)
+        // Los intentos anteriores completados se preservan para historial y viewExam
+        $proximo_intento = ($uce->intentos ?? 0) + 1;
+        UserCourseExamResult::where('user_course_exam_id', $uce->id)
+                            ->where('attempt_number', $proximo_intento)
+                            ->delete();
 
         return response()->json(['status'=>'200','rpta'=>'ok']);
     }
 
     public function viewExam(Request $request){
 
-        $user_course_exam = UserCourseExam::find($request->user_course_id);
+        $user_course_exam = UserCourseExam::find($request->user_course_exam_id);
+        // Mostrar solo las respuestas del último intento completado
+        $ultimo_intento = $user_course_exam ? max(1, $user_course_exam->intentos ?? 1) : 1;
 
         $total_preguntas = ExamQuestion::where('exam_id',$request->exam_id)->get();
         $total_respondidas = UserCourseExamResult::where('user_course_exam_id',$request->user_course_exam_id)->get();
@@ -1213,10 +1269,10 @@ class LearnController extends Controller
                     $correcto = true;
                 }
 
-                if(UserCourseExamResult::where('exam_question_option_id',$opcion->id)->where('user_course_exam_id',$request->user_course_exam_id)->count()>0){
+                if(UserCourseExamResult::where('exam_question_option_id',$opcion->id)->where('user_course_exam_id',$request->user_course_exam_id)->where('attempt_number',$ultimo_intento)->count()>0){
 
 
-                     $urespuesta = UserCourseExamResult::where('exam_question_option_id',$opcion->id)->where('user_course_exam_id',$request->user_course_exam_id)->first();
+                     $urespuesta = UserCourseExamResult::where('exam_question_option_id',$opcion->id)->where('user_course_exam_id',$request->user_course_exam_id)->where('attempt_number',$ultimo_intento)->first();
 
                      if( $urespuesta->result == 1 && $opcion->resultado==1){
                          $acierto = true;

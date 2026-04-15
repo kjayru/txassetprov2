@@ -797,8 +797,16 @@ $(".btn__examen").on('click', function (e) {
     const SPAN_MINUTES = document.getElementById('minuto');
     const SPAN_SECONDS = document.getElementById('segundo');
     const MILLISECONDS_OF_A_SECOND = 1000;
-    const TOTAL_TIME = 7200; // 2 horas en segundos
-    let segundosRestantes = TOTAL_TIME; // Total en segundos
+    const TOTAL_TIME = parseInt(document.getElementById('exam_duracion_segundos')?.value) || 7200;
+    // Restaurar tiempo restante si el examen estaba en progreso (recarga de página)
+    const tiempoRestanteEl = document.getElementById('exam_tiempo_restante');
+    let segundosRestantes = TOTAL_TIME;
+    if (tiempoRestanteEl && tiempoRestanteEl.value) {
+        const partes = tiempoRestanteEl.value.split(':');
+        if (partes.length === 3) {
+            segundosRestantes = parseInt(partes[0]) * 3600 + parseInt(partes[1]) * 60 + parseInt(partes[2]);
+        }
+    }
 
     // Función de actualización de cuenta regresiva
     function updateCountdown() {
@@ -964,6 +972,12 @@ $(".btn__exam").on('click',function(e){
   let padre =  $(this).parent();
   let chapter_id =  $('input[name="chapter_id"]').val();
   const token = $('meta[name="csrf-token"]').attr('content');
+
+  if (input === undefined) {
+    $(".texto__error").html("You must select an answer before continuing");
+    $("#errorModal").modal('show');
+    return false;
+  }
 
   let sendata = {'_token':token,'_method':'POST',quizid:quizid,optionid:input,'chapter_id':chapter_id,'exam_id':exam_id,'tiempo':tiempo,'user_course_id':user_course_id};
   $.ajax({

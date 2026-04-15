@@ -83,7 +83,7 @@
                                     <a href="#" class="btn btn__gray btn__restart__exam disabled" >Restart exam</a></div>
                                     @endif
 								<div class="col-12 col-sm-4 pb-4">
-									@if($porcentaje > 75)
+								@if($porcentaje >= 75)
 
 									<a href="/learn/exam/{{$user_course_id}}/congratulation" class="btn btn__red btn__continue">Continue</a>
 									@else
@@ -116,7 +116,7 @@
 				@endif
 
 					<div class="quiz__timelapse">
-						<div class="quiz__timelapse__titulo">Time limit: <span id="hora">01</span>:<span id="minuto">59</span>:<span id="segundo">00</span></div>
+						<div class="quiz__timelapse__titulo">Time limit: <span id="hora">02</span>:<span id="minuto">00</span>:<span id="segundo">00</span></div>
 						<div class="quiz__timelapse__box">
 							<div class="quiz__timelapse__bar"></div>
 						</div>
@@ -127,6 +127,8 @@
                         <input type="hidden" name="user_course_id" id="user_course_id" value="{{@$user_course_id}}">
                         <input type="hidden" name="exam_id" id="exam_id" value="{{@$examen->id}}">
                         <input type="hidden" name="tiempo" id="tiempo">
+                        <input type="hidden" id="exam_duracion_segundos" value="{{ $duracion_segundos ?? 7200 }}">
+                        <input type="hidden" id="exam_tiempo_restante" value="{{ $tiempo_restante_raw ?? '' }}">
 
                             @foreach($examen->examquestions as $key => $question)
 
@@ -137,8 +139,8 @@
 
                                             @foreach($question->examquestionoptions as $option)
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="respuesta" value="{{$option->id}}" id="respuesta">
-                                                <label class="form-check-label" for="respuesta">
+                                                <input class="form-check-input" type="radio" name="respuesta" value="{{$option->id}}" id="respuesta_{{$option->id}}">
+                                                <label class="form-check-label" for="respuesta_{{$option->id}}">
                                                     {{$option->opcion}}
                                                 </label>
                                                 </div>

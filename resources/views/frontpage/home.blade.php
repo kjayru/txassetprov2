@@ -70,7 +70,7 @@
                                 <div class="opp-card__body">
                                     <h4 class="opp-card__title">Employment</h4>
                                     <p class="opp-card__text">We are a fast growing business and always accepting applications.</p>
-                                    <a href="/employment" class="btn opp-btn opp-btn--red">APPLY NOW</a>
+                                    <a href="/employment" class="btn  opp-btn opp-btn--outline">APPLY NOW</a>
                                 </div>
                             </div>
                         </div>

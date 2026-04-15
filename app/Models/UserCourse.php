@@ -256,49 +256,27 @@ class UserCourse extends Model
 
     }
 
-    public static function tiempoExamen($tiempo){
+    public static function tiempoExamen($tiempo, $duracionSegundos = 7200){
+        // $tiempo = tiempo RESTANTE "HH:MM:SS" guardado por el timer descendente del frontend.
+        // Retorna el tiempo TRANSCURRIDO para mostrar "Your time: X" al usuario.
 
-
-        $hora =  Carbon::parse($tiempo)->floatDiffInHours('02:00');
-        $minuto =  Carbon::parse($tiempo)->floatDiffInMinutes('02:00');
-        $dt = explode(":",$tiempo);
-
-
-        $nhora = 0;
-        $nminuto = 0;
-        $nsegundo = 0;
-        $valor = 0;
-        //dd($tiempo.": ".$hora." - ".$minuto." - ".$segundos);
-
-            $nhora = $dt[0]-1;
-            if($nhora <0){
-                $nhora = 0;
-            }
-
-
-            $nminuto = 60 - $dt[1];
-            if($nminuto <10){
-                $nminuto = "0".$nminuto;
-                if($nminuto <0){
-                    $nminuto = 0;
-                }
-            }
-
-            if($nminuto == 60){
-                $nminuto = 0;
-            }
-
-        $nsegundo = 60 - $dt[2];
-
-        if($nhora==0 && $nminuto==0 && $nsegundo>57){
-            $valor = "2:00:00";
-        }else{
-            $valor = $nhora.":".$nminuto.":".$nsegundo;
+        if (empty($tiempo) || $tiempo === '0') {
+            return '00:00:00';
         }
 
+        $dt = explode(":", $tiempo);
+        if (count($dt) < 3) {
+            return '00:00:00';
+        }
 
+        $segundosRestantes    = ((int)$dt[0] * 3600) + ((int)$dt[1] * 60) + (int)$dt[2];
+        $segundosTranscurridos = max(0, $duracionSegundos - $segundosRestantes);
 
-        return $valor;
+        $h = floor($segundosTranscurridos / 3600);
+        $m = floor(($segundosTranscurridos % 3600) / 60);
+        $s = $segundosTranscurridos % 60;
+
+        return sprintf('%02d:%02d:%02d', $h, $m, $s);
 
     }
 
