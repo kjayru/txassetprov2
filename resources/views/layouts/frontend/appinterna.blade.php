@@ -86,10 +86,8 @@
 </head>
 <body>
 <header>
-<div class="container-fluid ">
-    <div class="row justify-content-center">
-        @include("layouts.frontend.partials.navinternal")
-    </div>
+<div class="container-fluid px-0">
+    @include("layouts.frontend.partials.navinternal")
 
     @guest
 
@@ -98,15 +96,6 @@
     @endguest
 
 </div>
-@desktop
-<ul class=" lista__redes">
-    <li>
-      <a href="https://www.facebook.com/tapsecurit/" class="header__face" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/tapsecurity/?hl=es-la" class="header__face" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.youtube.com/channel/UC72n6tJvyxseA49zLw5D2sA" class="header__face" target="_blank"><i class="fab fa-youtube"></i></a>
-    </li>
-  </ul>
-@enddesktop
 </header>
         <main>
             @yield('content')
@@ -136,8 +125,8 @@
             <div class="col-md-4 text-right d-none d-sm-block order-sm-3">
                 <ul class="lisfoot">
                     <li><a href="/" class="footer-link">Home</a></li>
-                    <li><a href="/#about"  class="footer-link">About  us</a></li>
-                    <li><a href="/#service"   class="footer-link">Services</a></li>
+                    <li><a href="/about-us"  class="footer-link">About  us</a></li>
+                    <li><a href="/services"   class="footer-link">Services</a></li>
                     <li><a href="/employment" class="footer-link">Employment</a></li>
                     <li><a href="/training-calendar" class="footer-link">Training calendar</a></li>
                     <li><a href="/blog" class="footer-link">Blog</a></li>

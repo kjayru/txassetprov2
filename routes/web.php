@@ -194,6 +194,7 @@ Route::get('/', [Home::class,'index'])->name('front.home');
 Route::get('/about-us', [Home::class,'aboutus'])->name('front.about');
 Route::get('/services', [Home::class,'services'])->name('front.service');
 Route::get('/employment', [Home::class,'employment'])->name('front.employment');
+Route::get('/employment-form', [Home::class,'employmentEmbed'])->name('front.employment.embed');
 Route::post('/thanks',[Home::class,'employementThank'])->name('front.thanks');
 Route::post('/thanks2',[Home::class,'formThank'])->name('front.thanks2');
 Route::get('/generatepdf',[Home::class,'generatepdf']);

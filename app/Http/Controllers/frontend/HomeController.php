@@ -108,6 +108,11 @@ class HomeController extends Controller
         return view('frontpage.employment');
     }
 
+    public function employmentEmbed()
+    {
+        return view('frontpage.employment_embed');
+    }
+
     public function employementThank(Request $request)
     {
 
@@ -474,6 +479,9 @@ class HomeController extends Controller
                 Mail::to(env('MAIL_CONTACT'))->send(new Empleo($data));
 
 
+        }
+        if ($request->boolean('embedded')) {
+            return view('frontpage.gracias_embed');
         }
 
         return view('frontpage.gracias');

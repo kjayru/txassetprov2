@@ -91,10 +91,8 @@
 </head>
 <body>
 <header>
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        @include("layouts.frontend.partials.navhome")
-    </div>
+<div class="container-fluid px-0">
+    @include("layouts.frontend.partials.navhome")
 
     @guest
 
@@ -102,15 +100,6 @@
          @include("layouts.frontend.subnav")
     @endguest
 </div>
-@desktop
-<ul class=" lista__redes">
-  <li>
-    <a href="https://www.facebook.com/tapsecurit/" class="header__face" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com/tapsecurity/?hl=es-la" class="header__face" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.youtube.com/channel/UC72n6tJvyxseA49zLw5D2sA" class="header__face" target="_blank"><i class="fab fa-youtube"></i></a>
-  </li>
-</ul>
-@enddesktop
 </header>
         <main>
             @yield('content')

@@ -2964,3 +2964,91 @@ li.has-submenu.is-hover > .nav-submenu {
 
 
 
+
+/* ═══════════════════════════════════════════════
+   TAP NAVBAR — alineacion izquierda + seccion derecha
+   Replica la estructura del frontend Vue
+════════════════════════════════════════════════ */
+
+/* La nav ocupa el 100% del header sin row/col que la recorte */
+nav.tap-navbar {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Los items principales quedan pegados a la izquierda después del logo */
+nav.tap-navbar .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-right: 0 !important;   /* anula mr-auto legado */
+}
+
+/* Sección derecha: GET A QUOTE | CLIENT LOGIN | COURSE LOGIN | social */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* Botón GET A QUOTE en la sección derecha */
+.nav-right .nav-quote {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1.1rem !important;
+    border-radius: 999px !important;
+    background: #e01f26 !important;
+    color: #fff !important;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    border: none;
+    text-decoration: none;
+}
+
+.nav-right .nav-quote:hover {
+    background: #c41920 !important;
+}
+
+/* Links CLIENT LOGIN / COURSE LOGIN */
+.nav-right .nav-login {
+    color: #e01f26 !important;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    text-decoration: none;
+    padding: 0 0.5rem !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: none !important;
+}
+
+.nav-right .nav-login:hover {
+    color: #fff !important;
+}
+
+/* Iconos sociales en la sección derecha */
+.nav-social {
+    gap: 0.6rem;
+    margin-left: 0.4rem;
+}
+
+.nav-social .header__face {
+    font-size: 0.85rem;
+    padding-left: 0 !important;
+}
+
+/* Resetear estilos legacy de lista__redes que ya no se usan en desktop */
+.tap-navbar ~ .lista__redes,
+header > .lista__redes {
+    display: none !important;
+}

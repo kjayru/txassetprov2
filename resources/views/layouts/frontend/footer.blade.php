@@ -18,8 +18,8 @@
             <div class="col-md-4 text-right d-none d-sm-block order-sm-3">
                 <ul class="lisfoot">
                     <li><a href="/" class="footer-link">Home</a></li>
-                    <li><a href="/#about"  class="footer-link">About  us</a></li>
-                    <li><a href="/#service"   class="footer-link">Services</a></li>
+                    <li><a href="/about-us"  class="footer-link">About  us</a></li>
+                    <li><a href="/services"   class="footer-link">Services</a></li>
                     <li><a href="/employment" class="footer-link">Employment</a></li>
                     <li><a href="/training-calendar" class="footer-link">Training calendar</a></li>
                     <li><a href="/blog" class="footer-link">Blog</a></li>
