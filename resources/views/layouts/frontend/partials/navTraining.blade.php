@@ -39,12 +39,12 @@
                         <div class="nav-submenu__col">
                             <span class="nav-submenu__category">Industries We Serve</span>
                             <ul class="nav-submenu__list">
-                                <li><a href="/industry/commercial-security">Commercial Security</a></li>
-                                <li><a href="/industry/diplomatic-mission">Diplomatic Mission</a></li>
-                                <li><a href="/industry/hospitality-security">Hospitality Security</a></li>
-                                <li><a href="/industry/industrial-security">Industrial Security</a></li>
-                                <li><a href="/industry/medical-security">Medical Security</a></li>
-                                <li><a href="/industry/residential-security">Residential Security</a></li>
+                                <li><a href="{{ $fe }}/industry/commercial-security">Commercial Security</a></li>
+                                <li><a href="{{ $fe }}/industry/diplomatic-mission">Diplomatic Mission</a></li>
+                                <li><a href="{{ $fe }}/industry/hospitality-security">Hospitality Security</a></li>
+                                <li><a href="{{ $fe }}/industry/industrial-security">Industrial Security</a></li>
+                                <li><a href="{{ $fe }}/industry/medical-security">Medical Security</a></li>
+                                <li><a href="{{ $fe }}/industry/residential-security">Residential Security</a></li>
                             </ul>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                             <span class="nav-submenu__category">Employment</span>
                             <ul class="nav-submenu__list">
                                 <li><a href="{{ $fe }}/employment">Apply Form</a></li>
-                                <li><a href="/form8850">Form 8850</a></li>
+                                <li><a href="{{ $fe }}/form8850">Form 8850</a></li>
                             </ul>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                             <ul class="nav-submenu__list">
                                 <li><a href="{{ $fe }}/training-academy">Watch Video</a></li>
                                 <li><a href="{{ $fe }}/courses">Online Courses</a></li>
-                                <li><a href="/training-calendar">In-Person Training</a></li>
+                                <li><a href="{{ $fe }}/training-calendar">In-Person Training</a></li>
                             </ul>
                         </div>
                     </div>

@@ -1,3 +1,4 @@
+@php $fe = rtrim(config('app.frontend_url'), '/'); @endphp
 <footer>
           <div class="container-fluid">
               <div class="row justify-content-center">
@@ -19,14 +20,14 @@
                   </div>
                   <div class="col-md-4 text-right d-none d-sm-block order-sm-3">
                       <ul class="lisfoot">
-                          <li><a href="/" class="footer-link">Home</a></li>
-                          <li><a href="/" class="footer-link internav" data-route="about">About us</a></li>
-                          <li><a href="/" class="footer-link internav" data-route="service">Services</a></li>
-                          <li><a href="/employment" class="footer-link">Employment</a> </li>
-                          <li><a href="/training-calendar" class="footer-link">Training calendar</a></li>
-                          <li><a href="/blog" class="footer-link">Blog</a> </li>
-                          <li><a href="/contact" class="footer-link">Contact</a></li>
-                          <li><a href="/contact" data-section="contact" class="btn btn-quote  btq-foot inclass shadowred">GET A QUOTE</a></li>
+                          <li><a href="{{ $fe }}/" class="footer-link">Home</a></li>
+                          <li><a href="{{ $fe }}/about-us" class="footer-link">About us</a></li>
+                          <li><a href="{{ $fe }}/services" class="footer-link">Services</a></li>
+                          <li><a href="{{ $fe }}/employment" class="footer-link">Employment</a> </li>
+                          <li><a href="{{ $fe }}/training-calendar" class="footer-link">Training calendar</a></li>
+                          <li><a href="{{ $fe }}/blog" class="footer-link">Blog</a> </li>
+                          <li><a href="{{ $fe }}/contact" class="footer-link">Contact</a></li>
+                          <li><a href="{{ $fe }}/contact" data-section="contact" class="btn btn-quote  btq-foot inclass shadowred">GET A QUOTE</a></li>
                       </ul>
                   </div>
               </div>
