@@ -76,10 +76,9 @@ use App\Models\Course;
                                 @php
                                     $course = Course::getcourse($item->course);
                                 @endphp
-                                @if (is_object($course) && property_exists($course, 'titulo'))
+                                @if (is_object($course) && isset($course->titulo))
                                     {{ $course->titulo }}
                                 @else
-                                    <!-- Manejar el caso cuando no hay curso -->
                                     No disponible
                                 @endif
                             </td>
